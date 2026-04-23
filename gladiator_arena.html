@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5">
 <title>Gladiator Arena</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
 <style>
@@ -218,10 +218,10 @@ body{font-family:'Cinzel',Georgia,serif;display:flex;flex-direction:column;heigh
 .ia-item b{color:#9a7030}
 
 /* ── MERCHANT SHOP — redesigned ────────────────────────────*/
-#shop-scr .sbox{max-width:560px;padding:20px 22px 22px;max-height:min(92vh,720px);display:flex;flex-direction:column;overflow:hidden}
+#shop-scr .sbox{max-width:560px;padding:20px 22px 22px;max-height:min(92vh,720px);display:flex;flex-direction:column;overflow:hidden;min-height:0}
 #shop-scr .sico,#shop-scr .stit,#shop-scr .ssub{flex-shrink:0}
 #shop-scr .sbtn{margin-top:10px;flex-shrink:0}
-.shop-scroll-area{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;padding-right:6px;margin-right:-2px;scrollbar-width:thin;scrollbar-color:#3a2818 transparent}
+.shop-scroll-area{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;padding-right:6px;margin-right:-2px;scrollbar-width:thin;scrollbar-color:#3a2818 transparent;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
 .shop-scroll-area::-webkit-scrollbar{width:6px}
 .shop-scroll-area::-webkit-scrollbar-thumb{background:#3a2610;border-radius:4px}
 #shop-satchel-panel{flex-shrink:0;margin-top:6px;display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:start}
@@ -290,6 +290,37 @@ body{font-family:'Cinzel',Georgia,serif;display:flex;flex-direction:column;heigh
 .inv-equip-pill{flex-shrink:0;font-size:8px;font-weight:700;padding:5px 11px;border-radius:999px;background:rgba(32,58,28,.95);border:1px solid #4a7044;color:#a8d898;letter-spacing:1.2px;pointer-events:none}
 .inv-row:hover .inv-equip-pill{border-color:#4a7044;color:#a8d898}
 @media (max-width:760px){#shop-satchel-panel{grid-template-columns:1fr}}
+
+/* ── Mobile: merchant usable (scroll + tap targets) ───────── */
+@media (max-width:640px){
+  #shop-scr.scr{align-items:flex-start;justify-content:flex-start;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding:max(8px,env(safe-area-inset-top)) 0 max(20px,env(safe-area-inset-bottom));}
+  #shop-scr .sbox{max-height:none;width:min(100%,560px);margin:0 auto;padding:14px 12px 16px;overflow:visible}
+  #shop-scr .sico{font-size:36px}
+  #shop-scr .stit{font-size:clamp(16px,4.5vw,20px);letter-spacing:2px}
+  #shop-scr .ssub{margin-bottom:8px}
+  .shop-regen{font-size:9px;padding:5px 8px;margin-bottom:6px}
+  .shgold{font-size:12px;margin-bottom:6px}
+  .shop-scroll-area{flex:1 1 auto;min-height:min(52dvh,420px);max-height:none;padding-bottom:12px}
+  .shop-section-label{font-size:8px;letter-spacing:2px;margin:10px 0 6px}
+  .shgrid-tier,.shgrid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .si{min-height:92px;padding:10px 6px 9px;touch-action:manipulation;-webkit-tap-highlight-color:rgba(232,184,75,.15)}
+  .si .sid{font-size:7.5px;line-height:1.25}
+  .sii{font-size:22px}
+  .shop-next-btn{width:100%;max-width:100%;padding:12px 16px;font-size:11px;margin-top:12px;touch-action:manipulation}
+  .sbtn,.soul-sbtn{touch-action:manipulation;-webkit-tap-highlight-color:rgba(232,184,75,.12)}
+}
+@media (max-width:380px){
+  .shgrid-tier,.shgrid{grid-template-columns:1fr}
+  .shop-scroll-area{min-height:min(48dvh,360px)}
+}
+
+/* Soul emporium — scroll on small screens */
+@media (max-width:640px){
+  #soul-shop-scr.scr{align-items:flex-start;overflow-y:auto;padding:max(8px,env(safe-area-inset-top)) 0 max(16px,env(safe-area-inset-bottom));}
+  .soul-sbox{max-height:none;margin:8px auto;width:min(100%,460px);padding:16px 14px 18px}
+  .soul-grid{max-height:min(50dvh,340px);overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+  .soul-sbtn{width:100%;padding:12px 14px;margin-top:10px}
+}
 
 /* boss announce */
 .boss-badge{display:inline-block;font-size:7px;font-weight:700;padding:2px 7px;border-radius:2px;letter-spacing:2px;margin-bottom:5px;text-transform:uppercase}
@@ -746,9 +777,9 @@ body{font-family:'Cinzel',Georgia,serif;display:flex;flex-direction:column;heigh
     <div class="shgold" id="shop-gold-txt"><small>GOLD</small> 50</div>
     <div class="shop-scroll-area" id="shop-scroll-area">
       <div id="shop-grid"></div>
+      <div id="shop-satchel-panel"></div>
     </div>
-    <div id="shop-satchel-panel"></div>
-    <button class="sbtn" onclick="nextFight()">NEXT FIGHT →</button>
+    <button class="sbtn shop-next-btn" onclick="nextFight()">NEXT FIGHT →</button>
   </div>
 </div>
 
