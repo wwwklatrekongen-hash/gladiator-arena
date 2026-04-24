@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5">
 <title>Gladiator Arena</title>
-<meta name="description" content="Fourteen-round browser gladiator roguelike: shop, loot, bosses, and a daily seed.">
+<meta name="description" content="Fifteen-round browser gladiator roguelike: shop, loot, bosses, and a daily seed.">
 <meta name="theme-color" content="#060302">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -525,6 +525,10 @@ body{font-family:'Cinzel',Georgia,serif;display:flex;flex-direction:column;heigh
 @keyframes adual{from{filter:drop-shadow(0 6px 14px rgba(0,0,0,.95)) drop-shadow(0 0 16px rgba(255,240,200,.55)) drop-shadow(0 0 22px rgba(60,20,90,.6))}to{filter:drop-shadow(0 6px 14px rgba(0,0,0,.95)) drop-shadow(0 0 36px rgba(255,248,220,.85)) drop-shadow(0 0 48px rgba(30,8,50,.85)) brightness(1.1)}}
 .bb-dual{background:linear-gradient(90deg,#1a1020,#0a0814);color:#f8f0ff;border:1px solid #8060c0;box-shadow:0 0 18px rgba(120,80,200,.35)}
 .ft-dual{background:#120818;color:#e8d8ff;border:1px solid #604090;animation:ftpulse2 1.1s ease-in-out infinite alternate}
+.aura-splitter{animation:asplitter 1.6s ease-in-out infinite alternate}
+@keyframes asplitter{from{filter:drop-shadow(0 6px 14px rgba(0,0,0,.95)) drop-shadow(0 0 20px rgba(120,220,255,.55)) drop-shadow(0 0 16px rgba(255,90,180,.45))}to{filter:drop-shadow(0 6px 14px rgba(0,0,0,.95)) drop-shadow(0 0 42px rgba(120,240,255,.95)) drop-shadow(0 0 34px rgba(255,100,200,.8)) brightness(1.16) contrast(1.08)}}
+.bb-splitter{background:linear-gradient(90deg,#081018,#160a24);color:#aef0ff;border:1px solid #50b8d8;box-shadow:0 0 16px rgba(90,220,255,.35)}
+.ft-splitter{background:#08141c;color:#a8f0ff;border:1px solid #3a90a8;animation:ftpulse2 .9s ease-in-out infinite alternate}
 html.ga-reduce-motion #archon-heaven{animation:none;opacity:.72}
 @media (prefers-reduced-motion: reduce){
   #archon-heaven{animation:none;opacity:.7}
@@ -876,7 +880,7 @@ html:not(.ga-reduce-motion) #scene.scene-shake{animation:sceneShake .22s ease-ou
   <div class="sbox">
     <span class="sico">⚔️</span>
     <div class="stit">GLADIATOR ARENA</div>
-    <div class="ssub">Fourteen rounds. One champion.</div>
+    <div class="ssub">Fifteen rounds. One champion.</div>
     <div class="sbod">Survive the trial.<br>Earn gold. Upgrade. Discover your power.</div>
     <div class="ia-grid">
       <div class="ia-item"><b>⚔ Slash</b><br>Reliable every turn</div>
@@ -2157,6 +2161,40 @@ const CHARS = {
   <path d="M28 18 L26 8 L30 16" fill="#e8d8ff" stroke="#604080" stroke-width=".6"/>
   <path d="M36 16 L36 4 L38 16" fill="#fffef8" stroke="#8060a0" stroke-width=".6"/>
   <path d="M44 18 L46 8 L42 16" fill="#1a0818" stroke="#402060" stroke-width=".6"/>
+</svg>`,
+  conceptsplitter:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="cspBody" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#90f0ff"/>
+      <stop offset="46%" style="stop-color:#60a0ff"/>
+      <stop offset="54%" style="stop-color:#ff70c8"/>
+      <stop offset="100%" style="stop-color:#401060"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="36" cy="100" rx="26" ry="5" fill="rgba(0,0,0,.55)"/>
+  <!-- split halo -->
+  <ellipse cx="36" cy="14" rx="24" ry="7" fill="none" stroke="#a8f4ff" stroke-width="1.3" opacity=".8"/>
+  <ellipse cx="36" cy="14" rx="30" ry="9" fill="none" stroke="#ff90d8" stroke-width=".9" opacity=".65"/>
+  <!-- tail splits -->
+  <path d="M36 76 Q28 90 18 100" stroke="#70d8ff" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M36 76 Q44 90 54 100" stroke="#ff80c8" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- body -->
+  <ellipse cx="36" cy="59" rx="22" ry="17" fill="url(#cspBody)" stroke="#307090" stroke-width="1.3"/>
+  <path d="M20 56 Q36 48 52 56" stroke="rgba(255,255,255,.35)" stroke-width="1.1" fill="none"/>
+  <!-- 4 blades / split limbs -->
+  <rect x="7" y="46" width="10" height="6" rx="2" fill="#203848"/>
+  <rect x="55" y="46" width="10" height="6" rx="2" fill="#401830"/>
+  <rect x="10" y="58" width="10" height="6" rx="2" fill="#204850"/>
+  <rect x="52" y="58" width="10" height="6" rx="2" fill="#502040"/>
+  <!-- head -->
+  <rect x="30" y="33" width="12" height="14" rx="4" fill="url(#cspBody)" stroke="#305070" stroke-width="1"/>
+  <ellipse cx="36" cy="24" rx="15" ry="11" fill="url(#cspBody)" stroke="#406890" stroke-width="1.2"/>
+  <!-- split face -->
+  <rect x="34.7" y="15" width="2.6" height="18" rx="1" fill="#fff8f0" opacity=".8"/>
+  <ellipse cx="30" cy="24" rx="3.2" ry="2.5" fill="#071018"/>
+  <ellipse cx="42" cy="24" rx="3.2" ry="2.5" fill="#120818"/>
+  <ellipse cx="30" cy="24" rx="1.5" ry="1.2" fill="#70f0ff"/>
+  <ellipse cx="42" cy="24" rx="1.5" ry="1.2" fill="#ff70c8"/>
 </svg>`
 };
 
@@ -2182,10 +2220,12 @@ const ENEMIES=[
     specialName:"VOID ECHO + UNMAKING + MIRROR CURSE",specialDesc:"Copies your strength. Cannot die without soul items."},
   {name:"Nemesis",         charKey:"nemesis",   hp:1,  str:1,  agi:1,  def:1,  gold:1500,title:"Your Own Shadow",   isBoss:true,  bossType:"nemesis",
     specialName:"PERFECT MIRROR + ADAPTATION + NEMESIS BLADE + FINAL REFLECTION",specialDesc:"Built from you. Fed by you. Ends as you."},
-  {name:"The Concept Lizard",charKey:"conceptlizard",hp:780,str:100,agi:24,def:46,gold:2400,title:"Archon of Duality",isBoss:true,bossType:"dual",
+  {name:"Concept Lizard",charKey:"conceptlizard",hp:780,str:100,agi:24,def:46,gold:2400,title:"Archon of Duality",isBoss:true,bossType:"dual",
     specialName:"SOLAR VERDICT + UMBRAL MIRROR",specialDesc:"Heaven brands you; shadow answers what you deny."},
   {name:"Concept Dragon",  charKey:"conceptdragon",hp:640,str:84,agi:20,def:40,gold:2500,title:"Dragon of Concepts",isBoss:true,bossType:"concept",
     specialName:"WARP SPACE-TIME + GRAVITY BREATH",specialDesc:"Bends turns, crushes with gravity."},
+  {name:"Concept Splitter",charKey:"conceptsplitter",hp:980,str:130,agi:30,def:58,gold:4200,title:"The Final Schism",isBoss:true,bossType:"splitter",
+    specialName:"TRUMP I FRACTURE + TRUMP II DUAL FORM + TRUMP III QUAD SHARD",specialDesc:"Splits into two at 40%, then erupts into four on turn 8 (one move)."},
 ];
 
 // ═══ TIERED GEAR SYSTEM ═══
@@ -2819,7 +2859,7 @@ function buildShareCard(result){
     else if((i+1) === result.deathRound) bar.push('🗡️');
     else bar.push('⬛');
   }
-  const enemyName = result.deathRound ? ['Slave','Barbarian','Legionnaire','Praetorian','Champion','Berserker','Daemonicus','Undying','Kronos','Saturn','Aeternon','Nemesis','Concept Lizard','Concept Dragon'][result.deathRound-1] : 'Concept Dragon';
+  const enemyName = result.deathRound ? ['Slave','Barbarian','Legionnaire','Praetorian','Champion','Berserker','Daemonicus','Undying','Kronos','Saturn','Aeternon','Nemesis','Concept Lizard','Concept Dragon','Concept Splitter'][result.deathRound-1] : 'Concept Splitter';
   const outcome = result.won ? '👑 CHAMPION' : `${enemyName} R${result.deathRound}`;
   const hpTxt = result.won ? `HP ${result.finalHp}/${result.maxHp}` : '';
   const modLine=(result.dailyModTag&&String(result.dailyModTag))?`\nSigil: ${result.dailyModTag}`:'';
@@ -2899,6 +2939,8 @@ function startFight(){
     document.getElementById('esprite').querySelector('svg').classList.add('aura-saturn');
   } else if(et.bossType==='dual'){
     document.getElementById('esprite').querySelector('svg').classList.add('aura-dual');
+  } else if(et.bossType==='splitter'){
+    document.getElementById('esprite').querySelector('svg').classList.add('aura-splitter');
   } else if(et.bossType==='concept'){
     document.getElementById('esprite').querySelector('svg').classList.add('aura-concept');
   } else if(et.bossType==='void'){
@@ -2919,6 +2961,8 @@ function startFight(){
     badge.innerHTML=`<div class="boss-badge bb-saturn">⏳ LORD OF TIME</div>`;
   } else if(et.isBoss&&et.bossType==='dual'){
     badge.innerHTML=`<div class="boss-badge bb-dual">◇ ARCHON OF DUALITY</div>`;
+  } else if(et.isBoss&&et.bossType==='splitter'){
+    badge.innerHTML=`<div class="boss-badge bb-splitter">✦ CONCEPT SPLITTER</div>`;
   } else if(et.isBoss&&et.bossType==='concept'){
     badge.innerHTML=`<div class="boss-badge bb-concept">🐉 DRAGON OF CONCEPTS</div>`;
   } else if(et.isBoss&&et.bossType==='void'){
@@ -2975,6 +3019,14 @@ function startFight(){
     G.enemy.agi=Math.max(1,Math.round(G.enemy.agi*q));
     G.enemy.def=Math.max(1,Math.round(G.enemy.def*q));
   }
+  if(et.bossType==='splitter'){
+    const q=1.22;
+    G.enemy.maxHp=Math.max(1,Math.round(G.enemy.maxHp*q));
+    G.enemy.hp=G.enemy.maxHp;
+    G.enemy.str=Math.max(1,Math.round(G.enemy.str*q));
+    G.enemy.agi=Math.max(1,Math.round(G.enemy.agi*q));
+    G.enemy.def=Math.max(1,Math.round(G.enemy.def*q));
+  }
 
   if(et.bossType==='nemesis'){
     G.busy=true;
@@ -2992,10 +3044,21 @@ function startFight(){
     setTimeout(()=>{if(typeof sfxArchonHeaven==='function')sfxArchonHeaven();},140);
     setTimeout(()=>{
       addLog(`The sky tears — not into weather, into judgment. A column of impossible daylight pins the arena.`,'bsp');
-      addLog(`THE CONCEPT LIZARD descends: Archon of Duality. One jaw speaks in hymns. The other speaks in absences.`,'bsp');
+      addLog(`CONCEPT LIZARD descends: Archon of Duality. One jaw speaks in hymns. The other speaks in absences.`,'bsp');
       addLog(`SOLAR VERDICT burns the honest line across your skin. UMBRAL MIRROR finishes whatever you will not confess.`,'bsp');
       G.busy=false;render();
     },2400);
+    render();return;
+  }else if(et.bossType==='splitter'){
+    G.busy=true;
+    initAudio();
+    setTimeout(()=>{if(typeof sfxBossEnter==='function')sfxBossEnter();},150);
+    setTimeout(()=>{
+      addLog(`The arena fractures into mirrors. One shape stands in every shard: CONCEPT SPLITTER.`,'bsp');
+      addLog(`Three trump moves govern this thing: FRACTURE EDICT, DUAL FORM, and QUAD SHARD.`,'bsp');
+      addLog(`At 40% HP it splits in two. On turn 8 it splits into four for a single devastating move.`,'bsp');
+      G.busy=false;render();
+    },2100);
     render();return;
   }else if(et.bossType==='concept'){
     G.busy=true;
@@ -3387,7 +3450,7 @@ function enemyTurn(){
     if(solar){
       const sd=calcDmg(e.str,p.agi,p.def,1.56,(ptot.dodge||0)*0.85);
       if(sd<0){
-        addLog(`The Concept Lizard's SOLAR VERDICT glances — you slip the branded line!`,'en');
+        addLog(`Concept Lizard's SOLAR VERDICT glances — you slip the branded line!`,'en');
         sfxDodge();
       }else{
         if(p.hasSoulAegis&&!p.soulAegisUsed&&sd>=p.hp){
@@ -3432,6 +3495,74 @@ function enemyTurn(){
     G.myTurn=true;render();return;
   }
   // ── END CONCEPT LIZARD ──────────────────────────────────
+
+  // ── CONCEPT SPLITTER (Final Schism) ─────────────────────
+  if(e.isBoss&&e.bossType==='splitter'){
+    e.splitTurn=(e.splitTurn||0)+1;
+
+    // Trump move III: one-time turn 8 quad split barrage
+    if(e.splitTurn===8&&!e.quadMoveDone){
+      e.quadMoveDone=true;
+      const hits=e.split2Done?4:3;
+      let total=0;
+      addLog(`✦ TRUMP III — QUAD SHARD: the Splitter becomes four for a single impossible heartbeat.`,'bsp');
+      for(let i=0;i<hits;i++){
+        const qd=Math.max(10,Math.floor(e.str*0.43)+ri(2,7));
+        const dealt=p.defending?Math.max(1,Math.floor(qd*0.78)):qd;
+        total+=dealt;
+        p.hp=Math.max(0,p.hp-dealt);
+        aHit('p',dealt);
+      }
+      aAtk('e');
+      addLog(`Four mirrored strikes land for ${total} total damage.`,'bsp');
+      p.defending=false;
+      if(p.hp<=0){
+        const riseChance=hasMilestone('eternal')?1.0:0.33;
+        if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
+          p.blessingUsed=true;p.hp=0;G.busy=true;
+          document.getElementById('psprite').classList.add('dead');render();
+          triggerResurrection();return;
+        }
+        addLog(`You vanish between shards of yourself.`,'sp');
+        document.getElementById('psprite').classList.add('dead');setTimeout(showDefeat,900);return;
+      }
+      G.myTurn=true;render();return;
+    }
+
+    // Split at 40% once (Trump move II trigger)
+    if(e.hp/e.maxHp<0.40&&!e.split2Done){
+      e.split2Done=true;
+      e.str=Math.max(1,Math.floor(e.str*1.12));
+      e.agi=Math.max(1,Math.floor(e.agi*1.08));
+      addLog(`✦ TRUMP II — DUAL FORM: Concept Splitter divides into two synchronized hunters.`,'bsp');
+      addLog(`Each half grows sharper. Incoming pressure rises.`,'bsp');
+      const esp=document.getElementById('esprite');
+      esp.classList.add('ghost');setTimeout(()=>esp.classList.remove('ghost'),620);
+      G.myTurn=true;render();return;
+    }
+
+    // Trump move I cadence every 3 turns
+    if(e.splitTurn%3===0){
+      const fd=Math.max(14,Math.floor(e.str*(e.split2Done?1.18:1.02))+ri(4,10));
+      const dealt=p.defending?Math.max(1,Math.floor(fd*0.75)):fd;
+      p.hp=Math.max(0,p.hp-dealt);
+      addLog(`✦ TRUMP I — FRACTURE EDICT: ${dealt} schism damage cleaves through intent.`,'bsp');
+      aAtk('e');aHit('p',dealt);
+      p.defending=false;
+      if(p.hp<=0){
+        const riseChance=hasMilestone('eternal')?1.0:0.33;
+        if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
+          p.blessingUsed=true;p.hp=0;G.busy=true;
+          document.getElementById('psprite').classList.add('dead');render();
+          triggerResurrection();return;
+        }
+        addLog(`The edict splits your final thought.`,'sp');
+        document.getElementById('psprite').classList.add('dead');setTimeout(showDefeat,900);return;
+      }
+      G.myTurn=true;render();return;
+    }
+  }
+  // ── END CONCEPT SPLITTER ────────────────────────────────
 
   // ── CONCEPT DRAGON MECHANICS ───────────────────────────
   if(e.isBoss&&e.bossType==='concept'){
@@ -3784,7 +3915,7 @@ function endFight(won){
   const gAdd=computeRoundGoldReward(e);
   p.gold+=gAdd;p.wins++;
   // Award soul fragments
-  const SOUL_REWARDS=[5,8,12,16,20,28,50,80,120,180,260,360,520,620];
+  const SOUL_REWARDS=[5,8,12,16,20,28,50,80,120,180,260,360,520,620,760];
   const souls=SOUL_REWARDS[G.ei]||0;
   p.souls=(p.souls||0)+souls;
   const drop=grantLootDrop(p,e,G.ei);
@@ -3903,6 +4034,13 @@ function render(){
     et.push(`<span class="ft ft-dual">${(e.dualTurn||0)%2===1?'SOLAR VERDICT':'UMBRAL MIRROR'}</span>`);
     if(!e.twinJudgmentDone&&e.hp/e.maxHp<0.78)et.push('<span class="ft ft-dual">TWIN JUDGMENT NEAR</span>');
     if(!e.dualCollapseDone&&e.hp/e.maxHp<0.48)et.push('<span class="ft ft-dual">COLLAPSE NEAR</span>');
+  }
+  if(e.isBoss&&e.bossType==='splitter'){
+    const in8=(8-((e.splitTurn||0)%8));
+    et.push(`<span class="ft ft-splitter">TRUMP ${((e.splitTurn||0)%3)+1}</span>`);
+    et.push(`<span class="ft ft-splitter">QUAD IN ${in8===8?'NOW':in8}</span>`);
+    if(!e.split2Done&&e.hp/e.maxHp<0.52)et.push('<span class="ft ft-splitter">SPLIT AT 40%</span>');
+    if(e.split2Done)et.push('<span class="ft ft-splitter">DUAL FORM</span>');
   }
   if(e.isBoss&&e.bossType==='concept'){
     const bIn=3-((e.conceptTurn||0)%3);
