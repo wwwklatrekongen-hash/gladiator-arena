@@ -735,6 +735,11 @@ html.ga-reduce-motion #reptilian-fx{display:none}
 #shatterer-storm .st-comet:nth-child(6){left:54%} #shatterer-storm .st-comet:nth-child(7){left:66%}
 #shatterer-storm .st-comet:nth-child(8){left:78%} #shatterer-storm .st-comet:nth-child(9){left:90%}
 @keyframes stComet{0%{transform:translate(-12px,-100px) rotate(21deg) scale(.7);opacity:0}12%{opacity:.95}100%{transform:translate(130px,380px) rotate(21deg) scale(1.08);opacity:0}}
+#shatterer-storm.storm-comet .st-comet{animation-duration:1s!important;filter:drop-shadow(0 0 14px rgba(140,240,255,.95))}
+#shatterer-storm.storm-glitch .st-void{animation:stGlitchPulse .4s steps(2) 3}
+@keyframes stGlitchPulse{0%{transform:translate(0,0);filter:hue-rotate(0deg)}25%{transform:translate(4px,-2px);filter:hue-rotate(70deg)}50%{transform:translate(-3px,2px);filter:hue-rotate(-40deg)}100%{transform:translate(0,0);filter:hue-rotate(0deg)}}
+#shatterer-storm.storm-shatter .st-void{animation:stShatterWave .65s ease-out 1}
+@keyframes stShatterWave{0%{opacity:.2;transform:scale(1)}45%{opacity:1;transform:scale(1.06)}100%{opacity:.2;transform:scale(1)}}
 html.ga-reduce-motion #shatterer-storm{display:none}
 
 /* Tap to unlock audio */
@@ -3704,6 +3709,25 @@ function enemyTurn(){
   if(e.isBoss&&e.bossType==='splitter'){
     e.splitTurn=(e.splitTurn||0)+1;
 
+    if((e.heavenlyRestrictionTurns||0)>0){
+      e.heavenlyRestrictionTurns=Math.max(0,(e.heavenlyRestrictionTurns||0)-1);
+      if(e.heavenlyRestrictionTurns===0){
+        e.def=Math.max(1,e.def-(e.hrDefBonus||0));
+        e.agi=Math.max(1,e.agi-(e.hrAgiBonus||0));
+        e.hrDefBonus=0;e.hrAgiBonus=0;
+        addLog(`✦ HEAVENLY RESTRICTION fades — Concept Splitter's shell cracks.`,'bsp');
+      }
+    }
+    if(!e.heavenlyRestrictionUsed){
+      e.heavenlyRestrictionUsed=true;
+      e.heavenlyRestrictionTurns=5;
+      e.hrDefBonus=Math.max(1,Math.floor(e.def*0.50));
+      e.hrAgiBonus=9;
+      e.def+=e.hrDefBonus;
+      e.agi+=e.hrAgiBonus;
+      addLog(`✦ HEAVENLY RESTRICTION — Concept Splitter fortifies itself: +50% DEF, +9 AGI for 5 turns.`,'bsp');
+    }
+
     // Trump move III: one-time turn 8 quad split barrage
     if(e.splitTurn===8&&!e.quadMoveDone){
       e.quadMoveDone=true;
@@ -3778,6 +3802,7 @@ function enemyTurn(){
     if(e.hp/e.maxHp<0.68&&!e.glitchPhaseDone){
       e.glitchPhaseDone=true;
       p.conceptWarpStacks=Math.min((p.conceptWarpStacks||0)+2,5);
+      triggerShattererMoveFx('glitch');
       addLog(`⌁ GLITCH PARADOX — your action timeline stutters. WARP stacks surge.`,'bsp');
       const psp=document.getElementById('psprite');
       psp.classList.add('ghost');setTimeout(()=>psp.classList.remove('ghost'),700);
@@ -3788,12 +3813,14 @@ function enemyTurn(){
       e.shatterRage=true;
       e.str=Math.floor(e.str*1.18);
       e.agi=Math.floor(e.agi*1.12);
+      triggerShattererMoveFx('shatter');
       addLog(`✸ SHATTER ASCENT — the fracture deepens. COMETS accelerate.`,'bsp');
       G.myTurn=true;render();return;
     }
 
     if(e.shatterTurn%5===0){
       const sd=Math.max(24,Math.floor(e.str*1.05)+ri(8,16));
+      triggerShattererMoveFx('shatter');
       if(p.hasSoulAegis&&!p.soulAegisUsed&&sd>=p.hp){
         p.soulAegisUsed=true;
         addLog(`✦ SOUL AEGIS absorbs SHATTER ABSOLUTION!`,'sp');
@@ -3819,6 +3846,7 @@ function enemyTurn(){
     if(e.shatterTurn%3===0){
       const comets=e.shatterRage?4:3;
       let total=0;
+      triggerShattererMoveFx('comet');
       for(let i=0;i<comets;i++){
         const cd=Math.max(8,Math.floor(e.str*0.36)+ri(2,8));
         const dealt=p.defending?Math.max(1,Math.floor(cd*0.82)):cd;
@@ -3845,6 +3873,7 @@ function enemyTurn(){
     if(e.shatterTurn%2===0){
       p.conceptWarpStacks=Math.min((p.conceptWarpStacks||0)+1,5);
       if(rnd()<0.45)p.timeLocked=Math.max(p.timeLocked||0,1);
+      triggerShattererMoveFx('glitch');
       addLog(`⌁ REALITY DESYNC — controls slip between frames.`,'bsp');
       G.myTurn=true;render();return;
     }
@@ -4457,6 +4486,32 @@ function triggerReptilianHeavenSwordFx(){
   setTimeout(()=>{fx.innerHTML='';scene.classList.remove('reptilian-flash');},760);
 }
 
+function triggerShattererMoveFx(kind='comet'){
+  const storm=document.getElementById('shatterer-storm');
+  const scene=document.getElementById('scene');
+  const esp=document.getElementById('esprite');
+  if(!storm||!scene)return;
+  const cls=kind==='glitch'?'storm-glitch':kind==='shatter'?'storm-shatter':'storm-comet';
+  storm.classList.remove('storm-comet','storm-glitch','storm-shatter');
+  void storm.offsetWidth;
+  storm.classList.add(cls);
+  if(esp){
+    esp.classList.remove('ghost');
+    void esp.offsetWidth;
+    esp.classList.add('ghost');
+    setTimeout(()=>{try{esp.classList.remove('ghost');}catch(_){}},420);
+  }
+  scene.classList.remove('scene-shake');
+  void scene.offsetWidth;
+  scene.classList.add('scene-shake');
+  setTimeout(()=>{
+    try{
+      storm.classList.remove(cls);
+      scene.classList.remove('scene-shake');
+    }catch(_){}
+  },760);
+}
+
 // ══════════════════════════════════════════════════════════
 // RENDER
 // ══════════════════════════════════════════════════════════
@@ -4532,6 +4587,7 @@ function render(){
     const in8=(8-((e.splitTurn||0)%8));
     et.push(`<span class="ft ft-splitter">TRUMP ${((e.splitTurn||0)%3)+1}</span>`);
     et.push(`<span class="ft ft-splitter">QUAD IN ${in8===8?'NOW':in8}</span>`);
+    if((e.heavenlyRestrictionTurns||0)>0)et.push(`<span class="ft ft-splitter">RESTRICTION ×${e.heavenlyRestrictionTurns}</span>`);
     if(!e.split2Done&&e.hp/e.maxHp<0.52)et.push('<span class="ft ft-splitter">SPLIT AT 40%</span>');
     if(e.split2Done)et.push('<span class="ft ft-splitter">DUAL FORM</span>');
   }
