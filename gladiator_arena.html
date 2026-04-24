@@ -547,6 +547,25 @@ body{font-family:'Cinzel',Georgia,serif;display:flex;flex-direction:column;heigh
   animation:highlordSkyShift 4.2s ease-in-out infinite alternate;
 }
 @keyframes highlordSkyShift{from{filter:hue-rotate(0deg) brightness(.92)}to{filter:hue-rotate(28deg) brightness(1.18)}}
+#scene.highlord-finale{
+  box-shadow:inset 0 -30px 60px rgba(0,0,0,.7),0 0 90px rgba(120,230,255,.18),0 0 140px rgba(180,100,255,.12);
+}
+#scene.highlord-finale::before{
+  content:'';
+  position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(circle at 14% 18%,rgba(190,230,255,.92) 0 1px,transparent 2px),
+    radial-gradient(circle at 28% 12%,rgba(170,220,255,.8) 0 1px,transparent 2px),
+    radial-gradient(circle at 40% 24%,rgba(230,180,255,.82) 0 1px,transparent 2px),
+    radial-gradient(circle at 58% 16%,rgba(170,255,245,.78) 0 1px,transparent 2px),
+    radial-gradient(circle at 72% 22%,rgba(210,220,255,.86) 0 1px,transparent 2px),
+    radial-gradient(circle at 88% 10%,rgba(255,190,230,.76) 0 1px,transparent 2px),
+    radial-gradient(circle at 52% 36%,rgba(110,40,170,.32),transparent 48%),
+    radial-gradient(circle at 8% 40%,rgba(40,120,190,.24),transparent 40%),
+    radial-gradient(circle at 92% 44%,rgba(120,40,130,.22),transparent 42%);
+  animation:highlordStarDrift 14s linear infinite;
+}
+@keyframes highlordStarDrift{from{transform:translateY(0)}to{transform:translateY(14px)}}
 #scene.highlord-finale #stands{filter:saturate(1.4) hue-rotate(28deg) brightness(1.12)}
 #scene.highlord-finale #stands::before{opacity:.72;animation:highlordCrowdPulse 1.8s ease-in-out infinite alternate}
 @keyframes highlordCrowdPulse{from{filter:brightness(.9)}to{filter:brightness(1.26)}}
@@ -557,6 +576,15 @@ body{font-family:'Cinzel',Georgia,serif;display:flex;flex-direction:column;heigh
 #scene.highlord-finale .cf-in::after{
   background:linear-gradient(180deg,rgba(90,30,130,.92),rgba(20,8,34,.95));
   box-shadow:inset 0 -4px 0 rgba(255,255,255,.08),0 0 8px rgba(100,200,255,.28);
+}
+#scene.highlord-finale #wall,
+#scene.highlord-finale .col,
+#scene.highlord-finale .tg{opacity:.35;filter:hue-rotate(42deg) saturate(1.25)}
+#scene.highlord-finale #sand{
+  background:
+    radial-gradient(ellipse 58% 36% at 50% 52%,rgba(130,180,255,.25),rgba(60,20,90,.28) 58%,transparent 78%),
+    radial-gradient(ellipse 36% 22% at 50% 64%,rgba(255,180,120,.2),transparent 78%);
+  box-shadow:0 -16px 30px rgba(80,180,255,.22),inset 0 10px 30px rgba(120,60,180,.2);
 }
 html.ga-reduce-motion #archon-heaven{animation:none;opacity:.72}
 @media (prefers-reduced-motion: reduce){
@@ -2429,8 +2457,8 @@ const ENEMIES=[
     specialName:"TRUMP I FRACTURE + TRUMP II DUAL FORM + TRUMP III QUAD SHARD",specialDesc:"Splits into two at 40%, then erupts into four on turn 8 (one move)."},
   {name:"Concept Shatterer",charKey:"conceptshatterer",hp:3200,str:165,agi:34,def:72,gold:6200,title:"The Reality Rupture",isBoss:true,bossType:"shatterer",
     specialName:"COMET REQUIEM + GLITCH PARADOX + SHATTER ABSOLUTION",specialDesc:"Rains comets and corrupts reality itself."},
-  {name:"Cosmic Reptilian Highlord",charKey:"cosmichighlord",hp:5200,str:220,agi:44,def:96,gold:9200,title:"Author of Multiversal Narratives",isBoss:true,bossType:"highlord",
-    specialName:"CROWN OF FIRST SCRIPT + GENESIS RETCON + DECREE OF A THOUSAND COSMOS",specialDesc:"Has authored civilizations since the first dawn."},
+  {name:"Concept of Truth",charKey:"cosmichighlord",hp:5200,str:220,agi:44,def:96,gold:9200,title:"The Idea That Defines Truth",isBoss:true,bossType:"highlord",
+    specialName:"AXIOM CROWN + ORIGIN VERDICT + ABSOLUTE DECREE",specialDesc:"Defines what truth means across all narratives."},
 ];
 
 // ═══ TIERED GEAR SYSTEM ═══
@@ -3079,7 +3107,7 @@ function buildShareCard(result){
     else if((i+1) === result.deathRound) bar.push('🗡️');
     else bar.push('⬛');
   }
-  const enemyName = result.deathRound ? ['Slave','Barbarian','Legionnaire','Praetorian','Champion','Berserker','Daemonicus','Undying','Kronos','Saturn','Aeternon','Nemesis','Concept Lizard','Concept Reptilian','Concept Dragon','Concept Splitter','Concept Shatterer','Cosmic Highlord'][result.deathRound-1] : 'Cosmic Highlord';
+  const enemyName = result.deathRound ? ['Slave','Barbarian','Legionnaire','Praetorian','Champion','Berserker','Daemonicus','Undying','Kronos','Saturn','Aeternon','Nemesis','Concept Lizard','Concept Reptilian','Concept Dragon','Concept Splitter','Concept Shatterer','Concept of Truth'][result.deathRound-1] : 'Concept of Truth';
   const outcome = result.won ? '👑 CHAMPION' : `${enemyName} R${result.deathRound}`;
   const hpTxt = result.won ? `HP ${result.finalHp}/${result.maxHp}` : '';
   const modLine=(result.dailyModTag&&String(result.dailyModTag))?`\nSigil: ${result.dailyModTag}`:'';
@@ -3207,7 +3235,7 @@ function startFight(){
   } else if(et.isBoss&&et.bossType==='shatterer'){
     badge.innerHTML=`<div class="boss-badge bb-shatterer">☄ REALITY SHATTERER</div>`;
   } else if(et.isBoss&&et.bossType==='highlord'){
-    badge.innerHTML=`<div class="boss-badge bb-highlord">👑 COSMIC HIGHLORD</div>`;
+    badge.innerHTML=`<div class="boss-badge bb-highlord">👑 CONCEPT OF TRUTH</div>`;
   } else if(et.isBoss&&et.bossType==='void'){
     badge.innerHTML=`<div class="boss-badge bb-void">◈ THE NAMELESS</div>`;
   } else if(et.isBoss&&et.bossType==='nemesis'){
@@ -3368,8 +3396,9 @@ function startFight(){
     setTimeout(()=>{
       addLog(`A throne of burning scripts descends. The arena becomes a cosmic amphitheater.`,'bsp');
       addLog(`The crowd ascends into witnessing entities — stellar beings attending the grand finale.`,'bsp');
-      addLog(`COSMIC REPTILIAN HIGHLORD arrives — architect of multiversal narratives since civilization's first dawn.`,'bsp');
-      addLog(`CROWN OF FIRST SCRIPT, GENESIS RETCON, DECREE OF A THOUSAND COSMOS — all stories kneel here.`,'bsp');
+      addLog(`CONCEPT OF TRUTH arrives — the principle that defines what truth even means.`,'bsp');
+      addLog(`AXIOM CROWN, ORIGIN VERDICT, ABSOLUTE DECREE — all stories kneel here.`,'bsp');
+      addLog(`Lore: before empires, before gods, before language — this entity authored what 'true' means.`,'bsp');
       G.busy=false;render();
     },2850);
     render();return;
@@ -3440,6 +3469,20 @@ function act(a){
   const bon=p.buffTurns>0?5:0;
   const wm=getWeaponMoveset(p);
   const ptot=getPassiveTotals(p);
+
+  // Highlord counter mechanic: one-turn thrust riposte after his decree
+  if(e&&e.isBoss&&e.bossType==='highlord'&&(e.decreeExposeTurns||0)>0){
+    if(a==='thrust'){
+      const rip=Math.max(60,Math.floor((combatStr(p.str+bon,e.isBoss))*1.45)+ri(6,14));
+      e.hp=Math.max(0,e.hp-rip);
+      e.decreeExposeTurns=0;
+      addLog(`⚚ PARADOX RIPOSTE — your Thrust pierces the decree seam for ${rip} counter damage!`,'sp');
+      aAtk('p');aHit('e',rip);
+    }else{
+      e.decreeExposeTurns=0;
+      addLog(`The decree seam closes. Counter window lost.`,'bsp');
+    }
+  }
 
   // Helper — routes player damage through Nemesis Final Reflection check
   function applyPlayerDmg(d,wasHit){
@@ -3988,6 +4031,19 @@ function enemyTurn(){
   if(e.isBoss&&e.bossType==='highlord'){
     e.hlTurn=(e.hlTurn||0)+1;
 
+    if(!e.truthLore1&&e.hp/e.maxHp<0.82){
+      e.truthLore1=true;
+      addLog(`Lore: civilizations do not discover truth here — they inherit it from the High Concept.`,'bsp');
+    }
+    if(!e.truthLore2&&e.hp/e.maxHp<0.52){
+      e.truthLore2=true;
+      addLog(`Lore: each timeline carries a different scripture, but all point back to the same Author.`,'bsp');
+    }
+    if(!e.truthLore3&&e.hp/e.maxHp<0.26){
+      e.truthLore3=true;
+      addLog(`Lore: when Truth blinks, whole histories become drafts.`,'bsp');
+    }
+
     // Special Effect 1: AURA OF UNWRITTEN AEONS (periodic pressure field)
     if(e.hlTurn%2===1){
       const auraTick=Math.max(6,Math.floor(e.str*0.14)+ri(1,4));
@@ -4010,7 +4066,7 @@ function enemyTurn(){
       e.narrativeCrown=true;
       e.def=Math.floor(e.def*1.25);
       e.agi=Math.floor(e.agi*1.20);
-      addLog(`👑 CROWN OF FIRST SCRIPT — the Highlord declares canonical supremacy.`,'bsp');
+      addLog(`👑 AXIOM CROWN — Concept of Truth declares canonical supremacy.`,'bsp');
       triggerHighlordMoveFx('crown');
       triggerShattererMoveFx('glitch');
       G.myTurn=true;render();return;
@@ -4022,22 +4078,36 @@ function enemyTurn(){
       e.hp=Math.min(e.maxHp,e.hp+heal);
       p.timeLocked=Math.max(p.timeLocked||0,1);
       p.conceptWarpStacks=Math.min((p.conceptWarpStacks||0)+2,6);
-      addLog(`⌘ GENESIS RETCON — history bends backward. Highlord restores ${heal} HP.`,'bsp');
+      addLog(`⌘ ORIGIN VERDICT — history bends backward. Concept of Truth restores ${heal} HP.`,'bsp');
       triggerHighlordMoveFx('retcon');
       triggerShattererMoveFx('glitch');
       G.myTurn=true;render();return;
     }
 
-    if(e.hlTurn%4===0){
+    if(e.hp/e.maxHp<0.35&&!e.apotheosis){
+      e.apotheosis=true;
+      e.str=Math.floor(e.str*1.14);
+      e.def=Math.floor(e.def*1.10);
+      addLog(`✺ AUTHOR'S APOTHEOSIS — the Highlord ascends beyond narrative constraints.`,'bsp');
+      addLog(`Decrees accelerate. Every law now arrives sharpened.`,'bsp');
+      triggerHighlordMoveFx('decree');
+      triggerShattererMoveFx('shatter');
+      G.myTurn=true;render();return;
+    }
+
+    const decreeCadence=e.apotheosis?3:4;
+    if(e.hlTurn%decreeCadence===0){
       const decree=Math.max(34,Math.floor(e.str*1.08)+ri(10,20));
       triggerHighlordMoveFx('decree');
       triggerShattererMoveFx('shatter');
+      e.decreeExposeTurns=1;
       if(p.hasSoulAegis&&!p.soulAegisUsed&&decree>=p.hp){
         p.soulAegisUsed=true;
-        addLog(`✦ SOUL AEGIS absorbs DECREE OF A THOUSAND COSMOS!`,'sp');
+        addLog(`✦ SOUL AEGIS absorbs ABSOLUTE DECREE!`,'sp');
       }else{
         p.hp=Math.max(0,p.hp-decree);
-        addLog(`✧ DECREE OF A THOUSAND COSMOS — ${decree} unavoidable narrative damage.`,'bsp');
+        addLog(`✧ ABSOLUTE DECREE — ${decree} unavoidable truth damage.`,'bsp');
+        addLog(`A fracture opens in the decree. THRUST now to counter.`,'bsp');
         aAtk('e');aHit('p',decree);
       }
       p.defending=false;
@@ -4059,7 +4129,7 @@ function enemyTurn(){
       e.nullfieldUsed=true;
       e.nullfieldTurns=2;
       p.timeLocked=Math.max(p.timeLocked||0,1);
-      addLog(`✧ SOVEREIGN NULLFIELD — the Highlord phases beyond harm for 2 turns and erases your next action.`,'bsp');
+      addLog(`✧ VERITY NULLFIELD — Concept of Truth phases beyond harm for 2 turns and erases your next action.`,'bsp');
       triggerHighlordMoveFx('crown');
       G.myTurn=true;render();return;
     }
@@ -4850,14 +4920,17 @@ function render(){
     if(e.shatterRage)et.push('<span class="ft ft-shatter">REALITY RUPTURE</span>');
   }
   if(e.isBoss&&e.bossType==='highlord'){
-    const dIn=4-((e.hlTurn||0)%4);
+    const hc=e.apotheosis?3:4;
+    const dIn=hc-((e.hlTurn||0)%hc);
     const bIn=3-((e.hlTurn||0)%3);
-    et.push(`<span class="ft ft-highlord">DECREE IN ${dIn===4?'NOW':dIn}</span>`);
+    et.push(`<span class="ft ft-highlord">DECREE IN ${dIn===hc?'NOW':dIn}</span>`);
     et.push(`<span class="ft ft-highlord">BARRAGE IN ${bIn===3?'NOW':bIn}</span>`);
+    if((e.decreeExposeTurns||0)>0)et.push('<span class="ft ft-highlord">RIPOSTE: THRUST</span>');
     if(e.narrativeCrown)et.push('<span class="ft ft-highlord">FIRST SCRIPT</span>');
     et.push('<span class="ft ft-highlord">AEON AURA</span>');
     if((e.nullfieldTurns||0)>0)et.push(`<span class="ft ft-highlord">NULLFIELD ×${e.nullfieldTurns}</span>`);
     if(!e.originRewriteDone&&e.hp/e.maxHp<0.72)et.push('<span class="ft ft-highlord">RETCON NEAR</span>');
+    if(e.apotheosis)et.push('<span class="ft ft-highlord">APOTHEOSIS</span>');
   }
   if(e.isBoss&&e.bossType==='concept'){
     const bIn=3-((e.conceptTurn||0)%3);
