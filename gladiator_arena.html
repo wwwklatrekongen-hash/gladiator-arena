@@ -564,6 +564,50 @@ body{font-family:'Cinzel',Georgia,serif;display:flex;flex-direction:column;heigh
 #ci-skip{position:absolute;bottom:14px;right:18px;font-family:'Cinzel',serif;font-size:8px;color:#507090;letter-spacing:2px;cursor:pointer;z-index:20;opacity:.6}
 #ci-skip:hover{opacity:1}
 
+/* ── SATURN INTRO (Lord of Time) ─────────────────────────── */
+#saturn-intro{position:fixed;inset:0;z-index:280;background:#000004;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center}
+#saturn-intro.sfading{animation:kfade 1.15s ease-out forwards}
+#si-abyss{position:absolute;inset:0;background:
+  radial-gradient(ellipse 70% 55% at 50% 32%,rgba(70,10,90,.5),transparent 55%),
+  radial-gradient(circle at 50% 108%,rgba(90,8,28,.45),transparent 42%),
+  linear-gradient(180deg,#000002 0%,#0a0218 38%,#000008 100%);
+  animation:siAbyssBreath 4.8s ease-in-out infinite alternate}
+@keyframes siAbyssBreath{from{filter:brightness(.88) hue-rotate(-6deg)}to{filter:brightness(1.1) hue-rotate(14deg)}}
+#si-chrono-wrap{position:absolute;left:50%;top:34%;transform:translate(-50%,-50%);width:min(118vmin,640px);height:min(118vmin,640px);pointer-events:none;z-index:1}
+#si-chronosphere{position:absolute;inset:8%;border-radius:50%;
+  border:2px solid rgba(140,50,120,.4);
+  box-shadow:inset 0 0 100px rgba(0,0,0,.92),0 0 50px rgba(60,10,80,.55),0 0 120px rgba(20,0,40,.65);
+  background:repeating-conic-gradient(from 0deg,rgba(0,0,0,.25) 0deg 3deg,rgba(90,30,110,.14) 3deg 5deg);
+  animation:siChronoSpin 56s linear infinite}
+@keyframes siChronoSpin{to{transform:rotate(360deg)}}
+#si-chrono-inner{position:absolute;inset:18%;border-radius:50%;border:1px dashed rgba(200,80,120,.25);
+  box-shadow:inset 0 0 40px rgba(0,0,0,.6);animation:siInnerPulse 2.4s ease-in-out infinite alternate}
+@keyframes siInnerPulse{from{opacity:.55;transform:scale(1)}to{opacity:1;transform:scale(1.03)}}
+#si-tick{position:absolute;left:50%;top:14%;width:3px;height:38%;margin-left:-1.5px;background:linear-gradient(180deg,rgba(255,60,80,.9),rgba(40,0,20,.2));transform-origin:50% 88%;
+  animation:siTick 1.15s cubic-bezier(.4,0,.2,1) infinite;filter:drop-shadow(0 0 8px rgba(255,40,60,.7))}
+@keyframes siTick{0%{transform:rotate(-6deg)}50%{transform:rotate(8deg)}100%{transform:rotate(-6deg)}}
+#si-grain{position:absolute;inset:0;opacity:.14;pointer-events:none;z-index:4;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  mix-blend-mode:overlay;animation:siGrain 0.32s steps(3) infinite}
+@keyframes siGrain{0%{transform:translate(0,0)}100%{transform:translate(-2%,1%)}}
+#si-lore{text-align:center;position:relative;z-index:10;margin-bottom:1.5rem;padding:0 18px;max-width:520px}
+.sl{font-family:'Cinzel',serif;letter-spacing:2.5px;display:block;margin:5px 0;opacity:0;animation:klapp .75s ease-out var(--dl) forwards}
+.sl-s{font-size:9px;color:#503060}.sl-m{font-size:12px;color:#a050a0;font-weight:700}
+.sl-b{font-size:15px;color:#e04070;font-weight:900;letter-spacing:4px;text-shadow:0 0 22px rgba(200,30,80,.55)}
+#si-name{position:relative;z-index:10;text-align:center;opacity:0;animation:knamein 1.15s ease-out var(--dl) forwards}
+.sn-main{font-family:'Cinzel Decorative',serif;font-size:clamp(20px,6vw,38px);font-weight:700;color:#c8a0e8;letter-spacing:10px;text-shadow:0 0 26px rgba(180,100,255,.75),0 0 60px rgba(80,0,40,.6),2px 2px 0 #180008;display:block;animation:snTitlePulse 2.6s ease-in-out infinite alternate}
+@keyframes snTitlePulse{from{letter-spacing:10px;color:#b898d8}to{letter-spacing:11px;color:#f0c8ff}}
+.sn-sub{font-size:9px;letter-spacing:5px;color:#703050;display:block;margin-top:6px;font-weight:700}
+.sn-round{font-size:7px;letter-spacing:3px;color:#402040;display:block;margin-top:4px}
+#si-skip{position:absolute;bottom:14px;right:18px;font-family:'Cinzel',serif;font-size:8px;color:#503048;letter-spacing:2px;cursor:pointer;z-index:22;opacity:.65}
+#si-skip:hover{opacity:1}
+@media (prefers-reduced-motion: reduce){
+  #si-chronosphere,#si-tick,#si-grain,#si-abyss,.sn-main{animation:none!important}
+  #si-chronosphere{transform:none}
+}
+html.ga-reduce-motion #si-chronosphere,html.ga-reduce-motion #si-tick,html.ga-reduce-motion #si-grain,html.ga-reduce-motion #si-abyss,html.ga-reduce-motion .sn-main{animation:none!important}
+html.ga-reduce-motion #si-chronosphere{transform:none}
+
 /* ── DAILY SEED MODE ──────────────────────────────────────*/
 .mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:4px 0 8px}
 .mode-btn{display:flex!important;flex-direction:column;gap:2px;padding:12px 14px!important;margin:0!important;text-align:center;font-family:'Cinzel',serif;letter-spacing:1px!important;line-height:1.3}
@@ -912,6 +956,24 @@ html:not(.ga-reduce-motion) #scene.scene-shake{animation:sceneShake .22s ease-ou
     <span class="cn-round">ROUND 13 · SPACE, TIME, IDEA, FORM</span>
   </div>
   <div id="ci-skip" onclick="skipConceptIntro()">SKIP ▶</div>
+</div>
+
+<!-- ══ SATURN INTRO ═══════════════════════════════════════════ -->
+<div id="saturn-intro" class="hidden">
+  <div id="si-abyss"></div>
+  <div id="si-chrono-wrap">
+    <div id="si-chronosphere"></div>
+    <div id="si-chrono-inner"></div>
+    <div id="si-tick"></div>
+  </div>
+  <div id="si-grain"></div>
+  <div id="si-lore"></div>
+  <div id="si-name" style="--dl:0s">
+    <span class="sn-main">SATURN</span>
+    <span class="sn-sub">LORD OF BROKEN CLOCKS</span>
+    <span class="sn-round" id="si-round-line">ROUND 10 · TIME IS A WEAPON</span>
+  </div>
+  <div id="si-skip" onclick="skipSaturnIntro()">SKIP ▶</div>
 </div>
 
 <!-- ══ END ════════════════════════════════════════════════ -->
@@ -2672,6 +2734,15 @@ function startFight(){
     G.enemy.adaptedGhostStep=false;
   }
 
+  if(et.bossType==='saturn'){
+    const q=1.05;
+    G.enemy.maxHp=Math.max(1,Math.round(G.enemy.maxHp*q));
+    G.enemy.hp=G.enemy.maxHp;
+    G.enemy.str=Math.max(1,Math.round(G.enemy.str*q));
+    G.enemy.agi=Math.max(1,Math.round(G.enemy.agi*q));
+    G.enemy.def=Math.max(1,Math.round(G.enemy.def*q));
+  }
+
   if(et.bossType==='nemesis'){
     G.busy=true;
     showNemesisIntro(()=>{
@@ -2710,10 +2781,13 @@ function startFight(){
     });
     render();return;
   }else if(et.bossType==='saturn'){
-    setTimeout(sfxSaturnIntro,180);
-    addLog(`SATURN descends. Time itself begins to fracture.`,'bsp');
-    addLog(`CHRONO LOCK can steal your next turn. TIME REWIND restores him once.`,'bsp');
-    addLog(`At low health, AGE DECAY dulls your strength and focus.`,'bsp');
+    G.busy=true;
+    showSaturnIntro(()=>{
+      addLog(`SATURN steps from the dark between seconds. The sand forgets your name.`,'bsp');
+      addLog(`CHRONO LOCK — stolen turns, carved damage. TIME REWIND — he rewrites defeat once.`,'bsp');
+      addLog(`AGE DECAY — when he is dying, you grow old inside your own armor.`,'bsp');
+      G.busy=false;render();
+    });
     render();return;
   } else if(et.isBoss){
     addLog(`${et.name} emerges from darkness!`,'bsp');
@@ -4290,6 +4364,52 @@ function _finishConceptIntro(){
   },1100);
 }
 
+let _saturnIntroCallback=null;
+function showSaturnIntro(onComplete){
+  _saturnIntroCallback=onComplete;
+  const roundNum=G&&typeof G.ei==='number'?G.ei+1:10;
+  const rl=document.getElementById('si-round-line');
+  if(rl)rl.textContent=`ROUND ${roundNum} · THE TENTH GATE · TIME IS A WEAPON`;
+  const lore=document.getElementById('si-lore');lore.innerHTML='';
+  [
+    {txt:'They measured the arena in rope, sand, and blood.',cls:'sl sl-s',dl:.35},
+    {txt:'Saturn measures it in seconds you will never get back.',cls:'sl sl-m',dl:1.15},
+    {txt:'',cls:'sl sl-s',dl:1.85},
+    {txt:'Kronos broke stone.',cls:'sl sl-s',dl:2.25},
+    {txt:'Saturn breaks the witness.',cls:'sl sl-m',dl:3.25},
+    {txt:'',cls:'sl sl-s',dl:4.0},
+    {txt:'The crowd cheers — and he writes their noise into your debt.',cls:'sl sl-s',dl:4.45},
+    {txt:'Your pulse is a drum he tuned before you were born.',cls:'sl sl-m',dl:5.65},
+    {txt:'',cls:'sl sl-s',dl:6.45},
+    {txt:'He does not chase you through the sand.',cls:'sl sl-s',dl:6.85},
+    {txt:'He waits at the end of every step you have not taken yet.',cls:'sl sl-b',dl:8.0},
+    {txt:'Look up. The tenth hour opens its jaw.',cls:'sl sl-s',dl:9.35},
+  ].forEach(({txt,cls,dl})=>{
+    const d=document.createElement('span');d.className=cls;d.textContent=txt;
+    d.style.setProperty('--dl',dl+'s');lore.appendChild(d);
+  });
+  const nameEl=document.getElementById('si-name');
+  nameEl.style.setProperty('--dl','10.4s');
+  nameEl.style.animation='none';void nameEl.offsetWidth;nameEl.style.animation='';
+  const scr=document.getElementById('saturn-intro');
+  scr.classList.remove('hidden');
+  initAudio();
+  setTimeout(()=>{if(typeof sfxSaturnIntro==='function')sfxSaturnIntro();},120);
+  setTimeout(()=>{if(typeof sfxSaturnIntro==='function')sfxSaturnIntro();},5200);
+  if(typeof sfxBossEnter==='function'){setTimeout(sfxBossEnter,400);setTimeout(sfxBossEnter,10400);}
+  setTimeout(()=>_finishSaturnIntro(),12400);
+}
+function skipSaturnIntro(){_finishSaturnIntro();}
+function _finishSaturnIntro(){
+  const scr=document.getElementById('saturn-intro');
+  if(scr.classList.contains('hidden'))return;
+  scr.classList.add('sfading');
+  setTimeout(()=>{
+    scr.classList.add('hidden');scr.classList.remove('sfading');
+    if(_saturnIntroCallback){_saturnIntroCallback();_saturnIntroCallback=null;}
+  },1150);
+}
+
 // ══════════════════════════════════════════════════════════
 // AUDIO ENGINE — Web Audio API music + SFX
 // ══════════════════════════════════════════════════════════
@@ -4612,31 +4732,43 @@ function sfxDemonSurge(){_sfx(()=>{
 
 function sfxSaturnIntro(){_sfx(()=>{
   const t=AC.currentTime;
-  // Clock toll: dark stacked bell partials
-  [146.83,293.66,440].forEach((f,i)=>{
-    const ot=t+i*.06;
+  // Distant iron bells — detuned, uneven spacing (unsettling)
+  [110,146.83,185,233.08,293.66].forEach((f,i)=>{
+    const ot=t+i*.11+Math.sin(i*2.1)*0.04;
     const o=AC.createOscillator();const g=AC.createGain();const bp=AC.createBiquadFilter();
-    o.type='sine';o.frequency.value=f;
-    bp.type='bandpass';bp.frequency.value=700+i*260;bp.Q.value=1.1;
-    g.gain.setValueAtTime(.001,ot);g.gain.linearRampToValueAtTime(.24/(i+1),ot+.04);
-    g.gain.exponentialRampToValueAtTime(.001,ot+.95);
-    o.connect(bp);bp.connect(g);g.connect(sGain);o.start(ot);o.stop(ot+1);
+    o.type='sine';o.frequency.value=f*(1+(i%3)*0.008);
+    bp.type='bandpass';bp.frequency.value=420+i*180;bp.Q.value=1.35;
+    g.gain.setValueAtTime(.001,ot);g.gain.linearRampToValueAtTime(.22/(i*.55+1),ot+.05);
+    g.gain.exponentialRampToValueAtTime(.001,ot+1.15);
+    o.connect(bp);bp.connect(g);g.connect(sGain);o.start(ot);o.stop(ot+1.2);
   });
-  // Reverse-time shimmer sweep
+  // Reverse-time shimmer + grit
   const sw=AC.createOscillator();const swg=AC.createGain();const hpf=AC.createBiquadFilter();
   sw.type='sawtooth';
-  sw.frequency.setValueAtTime(1600,t+.05);sw.frequency.exponentialRampToValueAtTime(180,t+.62);
-  hpf.type='highpass';hpf.frequency.value=2200;
-  swg.gain.setValueAtTime(.001,t+.05);swg.gain.linearRampToValueAtTime(.10,t+.18);
-  swg.gain.exponentialRampToValueAtTime(.001,t+.66);
-  sw.connect(hpf);hpf.connect(swg);swg.connect(sGain);sw.start(t+.05);sw.stop(t+.7);
-  // Sub-time rupture
+  sw.frequency.setValueAtTime(2200,t+.06);sw.frequency.exponentialRampToValueAtTime(120,t+.72);
+  hpf.type='highpass';hpf.frequency.value=1800;
+  swg.gain.setValueAtTime(.001,t+.06);swg.gain.linearRampToValueAtTime(.13,t+.22);
+  swg.gain.exponentialRampToValueAtTime(.001,t+.78);
+  sw.connect(hpf);hpf.connect(swg);swg.connect(sGain);sw.start(t+.06);sw.stop(t+.82);
+  // Sub “hourglass” rumble + heartbeat thump
   const sub=AC.createOscillator();const subg=AC.createGain();
   sub.type='triangle';
-  sub.frequency.setValueAtTime(72,t+.18);sub.frequency.exponentialRampToValueAtTime(34,t+.82);
-  subg.gain.setValueAtTime(.001,t+.18);subg.gain.linearRampToValueAtTime(.22,t+.3);
-  subg.gain.exponentialRampToValueAtTime(.001,t+.9);
-  sub.connect(subg);subg.connect(sGain);sub.start(t+.18);sub.stop(t+.95);
+  sub.frequency.setValueAtTime(58,t+.2);sub.frequency.exponentialRampToValueAtTime(28,t+.95);
+  subg.gain.setValueAtTime(.001,t+.2);subg.gain.linearRampToValueAtTime(.26,t+.34);
+  subg.gain.exponentialRampToValueAtTime(.001,t+1.05);
+  sub.connect(subg);subg.connect(sGain);sub.start(t+.2);sub.stop(t+1.08);
+  [0.42,0.78].forEach((dt,i)=>{
+    const hb=t+dt;
+    const n=AC.createBufferSource();
+    const buf=AC.createBuffer(1,Math.floor(AC.sampleRate*0.08),AC.sampleRate);
+    const d=buf.getChannelData(0);
+    for(let j=0;j<d.length;j++)d[j]=(Math.random()*2-1)*Math.exp(-j/d.length*4);
+    n.buffer=buf;
+    const hg=AC.createGain();
+    hg.gain.setValueAtTime(.001,hb);hg.gain.linearRampToValueAtTime(.16,hb+.012);
+    hg.gain.exponentialRampToValueAtTime(.001,hb+.09);
+    n.connect(hg);hg.connect(sGain);n.start(hb);
+  });
 })}
 
 function sfxBuy(){_sfx(()=>{
