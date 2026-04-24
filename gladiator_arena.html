@@ -586,6 +586,23 @@ body{font-family:'Cinzel',Georgia,serif;display:flex;flex-direction:column;heigh
     radial-gradient(ellipse 36% 22% at 50% 64%,rgba(255,180,120,.2),transparent 78%);
   box-shadow:0 -16px 30px rgba(80,180,255,.22),inset 0 10px 30px rgba(120,60,180,.2);
 }
+/* Truth Arena upgrade layer */
+#truth-arena{position:absolute;inset:0;pointer-events:none;z-index:10;opacity:0;transition:opacity .35s ease}
+#scene.highlord-finale #truth-arena{opacity:1}
+#truth-arena .ta-ring{position:absolute;left:50%;top:66%;width:62%;height:16%;border-radius:50%;transform:translate(-50%,-50%);border:2px solid rgba(160,235,255,.55);box-shadow:0 0 26px rgba(120,210,255,.35),inset 0 0 24px rgba(255,140,220,.18);animation:taRingSpin 10s linear infinite}
+#truth-arena .ta-ring.r2{width:74%;height:20%;opacity:.7;border-color:rgba(255,190,120,.5);animation-duration:14s;animation-direction:reverse}
+#truth-arena .ta-core{position:absolute;left:50%;top:74%;width:44%;height:18%;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(ellipse at center,rgba(180,230,255,.24),rgba(100,40,160,.18) 55%,transparent 80%);filter:blur(.2px);animation:taCorePulse 2.8s ease-in-out infinite alternate}
+#truth-arena .ta-shard{position:absolute;width:10px;height:38px;border-radius:2px;background:linear-gradient(180deg,rgba(190,240,255,.95),rgba(130,210,255,.6),rgba(255,120,220,.08));opacity:.75;animation:taShardFloat var(--d,6s) ease-in-out infinite}
+#truth-arena .ta-shard.s1{left:18%;top:30%;--d:5.5s}.ta-shard.s2{left:30%;top:22%;--d:6.3s}
+#truth-arena .ta-shard.s3{left:70%;top:25%;--d:5.8s}.ta-shard.s4{left:82%;top:34%;--d:6.6s}
+#truth-arena .ta-shard.s5{left:46%;top:18%;--d:7.1s}
+#truth-arena.pulse{filter:brightness(1.2) saturate(1.15)}
+@keyframes taRingSpin{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+@keyframes taCorePulse{from{opacity:.5;transform:translate(-50%,-50%) scale(.96)}to{opacity:.95;transform:translate(-50%,-50%) scale(1.06)}}
+@keyframes taShardFloat{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-12px) rotate(8deg)}}
+html.ga-reduce-motion #truth-arena .ta-ring,
+html.ga-reduce-motion #truth-arena .ta-core,
+html.ga-reduce-motion #truth-arena .ta-shard{animation:none}
 html.ga-reduce-motion #archon-heaven{animation:none;opacity:.72}
 @media (prefers-reduced-motion: reduce){
   #archon-heaven{animation:none;opacity:.7}
@@ -847,6 +864,10 @@ html.ga-reduce-motion #highlord-fx{display:none}
   <div id="splitter-fx" aria-hidden="true"></div>
   <div id="reptilian-fx" aria-hidden="true"></div>
   <div id="highlord-fx" aria-hidden="true"></div>
+  <div id="truth-arena" aria-hidden="true">
+    <div class="ta-ring"></div><div class="ta-ring r2"></div><div class="ta-core"></div>
+    <div class="ta-shard s1"></div><div class="ta-shard s2"></div><div class="ta-shard s3"></div><div class="ta-shard s4"></div><div class="ta-shard s5"></div>
+  </div>
   <div id="shatterer-storm" aria-hidden="true">
     <div class="st-void"></div>
     <div class="st-comet" style="--d:1.5s;--dl:-0.2s"></div>
@@ -3143,6 +3164,8 @@ function startFight(){
   if(ahHeaven)ahHeaven.classList.add('hidden');
   const sceneEl=document.getElementById('scene');
   if(sceneEl)sceneEl.classList.remove('highlord-finale');
+  const truthArena=document.getElementById('truth-arena');
+  if(truthArena)truthArena.classList.remove('pulse');
   const shStorm=document.getElementById('shatterer-storm');
   if(shStorm)shStorm.classList.remove('on');
   const rfx=document.getElementById('reptilian-fx');
@@ -3208,6 +3231,7 @@ function startFight(){
     document.getElementById('esprite').querySelector('svg').classList.add('aura-highlord');
     if(shStorm)shStorm.classList.add('on');
     if(sceneEl)sceneEl.classList.add('highlord-finale');
+    if(truthArena)truthArena.classList.add('pulse');
   } else if(et.bossType==='void'){
     document.getElementById('esprite').querySelector('svg').classList.add('aura-void');
   } else if(et.bossType==='nemesis'){
@@ -4805,6 +4829,7 @@ function triggerHighlordMoveFx(kind='crown'){
   const scene=document.getElementById('scene');
   const esp=document.getElementById('esprite');
   if(!fx||!scene)return;
+  const truthArena=document.getElementById('truth-arena');
   fx.innerHTML='';
   const rune=document.createElement('div');
   rune.className='hl-rune';
@@ -4830,6 +4855,11 @@ function triggerHighlordMoveFx(kind='crown'){
   scene.classList.remove('scene-shake');
   void scene.offsetWidth;
   scene.classList.add('scene-shake');
+  if(truthArena){
+    truthArena.classList.remove('pulse');
+    void truthArena.offsetWidth;
+    truthArena.classList.add('pulse');
+  }
   setTimeout(()=>{try{fx.innerHTML='';scene.classList.remove('scene-shake');}catch(_){}},860);
 }
 
