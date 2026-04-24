@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5">
 <title>Gladiator Arena</title>
-<meta name="description" content="Sixteen-round browser gladiator roguelike: shop, loot, bosses, and a daily seed.">
+<meta name="description" content="Seventeen-round browser gladiator roguelike: shop, loot, bosses, and a daily seed.">
 <meta name="theme-color" content="#060302">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -533,6 +533,10 @@ body{font-family:'Cinzel',Georgia,serif;display:flex;flex-direction:column;heigh
 @keyframes arept{from{filter:drop-shadow(0 6px 14px rgba(0,0,0,.95)) drop-shadow(0 0 16px rgba(255,120,50,.55)) drop-shadow(0 0 14px rgba(255,230,150,.35))}to{filter:drop-shadow(0 6px 14px rgba(0,0,0,.95)) drop-shadow(0 0 38px rgba(255,90,30,.95)) drop-shadow(0 0 44px rgba(255,210,90,.8)) brightness(1.14) contrast(1.08)}}
 .bb-reptilian{background:linear-gradient(90deg,#261004,#120804);color:#ffcf78;border:1px solid #c06020;box-shadow:0 0 16px rgba(255,120,40,.35)}
 .ft-rept{background:#281106;color:#ffbf68;border:1px solid #a84a18;animation:ftpulse 1.1s ease-in-out infinite alternate}
+.aura-shatterer{animation:ashatterer 1.35s ease-in-out infinite alternate}
+@keyframes ashatterer{from{filter:drop-shadow(0 6px 14px rgba(0,0,0,.95)) drop-shadow(0 0 20px rgba(90,240,255,.55)) drop-shadow(0 0 18px rgba(255,60,200,.35))}to{filter:drop-shadow(0 6px 14px rgba(0,0,0,.95)) drop-shadow(0 0 52px rgba(120,255,255,.96)) drop-shadow(0 0 42px rgba(255,110,220,.82)) brightness(1.18) contrast(1.1)}}
+.bb-shatterer{background:linear-gradient(90deg,#06131a,#160a24);color:#9ff6ff;border:1px solid #48c0d8;box-shadow:0 0 18px rgba(100,235,255,.4)}
+.ft-shatter{background:#071a20;color:#9ff6ff;border:1px solid #3b8ea0;animation:ftpulse2 .9s ease-in-out infinite alternate}
 html.ga-reduce-motion #archon-heaven{animation:none;opacity:.72}
 @media (prefers-reduced-motion: reduce){
   #archon-heaven{animation:none;opacity:.7}
@@ -721,6 +725,18 @@ html.ga-reduce-motion #splitter-fx{display:none}
 html:not(.ga-reduce-motion) #scene.reptilian-flash{animation:reptScreenFlash .55s ease-out}
 html.ga-reduce-motion #reptilian-fx{display:none}
 
+/* Concept Shatterer comet rain / reality glitch */
+#shatterer-storm{position:absolute;inset:0;pointer-events:none;z-index:11;opacity:0;transition:opacity .25s ease}
+#shatterer-storm.on{opacity:1}
+#shatterer-storm .st-void{position:absolute;inset:0;background:radial-gradient(circle at 50% 20%,rgba(80,240,255,.14),rgba(30,0,60,.06) 40%,transparent 72%);mix-blend-mode:screen}
+#shatterer-storm .st-comet{position:absolute;top:-16%;width:3px;height:84px;opacity:.85;border-radius:2px;background:linear-gradient(180deg,rgba(200,255,255,.95),rgba(110,230,255,.75),rgba(255,120,220,.18),transparent);transform:rotate(21deg);animation:stComet var(--d,1.7s) linear infinite;animation-delay:var(--dl,0s)}
+#shatterer-storm .st-comet:nth-child(2){left:8%} #shatterer-storm .st-comet:nth-child(3){left:18%}
+#shatterer-storm .st-comet:nth-child(4){left:30%} #shatterer-storm .st-comet:nth-child(5){left:42%}
+#shatterer-storm .st-comet:nth-child(6){left:54%} #shatterer-storm .st-comet:nth-child(7){left:66%}
+#shatterer-storm .st-comet:nth-child(8){left:78%} #shatterer-storm .st-comet:nth-child(9){left:90%}
+@keyframes stComet{0%{transform:translate(-12px,-100px) rotate(21deg) scale(.7);opacity:0}12%{opacity:.95}100%{transform:translate(130px,380px) rotate(21deg) scale(1.08);opacity:0}}
+html.ga-reduce-motion #shatterer-storm{display:none}
+
 /* Tap to unlock audio */
 #audio-tap-layer{position:fixed;inset:0;z-index:400;background:rgba(4,2,1,.72);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(2px)}
 #audio-tap-layer.hidden{display:none!important}
@@ -766,6 +782,17 @@ html.ga-reduce-motion #reptilian-fx{display:none}
   <div id="archon-heaven" class="hidden" aria-hidden="true"></div>
   <div id="splitter-fx" aria-hidden="true"></div>
   <div id="reptilian-fx" aria-hidden="true"></div>
+  <div id="shatterer-storm" aria-hidden="true">
+    <div class="st-void"></div>
+    <div class="st-comet" style="--d:1.5s;--dl:-0.2s"></div>
+    <div class="st-comet" style="--d:1.9s;--dl:-0.6s"></div>
+    <div class="st-comet" style="--d:1.45s;--dl:-1.1s"></div>
+    <div class="st-comet" style="--d:2.1s;--dl:-0.8s"></div>
+    <div class="st-comet" style="--d:1.7s;--dl:-0.4s"></div>
+    <div class="st-comet" style="--d:1.6s;--dl:-1.3s"></div>
+    <div class="st-comet" style="--d:1.85s;--dl:-0.1s"></div>
+    <div class="st-comet" style="--d:1.55s;--dl:-0.9s"></div>
+  </div>
   <div id="sky"></div>
   <div id="moon"></div>
   <div id="stands"></div>
@@ -911,7 +938,7 @@ html.ga-reduce-motion #reptilian-fx{display:none}
   <div class="sbox">
     <span class="sico">⚔️</span>
     <div class="stit">GLADIATOR ARENA</div>
-    <div class="ssub">Sixteen rounds. One champion.</div>
+    <div class="ssub">Seventeen rounds. One champion.</div>
     <div class="sbod">Survive the trial.<br>Earn gold. Upgrade. Discover your power.</div>
     <div class="ia-grid">
       <div class="ia-item"><b>⚔ Slash</b><br>Reliable every turn</div>
@@ -2266,6 +2293,37 @@ const CHARS = {
   <ellipse cx="42" cy="24" rx="3.2" ry="2.5" fill="#120818"/>
   <ellipse cx="30" cy="24" rx="1.5" ry="1.2" fill="#70f0ff"/>
   <ellipse cx="42" cy="24" rx="1.5" ry="1.2" fill="#ff70c8"/>
+</svg>`,
+  conceptshatterer:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="cshBody" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#80f8ff"/>
+      <stop offset="45%" style="stop-color:#50a0ff"/>
+      <stop offset="60%" style="stop-color:#ff70e0"/>
+      <stop offset="100%" style="stop-color:#2a1048"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="36" cy="101" rx="26" ry="5.5" fill="rgba(80,230,255,.4)"/>
+  <ellipse cx="36" cy="58" rx="32" ry="38" fill="rgba(150,80,255,.1)"/>
+  <path d="M8 44 L20 36 L18 48 L10 56 Z" fill="#102838" stroke="#60d0ff" stroke-width="1"/>
+  <path d="M64 44 L52 36 L54 48 L62 56 Z" fill="#281030" stroke="#ff80d8" stroke-width="1"/>
+  <ellipse cx="36" cy="58" rx="23" ry="18" fill="url(#cshBody)" stroke="#3080a8" stroke-width="1.2"/>
+  <path d="M20 55 L52 55" stroke="rgba(255,255,255,.35)" stroke-width="1.1"/>
+  <path d="M22 62 L50 62" stroke="rgba(160,220,255,.45)" stroke-width="1"/>
+  <rect x="23" y="68" width="10" height="24" rx="3" fill="#101828"/>
+  <rect x="39" y="68" width="10" height="24" rx="3" fill="#101828"/>
+  <rect x="30" y="36" width="12" height="12" rx="3" fill="#0a1220"/>
+  <ellipse cx="36" cy="24" rx="16" ry="13" fill="#0a1220" stroke="#5aa8d8" stroke-width="1.2"/>
+  <path d="M22 20 L28 7 L31 20" fill="#101c30" stroke="#70d8ff" stroke-width=".9"/>
+  <path d="M50 20 L44 7 L41 20" fill="#1e1030" stroke="#ff90d8" stroke-width=".9"/>
+  <rect x="35" y="7" width="2" height="13" fill="#e8f8ff" opacity=".75"/>
+  <ellipse cx="30" cy="24" rx="4.2" ry="3" fill="#050a12"/>
+  <ellipse cx="42" cy="24" rx="4.2" ry="3" fill="#090410"/>
+  <ellipse cx="30" cy="24" rx="1.7" ry="1.2" fill="#70f8ff"/>
+  <ellipse cx="42" cy="24" rx="1.7" ry="1.2" fill="#ff90f0"/>
+  <path d="M32 31 Q36 34 40 31" stroke="#70d8ff" stroke-width="1" fill="none"/>
+  <path d="M6 18 L18 22 L14 30 L4 26 Z" fill="#0e1e30" stroke="#60c8ff" stroke-width="1"/>
+  <path d="M66 18 L54 22 L58 30 L68 26 Z" fill="#241030" stroke="#ff80d8" stroke-width="1"/>
 </svg>`
 };
 
@@ -2291,14 +2349,16 @@ const ENEMIES=[
     specialName:"VOID ECHO + UNMAKING + RIFT SHRED + NULL CHAIN + MIRROR CURSE",specialDesc:"Reflects damage, shreds reality, and seals turns."},
   {name:"Nemesis",         charKey:"nemesis",   hp:1,  str:1,  agi:1,  def:1,  gold:1500,title:"Your Own Shadow",   isBoss:true,  bossType:"nemesis",
     specialName:"PERFECT MIRROR + ADAPTATION + NEMESIS BLADE + FINAL REFLECTION",specialDesc:"Built from you. Fed by you. Ends as you."},
-  {name:"Concept Lizard",charKey:"conceptlizard",hp:780,str:100,agi:24,def:46,gold:2400,title:"Archon of Duality",isBoss:true,bossType:"dual",
+  {name:"Concept Lizard",charKey:"conceptlizard",hp:1780,str:100,agi:24,def:46,gold:2400,title:"Archon of Duality",isBoss:true,bossType:"dual",
     specialName:"SOLAR VERDICT + UMBRAL MIRROR",specialDesc:"Heaven brands you; shadow answers what you deny."},
-  {name:"Concept Reptilian",charKey:"conceptreptilian",hp:860,str:112,agi:26,def:48,gold:3000,title:"Seraph of the Cinder Fang",isBoss:true,bossType:"reptilian",
+  {name:"Concept Reptilian",charKey:"conceptreptilian",hp:1860,str:112,agi:26,def:48,gold:3000,title:"Seraph of the Cinder Fang",isBoss:true,bossType:"reptilian",
     specialName:"FIREBRAND COMBO + CINDER VEIL + HEAVENFALL BLADE",specialDesc:"Wields a sword of fire; heaven itself drops the killing edge."},
-  {name:"Concept Dragon",  charKey:"conceptdragon",hp:640,str:84,agi:20,def:40,gold:2500,title:"Dragon of Concepts",isBoss:true,bossType:"concept",
+  {name:"Concept Dragon",  charKey:"conceptdragon",hp:1640,str:84,agi:20,def:40,gold:2500,title:"Dragon of Concepts",isBoss:true,bossType:"concept",
     specialName:"WARP SPACE-TIME + GRAVITY BREATH",specialDesc:"Bends turns, crushes with gravity."},
-  {name:"Concept Splitter",charKey:"conceptsplitter",hp:980,str:130,agi:30,def:58,gold:4200,title:"The Final Schism",isBoss:true,bossType:"splitter",
+  {name:"Concept Splitter",charKey:"conceptsplitter",hp:1980,str:130,agi:30,def:58,gold:4200,title:"The Final Schism",isBoss:true,bossType:"splitter",
     specialName:"TRUMP I FRACTURE + TRUMP II DUAL FORM + TRUMP III QUAD SHARD",specialDesc:"Splits into two at 40%, then erupts into four on turn 8 (one move)."},
+  {name:"Concept Shatterer",charKey:"conceptshatterer",hp:3200,str:165,agi:34,def:72,gold:6200,title:"The Reality Rupture",isBoss:true,bossType:"shatterer",
+    specialName:"COMET REQUIEM + GLITCH PARADOX + SHATTER ABSOLUTION",specialDesc:"Rains comets and corrupts reality itself."},
 ];
 
 // ═══ TIERED GEAR SYSTEM ═══
@@ -2797,6 +2857,7 @@ function saveRunState(){
       daily:!!G.daily,dailyNum:G.dailyNum||0,dailySeed:typeof _dailySeed!=='undefined'?_dailySeed:0,
       dailyMod:G.dailyMod||null,totalTurns:G.totalTurns||0,runStartTurn:G.runStartTurn||0,
       runStats:G.runStats||{dmgToEnemy:0,dmgTaken:0},
+      completedRun:!!G.completedRun,clearedCount:G.clearedCount||0,
     }));
   }catch(_){}
 }
@@ -2839,6 +2900,13 @@ function unlockAudioFromGesture(){
 // ══════════════════════════════════════════════════════════
 function beginContinueRun(){
   const o=peekRunSave();if(!o)return;
+  if(o.completedRun){
+    const cleared=o.clearedCount||((o.ei|0)+1);
+    if(cleared>=ENEMIES.length){
+      alert('No new rounds yet. This champion save is waiting for future content updates.');
+      return;
+    }
+  }
   _dailyMode=!!o.daily;
   if(_dailyMode){
     _dailySeed=o.dailySeed|0;
@@ -2855,7 +2923,8 @@ function beginContinueRun(){
     daily:_dailyMode,dailyNum:o.dailyNum||0,dailySeed:o.dailySeed||0,
     runStartTurn:o.runStartTurn||0,totalTurns:o.totalTurns||0,deathRound:null,wonAll:false,
     dailyMod:o.dailyMod||{tag:'',label:'',gold:1,enemy:1},
-    runStats:o.runStats||{dmgToEnemy:0,dmgTaken:0},_dailyModLogged:true};
+    runStats:o.runStats||{dmgToEnemy:0,dmgTaken:0},_dailyModLogged:true,
+    completedRun:!!o.completedRun,clearedCount:o.clearedCount||0};
   hideAllScreens();
   document.getElementById('panel').classList.remove('hidden');
   renderLegacyHUD();
@@ -2937,7 +3006,7 @@ function buildShareCard(result){
     else if((i+1) === result.deathRound) bar.push('🗡️');
     else bar.push('⬛');
   }
-  const enemyName = result.deathRound ? ['Slave','Barbarian','Legionnaire','Praetorian','Champion','Berserker','Daemonicus','Undying','Kronos','Saturn','Aeternon','Nemesis','Concept Lizard','Concept Reptilian','Concept Dragon','Concept Splitter'][result.deathRound-1] : 'Concept Splitter';
+  const enemyName = result.deathRound ? ['Slave','Barbarian','Legionnaire','Praetorian','Champion','Berserker','Daemonicus','Undying','Kronos','Saturn','Aeternon','Nemesis','Concept Lizard','Concept Reptilian','Concept Dragon','Concept Splitter','Concept Shatterer'][result.deathRound-1] : 'Concept Shatterer';
   const outcome = result.won ? '👑 CHAMPION' : `${enemyName} R${result.deathRound}`;
   const hpTxt = result.won ? `HP ${result.finalHp}/${result.maxHp}` : '';
   const modLine=(result.dailyModTag&&String(result.dailyModTag))?`\nSigil: ${result.dailyModTag}`:'';
@@ -2971,6 +3040,8 @@ function startFight(){
   const et=ENEMIES[G.ei];
   const ahHeaven=document.getElementById('archon-heaven');
   if(ahHeaven)ahHeaven.classList.add('hidden');
+  const shStorm=document.getElementById('shatterer-storm');
+  if(shStorm)shStorm.classList.remove('on');
   const rfx=document.getElementById('reptilian-fx');
   if(rfx)rfx.innerHTML='';
   const df=getDifficultyMods();
@@ -3025,6 +3096,9 @@ function startFight(){
     document.getElementById('esprite').querySelector('svg').classList.add('aura-concept');
   } else if(et.bossType==='reptilian'){
     document.getElementById('esprite').querySelector('svg').classList.add('aura-reptilian');
+  } else if(et.bossType==='shatterer'){
+    document.getElementById('esprite').querySelector('svg').classList.add('aura-shatterer');
+    if(shStorm)shStorm.classList.add('on');
   } else if(et.bossType==='void'){
     document.getElementById('esprite').querySelector('svg').classList.add('aura-void');
   } else if(et.bossType==='nemesis'){
@@ -3049,6 +3123,8 @@ function startFight(){
     badge.innerHTML=`<div class="boss-badge bb-concept">🐉 DRAGON OF CONCEPTS</div>`;
   } else if(et.isBoss&&et.bossType==='reptilian'){
     badge.innerHTML=`<div class="boss-badge bb-reptilian">🔥 CINDER SERAPH</div>`;
+  } else if(et.isBoss&&et.bossType==='shatterer'){
+    badge.innerHTML=`<div class="boss-badge bb-shatterer">☄ REALITY SHATTERER</div>`;
   } else if(et.isBoss&&et.bossType==='void'){
     badge.innerHTML=`<div class="boss-badge bb-void">◈ THE NAMELESS</div>`;
   } else if(et.isBoss&&et.bossType==='nemesis'){
@@ -3119,6 +3195,14 @@ function startFight(){
     G.enemy.agi=Math.max(1,Math.round(G.enemy.agi*q));
     G.enemy.def=Math.max(1,Math.round(G.enemy.def*q));
   }
+  if(et.bossType==='shatterer'){
+    const q=1.28;
+    G.enemy.maxHp=Math.max(1,Math.round(G.enemy.maxHp*q));
+    G.enemy.hp=G.enemy.maxHp;
+    G.enemy.str=Math.max(1,Math.round(G.enemy.str*q));
+    G.enemy.agi=Math.max(1,Math.round(G.enemy.agi*q));
+    G.enemy.def=Math.max(1,Math.round(G.enemy.def*q));
+  }
 
   if(et.bossType==='nemesis'){
     G.busy=true;
@@ -3171,6 +3255,18 @@ function startFight(){
       addLog(`HEAVENFALL BLADE — a colossal sword drops from the sky. Pray your timing is true.`,'bsp');
       G.busy=false;render();
     },1900);
+    render();return;
+  }else if(et.bossType==='shatterer'){
+    G.busy=true;
+    initAudio();
+    setTimeout(()=>{if(typeof sfxBossEnter==='function')sfxBossEnter();},120);
+    setTimeout(()=>{if(typeof sfxHeavenfallBlade==='function')sfxHeavenfallBlade();},380);
+    setTimeout(()=>{
+      addLog(`The sky cracks like glass. COMETS begin to rain through the wound.`,'bsp');
+      addLog(`CONCEPT SHATTERER steps out of the split and reality starts glitching around him.`,'bsp');
+      addLog(`COMET REQUIEM, GLITCH PARADOX, SHATTER ABSOLUTION — this is the strongest thing in the arena.`,'bsp');
+      G.busy=false;render();
+    },2300);
     render();return;
   }else if(et.bossType==='void'){
     G.busy=true;
@@ -3671,6 +3767,86 @@ function enemyTurn(){
   }
   // ── END CONCEPT SPLITTER ────────────────────────────────
 
+  // ── CONCEPT SHATTERER MECHANICS ─────────────────────────
+  if(e.isBoss&&e.bossType==='shatterer'){
+    e.shatterTurn=(e.shatterTurn||0)+1;
+
+    if(e.hp/e.maxHp<0.68&&!e.glitchPhaseDone){
+      e.glitchPhaseDone=true;
+      p.conceptWarpStacks=Math.min((p.conceptWarpStacks||0)+2,5);
+      addLog(`⌁ GLITCH PARADOX — your action timeline stutters. WARP stacks surge.`,'bsp');
+      const psp=document.getElementById('psprite');
+      psp.classList.add('ghost');setTimeout(()=>psp.classList.remove('ghost'),700);
+      G.myTurn=true;render();return;
+    }
+
+    if(e.hp/e.maxHp<0.34&&!e.shatterRage){
+      e.shatterRage=true;
+      e.str=Math.floor(e.str*1.18);
+      e.agi=Math.floor(e.agi*1.12);
+      addLog(`✸ SHATTER ASCENT — the fracture deepens. COMETS accelerate.`,'bsp');
+      G.myTurn=true;render();return;
+    }
+
+    if(e.shatterTurn%5===0){
+      const sd=Math.max(24,Math.floor(e.str*1.05)+ri(8,16));
+      if(p.hasSoulAegis&&!p.soulAegisUsed&&sd>=p.hp){
+        p.soulAegisUsed=true;
+        addLog(`✦ SOUL AEGIS absorbs SHATTER ABSOLUTION!`,'sp');
+      }else{
+        p.hp=Math.max(0,p.hp-sd);
+        addLog(`✸ SHATTER ABSOLUTION — existence cleaves for ${sd} unavoidable damage!`,'bsp');
+        aAtk('e');aHit('p',sd);
+      }
+      p.defending=false;
+      if(p.hp<=0){
+        const riseChance=hasMilestone('eternal')?1.0:0.33;
+        if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
+          p.blessingUsed=true;p.hp=0;G.busy=true;
+          document.getElementById('psprite').classList.add('dead');render();
+          triggerResurrection();return;
+        }
+        addLog(`You are split from your own name.`,'sp');
+        document.getElementById('psprite').classList.add('dead');setTimeout(showDefeat,900);return;
+      }
+      G.myTurn=true;render();return;
+    }
+
+    if(e.shatterTurn%3===0){
+      const comets=e.shatterRage?4:3;
+      let total=0;
+      for(let i=0;i<comets;i++){
+        const cd=Math.max(8,Math.floor(e.str*0.36)+ri(2,8));
+        const dealt=p.defending?Math.max(1,Math.floor(cd*0.82)):cd;
+        total+=dealt;
+        p.hp=Math.max(0,p.hp-dealt);
+        aHit('p',dealt);
+      }
+      addLog(`☄ COMET REQUIEM — ${comets} comets hammer you for ${total} total damage.`,'bsp');
+      aAtk('e');
+      p.defending=false;
+      if(p.hp<=0){
+        const riseChance=hasMilestone('eternal')?1.0:0.33;
+        if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
+          p.blessingUsed=true;p.hp=0;G.busy=true;
+          document.getElementById('psprite').classList.add('dead');render();
+          triggerResurrection();return;
+        }
+        addLog(`Comets erase your last stance.`,'sp');
+        document.getElementById('psprite').classList.add('dead');setTimeout(showDefeat,900);return;
+      }
+      G.myTurn=true;render();return;
+    }
+
+    if(e.shatterTurn%2===0){
+      p.conceptWarpStacks=Math.min((p.conceptWarpStacks||0)+1,5);
+      if(rnd()<0.45)p.timeLocked=Math.max(p.timeLocked||0,1);
+      addLog(`⌁ REALITY DESYNC — controls slip between frames.`,'bsp');
+      G.myTurn=true;render();return;
+    }
+  }
+  // ── END CONCEPT SHATTERER ───────────────────────────────
+
   // ── CONCEPT DRAGON MECHANICS ───────────────────────────
   if(e.isBoss&&e.bossType==='concept'){
     e.conceptTurn=(e.conceptTurn||0)+1;
@@ -4136,7 +4312,7 @@ function endFight(won){
   const gAdd=computeRoundGoldReward(e);
   p.gold+=gAdd;p.wins++;
   // Award soul fragments
-  const SOUL_REWARDS=[5,8,12,16,20,28,50,80,120,180,260,360,520,620,760];
+  const SOUL_REWARDS=[5,8,12,16,20,28,50,80,120,180,260,360,520,620,760,980,1400];
   const souls=SOUL_REWARDS[G.ei]||0;
   p.souls=(p.souls||0)+souls;
   const drop=grantLootDrop(p,e,G.ei);
@@ -4335,6 +4511,13 @@ function render(){
     et.push(`<span class="ft ft-splitter">QUAD IN ${in8===8?'NOW':in8}</span>`);
     if(!e.split2Done&&e.hp/e.maxHp<0.52)et.push('<span class="ft ft-splitter">SPLIT AT 40%</span>');
     if(e.split2Done)et.push('<span class="ft ft-splitter">DUAL FORM</span>');
+  }
+  if(e.isBoss&&e.bossType==='shatterer'){
+    const cIn=3-((e.shatterTurn||0)%3);
+    const sIn=5-((e.shatterTurn||0)%5);
+    et.push(`<span class="ft ft-shatter">COMETS IN ${cIn===3?'NOW':cIn}</span>`);
+    et.push(`<span class="ft ft-shatter">SHATTER IN ${sIn===5?'NOW':sIn}</span>`);
+    if(e.shatterRage)et.push('<span class="ft ft-shatter">REALITY RUPTURE</span>');
   }
   if(e.isBoss&&e.bossType==='concept'){
     const bIn=3-((e.conceptTurn||0)%3);
@@ -4645,7 +4828,9 @@ function continueFightFromSoulShop(){
 }
 
 function showVictory(){
-  clearRunSave();
+  G.completedRun=true;
+  G.clearedCount=ENEMIES.length;
+  saveRunState();
   const p=G.player;hideAllScreens();
   document.getElementById('end-scr').classList.remove('hidden');
   document.getElementById('end-ico').textContent='👑';
