@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5">
 <title>Gladiator Arena</title>
-<meta name="description" content="Thirteen-round browser gladiator roguelike: shop, loot, bosses, and a daily seed.">
+<meta name="description" content="Fourteen-round browser gladiator roguelike: shop, loot, bosses, and a daily seed.">
 <meta name="theme-color" content="#060302">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -500,6 +500,25 @@ body{font-family:'Cinzel',Georgia,serif;display:flex;flex-direction:column;heigh
 .bb-concept{background:#041018;color:#70e0ff;border:1px solid #2a70a8}
 .ft-concept{background:#061620;color:#70e0ff;border:1px solid #2a70a8;animation:ftpulse2 1s ease-in-out infinite alternate}
 
+/* Concept Lizard — Archon of Duality (heaven beam + split aura) */
+#archon-heaven{position:absolute;inset:0;pointer-events:none;z-index:4;
+  background:
+    radial-gradient(ellipse 50% 65% at 50% -6%,rgba(255,252,248,.62),rgba(255,235,190,.22) 18%,transparent 48%),
+    radial-gradient(ellipse 80% 40% at 82% 8%,rgba(255,255,255,.12),transparent 55%),
+    linear-gradient(185deg,rgba(255,250,230,.1) 0%,transparent 42%,rgba(20,8,40,.08) 100%);
+  mix-blend-mode:screen;
+  animation:archonHeavenPulse 2.8s ease-in-out infinite alternate}
+#archon-heaven.hidden{display:none!important}
+@keyframes archonHeavenPulse{from{opacity:.5;filter:brightness(1)}to{opacity:.92;filter:brightness(1.12)}}
+.aura-dual{animation:adual 2s ease-in-out infinite alternate}
+@keyframes adual{from{filter:drop-shadow(0 6px 14px rgba(0,0,0,.95)) drop-shadow(0 0 16px rgba(255,240,200,.55)) drop-shadow(0 0 22px rgba(60,20,90,.6))}to{filter:drop-shadow(0 6px 14px rgba(0,0,0,.95)) drop-shadow(0 0 36px rgba(255,248,220,.85)) drop-shadow(0 0 48px rgba(30,8,50,.85)) brightness(1.1)}}
+.bb-dual{background:linear-gradient(90deg,#1a1020,#0a0814);color:#f8f0ff;border:1px solid #8060c0;box-shadow:0 0 18px rgba(120,80,200,.35)}
+.ft-dual{background:#120818;color:#e8d8ff;border:1px solid #604090;animation:ftpulse2 1.1s ease-in-out infinite alternate}
+html.ga-reduce-motion #archon-heaven{animation:none;opacity:.72}
+@media (prefers-reduced-motion: reduce){
+  #archon-heaven{animation:none;opacity:.7}
+}
+
 /* Void intro */
 #void-intro{position:fixed;inset:0;z-index:280;background:#030009;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center}
 #void-intro.vfading{animation:kfade 1.1s ease-out forwards}
@@ -696,6 +715,7 @@ html:not(.ga-reduce-motion) #scene.scene-shake{animation:sceneShake .22s ease-ou
 
 <!-- ══ SCENE ══════════════════════════════════════════════ -->
 <div id="scene">
+  <div id="archon-heaven" class="hidden" aria-hidden="true"></div>
   <div id="sky"></div>
   <div id="moon"></div>
   <div id="stands"></div>
@@ -841,7 +861,7 @@ html:not(.ga-reduce-motion) #scene.scene-shake{animation:sceneShake .22s ease-ou
   <div class="sbox">
     <span class="sico">⚔️</span>
     <div class="stit">GLADIATOR ARENA</div>
-    <div class="ssub">Thirteen rounds. One champion.</div>
+    <div class="ssub">Fourteen rounds. One champion.</div>
     <div class="sbod">Survive the trial.<br>Earn gold. Upgrade. Discover your power.</div>
     <div class="ia-grid">
       <div class="ia-item"><b>⚔ Slash</b><br>Reliable every turn</div>
@@ -953,7 +973,7 @@ html:not(.ga-reduce-motion) #scene.scene-shake{animation:sceneShake .22s ease-ou
   <div id="ci-name" style="--dl:0s">
     <span class="cn-main">CONCEPT DRAGON</span>
     <span class="cn-sub">THE DRAGON OF CONCEPTS</span>
-    <span class="cn-round">ROUND 13 · SPACE, TIME, IDEA, FORM</span>
+    <span class="cn-round">ROUND 14 · SPACE, TIME, IDEA, FORM</span>
   </div>
   <div id="ci-skip" onclick="skipConceptIntro()">SKIP ▶</div>
 </div>
@@ -1943,6 +1963,49 @@ const CHARS = {
   <!-- gravity breath core -->
   <ellipse cx="36" cy="24" rx="6" ry="2.4" fill="#02080e"/>
   <ellipse cx="36" cy="24" rx="3.2" ry="1.3" fill="#70e0ff" opacity=".8"/>
+</svg>`,
+  conceptlizard:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="dlzBody" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8f0d8"/>
+      <stop offset="48%" style="stop-color:#c8a8e8"/>
+      <stop offset="52%" style="stop-color:#1a0818"/>
+      <stop offset="100%" style="stop-color:#0a0408"/>
+    </linearGradient>
+    <linearGradient id="dlzBeam" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" style="stop-color:#fffef8;stop-opacity:.95"/>
+      <stop offset="35%" style="stop-color:#ffe8b0;stop-opacity:.45"/>
+      <stop offset="100%" style="stop-color:#fff8e0;stop-opacity:0"/>
+    </linearGradient>
+  </defs>
+  <!-- heaven column -->
+  <rect x="28" y="0" width="16" height="38" fill="url(#dlzBeam)"/>
+  <ellipse cx="36" cy="8" rx="22" ry="10" fill="#fffef6" opacity=".35"/>
+  <!-- shadow pool -->
+  <ellipse cx="36" cy="100" rx="26" ry="5" fill="rgba(0,0,0,.55)"/>
+  <ellipse cx="36" cy="98" rx="20" ry="3" fill="rgba(40,0,60,.4)"/>
+  <!-- tail fork — duality -->
+  <path d="M52 78 Q68 88 70 100" stroke="#2a1840" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M20 78 Q4 88 2 100" stroke="#e8d8b0" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- body -->
+  <ellipse cx="36" cy="62" rx="22" ry="16" fill="url(#dlzBody)" stroke="#4a3068" stroke-width="1.2"/>
+  <path d="M22 58 Q36 52 50 58" stroke="rgba(255,255,255,.25)" stroke-width="1" fill="none"/>
+  <!-- limbs -->
+  <rect x="24" y="72" width="7" height="18" rx="2" fill="#120810"/>
+  <rect x="41" y="72" width="7" height="18" rx="2" fill="#f0e8d8"/>
+  <!-- neck -->
+  <rect x="31" y="40" width="10" height="16" rx="3" fill="url(#dlzBody)" stroke="#3a2048" stroke-width="1"/>
+  <!-- head -->
+  <ellipse cx="36" cy="28" rx="14" ry="11" fill="url(#dlzBody)" stroke="#503070" stroke-width="1.2"/>
+  <ellipse cx="30" cy="27" rx="4" ry="3" fill="#0a0408"/>
+  <ellipse cx="42" cy="27" rx="4" ry="3" fill="#fffef8"/>
+  <ellipse cx="30" cy="27" rx="1.6" ry="1.2" fill="#6080ff"/>
+  <ellipse cx="42" cy="27" rx="1.6" ry="1.2" fill="#ff4040"/>
+  <path d="M32 34 Q36 38 40 34" stroke="#2a1830" stroke-width="1" fill="none"/>
+  <!-- crown spines -->
+  <path d="M28 18 L26 8 L30 16" fill="#e8d8ff" stroke="#604080" stroke-width=".6"/>
+  <path d="M36 16 L36 4 L38 16" fill="#fffef8" stroke="#8060a0" stroke-width=".6"/>
+  <path d="M44 18 L46 8 L42 16" fill="#1a0818" stroke="#402060" stroke-width=".6"/>
 </svg>`
 };
 
@@ -1968,6 +2031,8 @@ const ENEMIES=[
     specialName:"VOID ECHO + UNMAKING + MIRROR CURSE",specialDesc:"Copies your strength. Cannot die without soul items."},
   {name:"Nemesis",         charKey:"nemesis",   hp:1,  str:1,  agi:1,  def:1,  gold:1500,title:"Your Own Shadow",   isBoss:true,  bossType:"nemesis",
     specialName:"PERFECT MIRROR + ADAPTATION + NEMESIS BLADE + FINAL REFLECTION",specialDesc:"Built from you. Fed by you. Ends as you."},
+  {name:"The Concept Lizard",charKey:"conceptlizard",hp:780,str:100,agi:24,def:46,gold:2400,title:"Archon of Duality",isBoss:true,bossType:"dual",
+    specialName:"SOLAR VERDICT + UMBRAL MIRROR",specialDesc:"Heaven brands you; shadow answers what you deny."},
   {name:"Concept Dragon",  charKey:"conceptdragon",hp:640,str:84,agi:20,def:40,gold:2500,title:"Dragon of Concepts",isBoss:true,bossType:"concept",
     specialName:"WARP SPACE-TIME + GRAVITY BREATH",specialDesc:"Bends turns, crushes with gravity."},
 ];
@@ -2601,7 +2666,7 @@ function buildShareCard(result){
     else if((i+1) === result.deathRound) bar.push('🗡️');
     else bar.push('⬛');
   }
-  const enemyName = result.deathRound ? ['Slave','Barbarian','Legionnaire','Praetorian','Champion','Berserker','Daemonicus','Undying','Kronos','Saturn','Aeternon','Nemesis','Concept Dragon'][result.deathRound-1] : 'Concept Dragon';
+  const enemyName = result.deathRound ? ['Slave','Barbarian','Legionnaire','Praetorian','Champion','Berserker','Daemonicus','Undying','Kronos','Saturn','Aeternon','Nemesis','Concept Lizard','Concept Dragon'][result.deathRound-1] : 'Concept Dragon';
   const outcome = result.won ? '👑 CHAMPION' : `${enemyName} R${result.deathRound}`;
   const hpTxt = result.won ? `HP ${result.finalHp}/${result.maxHp}` : '';
   const modLine=(result.dailyModTag&&String(result.dailyModTag))?`\nSigil: ${result.dailyModTag}`:'';
@@ -2633,6 +2698,8 @@ function computeRoundGoldReward(e){
 
 function startFight(){
   const et=ENEMIES[G.ei];
+  const ahHeaven=document.getElementById('archon-heaven');
+  if(ahHeaven)ahHeaven.classList.add('hidden');
   const df=getDifficultyMods();
   const dm=(G.daily&&G.dailyMod)?G.dailyMod:{gold:1,enemy:1};
   const hpMul=df.enemyHp*(dm.enemy||1);
@@ -2666,6 +2733,7 @@ function startFight(){
   document.getElementById('psprite').className='swrap';
   document.getElementById('psprite').innerHTML=CHARS.player;
   document.getElementById('esprite').innerHTML=CHARS[et.charKey]||CHARS.slave;
+  if(ahHeaven)ahHeaven.classList.toggle('hidden',et.bossType!=='dual');
 
   // Boss aura
   if(et.bossType==='demon'){
@@ -2676,6 +2744,8 @@ function startFight(){
     document.getElementById('esprite').querySelector('svg').classList.add('aura-kronos');
   } else if(et.bossType==='saturn'){
     document.getElementById('esprite').querySelector('svg').classList.add('aura-saturn');
+  } else if(et.bossType==='dual'){
+    document.getElementById('esprite').querySelector('svg').classList.add('aura-dual');
   } else if(et.bossType==='concept'){
     document.getElementById('esprite').querySelector('svg').classList.add('aura-concept');
   } else if(et.bossType==='void'){
@@ -2694,6 +2764,8 @@ function startFight(){
     badge.innerHTML=`<div class="boss-badge bb-kronos">☿ THE PRIMORDIAL</div>`;
   } else if(et.isBoss&&et.bossType==='saturn'){
     badge.innerHTML=`<div class="boss-badge bb-saturn">⏳ LORD OF TIME</div>`;
+  } else if(et.isBoss&&et.bossType==='dual'){
+    badge.innerHTML=`<div class="boss-badge bb-dual">◇ ARCHON OF DUALITY</div>`;
   } else if(et.isBoss&&et.bossType==='concept'){
     badge.innerHTML=`<div class="boss-badge bb-concept">🐉 DRAGON OF CONCEPTS</div>`;
   } else if(et.isBoss&&et.bossType==='void'){
@@ -2742,6 +2814,14 @@ function startFight(){
     G.enemy.agi=Math.max(1,Math.round(G.enemy.agi*q));
     G.enemy.def=Math.max(1,Math.round(G.enemy.def*q));
   }
+  if(et.bossType==='dual'){
+    const q=1.18;
+    G.enemy.maxHp=Math.max(1,Math.round(G.enemy.maxHp*q));
+    G.enemy.hp=G.enemy.maxHp;
+    G.enemy.str=Math.max(1,Math.round(G.enemy.str*q));
+    G.enemy.agi=Math.max(1,Math.round(G.enemy.agi*q));
+    G.enemy.def=Math.max(1,Math.round(G.enemy.def*q));
+  }
 
   if(et.bossType==='nemesis'){
     G.busy=true;
@@ -2752,6 +2832,17 @@ function startFight(){
       addLog(`Below 25% HP — you must land 3 hits in a row to pierce it.`,'bsp');
       G.busy=false;render();
     });
+    render();return;
+  }else if(et.bossType==='dual'){
+    G.busy=true;
+    initAudio();
+    setTimeout(()=>{if(typeof sfxArchonHeaven==='function')sfxArchonHeaven();},140);
+    setTimeout(()=>{
+      addLog(`The sky tears — not into weather, into judgment. A column of impossible daylight pins the arena.`,'bsp');
+      addLog(`THE CONCEPT LIZARD descends: Archon of Duality. One jaw speaks in hymns. The other speaks in absences.`,'bsp');
+      addLog(`SOLAR VERDICT burns the honest line across your skin. UMBRAL MIRROR finishes whatever you will not confess.`,'bsp');
+      G.busy=false;render();
+    },2400);
     render();return;
   }else if(et.bossType==='concept'){
     G.busy=true;
@@ -3092,6 +3183,102 @@ function enemyTurn(){
     }
   }
   // ── END SATURN ─────────────────────────────────────────
+
+  // ── CONCEPT LIZARD (Archon of Duality) ───────────────────
+  if(e.isBoss&&e.bossType==='dual'){
+    e.dualTurn=(e.dualTurn||0)+1;
+
+    if(e.hp/e.maxHp<0.68&&!e.twinJudgmentDone){
+      e.twinJudgmentDone=true;
+      const d1=Math.max(14,Math.floor(e.str*0.98)+ri(4,10));
+      const d2=Math.max(12,Math.floor(e.str*0.82)+ri(3,9));
+      p.hp=Math.max(0,p.hp-d1-d2);
+      addLog(`☀ TWIN JUDGMENT — heaven scores you for ${d1}; shadow collects ${d2}. No plea fits both mouths.`,'bsp');
+      aAtk('e');aHit('p',d1);
+      setTimeout(()=>aHit('p',d2),240);
+      p.defending=false;
+      if(p.hp<=0){
+        const riseChance=hasMilestone('eternal')?1.0:0.33;
+        if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
+          p.blessingUsed=true;p.hp=0;G.busy=true;
+          document.getElementById('psprite').classList.add('dead');render();
+          triggerResurrection();return;
+        }
+        addLog(`The verdict is unanimous. You are the gap between them.`,'sp');
+        document.getElementById('psprite').classList.add('dead');setTimeout(showDefeat,900);return;
+      }
+      G.myTurn=true;render();return;
+    }
+
+    if(e.hp/e.maxHp<0.38&&!e.dualCollapseDone){
+      e.dualCollapseDone=true;
+      const c=Math.max(18,Math.floor(e.str*0.72)+ri(6,12));
+      p.hp=Math.max(0,p.hp-c);
+      addLog(`◇ DUALITY COLLAPSE — the Archon folds both truths into one wound: ${c}!`,'bsp');
+      aAtk('e');aHit('p',c);
+      p.defending=false;
+      if(p.hp<=0){
+        const riseChance=hasMilestone('eternal')?1.0:0.33;
+        if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
+          p.blessingUsed=true;p.hp=0;G.busy=true;
+          document.getElementById('psprite').classList.add('dead');render();
+          triggerResurrection();return;
+        }
+        addLog(`Light and shadow agree: you end here.`,'sp');
+        document.getElementById('psprite').classList.add('dead');setTimeout(showDefeat,900);return;
+      }
+      G.myTurn=true;render();return;
+    }
+
+    const solar=(e.dualTurn%2)===1;
+    if(solar){
+      const sd=calcDmg(e.str,p.agi,p.def,1.56,(ptot.dodge||0)*0.85);
+      if(sd<0){
+        addLog(`The Concept Lizard's SOLAR VERDICT glances — you slip the branded line!`,'en');
+        sfxDodge();
+      }else{
+        if(p.hasSoulAegis&&!p.soulAegisUsed&&sd>=p.hp){
+          p.soulAegisUsed=true;
+          addLog(`✦ SOUL AEGIS absorbs the Solar Verdict!`,'sp');
+        }else{
+          const dealt=p.defending?Math.max(1,Math.floor(sd*0.78)):sd;
+          p.hp=Math.max(0,p.hp-dealt);
+          addLog(`☀ SOLAR VERDICT — ${dealt} searing damage from the sky's own grammar!`,'bsp');
+          aAtk('e');if(dealt>0)aHit('p',dealt);
+        }
+      }
+    }else{
+      const umDef=Math.max(1,Math.floor(p.def*0.66));
+      const ud=calcDmg(e.str,p.agi,umDef,1.42,(ptot.dodge||0)*0.92);
+      if(ud<0){
+        addLog(`UMBRAL MIRROR strikes — you twist from your own reflection!`,'en');
+        sfxDodge();
+      }else{
+        if(p.hasSoulAegis&&!p.soulAegisUsed&&ud>=p.hp){
+          p.soulAegisUsed=true;
+          addLog(`✦ SOUL AEGIS absorbs the Umbral Mirror!`,'sp');
+        }else{
+          const dealt=p.defending?Math.max(1,Math.floor(ud*0.82)):ud;
+          p.hp=Math.max(0,p.hp-dealt);
+          addLog(`🌑 UMBRAL MIRROR — ${dealt} damage; it knows the shape of what you hide.`,'bsp');
+          aAtk('e');if(dealt>0)aHit('p',dealt);
+        }
+      }
+    }
+    p.defending=false;
+    if(p.hp<=0){
+      const riseChance=hasMilestone('eternal')?1.0:0.33;
+      if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
+        p.blessingUsed=true;p.hp=0;G.busy=true;
+        document.getElementById('psprite').classList.add('dead');render();
+        triggerResurrection();return;
+      }
+      addLog(`The Archon closes the ledger. Duality does not tie.`,'sp');
+      document.getElementById('psprite').classList.add('dead');setTimeout(showDefeat,900);return;
+    }
+    G.myTurn=true;render();return;
+  }
+  // ── END CONCEPT LIZARD ──────────────────────────────────
 
   // ── CONCEPT DRAGON MECHANICS ───────────────────────────
   if(e.isBoss&&e.bossType==='concept'){
@@ -3444,7 +3631,7 @@ function endFight(won){
   const gAdd=computeRoundGoldReward(e);
   p.gold+=gAdd;p.wins++;
   // Award soul fragments
-  const SOUL_REWARDS=[5,8,12,16,20,28,50,80,120,180,260,360,520];
+  const SOUL_REWARDS=[5,8,12,16,20,28,50,80,120,180,260,360,520,620];
   const souls=SOUL_REWARDS[G.ei]||0;
   p.souls=(p.souls||0)+souls;
   const drop=grantLootDrop(p,e,G.ei);
@@ -3556,6 +3743,11 @@ function render(){
     et.push(`<span class="ft ft-time">LOCK IN ${clkIn===4?'NOW':clkIn}</span>`);
     if(!e.rewindDone&&e.hp/e.maxHp<0.70)et.push('<span class="ft ft-time">REWIND NEAR</span>');
     if(p.timeDecayed)et.push('<span class="ft ft-drain">AGE DECAY</span>');
+  }
+  if(e.isBoss&&e.bossType==='dual'){
+    et.push(`<span class="ft ft-dual">${(e.dualTurn||0)%2===1?'SOLAR VERDICT':'UMBRAL MIRROR'}</span>`);
+    if(!e.twinJudgmentDone&&e.hp/e.maxHp<0.78)et.push('<span class="ft ft-dual">TWIN JUDGMENT NEAR</span>');
+    if(!e.dualCollapseDone&&e.hp/e.maxHp<0.48)et.push('<span class="ft ft-dual">COLLAPSE NEAR</span>');
   }
   if(e.isBoss&&e.bossType==='concept'){
     const bIn=3-((e.conceptTurn||0)%3);
@@ -3894,6 +4086,8 @@ function recordDailyResult(won){
 function restartGame(){
   clearRunSave();
   stopMusic();
+  const ahh=document.getElementById('archon-heaven');
+  if(ahh)ahh.classList.add('hidden');
   _dailyMode = false;
   document.getElementById('daily-badge').classList.add('hidden');
   G={phase:'intro',player:freshPlayer(),enemy:null,ei:0,log:[],myTurn:true,busy:false};
@@ -4486,19 +4680,20 @@ function buildArenaMusicLoopBuffer(ctx){
 function updateArenaMusicMood(){
   if(!AC||musicOff||!musicFilterNode||!musicLoopSource)return;
   const sat=!!(G&&G.enemy&&G.enemy.bossType==='saturn');
+  const dual=!!(G&&G.enemy&&G.enemy.bossType==='dual');
   const boss=!!(G&&G.enemy&&G.enemy.isBoss);
-  const rn=Math.min(13,(G&&G.ei)||0);
-  let fq=sat?440:(boss?980:1380+rn*32);
+  const rn=Math.min(Math.max(0,ENEMIES.length-1),(G&&G.ei)||0);
+  let fq=dual?620:(sat?440:(boss?980:1380+rn*32));
   if(G&&G.player&&G.player.maxHp&&G.player.hp/G.player.maxHp<0.38)fq-=140;
   const tt=AC.currentTime;
   try{
     if(typeof musicFilterNode.frequency.setTargetAtTime==='function'){
       musicFilterNode.frequency.setTargetAtTime(fq,tt,0.12);
-      musicFilterNode.Q.setTargetAtTime(sat?1.25:0.82,tt,0.14);
-      musicLoopSource.playbackRate.setTargetAtTime(sat?0.88:1,tt,0.16);
+      musicFilterNode.Q.setTargetAtTime(dual?1.15:(sat?1.25:0.82),tt,0.14);
+      musicLoopSource.playbackRate.setTargetAtTime(dual?0.92:(sat?0.88:1),tt,0.16);
     }else{
       musicFilterNode.frequency.setValueAtTime(fq,tt);
-      musicLoopSource.playbackRate.setValueAtTime(sat?0.88:1,tt);
+      musicLoopSource.playbackRate.setValueAtTime(dual?0.92:(sat?0.88:1),tt);
     }
   }catch(e){}
 }
@@ -4769,6 +4964,25 @@ function sfxSaturnIntro(){_sfx(()=>{
     hg.gain.exponentialRampToValueAtTime(.001,hb+.09);
     n.connect(hg);hg.connect(sGain);n.start(hb);
   });
+})}
+
+function sfxArchonHeaven(){_sfx(()=>{
+  const t=AC.currentTime;
+  [523.25,659.25,783.99,987.77].forEach((f,i)=>{
+    const ot=t+i*.07;
+    const o=AC.createOscillator();const g=AC.createGain();
+    o.type='sine';o.frequency.value=f;
+    g.gain.setValueAtTime(.001,ot);g.gain.linearRampToValueAtTime(.14/(i*.4+1),ot+.03);
+    g.gain.exponentialRampToValueAtTime(.001,ot+1.4);
+    o.connect(g);g.connect(sGain);o.start(ot);o.stop(ot+1.45);
+  });
+  const sh=AC.createOscillator();const shg=AC.createGain();const bp=AC.createBiquadFilter();
+  sh.type='triangle';
+  sh.frequency.setValueAtTime(2400,t+.05);sh.frequency.exponentialRampToValueAtTime(400,t+.55);
+  bp.type='bandpass';bp.frequency.value=3200;bp.Q.value=.9;
+  shg.gain.setValueAtTime(.001,t+.05);shg.gain.linearRampToValueAtTime(.09,t+.16);
+  shg.gain.exponentialRampToValueAtTime(.001,t+.62);
+  sh.connect(bp);bp.connect(shg);shg.connect(sGain);sh.start(t+.05);sh.stop(t+.65);
 })}
 
 function sfxBuy(){_sfx(()=>{
