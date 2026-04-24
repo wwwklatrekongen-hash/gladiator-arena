@@ -1730,11 +1730,11 @@ const CHARS = {
 
   berserker:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg">
   <ellipse cx="36" cy="100" rx="22" ry="5" fill="rgba(0,0,0,.45)"/>
-  <!-- twin curved swords -->
-  <path d="M62 20 Q68 32 60 52" stroke="#9a9aaa" stroke-width="5" fill="none" stroke-linecap="round"/>
-  <rect x="56" y="28" width="12" height="4" rx="1.5" fill="#8a4018"/>
-  <path d="M10 20 Q4 32 12 52" stroke="#9a9aaa" stroke-width="5" fill="none" stroke-linecap="round"/>
-  <rect x="6" y="28" width="12" height="4" rx="1.5" fill="#8a4018"/>
+  <!-- heavy battle axe -->
+  <rect x="56" y="18" width="5" height="56" rx="2" fill="#6a3a18" stroke="#8a4a20" stroke-width=".8"/>
+  <rect x="53" y="34" width="11" height="4" rx="1.3" fill="#4a220c"/>
+  <path d="M59 20 Q71 24 67 38 Q58 40 56 32 Q55 25 59 20 Z" fill="#aeb4c0" stroke="#d4dae6" stroke-width="1"/>
+  <path d="M58 25 Q52 28 52 34 Q54 40 60 39 Q62 31 58 25 Z" fill="#8e94a6" stroke="#c0c7d8" stroke-width=".8"/>
   <!-- massive legs bare -->
   <rect x="39" y="68" width="15" height="24" rx="3" fill="#b08060"/>
   <!-- blood on legs -->
@@ -2458,7 +2458,7 @@ const ENEMIES=[
   {name:"The Berserker",  charKey:"berserker",  hp:150,str:25, agi:12, def:10, gold:155,title:"Lost to Bloodlust", isBoss:false},
   {name:"Daemonicus",     charKey:"daemonicus", hp:195,str:32, agi:14, def:16, gold:210,title:"The Corrupted One",  isBoss:true,  bossType:"demon",
     specialName:"DEMON SURGE",specialDesc:"Every 4 turns — double strike",surgeCd:4},
-  {name:"The Undying God", charKey:"undying",   hp:240,str:40, agi:17, def:20, gold:300,title:"Death Incarnate",    isBoss:true,  bossType:"god",
+  {name:"Undying God",     charKey:"undying",   hp:240,str:40, agi:17, def:20, gold:300,title:"Death Incarnate",    isBoss:true,  bossType:"god",
     specialName:"RESURRECTION",specialDesc:"Rises from near-death once",resurrected:false},
   {name:"Kronos",          charKey:"kronos",    hp:300,str:50, agi:10, def:26, gold:500,title:"The Primordial Titan",isBoss:true,  bossType:"kronos",
     specialName:"PRIMORDIAL SLAM + ANCIENT DRAIN + STONE REBIRTH + ETERNAL FURY",specialDesc:"Four cursed mechanics."},
@@ -2506,6 +2506,12 @@ const SHOP=[
   {id:"bl",icon:"😇",name:"Angel's Blessing",desc:"33% — Rise from death",cost:70,rep:false,fn:p=>{p.hasBlessing=true}},
   {id:"bb",icon:"🍺",name:"Berserker's Draft",desc:"+20 max HP · this fight only",cost:22,rep:true,fn:p=>{p.battleBrewBonus=(p.battleBrewBonus||0)+20}},
 ];
+const WAVE10_PERMA_POOL=[
+  {id:'bo',icon:'👢',name:'Swift Boots',desc:'Permanent +4 AGI (10% stronger)',apply:p=>{p.agi+=4;p.bootsCount=(p.bootsCount||0)+1;}},
+  {id:'tr',icon:'💪',name:'Training',desc:'Permanent +33 Max HP (10% stronger)',apply:p=>{p.maxHp+=33;p.hp+=33;}},
+  {id:'bl',icon:'😇',name:"Angel's Blessing",desc:'Permanent rise chance (36.3% instead of 33%)',apply:p=>{p.hasBlessing=true;p.blessingBoost=0.033;p.bl_owned=true;}},
+  {id:'bb',icon:'🍺',name:"Berserker's Draft",desc:'Permanent +22 Max HP (10% stronger)',apply:p=>{p.maxHp+=22;p.hp+=22;}},
+];
 
 // Soul items — Soul Emporium after Round 5
 const SOUL_ITEMS=[
@@ -2528,6 +2534,7 @@ const LOOT_RARITY_META={
   rare:{label:'Rare',color:'#5f88d8'},
   legendary:{label:'Legendary',color:'#c06be0'},
   mythic:{label:'Mythic',color:'#e0b84f'},
+  ascendant:{label:'Ascendant',color:'#7af5ff'},
 };
 const LOOT_ARMOR_SLOTS=['boots','gloves','helmet','chestplate'];
 const LOOT_WEAPON_TYPES=['sword','axe','staff','knuckles'];
@@ -2539,6 +2546,7 @@ const LOOT_AFFIXES={
   rare:['Runed','Vicious','Warder\'s','Stormforged'],
   legendary:['Kingsbane','Titanbound','Eternal','Doomforged'],
   mythic:['Chrono-Shattered','Godslayer','Voidforged','Starborn'],
+  ascendant:['Truthforged','Axiom-Bound','Heavenpiercing','Paradox-Eater'],
 };
 const LOOT_PASSIVES=[
   {id:'none',txt:''},
@@ -2547,6 +2555,9 @@ const LOOT_PASSIVES=[
   {id:'dodge',txt:'+Dodge chance'},
   {id:'recoil',txt:'-Reckless recoil'},
   {id:'chronoWard',txt:'Ward vs time lock'},
+  {id:'ferocity',txt:'+Crit +Life steal'},
+  {id:'phaseShift',txt:'+Dodge +Chrono ward'},
+  {id:'execution',txt:'+Crit +Recoil control'},
 ];
 
 // ══════════════════════════════════════════════════════════
@@ -2560,6 +2571,7 @@ const LS_DAILY_LAST_DAY = 'ga_daily_last_day';
 const LS_GAME_SETTINGS='ga_game_settings_v1';
 const LS_RUN_SAVE='ga_run_save_v1';
 const LS_INTRO_TIPS='ga_intro_tips_seen_v1';
+const LS_WARCRY_ASCENDED='ga_warcry_ascended_v1';
 const GAME_VER='1.4.0';
 
 function currentDailyNumber(){
@@ -2690,26 +2702,38 @@ function ensureLoadout(p){
 
 function rollLootRarity(roundIdx,isBoss){
   const prog=Math.max(0,Math.min(1,roundIdx/(ENEMIES.length-1)));
+  const roundNumber=(roundIdx|0)+1; // 1-based round number shown to players
   let wC=0.68-prog*0.42;
   let wU=0.22+prog*0.08;
   let wR=0.08+prog*0.16;
   let wE=0.018+prog*0.14;
   let wM=0.002+prog*0.04;
+  let wA=0;
   if(isBoss){wC-=0.14;wU-=0.03;wR+=0.07;wE+=0.07;wM+=0.03;}
-  // Round/level 11+ loot curve: no common/uncommon drops, mythic chance boosted by 10%
-  if(roundIdx>=10){
+  // Round 10+ loot curve: no common/uncommon drops, mythic chance boosted by 10%
+  if(roundNumber>=10){
     wC=0;
     wU=0;
     wM*=1.10;
   }
-  const ws=[['common',wC],['uncommon',wU],['rare',wR],['legendary',wE],['mythic',wM]];
+  // Round 16+ unlock: Ascendant tier enters the pool above Mythic.
+  if(roundNumber>15){
+    wA=(0.05+prog*0.08)+(isBoss?0.04:0);
+    wM*=0.90;
+  }
+  const ws=[['common',wC],['uncommon',wU],['rare',wR],['legendary',wE],['mythic',wM],['ascendant',wA]];
   let total=0;for(const [,w]of ws)total+=Math.max(0,w);
+  if(total<=0)return 'rare';
   let r=rnd()*total;
   for(const [id,w]of ws){r-=Math.max(0,w);if(r<=0)return id;}
-  return 'common';
+  // Safety fallback: return the highest enabled tier, never forced common.
+  for(let i=ws.length-1;i>=0;i--){
+    if(Math.max(0,ws[i][1])>0)return ws[i][0];
+  }
+  return 'rare';
 }
 function lootTier(rarity){
-  return {common:0,uncommon:1,rare:2,legendary:3,mythic:4}[rarity]||0;
+  return {common:0,uncommon:1,rare:2,legendary:3,mythic:4,ascendant:5}[rarity]||0;
 }
 function buildLootItem(roundIdx,e){
   const rarity=rollLootRarity(roundIdx,!!(e&&e.isBoss));
@@ -2718,17 +2742,26 @@ function buildLootItem(roundIdx,e){
   const slot=isWeapon?'weapon':LOOT_ARMOR_SLOTS[ri(0,LOOT_ARMOR_SLOTS.length-1)];
   const weaponType=isWeapon?LOOT_WEAPON_TYPES[ri(0,LOOT_WEAPON_TYPES.length-1)]:null;
   const roll={
-    str:isWeapon?[1,2,4,6,9][t]:[0,1,2,3,5][t],
-    agi:slot==='boots'?[1,2,3,4,6][t]:slot==='gloves'?[0,1,2,3,4][t]:[0,0,1,2,3][t],
-    def:slot==='chestplate'?[1,2,4,6,9][t]:slot==='helmet'?[1,2,3,4,6][t]:slot==='gloves'?[0,1,1,2,3][t]:[0,0,1,1,2][t],
-    hp:slot==='chestplate'?[8,14,24,36,52][t]:slot==='helmet'?[4,8,12,18,28][t]:[0,4,8,12,18][t],
-    bossBonus:isWeapon?[0,0.01,0.02,0.04,0.06][t]:[0,0,0.01,0.02,0.04][t],
+    str:isWeapon?[1,2,4,6,9,13][t]:[0,1,2,3,5,8][t],
+    agi:slot==='boots'?[1,2,3,4,6,9][t]:slot==='gloves'?[0,1,2,3,4,6][t]:[0,0,1,2,3,5][t],
+    def:slot==='chestplate'?[1,2,4,6,9,14][t]:slot==='helmet'?[1,2,3,4,6,10][t]:slot==='gloves'?[0,1,1,2,3,5][t]:[0,0,1,1,2,4][t],
+    hp:slot==='chestplate'?[8,14,24,36,52,78][t]:slot==='helmet'?[4,8,12,18,28,42][t]:[0,4,8,12,18,30][t],
+    bossBonus:isWeapon?[0,0.01,0.02,0.04,0.06,0.09][t]:[0,0,0.01,0.02,0.04,0.065][t],
   };
   const meta=LOOT_RARITY_META[rarity];
   const affixPool=LOOT_AFFIXES[rarity]||LOOT_AFFIXES.common;
   const affix=affixPool[ri(0,affixPool.length-1)];
-  const passiveOdds={common:0.05,uncommon:0.18,rare:0.34,legendary:0.66,mythic:0.92}[rarity]||0;
-  const passive=(rnd()<passiveOdds)?LOOT_PASSIVES[ri(1,LOOT_PASSIVES.length-1)].id:'none';
+  const passiveOdds={common:0.05,uncommon:0.18,rare:0.34,legendary:0.66,mythic:0.92,ascendant:1.0}[rarity]||0;
+  const poolByRarity={
+    common:['crit','dodge'],
+    uncommon:['crit','lifesteal','dodge','recoil'],
+    rare:['crit','lifesteal','dodge','recoil','chronoWard'],
+    legendary:['crit','lifesteal','dodge','recoil','chronoWard','ferocity','phaseShift'],
+    mythic:['crit','lifesteal','dodge','recoil','chronoWard','ferocity','phaseShift','execution'],
+    ascendant:['ferocity','phaseShift','execution','crit','lifesteal','dodge','chronoWard']
+  };
+  const passivePool=poolByRarity[rarity]||['crit','dodge'];
+  const passive=(rnd()<passiveOdds)?passivePool[ri(0,passivePool.length-1)]:'none';
   const labelPart=isWeapon?`${meta.label} ${weaponType[0].toUpperCase()+weaponType.slice(1)}`:meta.label;
   return{
     id:`loot_${Date.now()}_${ri(100,999)}`,
@@ -2761,6 +2794,16 @@ function getPassiveTotals(p){
     else if(it.passive==='dodge')t.dodge+=0.015+tier*0.008;
     else if(it.passive==='recoil')t.recoilCut+=0.05+tier*0.03;
     else if(it.passive==='chronoWard')t.chronoWard+=0.08+tier*0.05;
+    else if(it.passive==='ferocity'){
+      t.critChance+=0.02+tier*0.012;
+      t.lifesteal+=0.015+tier*0.008;
+    }else if(it.passive==='phaseShift'){
+      t.dodge+=0.012+tier*0.007;
+      t.chronoWard+=0.06+tier*0.04;
+    }else if(it.passive==='execution'){
+      t.critChance+=0.024+tier*0.01;
+      t.recoilCut+=0.04+tier*0.025;
+    }
   }
   return t;
 }
@@ -3055,6 +3098,39 @@ function beginContinueRun(){
   syncAudioTapLayer();
 }
 
+function hasWarcryAscended(){
+  return localStorage.getItem(LS_WARCRY_ASCENDED)==='1';
+}
+function unlockWarcryAscension(){
+  if(hasWarcryAscended())return false;
+  localStorage.setItem(LS_WARCRY_ASCENDED,'1');
+  return true;
+}
+function getWarcryProfile(){
+  if(hasWarcryAscended()){
+    return{
+      name:'PRIMAL HOWL',
+      strBonus:8,
+      buffTurns:3,
+      cooldown:3,
+      resonanceGain:2,
+      staffExtraChance:0.45
+    };
+  }
+  return{
+    name:'WAR CRY',
+    strBonus:5,
+    buffTurns:2,
+    cooldown:4,
+    resonanceGain:1,
+    staffExtraChance:0.35
+  };
+}
+function getBlessingRiseChance(p){
+  if(hasMilestone('eternal'))return 1.0;
+  return Math.min(1,0.33+Math.max(0,(p&&p.blessingBoost)||0));
+}
+
 function beginGame(isDaily){
   clearRunSave();
   _dailyMode = !!isDaily;
@@ -3243,7 +3319,7 @@ function startFight(){
   if(et.isBoss&&et.bossType==='demon'){
     badge.innerHTML=`<div class="boss-badge bb-demon">⚠ BOSS FIGHT</div>`;
   } else if(et.isBoss&&et.bossType==='god'){
-    badge.innerHTML=`<div class="boss-badge bb-god">☆ FINAL BOSS</div>`;
+    badge.innerHTML=`<div class="boss-badge bb-god">☆ UNDYING GOD</div>`;
   } else if(et.isBoss&&et.bossType==='kronos'){
     badge.innerHTML=`<div class="boss-badge bb-kronos">☿ THE PRIMORDIAL</div>`;
   } else if(et.isBoss&&et.bossType==='saturn'){
@@ -3519,6 +3595,12 @@ function act(a){
       if(wasHit)addLog(`✧ SOVEREIGN NULLFIELD erases your strike.`,'bsp');
       return{dmg:0,blocked:true};
     }
+    // Undying God post-resurrection safety: cannot be one-shot on next lethal hit
+    if(e&&e.isBoss&&e.bossType==='god'&&e.resurrected&&e.undyingGuard&&wasHit&&d>=e.hp){
+      d=Math.max(0,e.hp-1);
+      e.undyingGuard=false;
+      addLog(`✦ UNDYING AEGIS cracks — lethal damage is denied once.`,'bsp');
+    }
     if(!e||e.bossType!=='nemesis'||!e.finalPhase){
       if(wasHit){e.hp=Math.max(0,e.hp-d);p.lastDmgDealt=d;}
       return{dmg:d,blocked:false};
@@ -3590,14 +3672,15 @@ function act(a){
     else{addLog(`Reckless blow absorbed! You still take ${recoil} recoil.`,'pl');aAtk('p');setTimeout(()=>aHit('p',recoil),180);}
   }else if(a==='warcry'){
     if(p.warcryCD>0)return;
-    p.buffTurns=2;p.warcryCD=4;
-    p.warcryResonance=Math.min((p.warcryResonance|0)+1,5);
-    if(wm.tag==='STAFF'&&rnd()<0.35)p.warcryResonance=Math.min((p.warcryResonance|0)+1,5);
+    const wc=getWarcryProfile();
+    p.buffTurns=wc.buffTurns;p.warcryCD=wc.cooldown;
+    p.warcryResonance=Math.min((p.warcryResonance|0)+wc.resonanceGain,5);
+    if(wm.tag==='STAFF'&&rnd()<wc.staffExtraChance)p.warcryResonance=Math.min((p.warcryResonance|0)+1,5);
     legacyAddCry();
     const echoActive=getEchoMult()>0;
     const echoStr_=legacyCries()>=10;
     const resPct=Math.min(p.warcryResonance,5)*Math.round(wm.resBonus*100);
-    addLog(`WAR CRY! +5 STR for 2 turns! Resonance ×${p.warcryResonance} (+${resPct}% weapon dmg this fight).${echoActive?' ⚡':''}`,'sp');
+    addLog(`${wc.name}! +${wc.strBonus} STR for ${wc.buffTurns} turns! Resonance ×${p.warcryResonance} (+${resPct}% weapon dmg this fight).${echoActive?' ⚡':''}`,'sp');
     if(echoStr_)fireArenaEchoRings();
     // Enhanced pulse on player sprite when echo is active
     if(echoActive){
@@ -3627,7 +3710,7 @@ function act(a){
   }
   // Reckless recoil could drop player HP to 0
   if(p.hp<=0){
-    const riseChance=hasMilestone('eternal')?1.0:0.33;
+    const riseChance=getBlessingRiseChance(p);
     if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
       p.blessingUsed=true;p.hp=0;G.busy=true;
       document.getElementById('psprite').classList.add('dead');render();
@@ -3646,6 +3729,22 @@ function enemyTurn(){
   const p=G.player,e=G.enemy;
   const ptot=getPassiveTotals(p);
   e.surgeTurnCount=(e.surgeTurnCount||0)+1;
+
+  // Berserker passive: Mushroom Power Awakening (+90% DEF above 90% HP)
+  if(e&&e.charKey==='berserker'){
+    const awaken=e.hp/e.maxHp>=0.90;
+    if(awaken&&!e.mushroomAwake){
+      e.mushroomAwake=true;
+      e.mushroomDefBonus=Math.max(1,Math.floor(e.def*0.90));
+      e.def+=e.mushroomDefBonus;
+      addLog(`🍄 MUSHROOM POWER AWAKENS — Berserker hardens his stance (+90% DEF)!`,'bsp');
+    }else if(!awaken&&e.mushroomAwake){
+      e.def=Math.max(0,e.def-(e.mushroomDefBonus||0));
+      e.mushroomDefBonus=0;
+      e.mushroomAwake=false;
+      addLog(`🍄 Mushroom power fades as Berserker drops below 90% HP.`,'bsp');
+    }
+  }
 
   // Boss: Daemonicus DEMON SURGE every 4 turns
   if(e.isBoss&&e.bossType==='demon'&&e.surgeTurnCount%4===0){
@@ -3710,7 +3809,7 @@ function enemyTurn(){
       aAtk('e');aHit('p',slamDmg);
       p.defending=false;
       if(p.hp<=0){
-        const riseChance=hasMilestone('eternal')?1.0:0.33;
+        const riseChance=getBlessingRiseChance(p);
         if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
           p.blessingUsed=true;p.hp=0;G.busy=true;
           document.getElementById('psprite').classList.add('dead');render();
@@ -3765,7 +3864,7 @@ function enemyTurn(){
         }
         aAtk('e');aHit('p',lockDmg);
         if(p.hp<=0){
-          const riseChance=hasMilestone('eternal')?1.0:0.33;
+          const riseChance=getBlessingRiseChance(p);
           if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
             p.blessingUsed=true;p.hp=0;G.busy=true;
             document.getElementById('psprite').classList.add('dead');render();
@@ -3794,7 +3893,7 @@ function enemyTurn(){
       setTimeout(()=>aHit('p',d2),240);
       p.defending=false;
       if(p.hp<=0){
-        const riseChance=hasMilestone('eternal')?1.0:0.33;
+        const riseChance=getBlessingRiseChance(p);
         if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
           p.blessingUsed=true;p.hp=0;G.busy=true;
           document.getElementById('psprite').classList.add('dead');render();
@@ -3814,7 +3913,7 @@ function enemyTurn(){
       aAtk('e');aHit('p',c);
       p.defending=false;
       if(p.hp<=0){
-        const riseChance=hasMilestone('eternal')?1.0:0.33;
+        const riseChance=getBlessingRiseChance(p);
         if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
           p.blessingUsed=true;p.hp=0;G.busy=true;
           document.getElementById('psprite').classList.add('dead');render();
@@ -3863,7 +3962,7 @@ function enemyTurn(){
     }
     p.defending=false;
     if(p.hp<=0){
-      const riseChance=hasMilestone('eternal')?1.0:0.33;
+      const riseChance=getBlessingRiseChance(p);
       if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
         p.blessingUsed=true;p.hp=0;G.busy=true;
         document.getElementById('psprite').classList.add('dead');render();
@@ -3917,7 +4016,7 @@ function enemyTurn(){
       addLog(`Four mirrored strikes land for ${total} total damage.`,'bsp');
       p.defending=false;
       if(p.hp<=0){
-        const riseChance=hasMilestone('eternal')?1.0:0.33;
+        const riseChance=getBlessingRiseChance(p);
         if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
           p.blessingUsed=true;p.hp=0;G.busy=true;
           document.getElementById('psprite').classList.add('dead');render();
@@ -3952,7 +4051,7 @@ function enemyTurn(){
       aAtk('e');aHit('p',dealt);
       p.defending=false;
       if(p.hp<=0){
-        const riseChance=hasMilestone('eternal')?1.0:0.33;
+        const riseChance=getBlessingRiseChance(p);
         if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
           p.blessingUsed=true;p.hp=0;G.busy=true;
           document.getElementById('psprite').classList.add('dead');render();
@@ -4002,7 +4101,7 @@ function enemyTurn(){
       }
       p.defending=false;
       if(p.hp<=0){
-        const riseChance=hasMilestone('eternal')?1.0:0.33;
+        const riseChance=getBlessingRiseChance(p);
         if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
           p.blessingUsed=true;p.hp=0;G.busy=true;
           document.getElementById('psprite').classList.add('dead');render();
@@ -4029,7 +4128,7 @@ function enemyTurn(){
       aAtk('e');
       p.defending=false;
       if(p.hp<=0){
-        const riseChance=hasMilestone('eternal')?1.0:0.33;
+        const riseChance=getBlessingRiseChance(p);
         if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
           p.blessingUsed=true;p.hp=0;G.busy=true;
           document.getElementById('psprite').classList.add('dead');render();
@@ -4075,7 +4174,7 @@ function enemyTurn(){
       addLog(`✹ AURA OF UNWRITTEN AEONS — cosmic pressure deals ${auraTick} ambient damage.`,'bsp');
       triggerHighlordMoveFx('retcon');
       if(p.hp<=0){
-        const riseChance=hasMilestone('eternal')?1.0:0.33;
+        const riseChance=getBlessingRiseChance(p);
         if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
           p.blessingUsed=true;p.hp=0;G.busy=true;
           document.getElementById('psprite').classList.add('dead');render();
@@ -4136,7 +4235,7 @@ function enemyTurn(){
       }
       p.defending=false;
       if(p.hp<=0){
-        const riseChance=hasMilestone('eternal')?1.0:0.33;
+        const riseChance=getBlessingRiseChance(p);
         if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
           p.blessingUsed=true;p.hp=0;G.busy=true;
           document.getElementById('psprite').classList.add('dead');render();
@@ -4178,7 +4277,7 @@ function enemyTurn(){
       aAtk('e');
       p.defending=false;
       if(p.hp<=0){
-        const riseChance=hasMilestone('eternal')?1.0:0.33;
+        const riseChance=getBlessingRiseChance(p);
         if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
           p.blessingUsed=true;p.hp=0;G.busy=true;
           document.getElementById('psprite').classList.add('dead');render();
@@ -4234,7 +4333,7 @@ function enemyTurn(){
         addLog(`🌌 GRAVITY BREATH — ${dealt} crushing unavoidable damage!`,'bsp');
         aAtk('e');aHit('p',dealt);
         if(p.hp<=0){
-          const riseChance=hasMilestone('eternal')?1.0:0.33;
+          const riseChance=getBlessingRiseChance(p);
           if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
             p.blessingUsed=true;p.hp=0;G.busy=true;
             document.getElementById('psprite').classList.add('dead');render();
@@ -4259,7 +4358,7 @@ function enemyTurn(){
       addLog(`🕳 SINGULARITY MARK detonates for ${singular} conceptual damage.`,'bsp');
       aHit('p',singular);
       if(p.hp<=0){
-        const riseChance=hasMilestone('eternal')?1.0:0.33;
+        const riseChance=getBlessingRiseChance(p);
         if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
           p.blessingUsed=true;p.hp=0;G.busy=true;
           document.getElementById('psprite').classList.add('dead');render();
@@ -4316,7 +4415,7 @@ function enemyTurn(){
       }
       p.defending=false;
       if(p.hp<=0){
-        const riseChance=hasMilestone('eternal')?1.0:0.33;
+        const riseChance=getBlessingRiseChance(p);
         if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
           p.blessingUsed=true;p.hp=0;G.busy=true;
           document.getElementById('psprite').classList.add('dead');render();
@@ -4350,7 +4449,7 @@ function enemyTurn(){
       }
       p.defending=false;
       if(p.hp<=0){
-        const riseChance=hasMilestone('eternal')?1.0:0.33;
+        const riseChance=getBlessingRiseChance(p);
         if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
           p.blessingUsed=true;p.hp=0;G.busy=true;
           document.getElementById('psprite').classList.add('dead');render();
@@ -4389,7 +4488,7 @@ function enemyTurn(){
         const psp=document.getElementById('psprite');
         psp.classList.add('ghost');setTimeout(()=>psp.classList.remove('ghost'),700);
         if(p.hp<=0){
-          const riseChance=hasMilestone('eternal')?1.0:0.33;
+          const riseChance=getBlessingRiseChance(p);
           if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
             p.blessingUsed=true;p.hp=0;G.busy=true;
             document.getElementById('psprite').classList.add('dead');render();
@@ -4413,7 +4512,7 @@ function enemyTurn(){
         addLog(`◈ VOID ECHO — ${echoDmg} dmg. Your strength devours you.`,'bsp');
         aAtk('e');aHit('p',echoDmg);
         if(p.hp<=0){
-          const riseChance=hasMilestone('eternal')?1.0:0.33;
+          const riseChance=getBlessingRiseChance(p);
           if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
             p.blessingUsed=true;p.hp=0;G.busy=true;
             document.getElementById('psprite').classList.add('dead');render();
@@ -4455,9 +4554,10 @@ function enemyTurn(){
     if(e.nemTurn%3===0){
       let adapted=null;
       if(p.buffTurns>0&&!e.adaptedWarCry){
+        const wc=getWarcryProfile();
         e.adaptedWarCry=true;
-        adapted='WAR CRY — +5 STR for 2 turns';
-        e.str+=5;setTimeout(()=>{e.str-=5;},2000);
+        adapted=`${wc.name} — +${wc.strBonus} STR for ${wc.buffTurns} turns`;
+        e.str+=wc.strBonus;setTimeout(()=>{e.str-=wc.strBonus;},Math.max(1000,wc.buffTurns*1000));
       } else if(p.bootsCount>=3&&p.hasPhantomCloak&&!e.adaptedGhostStep){
         e.adaptedGhostStep=true;
         adapted='GHOST STEP — will counter on dodge';
@@ -4509,7 +4609,7 @@ function enemyTurn(){
     }
     p.defending=false;
     if(p.hp<=0){
-      const riseChance=hasMilestone('eternal')?1.0:0.33;
+      const riseChance=getBlessingRiseChance(p);
       if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
         p.blessingUsed=true;p.hp=0;G.busy=true;
         document.getElementById('psprite').classList.add('dead');render();
@@ -4566,8 +4666,10 @@ function enemyTurn(){
     const reviveHp=Math.floor(e.maxHp*.45);
     setTimeout(()=>{
       e.hp=reviveHp;
+      e.undyingGuard=true;
       addLog(`THE UNDYING STIRS...`,'god');
-      addLog(`The Undying God rises from ruin at ${reviveHp} HP!`,'god');
+      addLog(`Undying God rises from ruin at ${reviveHp} HP!`,'god');
+      addLog(`✦ UNDYING AEGIS — the first lethal blow after resurrection cannot kill him.`,'god');
       // flash enemy sprite
       const sp=document.getElementById('esprite');
       sp.classList.add('ghost');setTimeout(()=>sp.classList.remove('ghost'),700);
@@ -4577,7 +4679,7 @@ function enemyTurn(){
 
   if(p.hp<=0){
     // Angel's Blessing — base 33%, always triggers at Eternal milestone
-    const riseChance=hasMilestone('eternal')?1.0:0.33;
+    const riseChance=getBlessingRiseChance(p);
     if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
       p.blessingUsed=true;
       p.hp=0;
@@ -4679,6 +4781,10 @@ function endFight(won){
   const SOUL_REWARDS=[5,8,12,16,20,28,50,80,120,180,260,360,520,620,760,980,1400,1900];
   const souls=SOUL_REWARDS[G.ei]||0;
   p.souls=(p.souls||0)+souls;
+  if(G.ei>=14&&unlockWarcryAscension()){
+    addLog(`🔥 LEGACY AWAKENED — War Cry evolves permanently into PRIMAL HOWL!`,'sp');
+    addLog(`PRIMAL HOWL: +8 STR for 3 turns, +2 Resonance, shorter cooldown.`,'sp');
+  }
   const drop=grantLootDrop(p,e,G.ei);
   // Blood Covenant: heal after each kill
   if(p.hasBloodCovenant){p.hp=Math.min(p.maxHp,p.hp+25);}
@@ -4913,6 +5019,7 @@ function render(){
   document.getElementById('ehpnum').textContent=`${e.hp} / ${e.maxHp} HP`;
   const et=[];
   if(e.enraged)et.push('<span class="ft ft-r">ENRAGED</span>');
+  if(e.mushroomAwake)et.push('<span class="ft" style="background:#131b08;color:#a8ff62;border:1px solid #507a20">MUSHROOM AWAKENING +90% DEF</span>');
   if(e.isBoss&&e.bossType==='demon')et.push(`<span class="ft ft-demon">SURGE ${e.surgeTurnCount%4===0?'NOW':4-(e.surgeTurnCount%4)}</span>`);
   if(e.isBoss&&e.bossType==='god'&&!e.resurrected&&e.hp/e.maxHp<0.5)et.push(`<span class="ft ft-god">WEAKENING</span>`);
   if(e.resurrected)et.push(`<span class="ft ft-god">RISEN</span>`);
@@ -5019,10 +5126,13 @@ function render(){
   document.querySelectorAll('.ab').forEach(b=>b.disabled=dis);
   const wb=document.getElementById('warcry-btn');
   if(dis||p.warcryCD>0)wb.disabled=true;
+  const wc=getWarcryProfile();
+  const wn=wb?wb.querySelector('.abn'):null;
+  if(wn)wn.textContent=wc.name;
   const wt=p.warcryCD>0?`CD ${p.warcryCD}t`
-    :p.buffTurns>0?`+5 STR · ${p.buffTurns}t${(p.warcryResonance|0)>0?` · Res ×${Math.min(p.warcryResonance,5)}`:''}`
+    :p.buffTurns>0?`+${wc.strBonus} STR · ${p.buffTurns}t${(p.warcryResonance|0)>0?` · Res ×${Math.min(p.warcryResonance,5)}`:''}`
     :(p.warcryResonance|0)>0?`Res ×${Math.min(p.warcryResonance,5)} (+${Math.min(p.warcryResonance,5)*Math.round(getWeaponMoveset(p).resBonus*100)}%)`
-    :'+5 STR · Resonance';
+    :`+${wc.strBonus} STR · Resonance`;
   document.getElementById('wcd-txt').textContent=wt;
   wb.className='ab ab-warcry'+(p.warcryCD===0?'':' ab-cd');
   // Defend block % — shows 90% with Aegis
@@ -5030,7 +5140,7 @@ function render(){
   if(defTxt)defTxt.textContent=p.enhancedBlock?'Block 90% next':'Block 75% next';
   // Reckless preview
   if(e){
-    const effS=combatStr(p.str+(p.buffTurns>0?5:0),e.isBoss);
+    const effS=combatStr(p.str+(p.buffTurns>0?wc.strBonus:0),e.isBoss);
     const wm=getWeaponMoveset(p);
     const ptot=getPassiveTotals(p);
     const rDmg=Math.max(1,Math.floor(effS*wm.reckless-e.def*.5));
@@ -5061,6 +5171,26 @@ function showShop(){
 
   let html='<div class="shop-catalog-block">';
   let affordPulseDone=false;
+  const isWave10Shop=G.ei===9;
+  if(isWave10Shop&&!p.wave10ChoiceDone){
+    if(!Array.isArray(p.wave10Choices)||p.wave10Choices.length!==2){
+      const pool=[...WAVE10_PERMA_POOL];
+      const pick1=pool.splice(ri(0,pool.length-1),1)[0];
+      const pick2=pool.splice(ri(0,pool.length-1),1)[0];
+      p.wave10Choices=[pick1.id,pick2.id];
+    }
+    const opts=(p.wave10Choices||[]).map(id=>WAVE10_PERMA_POOL.find(x=>x.id===id)).filter(Boolean);
+    html+=`<div class="shop-section-label">🌟 Wave 10 Rework — Choose 1 Permanent Upgrade</div>`;
+    html+='<div class="shgrid">';
+    html+=opts.map(o=>`<div class="si shop-afford-pulse" onclick="pickWave10Permanent('${o.id}')">
+      <div class="sii">${o.icon}</div>
+      <div class="sin">${o.name}</div>
+      <div class="sid">${o.desc}</div>
+      <span class="sic" style="color:#8fd070;border-color:#3a6a28">PERMANENT</span>
+    </div>`).join('');
+    html+='</div>';
+    html+=`<div style="font-size:9px;color:#9a8658;margin:4px 2px 10px">This is a one-time wave 10 choice. Pick one of the two options.</div>`;
+  }
   // ─── WEAPONS ───
   html+='<div class="shop-section-label">⚔ Weapons</div>';
   html+='<div class="shgrid-tier">';
@@ -5163,7 +5293,7 @@ function showShop(){
   satchel+='<div class="shop-satchel-block shop-loot-block" style="margin-top:8px">';
   satchel+='<div class="shop-satchel-head" style="color:#d0b878"><span style="margin-right:4px">🎒</span> Satchel Loot<span class="satchel-sub" style="color:#7a6a44">Tap an item to equip into its slot</span></div>';
   if(!p.inventory.length){
-    satchel+='<div class="inv-empty" style="color:#7a6a44">No loot yet. Gladiators can drop Common, Uncommon, Rare, Legendary, and Mythic gear.</div>';
+    satchel+='<div class="inv-empty" style="color:#7a6a44">No loot yet. Gladiators can drop Common, Uncommon, Rare, Legendary, Mythic, and Ascendant gear.</div>';
   }else{
     satchel+='<div class="inv-list">';
     [...p.inventory].reverse().forEach((it,revIx)=>{
@@ -5211,6 +5341,21 @@ function buyItem(id){
   sfxBuy();
   showShop();
   return true;
+}
+
+function pickWave10Permanent(id){
+  const p=G.player;
+  if(!p||p.wave10ChoiceDone||G.ei!==9)return;
+  const allowed=(p.wave10Choices||[]);
+  if(!allowed.includes(id))return;
+  const opt=WAVE10_PERMA_POOL.find(x=>x.id===id);
+  if(!opt)return;
+  opt.apply(p);
+  p.wave10ChoiceDone=true;
+  p.wave10ChoicePicked=id;
+  addLog(`🌟 Permanent upgrade chosen: ${opt.name} — ${opt.desc}.`,'sp');
+  sfxBuy();
+  showShop();
 }
 
 let holdBuyTimer=null;
