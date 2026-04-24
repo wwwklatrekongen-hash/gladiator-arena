@@ -2647,9 +2647,10 @@ function rollLootRarity(roundIdx,isBoss){
   let wE=0.018+prog*0.14;
   let wM=0.002+prog*0.04;
   if(isBoss){wC-=0.14;wU-=0.03;wR+=0.07;wE+=0.07;wM+=0.03;}
-  // Round/level 11+ loot curve: no common drops, mythic chance boosted by 10%
+  // Round/level 11+ loot curve: no common/uncommon drops, mythic chance boosted by 10%
   if(roundIdx>=10){
     wC=0;
+    wU=0;
     wM*=1.10;
   }
   const ws=[['common',wC],['uncommon',wU],['rare',wR],['legendary',wE],['mythic',wM]];
