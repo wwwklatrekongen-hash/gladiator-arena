@@ -424,21 +424,32 @@ body{font-family:'Cinzel',Georgia,serif;display:flex;flex-direction:column;heigh
 @keyframes aeringex{0%{width:0;height:0;opacity:.8}100%{width:260px;height:180px;opacity:0}}
 
 /* ── KRONOS INTRO ─────────────────────────────────────────*/
-#kronos-intro{position:fixed;inset:0;z-index:280;background:#050200;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center}
+#kronos-intro{position:fixed;inset:0;z-index:280;background:
+  radial-gradient(ellipse 70% 46% at 50% 22%,rgba(210,80,10,.2),transparent 55%),
+  radial-gradient(circle at 50% 95%,rgba(70,10,0,.7),transparent 60%),
+  linear-gradient(180deg,#020100 0%,#0a0301 38%,#050200 100%);
+  overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center}
 #kronos-intro.kfading{animation:kfade 1.1s ease-out forwards}
 @keyframes kfade{to{opacity:0;pointer-events:none}}
-#ki-ground{position:absolute;bottom:0;left:0;right:0;height:45%;background:linear-gradient(0deg,rgba(180,55,0,.7) 0%,rgba(120,30,0,.3) 60%,transparent 100%);animation:kgpulse 2.2s ease-in-out infinite alternate}
+#kronos-intro::before{content:'';position:absolute;inset:-6% -8%;pointer-events:none;z-index:1;opacity:.42;
+  background:
+    repeating-linear-gradient(105deg,transparent 0 42px,rgba(255,90,0,.06) 42px 44px),
+    radial-gradient(circle at 20% 16%,rgba(255,200,120,.09),transparent 42%),
+    radial-gradient(circle at 80% 28%,rgba(220,60,10,.12),transparent 48%);
+  animation:kiStorm 3.4s ease-in-out infinite alternate}
+@keyframes kiStorm{from{transform:scale(1) translateY(0);opacity:.28}to{transform:scale(1.03) translateY(-2px);opacity:.5}}
+#ki-ground{position:absolute;bottom:0;left:0;right:0;height:48%;background:linear-gradient(0deg,rgba(180,55,0,.72) 0%,rgba(120,30,0,.34) 58%,transparent 100%);animation:kgpulse 2.2s ease-in-out infinite alternate}
 @keyframes kgpulse{from{opacity:.55}to{opacity:1}}
 .kcrack{position:absolute;bottom:0;width:var(--w);background:linear-gradient(0deg,rgba(255,90,0,.9),rgba(255,180,0,.5),transparent);border-radius:1px;transform-origin:bottom center;animation:kcrackrise var(--d) ease-out var(--dl) both}
 @keyframes kcrackrise{from{height:0;opacity:0}20%{opacity:1}to{height:var(--h);opacity:.75}}
 #ki-lore{text-align:center;position:relative;z-index:10;margin-bottom:1.8rem;padding:0 16px}
 .kl{font-family:'Cinzel',serif;letter-spacing:3px;display:block;margin:3px 0;opacity:0;animation:klapp .7s ease-out var(--dl) forwards}
 @keyframes klapp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-.kl-s{font-size:10px;color:#5a3010}.kl-m{font-size:14px;color:#c07030;font-weight:700}
+.kl-s{font-size:10px;color:#7a3c14}.kl-m{font-size:14px;color:#d27a34;font-weight:700}.kl-b{font-size:16px;color:#ff8040;font-weight:900;letter-spacing:5px;text-shadow:0 0 22px rgba(220,90,30,.45)}
 #ki-name{position:relative;z-index:10;text-align:center;opacity:0;animation:knamein 1.2s ease-out var(--dl) forwards}
 @keyframes knamein{0%{opacity:0;transform:scale(.5) translateY(20px)}50%{opacity:1;transform:scale(1.08) translateY(0)}100%{opacity:1;transform:scale(1)}}
-.kn-main{font-family:'Cinzel Decorative',serif;font-size:clamp(20px,5.5vw,38px);font-weight:700;color:#e84a08;letter-spacing:6px;text-shadow:0 0 28px rgba(230,70,8,.9),0 0 70px rgba(230,70,8,.45),2px 2px 0 #180402;display:block}
-.kn-shake{animation:kshake 2.8s ease-in-out infinite}
+.kn-main{font-family:'Cinzel Decorative',serif;font-size:clamp(20px,5.5vw,38px);font-weight:700;color:#f26218;letter-spacing:8px;text-shadow:0 0 30px rgba(230,80,14,.9),0 0 78px rgba(230,70,8,.48),2px 2px 0 #180402;display:block}
+.kn-shake{animation:kshake 2.4s ease-in-out infinite}
 @keyframes kshake{0%,100%{transform:none}92%{transform:none}94%{transform:translateX(-2px)}96%{transform:translateX(2px)}98%{transform:translateX(-1px)}}
 .kn-sub{font-size:9px;letter-spacing:6px;color:#7a3a10;display:block;margin-top:5px}
 .kn-round{font-size:7px;letter-spacing:3px;color:#3a1806;display:block;margin-top:3px}
@@ -4520,9 +4531,10 @@ function showKronosIntro(onComplete){
   // Build cracks
   const cc=document.getElementById('ki-cracks');cc.innerHTML='';
   const crackDefs=[
-    {left:'15%',w:'2px',h:'35%',d:'0s',dl:'0.4s'},{left:'28%',w:'3px',h:'55%',d:'1.2s',dl:'0.7s'},
-    {left:'44%',w:'2px',h:'65%',d:'1s',dl:'0.3s'},{left:'60%',w:'3px',h:'48%',d:'1.3s',dl:'0.9s'},
-    {left:'75%',w:'2px',h:'38%',d:'0.9s',dl:'1.1s'},{left:'88%',w:'2px',h:'52%',d:'1.1s',dl:'0.6s'},
+    {left:'11%',w:'2px',h:'42%',d:'0.9s',dl:'0.3s'},{left:'22%',w:'3px',h:'58%',d:'1.2s',dl:'0.7s'},
+    {left:'36%',w:'2px',h:'74%',d:'1.1s',dl:'0.35s'},{left:'50%',w:'3px',h:'68%',d:'1.25s',dl:'1.0s'},
+    {left:'64%',w:'3px',h:'54%',d:'1.15s',dl:'0.85s'},{left:'78%',w:'2px',h:'44%',d:'0.95s',dl:'1.25s'},
+    {left:'90%',w:'2px',h:'60%',d:'1.0s',dl:'0.58s'},
   ];
   crackDefs.forEach(c=>{
     const d=document.createElement('div');d.className='kcrack';
@@ -4531,14 +4543,17 @@ function showKronosIntro(onComplete){
   // Build lore lines with staggered delays
   const lore=document.getElementById('ki-lore');lore.innerHTML='';
   const lines=[
-    {txt:'Before Rome...',cls:'kl kl-s',dl:.5},
-    {txt:'Before gods...',cls:'kl kl-s',dl:1.3},
-    {txt:'Before men made war...',cls:'kl kl-s',dl:2.1},
-    {txt:'There was only Kronos.',cls:'kl kl-m',dl:3.2},
-    {txt:'He was not born. He erupted from the void.',cls:'kl kl-s',dl:4.5},
-    {txt:'Ten thousand years imprisoned beneath this sand.',cls:'kl kl-s',dl:5.4},
-    {txt:'Your battles woke him.',cls:'kl kl-m',dl:6.5},
-    {txt:'He is not angry. He is amused.',cls:'kl kl-s',dl:7.3},
+    {txt:'Before marble. Before crowns. Before names.',cls:'kl kl-s',dl:.45},
+    {txt:'The first chain ever forged was wrapped around Kronos.',cls:'kl kl-m',dl:1.35},
+    {txt:'He bit through mountains and called it breathing.',cls:'kl kl-s',dl:2.25},
+    {txt:'',cls:'kl kl-s',dl:3.1},
+    {txt:'For ages he slept under your victories.',cls:'kl kl-s',dl:3.45},
+    {txt:'Every scream in this arena fed his waking.',cls:'kl kl-m',dl:4.5},
+    {txt:'Every drop of blood sharpened his memory.',cls:'kl kl-s',dl:5.4},
+    {txt:'',cls:'kl kl-s',dl:6.15},
+    {txt:'Now the firstborn titan stands.',cls:'kl kl-m',dl:6.55},
+    {txt:'Not to fight.',cls:'kl kl-s',dl:7.3},
+    {txt:'To remind stone what fear feels like.',cls:'kl kl-b',dl:8.05},
   ];
   lines.forEach(({txt,cls,dl})=>{
     const d=document.createElement('span');
@@ -4547,19 +4562,22 @@ function showKronosIntro(onComplete){
   });
   // Name entrance delay
   const nameEl=document.getElementById('ki-name');
-  nameEl.style.setProperty('--dl','8.2s');
+  nameEl.style.setProperty('--dl','9.4s');
   nameEl.style.opacity='0';
   nameEl.style.animation='none';
   void nameEl.offsetWidth;
   nameEl.style.animation='';
   scr.classList.remove('hidden');
+  initAudio();
+  setTimeout(()=>{if(typeof sfxKronosIntro==='function')sfxKronosIntro();},160);
   if(typeof sfxBossEnter==='function'){
-    // Staggered sfx: low rumble at 0.5s, impact at 8s
-    setTimeout(sfxBossEnter,500);
-    setTimeout(sfxBossEnter,8200);
+    // Staggered sfx: rumble pulse, reveal impact, final threat
+    setTimeout(sfxBossEnter,520);
+    setTimeout(sfxBossEnter,6200);
+    setTimeout(sfxBossEnter,9600);
   }
   // Auto-complete after intro
-  setTimeout(()=>_finishKronosIntro(),11500);
+  setTimeout(()=>_finishKronosIntro(),12800);
 }
 function skipKronosIntro(){_finishKronosIntro();}
 function _finishKronosIntro(){
@@ -5057,6 +5075,37 @@ function sfxBossEnter(){_sfx(()=>{
   g3.gain.setValueAtTime(.001,t+.08);g3.gain.linearRampToValueAtTime(.14,t+.3);
   g3.gain.exponentialRampToValueAtTime(.001,t+.74);
   o2.connect(g3);g3.connect(sGain);o2.start(t+.08);o2.stop(t+.78);
+})}
+
+function sfxKronosIntro(){_sfx(()=>{
+  const t=AC.currentTime;
+  // Chain drag sub-rumble
+  const sub=AC.createOscillator();const sg=AC.createGain();
+  sub.type='triangle';
+  sub.frequency.setValueAtTime(52,t);sub.frequency.exponentialRampToValueAtTime(22,t+1.35);
+  sg.gain.setValueAtTime(.001,t);sg.gain.linearRampToValueAtTime(.30,t+.18);
+  sg.gain.exponentialRampToValueAtTime(.001,t+1.42);
+  sub.connect(sg);sg.connect(sGain);sub.start(t);sub.stop(t+1.45);
+  // Iron hit cluster
+  [82.4,110,164.81].forEach((f,i)=>{
+    const ot=t+.22+i*.1;
+    const o=AC.createOscillator();const g=AC.createGain();const bp=AC.createBiquadFilter();
+    o.type='sine';o.frequency.value=f;
+    bp.type='bandpass';bp.frequency.value=360+i*180;bp.Q.value=1.45;
+    g.gain.setValueAtTime(.001,ot);g.gain.linearRampToValueAtTime(.22/(i+1),ot+.03);
+    g.gain.exponentialRampToValueAtTime(.001,ot+.82);
+    o.connect(bp);bp.connect(g);g.connect(sGain);o.start(ot);o.stop(ot+.85);
+  });
+  // Grit scrape
+  const nbuf=AC.createBuffer(1,Math.floor(AC.sampleRate*0.32),AC.sampleRate);
+  const nd=nbuf.getChannelData(0);
+  for(let i=0;i<nd.length;i++)nd[i]=(Math.random()*2-1)*Math.exp(-i/nd.length*2.6);
+  const ns=AC.createBufferSource();ns.buffer=nbuf;
+  const hp=AC.createBiquadFilter();hp.type='highpass';hp.frequency.value=1400;
+  const ng=AC.createGain();
+  ng.gain.setValueAtTime(.001,t+.4);ng.gain.linearRampToValueAtTime(.13,t+.5);
+  ng.gain.exponentialRampToValueAtTime(.001,t+.92);
+  ns.connect(hp);hp.connect(ng);ng.connect(sGain);ns.start(t+.4);
 })}
 
 function sfxDemonSurge(){_sfx(()=>{
