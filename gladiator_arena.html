@@ -4,11 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5">
 <title>Gladiator Arena</title>
+<meta name="description" content="Thirteen-round browser gladiator roguelike: shop, loot, bosses, and a daily seed.">
+<meta name="theme-color" content="#060302">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--ga-font:1}
 html,body{height:100%;overflow:hidden;background:#060302}
-body{font-family:'Cinzel',Georgia,serif;display:flex;flex-direction:column;height:100vh}
+body{font-family:'Cinzel',Georgia,serif;display:flex;flex-direction:column;height:100vh;font-size:calc(10px * var(--ga-font,1))}
 
 /* ── SCENE ─────────────────────────────────────────────── */
 #scene{position:relative;height:58vh;flex-shrink:0;overflow:hidden;box-shadow:inset 0 -24px 48px rgba(0,0,0,.45)}
@@ -485,8 +492,8 @@ body{font-family:'Cinzel',Georgia,serif;display:flex;flex-direction:column;heigh
 /* Aeternon aura */
 .aura-void{animation:avoid 3s ease-in-out infinite alternate}
 @keyframes avoid{from{filter:drop-shadow(0 6px 14px rgba(0,0,0,.95)) drop-shadow(0 0 16px rgba(100,0,180,.5))}to{filter:drop-shadow(0 6px 14px rgba(0,0,0,.95)) drop-shadow(0 0 44px rgba(140,10,230,.9)) brightness(1.12)}}
-.aura-saturn{animation:asaturn 2.4s ease-in-out infinite alternate}
-@keyframes asaturn{from{filter:drop-shadow(0 6px 14px rgba(0,0,0,.95)) drop-shadow(0 0 12px rgba(130,100,220,.45))}to{filter:drop-shadow(0 6px 14px rgba(0,0,0,.95)) drop-shadow(0 0 36px rgba(170,130,255,.88)) brightness(1.1)}}
+.aura-saturn{animation:asaturn 2.2s ease-in-out infinite alternate}
+@keyframes asaturn{from{filter:drop-shadow(0 6px 14px rgba(0,0,0,.95)) drop-shadow(0 0 10px rgba(90,20,40,.55)) drop-shadow(0 0 14px rgba(100,60,180,.4))}to{filter:drop-shadow(0 6px 14px rgba(0,0,0,.95)) drop-shadow(0 0 28px rgba(160,20,60,.75)) drop-shadow(0 0 42px rgba(160,110,255,.95)) brightness(1.14) contrast(1.06)}}
 .bb-void{background:#06020e;color:#b040ff;border:1px solid #601098}
 .aura-concept{animation:aconcept 2.1s ease-in-out infinite alternate}
 @keyframes aconcept{from{filter:drop-shadow(0 6px 14px rgba(0,0,0,.95)) drop-shadow(0 0 14px rgba(90,220,255,.45))}to{filter:drop-shadow(0 6px 14px rgba(0,0,0,.95)) drop-shadow(0 0 40px rgba(170,80,255,.9)) brightness(1.12)}}
@@ -584,11 +591,64 @@ body{font-family:'Cinzel',Georgia,serif;display:flex;flex-direction:column;heigh
 .ds-card{font-family:'Courier New',monospace;font-size:12px;color:#e8b84b;background:rgba(0,0,0,.4);padding:10px 12px;border-radius:4px;text-align:left;margin:0 0 8px;white-space:pre;overflow-x:auto;line-height:1.55;letter-spacing:1px;border:1px solid #2a1a4a}
 .ds-card .dc-title{color:#b080ff;font-weight:700}
 #ds-copy.copied{background:linear-gradient(180deg,#0a2808,#040c02)!important;border-color:#2a6010!important;color:#7ae020!important}
+#ds-copy.ds-copy-wide{width:100%;max-width:100%;padding:12px 14px!important;font-size:clamp(11px,3.2vw,13px)!important;margin-top:4px}
+
+/* Intro: settings + version */
+.intro-extras{margin:10px 0 6px;padding:10px 12px;background:rgba(8,4,2,.55);border:1px solid #3a2010;border-radius:6px;text-align:left}
+.intro-row{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin-bottom:8px;font-size:9px;color:#8a6848}
+.intro-row.chkrow{flex-direction:column;align-items:flex-start;gap:6px}
+.ilab{display:flex;align-items:center;gap:6px;color:#a88860;font-family:'Cinzel',serif}
+.ilab select,.ilab input[type=range]{accent-color:#c89840;font-family:inherit}
+.continue-run-btn{margin-top:6px!important;padding:10px 14px!important;font-size:10px!important;background:linear-gradient(180deg,#102818,#06140c)!important;border-color:#2a6040!important;color:#a8e8c0!important}
+.intro-ver{margin-top:8px;font-size:7px;letter-spacing:2px;color:#4a3018;opacity:.85}
+
+/* Shop affordance */
+@keyframes shopAffordPulse{0%,100%{box-shadow:inset 0 0 0 1px rgba(232,184,75,.25)}50%{box-shadow:inset 0 0 0 2px rgba(232,184,75,.55),0 0 18px rgba(232,184,75,.2)}}
+html:not(.ga-reduce-motion) .si.shop-afford-pulse{animation:shopAffordPulse 1.5s ease-in-out infinite}
+
+/* Screen shake (hits) */
+@keyframes sceneShake{0%,100%{transform:translate(0,0)}35%{transform:translate(-5px,2px)}70%{transform:translate(4px,-2px)}}
+html:not(.ga-reduce-motion) #scene.scene-shake{animation:sceneShake .22s ease-out}
+
+/* Tap to unlock audio */
+#audio-tap-layer{position:fixed;inset:0;z-index:400;background:rgba(4,2,1,.72);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(2px)}
+#audio-tap-layer.hidden{display:none!important}
+#audio-tap-layer .atl-inner{font-family:'Cinzel',serif;font-size:clamp(13px,3.5vw,16px);color:#e8c878;letter-spacing:3px;padding:22px 28px;border:1px solid #6a4820;border-radius:8px;background:rgba(12,8,4,.9);text-align:center;max-width:90%}
+
+/* Error toast */
+#error-toast{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:420;max-width:92%;padding:10px 14px;font-size:10px;color:#ffd0d0;background:rgba(50,8,8,.92);border:1px solid #a02020;border-radius:6px;box-shadow:0 6px 24px rgba(0,0,0,.6);font-family:'Cinzel',serif;letter-spacing:.5px;display:none}
+#error-toast.show{display:block}
+
+/* First-run tips */
+#tips-overlay{position:fixed;inset:0;z-index:410;background:rgba(0,0,0,.78);display:flex;align-items:center;justify-content:center;padding:16px}
+#tips-overlay.hidden{display:none!important}
+.tips-box{max-width:420px;background:linear-gradient(180deg,#1a1008,#0c0604);border:1px solid #5a3818;border-radius:8px;padding:18px 20px;color:#c8a878;font-family:'Cinzel',serif;font-size:11px;line-height:1.55;box-shadow:0 12px 40px rgba(0,0,0,.65)}
+.tips-box h3{font-size:13px;color:#e8b84b;letter-spacing:3px;margin-bottom:10px}
+.tips-box ul{margin:8px 0 0 18px;color:#a88868}
+.tips-box li{margin:4px 0}
+
+@media (prefers-reduced-motion: reduce){
+  .star,.cf,.f1,.f2,.f3,#stands::before,.swrap.hit svg,.swrap.atk svg,.aura-demon,.aura-god{animation:none!important}
+}
 
 .hidden{display:none!important}
 </style>
 </head>
 <body>
+<div id="audio-tap-layer" class="hidden" aria-hidden="true"><div class="atl-inner">Tap anywhere to enable sound</div></div>
+<div id="error-toast" role="status" aria-live="polite"></div>
+<div id="tips-overlay" class="hidden" onclick="if(event.target===this)dismissTips()">
+  <div class="tips-box" onclick="event.stopPropagation()">
+    <h3>Before you enter</h3>
+    <p><b>Mobile:</b> sound starts after you tap (browser rule). Use the overlay if music is silent.</p>
+    <p><b>Keyboard:</b> keys <b>1–6</b> trigger Slash, Thrust, Defend, Taunt, Reckless, War Cry when it is your turn.</p>
+    <ul>
+      <li>Tune difficulty, text size, motion, and log filter on the title card before you play.</li>
+      <li>Your run is saved at the merchant between rounds — use Continue on the title screen.</li>
+    </ul>
+    <button type="button" class="sbtn" onclick="dismissTips()" style="margin-top:14px;width:100%">Got it</button>
+  </div>
+</div>
 
 <!-- ══ SCENE ══════════════════════════════════════════════ -->
 <div id="scene">
@@ -749,6 +809,23 @@ body{font-family:'Cinzel',Georgia,serif;display:flex;flex-direction:column;heigh
       <div class="ia-item"><b>🏪 Shop</b><br>Upgrade between rounds · loot drops become permanent bonuses</div>
       <div class="ia-item"><b>🍺 Draft</b><br>+20 max HP · 1 fight</div>
     </div>
+    <div class="intro-extras">
+      <div class="intro-row">
+        <label class="ilab">Difficulty
+          <select id="set-difficulty" title="Enemy strength and gold tuning">
+            <option value="story">Story</option>
+            <option value="normal" selected>Normal</option>
+            <option value="hard">Hard</option>
+          </select>
+        </label>
+        <label class="ilab">Text size <input type="range" id="set-font" min="85" max="130" value="100" title="UI font scale"></label>
+      </div>
+      <div class="intro-row chkrow">
+        <label class="ilab"><input type="checkbox" id="set-motion" title="Less motion / shake"> Reduce screen FX</label>
+        <label class="ilab"><input type="checkbox" id="set-logfilter" title="Hide routine combat lines"> Combat log: highlights only</label>
+      </div>
+      <button type="button" class="sbtn continue-run-btn hidden" id="btn-continue-run" onclick="beginContinueRun()">Continue saved run →</button>
+    </div>
     <div class="mode-grid">
       <button class="sbtn mode-btn" onclick="beginGame(false)">
         <span class="mode-ico">⚔️</span>
@@ -763,6 +840,7 @@ body{font-family:'Cinzel',Georgia,serif;display:flex;flex-direction:column;heigh
     </div>
     <div id="daily-status"></div>
     <div id="legacy-intro"></div>
+    <div class="intro-ver" id="game-ver-line"></div>
   </div>
 </div>
 
@@ -848,7 +926,7 @@ body{font-family:'Cinzel',Georgia,serif;display:flex;flex-direction:column;heigh
     <div id="daily-share" class="hidden">
       <div class="ds-label">Daily Result — share your run</div>
       <pre class="ds-card" id="ds-card"></pre>
-      <button class="sbtn" id="ds-copy" onclick="copyDailyShare()" style="padding:6px 16px;font-size:9px">COPY RESULT</button>
+      <button class="sbtn ds-copy-wide" id="ds-copy" onclick="copyDailyShare()" style="padding:6px 16px;font-size:9px">COPY RESULT</button>
     </div>
     <button class="sbtn" onclick="restartGame()">FIGHT AGAIN</button>
   </div>
@@ -1907,6 +1985,10 @@ const DAY_MS = 86400000;
 const LS_DAILY_PREFIX = 'ga_daily_';
 const LS_DAILY_STREAK = 'ga_daily_streak';
 const LS_DAILY_LAST_DAY = 'ga_daily_last_day';
+const LS_GAME_SETTINGS='ga_game_settings_v1';
+const LS_RUN_SAVE='ga_run_save_v1';
+const LS_INTRO_TIPS='ga_intro_tips_seen_v1';
+const GAME_VER='1.4.0';
 
 function currentDailyNumber(){
   return Math.max(1, Math.floor((Date.now()-LAUNCH_EPOCH_MS)/DAY_MS)+1);
@@ -2263,10 +2345,129 @@ function buildStars(){
   }
 }
 
+const DAILY_MOD_TABLE=[
+  {tag:'PLENTY',label:'Bountiful Spoils',gold:1.1,enemy:1.0},
+  {tag:'IRON',label:'Iron Trial',gold:1.0,enemy:1.07},
+  {tag:'SWIFT',label:'Swift Arena',gold:1.04,enemy:1.04},
+  {tag:'GRIM',label:'Grim Contest',gold:0.96,enemy:1.09},
+  {tag:'MERCY',label:'Merciful Odds',gold:1.02,enemy:0.93},
+  {tag:'GREED',label:'Gilded Sand',gold:1.14,enemy:1.03},
+];
+function rollDailyModFromSeed(seed){
+  const i=Math.abs(Math.floor(Number(seed)||0)%DAILY_MOD_TABLE.length);
+  return{...DAILY_MOD_TABLE[i]};
+}
+function loadGameSettings(){
+  const def={difficulty:'normal',fontPct:100,reduceMotion:false,logImportantOnly:false};
+  try{return{...def,...JSON.parse(localStorage.getItem(LS_GAME_SETTINGS)||'{}')};}catch(_){return{...def};}
+}
+function saveGameSettings(partial){
+  try{localStorage.setItem(LS_GAME_SETTINGS,JSON.stringify({...loadGameSettings(),...partial}));}catch(_){}
+}
+function applyMotionFromSettings(){
+  const s=loadGameSettings();
+  let reduce=!!s.reduceMotion;
+  try{if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)reduce=true;}catch(_){}
+  document.documentElement.classList.toggle('ga-reduce-motion',reduce);
+}
+function applyFontFromSettings(){
+  const s=loadGameSettings();
+  const pct=Math.max(85,Math.min(130,Number(s.fontPct)||100));
+  document.documentElement.style.setProperty('--ga-font',String(pct/100));
+}
+function getDifficultyMods(){
+  const d=(loadGameSettings().difficulty)||'normal';
+  if(d==='story')return{enemyHp:0.88,enemyStr:0.90,goldMult:1.08};
+  if(d==='hard')return{enemyHp:1.12,enemyStr:1.10,goldMult:0.96};
+  return{enemyHp:1,enemyStr:1,goldMult:1};
+}
+function clearRunSave(){try{localStorage.removeItem(LS_RUN_SAVE);}catch(_){}}
+function peekRunSave(){
+  try{
+    const r=localStorage.getItem(LS_RUN_SAVE);
+    if(!r)return null;
+    const o=JSON.parse(r);
+    if(o.v!==1||!o.player)return null;
+    return o;
+  }catch(_){return null}
+}
+function saveRunState(){
+  if(!G||!G.player)return;
+  try{
+    localStorage.setItem(LS_RUN_SAVE,JSON.stringify({
+      v:1,ei:G.ei,player:G.player,log:(G.log||[]).slice(0,45),
+      daily:!!G.daily,dailyNum:G.dailyNum||0,dailySeed:typeof _dailySeed!=='undefined'?_dailySeed:0,
+      dailyMod:G.dailyMod||null,totalTurns:G.totalTurns||0,runStartTurn:G.runStartTurn||0,
+      runStats:G.runStats||{dmgToEnemy:0,dmgTaken:0},
+    }));
+  }catch(_){}
+}
+function buzz(ms){try{if(navigator.vibrate)navigator.vibrate(ms);}catch(_){}}
+function shakeScene(){
+  if(document.documentElement.classList.contains('ga-reduce-motion'))return;
+  const sc=document.getElementById('scene');if(!sc)return;
+  sc.classList.remove('scene-shake');void sc.offsetWidth;sc.classList.add('scene-shake');
+  setTimeout(()=>{try{sc.classList.remove('scene-shake');}catch(_){}},260);
+}
+function showErrorToast(msg){
+  const t=document.getElementById('error-toast');if(!t)return;
+  t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),6500);
+}
+function dismissTips(){
+  try{localStorage.setItem(LS_INTRO_TIPS,'1');}catch(_){}
+  const o=document.getElementById('tips-overlay');if(o)o.classList.add('hidden');
+}
+function maybeShowIntroTips(){
+  try{if(localStorage.getItem(LS_INTRO_TIPS)==='1')return;}catch(_){}
+  const o=document.getElementById('tips-overlay');if(o)o.classList.remove('hidden');
+}
+function syncAudioTapLayer(){
+  const lay=document.getElementById('audio-tap-layer');if(!lay)return;
+  const panel=document.getElementById('panel');
+  const inFight=panel&&!panel.classList.contains('hidden');
+  if(!inFight){lay.classList.add('hidden');return;}
+  if(!AC){lay.classList.remove('hidden');return;}
+  if(AC.state==='running')lay.classList.add('hidden');
+  else lay.classList.remove('hidden');
+}
+function unlockAudioFromGesture(){
+  initAudio();
+  resumeAudioCtx();
+  setTimeout(syncAudioTapLayer,80);
+}
+
 // ══════════════════════════════════════════════════════════
 // GAME FLOW
 // ══════════════════════════════════════════════════════════
+function beginContinueRun(){
+  const o=peekRunSave();if(!o)return;
+  _dailyMode=!!o.daily;
+  if(_dailyMode){
+    _dailySeed=o.dailySeed|0;
+    _dailyNumber=o.dailyNum|0;
+    seedPRNG(_dailySeed);
+    document.getElementById('daily-badge').classList.remove('hidden');
+    const streak=getCurrentStreak();
+    const streakTxt=streak>0?` · <span class="db-streak">🔥 ${streak}</span>`:'';
+    document.getElementById('daily-badge').innerHTML=`☀️ DAILY <span class="db-num">#${_dailyNumber}</span>${streakTxt}`;
+  }else{
+    document.getElementById('daily-badge').classList.add('hidden');
+  }
+  G={phase:'fight',player:o.player,enemy:null,ei:o.ei|0,log:o.log||[],myTurn:true,busy:false,
+    daily:_dailyMode,dailyNum:o.dailyNum||0,dailySeed:o.dailySeed||0,
+    runStartTurn:o.runStartTurn||0,totalTurns:o.totalTurns||0,deathRound:null,wonAll:false,
+    dailyMod:o.dailyMod||{tag:'',label:'',gold:1,enemy:1},
+    runStats:o.runStats||{dmgToEnemy:0,dmgTaken:0},_dailyModLogged:true};
+  hideAllScreens();
+  document.getElementById('panel').classList.remove('hidden');
+  renderLegacyHUD();
+  initAudio();startMusic();
+  showShop();
+  syncAudioTapLayer();
+}
+
 function beginGame(isDaily){
+  clearRunSave();
   _dailyMode = !!isDaily;
   if(_dailyMode){
     const info = getDailyInfo();
@@ -2280,9 +2481,11 @@ function beginGame(isDaily){
   } else {
     document.getElementById('daily-badge').classList.add('hidden');
   }
+  const dailyMod=_dailyMode?rollDailyModFromSeed(_dailySeed):{tag:'',label:'',gold:1,enemy:1};
   G={phase:'fight',player:freshPlayer(),enemy:null,ei:0,log:[],myTurn:true,busy:false,
      daily:_dailyMode,dailyNum:_dailyNumber,dailySeed:_dailySeed,
-     runStartTurn:0,totalTurns:0,deathRound:null,wonAll:false};
+     runStartTurn:0,totalTurns:0,deathRound:null,wonAll:false,
+     dailyMod,runStats:{dmgToEnemy:0,dmgTaken:0},_dailyModLogged:false};
   hideAllScreens();
   document.getElementById('panel').classList.remove('hidden');
   renderLegacyHUD();
@@ -2323,6 +2526,8 @@ function updateDailyIntro(){
   if(streak>0)statusHtml = `<span class="ds-streak">🔥 ${streak}-day streak</span>`;
   if(completed && streak>0)statusHtml += ` · Come back tomorrow to extend it`;
   status.innerHTML = statusHtml;
+  const cr=document.getElementById('btn-continue-run');
+  if(cr&&typeof peekRunSave==='function')cr.classList.toggle('hidden',!peekRunSave());
 }
 
 // Build the Wordle-style share card
@@ -2337,7 +2542,8 @@ function buildShareCard(result){
   const enemyName = result.deathRound ? ['Slave','Barbarian','Legionnaire','Praetorian','Champion','Berserker','Daemonicus','Undying','Kronos','Saturn','Aeternon','Nemesis','Concept Dragon'][result.deathRound-1] : 'Concept Dragon';
   const outcome = result.won ? '👑 CHAMPION' : `${enemyName} R${result.deathRound}`;
   const hpTxt = result.won ? `HP ${result.finalHp}/${result.maxHp}` : '';
-  return `GLADIATOR ARENA · Daily #${result.dailyNum}\n${bar.join('')}\n${outcome} · ${result.totalTurns}t${hpTxt?' · '+hpTxt:''}`;
+  const modLine=(result.dailyModTag&&String(result.dailyModTag))?`\nSigil: ${result.dailyModTag}`:'';
+  return `GLADIATOR ARENA · Daily #${result.dailyNum}\n${bar.join('')}\n${outcome} · ${result.totalTurns}t${hpTxt?' · '+hpTxt:''}${modLine}`;
 }
 
 function copyDailyShare(){
@@ -2356,9 +2562,27 @@ function copyDailyShare(){
   });
 }
 
+function computeRoundGoldReward(e){
+  if(!e)return 0;
+  const df=getDifficultyMods();
+  const dmGold=(G&&G.daily&&G.dailyMod)?G.dailyMod.gold:1;
+  return Math.max(0,Math.floor((e.gold||0)*df.goldMult*dmGold));
+}
+
 function startFight(){
   const et=ENEMIES[G.ei];
-  G.enemy={...et,maxHp:et.hp,enraged:false,surgeTurnCount:0,resurrected:false};
+  const df=getDifficultyMods();
+  const dm=(G.daily&&G.dailyMod)?G.dailyMod:{gold:1,enemy:1};
+  const hpMul=df.enemyHp*(dm.enemy||1);
+  const stMul=df.enemyStr*(dm.enemy||1);
+  const defMul=1+(stMul-1)*0.55;
+  const agiMul=1+(stMul-1)*0.42;
+  const baseHp=Math.max(1,Math.round(et.hp*hpMul));
+  const baseStr=Math.max(1,Math.round(et.str*stMul));
+  const baseDef=Math.max(1,Math.round(et.def*defMul));
+  const baseAgi=Math.max(1,Math.round((et.agi||0)*agiMul));
+  const baseGold=Math.max(0,et.gold||0);
+  G.enemy={...et,hp:baseHp,str:baseStr,def:baseDef,agi:baseAgi,gold:baseGold,maxHp:baseHp,enraged:false,surgeTurnCount:0,resurrected:false};
   const p=G.player;
   p.defending=false;p.buffTurns=0;p.warcryCD=0;p.warcryResonance=0;p.timeLocked=0;p.timeDecayed=false;
   p.conceptWarpStacks=0;
@@ -2370,6 +2594,10 @@ function startFight(){
     p.battleBrewBonus=0;
   }
   G.myTurn=true;G.busy=false;G.log=[];
+  if(G.daily&&G.dailyMod&&G.dailyMod.tag&&!G._dailyModLogged){
+    G._dailyModLogged=true;
+    addLog(`☀ Daily sigil: ${G.dailyMod.label} — gold ×${(G.dailyMod.gold).toFixed(2)} · foes ×${(G.dailyMod.enemy).toFixed(2)}`,'bsp');
+  }
 
   // Set sprites
   document.getElementById('esprite').className='swrap flip';
@@ -2417,11 +2645,25 @@ function startFight(){
   // NEMESIS — generate stats from player at fight start
   if(et.bossType==='nemesis'){
     const pp=G.player;
-    G.enemy.maxHp=Math.max(450,Math.floor(pp.maxHp*3.2));
-    G.enemy.hp=G.enemy.maxHp;
-    G.enemy.str=Math.max(50,Math.floor(pp.str*1.05)+legacyCryTierBonus());
-    G.enemy.agi=Math.max(15,Math.floor(pp.agi*0.95));
-    G.enemy.def=Math.max(25,Math.floor(pp.def*1.0));
+    const dm=(G.daily&&G.dailyMod)?G.dailyMod:{enemy:1};
+    const f=((df.enemyHp+df.enemyStr)/2)*(dm.enemy||1);
+    const hpCoef=2.55;
+    let maxHp=Math.max(450,Math.floor(pp.maxHp*hpCoef*f));
+    let nemStr=Math.max(50,Math.floor(((pp.str*1.05)+legacyCryTierBonus())*f));
+    let nemAgi=Math.max(15,Math.floor(pp.agi*0.95*f));
+    let nemDef=Math.max(25,Math.floor(pp.def*1.0*f));
+    if((loadGameSettings().difficulty||'normal')==='story'){
+      const se=0.99;
+      maxHp=Math.max(1,Math.floor(maxHp*se));
+      nemStr=Math.max(1,Math.floor(nemStr*se));
+      nemAgi=Math.max(1,Math.floor(nemAgi*se));
+      nemDef=Math.max(1,Math.floor(nemDef*se));
+    }
+    G.enemy.maxHp=maxHp;
+    G.enemy.hp=maxHp;
+    G.enemy.str=nemStr;
+    G.enemy.agi=nemAgi;
+    G.enemy.def=nemDef;
     G.enemy.comboNeeded=3;
     G.enemy.comboStreak=0;
     G.enemy.finalPhase=false;
@@ -3125,7 +3367,8 @@ function endFight(won){
   if(!won)return;
   const p=G.player,e=G.enemy;
   ensureInv(p);ensureLoadout(p);
-  p.gold+=e.gold;p.wins++;
+  const gAdd=computeRoundGoldReward(e);
+  p.gold+=gAdd;p.wins++;
   // Award soul fragments
   const SOUL_REWARDS=[5,8,12,16,20,28,50,80,120,180,260,360,520];
   const souls=SOUL_REWARDS[G.ei]||0;
@@ -3141,7 +3384,7 @@ function endFight(won){
   }
   // Reset per-fight soul item state
   p.soulAegisUsed=false;
-  addLog(`${e.name} FALLS! ${e.isBoss?'The void trembles!':'The crowd erupts!'} +${e.gold} gold · +${souls} souls!`,'sp');
+  addLog(`${e.name} FALLS! ${e.isBoss?'The void trembles!':'The crowd erupts!'} +${gAdd} gold · +${souls} souls!`,'sp');
   addLog(`💎 ${drop.rarityLabel.toUpperCase()} LOOT — ${drop.icon} ${drop.name} (${lootBonusText(drop)})`,'sp');
   sfxVictory();
   G.busy=true;render();
@@ -3169,6 +3412,11 @@ function aHit(who,dmg){
   n.textContent=`-${dmg}`;
   n.style.cssText=`left:${28+ri(5,38)}%;top:${ri(12,42)}%;font-size:${Math.min(20,8+Math.floor(dmg/3))}px;color:${who==='p'?'#ff4030':'#ffaa20'}`;
   stage.appendChild(n);setTimeout(()=>n.remove(),980);
+  if(G&&G.runStats&&dmg>0){
+    if(who==='e')G.runStats.dmgToEnemy=(G.runStats.dmgToEnemy||0)+dmg;
+    if(who==='p'){G.runStats.dmgTaken=(G.runStats.dmgTaken||0)+dmg;if(dmg>=6)buzz(14);else if(dmg>=3)buzz(10);}
+  }
+  if(who==='p'&&dmg>0)shakeScene();
 }
 
 // ══════════════════════════════════════════════════════════
@@ -3259,7 +3507,10 @@ function render(){
   }
   document.getElementById('etags').innerHTML=et.join('');
   // log
-  document.getElementById('logentries').innerHTML=G.log.map(l=>`<div class="lg ${l.cls}">${l.msg}</div>`).join('');
+  const logRows=loadGameSettings().logImportantOnly
+    ?G.log.filter(l=>l.cls==='sp'||l.cls==='bsp'||l.cls==='gh')
+    :G.log;
+  document.getElementById('logentries').innerHTML=logRows.map(l=>`<div class="lg ${l.cls}">${l.msg}</div>`).join('');
   // chips
   const strDisp=p.str+(p.buffTurns>0?'+5':'')+(p.titanCursed||e.unmakingActive||p.timeDecayed||(p.conceptWarpStacks||0)>0?' ⬇':'');
   document.getElementById('ckstr').innerHTML=`STR <b>${strDisp}</b>`;
@@ -3318,6 +3569,7 @@ function showShop(){
   document.getElementById('shop-regen').innerHTML=`<span style="color:#a8c068">✦</span> Rest restores <b style="color:#a8d068">${regen}</b> HP  <span style="opacity:.65">(${p.hp} → ${after} / ${p.maxHp})</span>${G.ei<5?' <span style="opacity:.75;font-size:8px">(early trial bonus)</span>':''}`;
 
   let html='<div class="shop-catalog-block">';
+  let affordPulseDone=false;
   // ─── WEAPONS ───
   html+='<div class="shop-section-label">⚔ Weapons</div>';
   html+='<div class="shgrid-tier">';
@@ -3333,7 +3585,9 @@ function showShop(){
     else if(isLower)costHtml='<span class="sic locked-txt">Replaced</span>';
     else if(locked)costHtml='<span class="sic locked-txt">LOCKED</span>';
     else costHtml=`<span class="sic">${w.cost}g</span>`;
-    const cls=`si tier-${tier}${isEquipped?' equipped':''}${cantBuy&&!isEquipped?' bk':''}`;
+    const pulse=!affordPulseDone&&!cantBuy&&!isEquipped;
+    if(pulse)affordPulseDone=true;
+    const cls=`si tier-${tier}${isEquipped?' equipped':''}${cantBuy&&!isEquipped?' bk':''}${pulse?' shop-afford-pulse':''}`;
     html+=`<div class="${cls}" onclick="buyGear('w',${tier})">
       <span class="si-tier">T${tier}</span>
       <div class="sii">${w.icon}</div>
@@ -3359,7 +3613,9 @@ function showShop(){
     else if(isLower)costHtml='<span class="sic locked-txt">Replaced</span>';
     else if(locked)costHtml='<span class="sic locked-txt">LOCKED</span>';
     else costHtml=`<span class="sic">${a.cost}g</span>`;
-    const cls=`si tier-${tier}${isEquipped?' equipped':''}${cantBuy&&!isEquipped?' bk':''}`;
+    const pulse=!affordPulseDone&&!cantBuy&&!isEquipped;
+    if(pulse)affordPulseDone=true;
+    const cls=`si tier-${tier}${isEquipped?' equipped':''}${cantBuy&&!isEquipped?' bk':''}${pulse?' shop-afford-pulse':''}`;
     html+=`<div class="${cls}" onclick="buyGear('a',${tier})">
       <span class="si-tier">T${tier}</span>
       <div class="sii">${a.icon}</div>
@@ -3385,7 +3641,9 @@ function showShop(){
     if(owned)costHtml='<span class="sic" style="color:#a8c068">Owned</span>';
     else if(atMax)costHtml='<span class="sic" style="color:#a8c068">Maxed</span>';
     else costHtml=`<span class="sic">${cost}g</span>`;
-    return`<div class="si${cantBuy?' bk':''}" onclick="buyItem('${item.id}')">
+    const pulse=!affordPulseDone&&!cantBuy&&!owned&&!atMax;
+    if(pulse)affordPulseDone=true;
+    return`<div class="si${cantBuy?' bk':''}${pulse?' shop-afford-pulse':''}" onclick="buyItem('${item.id}')">
       <div class="sii">${item.icon}</div>
       <div class="sin">${nameLabel}</div>
       <div class="sid">${item.desc}</div>
@@ -3429,6 +3687,7 @@ function showShop(){
   document.getElementById('shop-grid').innerHTML=html;
   const sp=document.getElementById('shop-satchel-panel');
   if(sp)sp.innerHTML=satchel;
+  saveRunState();
 }
 
 function buyGear(type,tier){
@@ -3500,20 +3759,25 @@ function continueFightFromSoulShop(){
 }
 
 function showVictory(){
+  clearRunSave();
   const p=G.player;hideAllScreens();
   document.getElementById('end-scr').classList.remove('hidden');
   document.getElementById('end-ico').textContent='👑';
   document.getElementById('end-tit').textContent='IMMORTAL';
-  document.getElementById('end-sub').textContent='All Challengers Fallen · You Are The Arena';
+  const narrow=typeof window.matchMedia==='function'&&window.matchMedia('(max-width:520px)').matches;
+  document.getElementById('end-sub').textContent=narrow?'Champion — all rounds cleared':'All Challengers Fallen · You Are The Arena';
   document.getElementById('end-bod').innerHTML=`You faced gladiators. You faced gods.<br>You faced the void. You faced yourself.<br><b style="color:#e8b84b">Nothing remains. You are everything.</b>`;
+  const rs=G.runStats||{};
   document.getElementById('end-stats').innerHTML=`
     <div class="sst">HP: <b>${p.hp}/${p.maxHp}</b></div><div class="sst">STR: <b>${p.str}</b></div>
     <div class="sst">AGI: <b>${p.agi}</b></div><div class="sst">DEF: <b>${p.def}</b></div>
-    <div class="sst">Wins: <b>${p.wins}</b></div><div class="sst">Gold: <b>${p.gold}</b></div>`;
+    <div class="sst">Wins: <b>${p.wins}</b></div><div class="sst">Gold: <b>${p.gold}</b></div>
+    <div class="sst">Dmg dealt: <b>${rs.dmgToEnemy||0}</b></div><div class="sst">Dmg taken: <b>${rs.dmgTaken||0}</b></div>`;
   if(G.daily)recordDailyResult(true);
 }
 
 function showDefeat(){
+  clearRunSave();
   sfxDefeat();
   const p=G.player,e=G.enemy;
   if(p.activeBattleBonus>0){p.maxHp-=p.activeBattleBonus;p.activeBattleBonus=0;}
@@ -3521,11 +3785,15 @@ function showDefeat(){
   document.getElementById('end-scr').classList.remove('hidden');
   document.getElementById('end-ico').textContent='💀';
   document.getElementById('end-tit').textContent='FALLEN';
-  document.getElementById('end-sub').textContent=`Slain by ${e?e.name:'your enemy'}`;
+  const narrow=typeof window.matchMedia==='function'&&window.matchMedia('(max-width:520px)').matches;
+  const killer=e?e.name:'your enemy';
+  document.getElementById('end-sub').textContent=narrow?`R${G.ei+1} · ${killer}`:`Slain by ${killer}`;
   document.getElementById('end-bod').innerHTML=`The arena claims another soul.<br>You fell on Round <b style="color:#e8b84b">${G.ei+1}</b>.`;
+  const rs=G.runStats||{};
   document.getElementById('end-stats').innerHTML=`
     <div class="sst">STR: <b>${p.str}</b></div><div class="sst">DEF: <b>${p.def}</b></div>
-    <div class="sst">AGI: <b>${p.agi}</b></div><div class="sst">Wins: <b>${p.wins}</b></div>`;
+    <div class="sst">AGI: <b>${p.agi}</b></div><div class="sst">Wins: <b>${p.wins}</b></div>
+    <div class="sst">Dmg dealt: <b>${rs.dmgToEnemy||0}</b></div><div class="sst">Dmg taken: <b>${rs.dmgTaken||0}</b></div>`;
   if(G.daily)recordDailyResult(false);
 }
 
@@ -3539,6 +3807,7 @@ function recordDailyResult(won){
     finalHp: p.hp,
     maxHp: p.maxHp,
     dateStr: getDailyInfo().dateStr,
+    dailyModTag:(G.dailyMod&&G.dailyMod.tag)?G.dailyMod.tag:'',
   };
   saveDailyResult(result);
   const shareBox = document.getElementById('daily-share');
@@ -3549,6 +3818,7 @@ function recordDailyResult(won){
 }
 
 function restartGame(){
+  clearRunSave();
   stopMusic();
   _dailyMode = false;
   document.getElementById('daily-badge').classList.add('hidden');
@@ -3558,6 +3828,10 @@ function restartGame(){
   document.getElementById('daily-share').classList.add('hidden');
   renderLegacyIntro();
   updateDailyIntro();
+  const cr=document.getElementById('btn-continue-run');
+  if(cr)cr.classList.add('hidden');
+  const ver=document.getElementById('game-ver-line');
+  if(ver)ver.textContent=`Build ${GAME_VER}`;
 }
 </script>
 
@@ -3814,8 +4088,9 @@ function triggerGodsHand(){
   aHit('e',dmg);
   if(e.hp<=0){
     setTimeout(()=>{
-      p.gold+=e.gold;p.wins++;
-      addLog(`God's Hand fells ${e.name}! +${e.gold} gold!`,'sp');
+      const gAdd=computeRoundGoldReward(e);
+      p.gold+=gAdd;p.wins++;
+      addLog(`God's Hand fells ${e.name}! +${gAdd} gold!`,'sp');
       sfxVictory();
       document.getElementById('esprite').classList.add('dead');
       setTimeout(()=>{G.busy=false;if(G.ei>=ENEMIES.length-1)showVictory();else showShop();},900);
@@ -4024,7 +4299,9 @@ let arenaMusicLoopBuf=null;
 let musicLoopSource=null,musicFilterNode=null,musicMoodTimer=null;
 
 function resumeAudioCtx(){
-  if(AC&&AC.state==='suspended')AC.resume().catch(()=>{});
+  if(AC&&AC.state==='suspended'){
+    AC.resume().then(()=>{try{syncAudioTapLayer();}catch(_){}}).catch(()=>{});
+  }else syncAudioTapLayer();
 }
 
 /* One baked loop: slow Roman-colosseum pulse, minor bass, 4-on-floor, snare backbeat,
@@ -4107,7 +4384,7 @@ function updateArenaMusicMood(){
 }
 
 function initAudio(){
-  if(AC){resumeAudioCtx();return;}
+  if(AC){resumeAudioCtx();syncAudioTapLayer();return;}
   AC=new(window.AudioContext||window.webkitAudioContext)();
   mGain=AC.createGain();
   sGain=AC.createGain();
@@ -4115,6 +4392,7 @@ function initAudio(){
   sGain.gain.value=sfxOff?0:0.48;
   mGain.connect(AC.destination);
   sGain.connect(AC.destination);
+  syncAudioTapLayer();
 }
 
 function toggleMusic(){
@@ -4597,6 +4875,7 @@ window.aHit=function(who,dmg){
   if(who==='p')sfxHit();
   else sfxSlash();
   _origAHit(who,dmg);
+  if(who==='e'&&dmg>0){try{if(dmg>=10)buzz(10);else if(dmg>=5)buzz(6);}catch(_){}}
 };
 const _origDodge=enemyTurn;
 // sfx for dodge/ghost already wired via triggerGhostStep call
@@ -4610,9 +4889,95 @@ if(window.speechSynthesis){
 
 </script>
 <script>
+window.addEventListener('error',ev=>{
+  try{
+    const msg=(ev&&ev.message)?ev.message:'Script error';
+    if(typeof showErrorToast==='function')showErrorToast(msg);
+  }catch(_){}
+});
+window.addEventListener('unhandledrejection',ev=>{
+  try{
+    const r=ev&&ev.reason;
+    const msg=r&&(r.message||String(r))||'Unhandled promise';
+    if(typeof showErrorToast==='function')showErrorToast(msg);
+  }catch(_){}
+});
+function bindIntroSettings(){
+  const diff=document.getElementById('set-difficulty');
+  if(diff&&!diff.dataset.gaBound){
+    diff.dataset.gaBound='1';
+    diff.addEventListener('change',()=>saveGameSettings({difficulty:diff.value}));
+  }
+  const font=document.getElementById('set-font');
+  if(font&&!font.dataset.gaBound){
+    font.dataset.gaBound='1';
+    font.addEventListener('input',()=>{
+      const v=parseInt(font.value,10)||100;
+      saveGameSettings({fontPct:v});
+      applyFontFromSettings();
+    });
+  }
+  const mot=document.getElementById('set-motion');
+  if(mot&&!mot.dataset.gaBound){
+    mot.dataset.gaBound='1';
+    mot.addEventListener('change',()=>{
+      saveGameSettings({reduceMotion:!!mot.checked});
+      applyMotionFromSettings();
+    });
+  }
+  const lf=document.getElementById('set-logfilter');
+  if(lf&&!lf.dataset.gaBound){
+    lf.dataset.gaBound='1';
+    lf.addEventListener('change',()=>saveGameSettings({logImportantOnly:!!lf.checked}));
+  }
+}
+function syncIntroControlsFromStorage(){
+  const s=loadGameSettings();
+  const diff=document.getElementById('set-difficulty');
+  if(diff)diff.value=s.difficulty||'normal';
+  const font=document.getElementById('set-font');
+  if(font)font.value=String(s.fontPct||100);
+  const mot=document.getElementById('set-motion');
+  if(mot)mot.checked=!!s.reduceMotion;
+  const lf=document.getElementById('set-logfilter');
+  if(lf)lf.checked=!!s.logImportantOnly;
+}
 // Tiny deferred boot so both script blocks are parsed first
 window.addEventListener('DOMContentLoaded',()=>{
   buildStars();buildCrowd();
+  applyFontFromSettings();
+  applyMotionFromSettings();
+  syncIntroControlsFromStorage();
+  bindIntroSettings();
+  const tap=document.getElementById('audio-tap-layer');
+  if(tap&&!tap.dataset.gaBound){
+    tap.dataset.gaBound='1';
+    tap.addEventListener('click',()=>unlockAudioFromGesture(),{passive:true});
+  }
+  syncAudioTapLayer();
+  setInterval(syncAudioTapLayer,900);
+  const cr=document.getElementById('btn-continue-run');
+  if(cr)cr.classList.toggle('hidden',!peekRunSave());
+  const ver=document.getElementById('game-ver-line');
+  if(ver)ver.textContent=`Build ${GAME_VER}`;
+  maybeShowIntroTips();
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('./sw.js',{scope:'./'}).catch(()=>{});
+  }
+  window.addEventListener('keydown',e=>{
+    const tag=(document.activeElement&&document.activeElement.tagName)||'';
+    if(tag==='INPUT'||tag==='SELECT'||tag==='TEXTAREA')return;
+    const panel=document.getElementById('panel');
+    if(!panel||panel.classList.contains('hidden'))return;
+    if(typeof G==='undefined'||!G||!G.player||!G.enemy)return;
+    if(!G.myTurn||G.busy)return;
+    const map={1:'slash',2:'thrust',3:'defend',4:'taunt',5:'reckless',6:'warcry'};
+    const actId=map[e.key];
+    if(!actId)return;
+    e.preventDefault();
+    if(typeof window.act==='function')window.act(actId);
+    else if(typeof act==='function')act(actId);
+  });
   renderLegacyHUD();
   renderLegacyIntro();
   updateDailyIntro();
