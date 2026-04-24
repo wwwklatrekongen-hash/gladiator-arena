@@ -660,6 +660,10 @@ html.ga-reduce-motion #si-chronosphere{transform:none}
 .intro-extras{margin:10px 0 6px;padding:10px 12px;background:rgba(8,4,2,.55);border:1px solid #3a2010;border-radius:6px;text-align:left}
 .intro-row{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin-bottom:8px;font-size:9px;color:#8a6848}
 .intro-row.chkrow{flex-direction:column;align-items:flex-start;gap:6px}
+.skin-row-wrap{margin-top:4px}
+.skin-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;justify-content:center}
+.skin-chip{font-family:'Cinzel',serif;font-size:8px;padding:5px 10px;border-radius:4px;border:1px solid #5a4020;background:rgba(10,6,4,.55);color:#c8a878;cursor:pointer;letter-spacing:.5px}
+.skin-chip.on{border-color:#e8b84b;background:rgba(70,48,12,.82);color:#fffce8;box-shadow:0 0 10px rgba(232,184,75,.25)}
 .ilab{display:flex;align-items:center;gap:6px;color:#a88860;font-family:'Cinzel',serif}
 .ilab select,.ilab input[type=range]{accent-color:#c89840;font-family:inherit}
 .continue-run-btn{margin-top:6px!important;padding:10px 14px!important;font-size:10px!important;background:linear-gradient(180deg,#102818,#06140c)!important;border-color:#2a6040!important;color:#a8e8c0!important}
@@ -888,6 +892,17 @@ html:not(.ga-reduce-motion) #scene.scene-shake{animation:sceneShake .22s ease-ou
         <label class="ilab"><input type="checkbox" id="set-motion" title="Less motion / shake"> Reduce screen FX</label>
         <label class="ilab"><input type="checkbox" id="set-logfilter" title="Hide routine combat lines"> Combat log: highlights only</label>
       </div>
+      <div class="skin-row-wrap" style="margin-top:8px;padding:8px 12px 10px;background:rgba(8,4,2,.45);border:1px solid #3a2010;border-radius:6px">
+        <div class="intro-row" style="justify-content:center;margin-bottom:0">
+          <span class="ilab" style="margin-right:6px">Gladiator skin</span>
+        </div>
+        <div class="skin-chips" id="skin-chips">
+          <button type="button" class="skin-chip" data-skin="classic" onclick="selectPlayerSkin('classic')">Sand</button>
+          <button type="button" class="skin-chip" data-skin="crimson" onclick="selectPlayerSkin('crimson')">Crimson</button>
+          <button type="button" class="skin-chip" data-skin="ebony" onclick="selectPlayerSkin('ebony')">Ebony</button>
+          <button type="button" class="skin-chip" data-skin="azure" onclick="selectPlayerSkin('azure')">Azure</button>
+        </div>
+      </div>
       <button type="button" class="sbtn continue-run-btn hidden" id="btn-continue-run" onclick="beginContinueRun()">Continue saved run →</button>
     </div>
     <div class="mode-grid">
@@ -1018,8 +1033,8 @@ html:not(.ga-reduce-motion) #scene.scene-shake{animation:sceneShake .22s ease-ou
 // ══════════════════════════════════════════════════════════
 // CHARACTER ART — SVG designs per fighter
 // ══════════════════════════════════════════════════════════
-const CHARS = {
-  player:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg">
+const PLAYER_SKINS={
+  classic:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg">
   <ellipse cx="36" cy="100" rx="20" ry="5" fill="rgba(0,0,0,.45)"/>
   <!-- shield left -->
   <ellipse cx="12" cy="58" rx="11" ry="16" fill="#3e2010" stroke="#6a4820" stroke-width="2"/>
@@ -1064,6 +1079,131 @@ const CHARS = {
   <rect x="33" y="7" width="8" height="16" rx="3" fill="#cc2020"/>
   <rect x="34" y="4" width="6" height="8" rx="2" fill="#ee3030"/>
 </svg>`,
+  crimson:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="36" cy="100" rx="20" ry="5" fill="rgba(0,0,0,.45)"/>
+  <ellipse cx="12" cy="58" rx="11" ry="16" fill="#4a1010" stroke="#8a2020" stroke-width="2"/>
+  <ellipse cx="12" cy="58" rx="7" ry="11" fill="#2a0808"/>
+  <line x1="12" y1="46" x2="12" y2="70" stroke="#8a2020" stroke-width="2"/>
+  <line x1="4" y1="58" x2="20" y2="58" stroke="#8a2020" stroke-width="1.5"/>
+  <circle cx="12" cy="58" r="3" fill="#a03030"/>
+  <rect x="40" y="70" width="13" height="22" rx="3" fill="#5a2020"/>
+  <rect x="40" y="82" width="13" height="10" rx="2" fill="#7a3030" stroke="#a04040" stroke-width=".8"/>
+  <rect x="26" y="70" width="13" height="22" rx="3" fill="#5a2020"/>
+  <rect x="26" y="82" width="13" height="10" rx="2" fill="#7a3030" stroke="#a04040" stroke-width=".8"/>
+  <rect x="24" y="64" width="10" height="9" rx="2" fill="#4a1818"/>
+  <rect x="35" y="64" width="10" height="9" rx="2" fill="#3a1010"/>
+  <rect x="46" y="64" width="8" height="9" rx="2" fill="#4a1818"/>
+  <rect x="22" y="38" width="30" height="28" rx="4" fill="#7a3038"/>
+  <rect x="22" y="38" width="30" height="9" rx="4" fill="#903040"/>
+  <rect x="22" y="50" width="30" height="3" fill="#501018"/>
+  <rect x="22" y="56" width="30" height="3" fill="#501018"/>
+  <rect x="14" y="36" width="14" height="7" rx="3" fill="#903040"/>
+  <rect x="46" y="36" width="14" height="7" rx="3" fill="#903040"/>
+  <rect x="62" y="32" width="5" height="32" rx="2" fill="#e8e8f0"/>
+  <rect x="58" y="40" width="13" height="4" rx="1.5" fill="#6a2030"/>
+  <circle cx="64" cy="30" r="4" fill="#802030" stroke="#b04050" stroke-width="1"/>
+  <ellipse cx="37" cy="22" rx="17" ry="15" fill="#6a2830"/>
+  <rect x="23" y="21" width="28" height="14" rx="3" fill="#502028"/>
+  <rect x="21" y="23" width="8" height="12" rx="2" fill="#401018"/>
+  <rect x="43" y="23" width="8" height="12" rx="2" fill="#401018"/>
+  <rect x="26" y="24" width="8" height="4" rx="1.5" fill="#0e0602"/>
+  <rect x="38" y="24" width="8" height="4" rx="1.5" fill="#0e0602"/>
+  <rect x="35" y="22" width="4" height="14" rx="1.5" fill="#501820"/>
+  <rect x="33" y="7" width="8" height="16" rx="3" fill="#cc1020"/>
+  <rect x="34" y="4" width="6" height="8" rx="2" fill="#ff3040"/>
+</svg>`,
+  ebony:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="36" cy="100" rx="20" ry="5" fill="rgba(0,0,0,.55)"/>
+  <ellipse cx="12" cy="58" rx="11" ry="16" fill="#1a1a22" stroke="#3a3a48" stroke-width="2"/>
+  <ellipse cx="12" cy="58" rx="7" ry="11" fill="#0e0e14"/>
+  <line x1="12" y1="46" x2="12" y2="70" stroke="#4a4a58" stroke-width="2"/>
+  <line x1="4" y1="58" x2="20" y2="58" stroke="#4a4a58" stroke-width="1.5"/>
+  <circle cx="12" cy="58" r="3" fill="#505060"/>
+  <rect x="40" y="70" width="13" height="22" rx="3" fill="#2a2a32"/>
+  <rect x="40" y="82" width="13" height="10" rx="2" fill="#3a3a44" stroke="#5a5a68" stroke-width=".8"/>
+  <rect x="26" y="70" width="13" height="22" rx="3" fill="#2a2a32"/>
+  <rect x="26" y="82" width="13" height="10" rx="2" fill="#3a3a44" stroke="#5a5a68" stroke-width=".8"/>
+  <rect x="24" y="64" width="10" height="9" rx="2" fill="#222228"/>
+  <rect x="35" y="64" width="10" height="9" rx="2" fill="#18181e"/>
+  <rect x="46" y="64" width="8" height="9" rx="2" fill="#222228"/>
+  <rect x="22" y="38" width="30" height="28" rx="4" fill="#3a3a44"/>
+  <rect x="22" y="38" width="30" height="9" rx="4" fill="#4a4a58"/>
+  <rect x="22" y="50" width="30" height="3" fill="#2a2a30"/>
+  <rect x="22" y="56" width="30" height="3" fill="#2a2a30"/>
+  <rect x="14" y="36" width="14" height="7" rx="3" fill="#4a4a58"/>
+  <rect x="46" y="36" width="14" height="7" rx="3" fill="#4a4a58"/>
+  <rect x="62" y="32" width="5" height="32" rx="2" fill="#9090a0"/>
+  <rect x="58" y="40" width="13" height="4" rx="1.5" fill="#303038"/>
+  <circle cx="64" cy="30" r="4" fill="#383848" stroke="#606078" stroke-width="1"/>
+  <ellipse cx="37" cy="22" rx="17" ry="15" fill="#34343c"/>
+  <rect x="23" y="21" width="28" height="14" rx="3" fill="#282830"/>
+  <rect x="21" y="23" width="8" height="12" rx="2" fill="#1a1a20"/>
+  <rect x="43" y="23" width="8" height="12" rx="2" fill="#1a1a20"/>
+  <rect x="26" y="24" width="8" height="4" rx="1.5" fill="#0a0a0e"/>
+  <rect x="38" y="24" width="8" height="4" rx="1.5" fill="#0a0a0e"/>
+  <rect x="35" y="22" width="4" height="14" rx="1.5" fill="#24242c"/>
+  <rect x="33" y="7" width="8" height="16" rx="3" fill="#502080"/>
+  <rect x="34" y="4" width="6" height="8" rx="2" fill="#8040c8"/>
+</svg>`,
+  azure:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="36" cy="100" rx="20" ry="5" fill="rgba(0,0,0,.45)"/>
+  <ellipse cx="12" cy="58" rx="11" ry="16" fill="#1a3048" stroke="#2a5080" stroke-width="2"/>
+  <ellipse cx="12" cy="58" rx="7" ry="11" fill="#0e1828"/>
+  <line x1="12" y1="46" x2="12" y2="70" stroke="#3a6098" stroke-width="2"/>
+  <line x1="4" y1="58" x2="20" y2="58" stroke="#3a6098" stroke-width="1.5"/>
+  <circle cx="12" cy="58" r="3" fill="#5080b0"/>
+  <rect x="40" y="70" width="13" height="22" rx="3" fill="#284060"/>
+  <rect x="40" y="82" width="13" height="10" rx="2" fill="#386888" stroke="#5090b8" stroke-width=".8"/>
+  <rect x="26" y="70" width="13" height="22" rx="3" fill="#284060"/>
+  <rect x="26" y="82" width="13" height="10" rx="2" fill="#386888" stroke="#5090b8" stroke-width=".8"/>
+  <rect x="24" y="64" width="10" height="9" rx="2" fill="#203850"/>
+  <rect x="35" y="64" width="10" height="9" rx="2" fill="#182838"/>
+  <rect x="46" y="64" width="8" height="9" rx="2" fill="#203850"/>
+  <rect x="22" y="38" width="30" height="28" rx="4" fill="#406888"/>
+  <rect x="22" y="38" width="30" height="9" rx="4" fill="#5090b0"/>
+  <rect x="22" y="50" width="30" height="3" fill="#284058"/>
+  <rect x="22" y="56" width="30" height="3" fill="#284058"/>
+  <rect x="14" y="36" width="14" height="7" rx="3" fill="#5090b0"/>
+  <rect x="46" y="36" width="14" height="7" rx="3" fill="#5090b0"/>
+  <rect x="62" y="32" width="5" height="32" rx="2" fill="#d0e8ff"/>
+  <rect x="58" y="40" width="13" height="4" rx="1.5" fill="#305878"/>
+  <circle cx="64" cy="30" r="4" fill="#4078a0" stroke="#80c0e8" stroke-width="1"/>
+  <ellipse cx="37" cy="22" rx="17" ry="15" fill="#386078"/>
+  <rect x="23" y="21" width="28" height="14" rx="3" fill="#305068"/>
+  <rect x="21" y="23" width="8" height="12" rx="2" fill="#203848"/>
+  <rect x="43" y="23" width="8" height="12" rx="2" fill="#203848"/>
+  <rect x="26" y="24" width="8" height="4" rx="1.5" fill="#0e0602"/>
+  <rect x="38" y="24" width="8" height="4" rx="1.5" fill="#0e0602"/>
+  <rect x="35" y="22" width="4" height="14" rx="1.5" fill="#284860"/>
+  <rect x="33" y="7" width="8" height="16" rx="3" fill="#2060a0"/>
+  <rect x="34" y="4" width="6" height="8" rx="2" fill="#80d0ff"/>
+</svg>`,
+};
+
+function getPlayerSkinSvg(p){
+  const id=(p&&p.skinId)||(typeof loadGameSettings==='function'&&(loadGameSettings().skinId||''))||'classic';
+  return PLAYER_SKINS[id]||PLAYER_SKINS.classic;
+}
+function syncSkinChipStyles(){
+  const id=(typeof loadGameSettings==='function'&&(loadGameSettings().skinId||''))||'classic';
+  document.querySelectorAll('.skin-chip').forEach(b=>{
+    b.classList.toggle('on',(b.dataset.skin||'')===id);
+  });
+}
+function selectPlayerSkin(id){
+  if(!PLAYER_SKINS[id])return;
+  if(typeof saveGameSettings==='function')saveGameSettings({skinId:id});
+  if(typeof G!=='undefined'&&G&&G.player)G.player.skinId=id;
+  syncSkinChipStyles();
+  const panel=document.getElementById('panel');
+  if(panel&&!panel.classList.contains('hidden')&&typeof G!=='undefined'&&G&&G.player&&G.enemy){
+    const ps=document.getElementById('psprite');
+    if(ps)ps.innerHTML=getPlayerSkinSvg(G.player);
+  }
+}
+
+const CHARS = {
+  player: PLAYER_SKINS.classic,
 
   slave:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg">
   <ellipse cx="36" cy="100" rx="17" ry="4" fill="rgba(0,0,0,.35)"/>
@@ -2216,7 +2356,9 @@ function getCurrentStreak(){
 // ══════════════════════════════════════════════════════════
 let G;
 function freshPlayer(){
-  return{name:"Maximus",hp:60,maxHp:60,str:10,agi:5,def:3,gold:82,wins:0,
+  const sk=(typeof loadGameSettings==='function'&&(loadGameSettings().skinId||''))||'classic';
+  const skinId=PLAYER_SKINS[sk]?sk:'classic';
+  return{name:"Maximus",hp:60,maxHp:60,str:10,agi:5,def:3,gold:82,wins:0,skinId,
     defending:false,buffTurns:0,warcryCD:0,warcryResonance:0,bootsCount:0,
     weaponTier:0,armorTier:0,hasChainmail:false,enhancedBlock:false,vsBossBonus:0,
     hasBlessing:false,blessingUsed:false,battleBrewBonus:0,activeBattleBonus:0,
@@ -2485,7 +2627,7 @@ function rollDailyModFromSeed(seed){
   return{...DAILY_MOD_TABLE[i]};
 }
 function loadGameSettings(){
-  const def={difficulty:'normal',fontPct:100,reduceMotion:false,logImportantOnly:false};
+  const def={difficulty:'normal',fontPct:100,reduceMotion:false,logImportantOnly:false,skinId:'classic'};
   try{return{...def,...JSON.parse(localStorage.getItem(LS_GAME_SETTINGS)||'{}')};}catch(_){return{...def};}
 }
 function saveGameSettings(partial){
@@ -2731,7 +2873,7 @@ function startFight(){
   // Set sprites
   document.getElementById('esprite').className='swrap flip';
   document.getElementById('psprite').className='swrap';
-  document.getElementById('psprite').innerHTML=CHARS.player;
+  document.getElementById('psprite').innerHTML=getPlayerSkinSvg(G.player);
   document.getElementById('esprite').innerHTML=CHARS[et.charKey]||CHARS.slave;
   if(ahHeaven)ahHeaven.classList.toggle('hidden',et.bossType!=='dual');
 
@@ -3689,6 +3831,8 @@ const hcl=(c,m)=>c/m<.3?'hpin hl':c/m<.6?'hpin hm':'hpin hh';
 function render(){
   const p=G.player,e=G.enemy;
   if(G&&p){
+    if(!p.skinId)p.skinId=(loadGameSettings().skinId||'classic');
+    if(!PLAYER_SKINS[p.skinId])p.skinId='classic';
     ensureInv(p);
     ensureLoadout(p);
     const invn=document.getElementById('ckinvnum');
@@ -5287,6 +5431,7 @@ function syncIntroControlsFromStorage(){
   if(mot)mot.checked=!!s.reduceMotion;
   const lf=document.getElementById('set-logfilter');
   if(lf)lf.checked=!!s.logImportantOnly;
+  if(typeof syncSkinChipStyles==='function')syncSkinChipStyles();
 }
 // Tiny deferred boot so both script blocks are parsed first
 window.addEventListener('DOMContentLoaded',()=>{
