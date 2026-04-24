@@ -2353,7 +2353,7 @@ const ENEMIES=[
     specialName:"SOLAR VERDICT + UMBRAL MIRROR",specialDesc:"Heaven brands you; shadow answers what you deny."},
   {name:"Concept Reptilian",charKey:"conceptreptilian",hp:1860,str:112,agi:26,def:48,gold:3000,title:"Seraph of the Cinder Fang",isBoss:true,bossType:"reptilian",
     specialName:"FIREBRAND COMBO + CINDER VEIL + HEAVENFALL BLADE",specialDesc:"Wields a sword of fire; heaven itself drops the killing edge."},
-  {name:"Concept Dragon",  charKey:"conceptdragon",hp:1640,str:84,agi:20,def:40,gold:2500,title:"Dragon of Concepts",isBoss:true,bossType:"concept",
+  {name:"Concept Dragon",  charKey:"conceptdragon",hp:2640,str:84,agi:20,def:40,gold:2500,title:"Dragon of Concepts",isBoss:true,bossType:"concept",
     specialName:"WARP SPACE-TIME + GRAVITY BREATH",specialDesc:"Bends turns, crushes with gravity."},
   {name:"Concept Splitter",charKey:"conceptsplitter",hp:1980,str:130,agi:30,def:58,gold:4200,title:"The Final Schism",isBoss:true,bossType:"splitter",
     specialName:"TRUMP I FRACTURE + TRUMP II DUAL FORM + TRUMP III QUAD SHARD",specialDesc:"Splits into two at 40%, then erupts into four on turn 8 (one move)."},
@@ -3339,6 +3339,10 @@ function act(a){
   // Helper — routes player damage through Nemesis Final Reflection check
   function applyPlayerDmg(d,wasHit){
     if(wasHit&&d>0)d=applyWarcryResonanceDmg(d,p);
+    if(e&&e.bossType==='reptilian'&&(e.cosmicShieldTurns||0)>0){
+      if(wasHit)addLog(`✧ COSMIC SHIELD negates your strike.`,'bsp');
+      return{dmg:0,blocked:true};
+    }
     if(!e||e.bossType!=='nemesis'||!e.finalPhase){
       if(wasHit){e.hp=Math.max(0,e.hp-d);p.lastDmgDealt=d;}
       return{dmg:d,blocked:false};
@@ -3932,6 +3936,20 @@ function enemyTurn(){
   if(e.isBoss&&e.bossType==='reptilian'){
     e.repTurn=(e.repTurn||0)+1;
 
+    if((e.cosmicShieldTurns||0)>0){
+      e.cosmicShieldTurns=Math.max(0,(e.cosmicShieldTurns||0)-1);
+      if(e.cosmicShieldTurns===0)addLog(`✧ COSMIC SHIELD fractures. Reptilian is vulnerable again.`,'bsp');
+    }
+
+    if(!e.cosmicShieldUsed&&e.repTurn<=5&&(e.repTurn===5||rnd()<0.34)){
+      e.cosmicShieldUsed=true;
+      e.cosmicShieldTurns=3;
+      addLog(`✧ COSMIC SHIELD — Concept Reptilian phases out of causality for 3 turns!`,'bsp');
+      const esp=document.getElementById('esprite');
+      esp.classList.add('ghost');setTimeout(()=>esp.classList.remove('ghost'),760);
+      G.myTurn=true;render();return;
+    }
+
     if(e.hp/e.maxHp<0.66&&!e.cinderVeilDone){
       e.cinderVeilDone=true;
       p.def=Math.max(1,p.def-4);
@@ -4297,12 +4315,17 @@ function triggerGhostStep(negateHit=false){
   sfxGhostStep();
   const p=G.player,e=G.enemy;
   const cd=Math.max(1,Math.floor(p.str*.7)+ri(-1,2));
-  e.hp=Math.max(0,e.hp-cd);
-  addLog(`${GHOST_MSGS[Math.floor(rnd()*GHOST_MSGS.length)]} Ghost Step — ${cd} counter dmg!`,'gh');
+  const immuneToGhostCounter=!!(e&&e.isBoss&&e.bossType==='concept');
+  if(immuneToGhostCounter){
+    addLog(`${GHOST_MSGS[Math.floor(rnd()*GHOST_MSGS.length)]} Ghost Step triggers — but the Concept Dragon is immune to the counter.`,'gh');
+  }else{
+    e.hp=Math.max(0,e.hp-cd);
+    addLog(`${GHOST_MSGS[Math.floor(rnd()*GHOST_MSGS.length)]} Ghost Step — ${cd} counter dmg!`,'gh');
+  }
   const sp=document.getElementById('psprite');
   sp.classList.remove('ghost');void sp.offsetWidth;sp.classList.add('ghost');
   setTimeout(()=>sp.classList.remove('ghost'),600);
-  aHit('e',cd);
+  if(!immuneToGhostCounter)aHit('e',cd);
 }
 
 function endFight(won){
@@ -4530,6 +4553,7 @@ function render(){
     const hf=4-((e.repTurn||0)%4);
     et.push(`<span class="ft ft-rept">FIREBRAND IN ${fb===3?'NOW':fb}</span>`);
     et.push(`<span class="ft ft-rept">HEAVENFALL IN ${hf===4?'NOW':hf}</span>`);
+    if((e.cosmicShieldTurns||0)>0)et.push(`<span class="ft ft-rept">COSMIC SHIELD ×${e.cosmicShieldTurns}</span>`);
     if(!e.cinderVeilDone&&e.hp/e.maxHp<0.76)et.push('<span class="ft ft-rept">CINDER VEIL NEAR</span>');
   }
   if(e.isBoss&&e.bossType==='void'){
