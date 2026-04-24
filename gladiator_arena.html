@@ -692,6 +692,16 @@ html:not(.ga-reduce-motion) .si.shop-afford-pulse{animation:shopAffordPulse 1.5s
 @keyframes sceneShake{0%,100%{transform:translate(0,0)}35%{transform:translate(-5px,2px)}70%{transform:translate(4px,-2px)}}
 html:not(.ga-reduce-motion) #scene.scene-shake{animation:sceneShake .22s ease-out}
 
+/* Concept Splitter move FX */
+#splitter-fx{position:absolute;inset:0;pointer-events:none;z-index:12;overflow:hidden}
+.sfx-shard{position:absolute;width:10px;height:56px;border-radius:1px;opacity:0;transform-origin:center;mix-blend-mode:screen;background:linear-gradient(180deg,rgba(160,245,255,.95),rgba(255,120,215,.75),transparent)}
+.sfx-ring{position:absolute;left:50%;top:54%;width:16px;height:16px;border-radius:50%;border:1.5px solid rgba(170,245,255,.8);transform:translate(-50%,-50%);opacity:0}
+@keyframes sfxShardBurst{0%{opacity:0;transform:translate(-50%,-50%) rotate(var(--r)) scale(.4)}15%{opacity:.95}100%{opacity:0;transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y))) rotate(var(--r)) scale(1.15)}}
+@keyframes sfxRingPulse{0%{opacity:.85;transform:translate(-50%,-50%) scale(.1)}100%{opacity:0;transform:translate(-50%,-50%) scale(var(--sc,8))}}
+@keyframes splitterScreenFlash{0%{box-shadow:inset 0 0 0 0 rgba(120,240,255,.0)}25%{box-shadow:inset 0 0 140px 8px rgba(120,240,255,.15)}100%{box-shadow:inset 0 0 0 0 rgba(255,110,210,0)}}
+html:not(.ga-reduce-motion) #scene.splitter-flash{animation:splitterScreenFlash .42s ease-out}
+html.ga-reduce-motion #splitter-fx{display:none}
+
 /* Tap to unlock audio */
 #audio-tap-layer{position:fixed;inset:0;z-index:400;background:rgba(4,2,1,.72);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(2px)}
 #audio-tap-layer.hidden{display:none!important}
@@ -735,6 +745,7 @@ html:not(.ga-reduce-motion) #scene.scene-shake{animation:sceneShake .22s ease-ou
 <!-- ══ SCENE ══════════════════════════════════════════════ -->
 <div id="scene">
   <div id="archon-heaven" class="hidden" aria-hidden="true"></div>
+  <div id="splitter-fx" aria-hidden="true"></div>
   <div id="sky"></div>
   <div id="moon"></div>
   <div id="stands"></div>
@@ -3505,6 +3516,7 @@ function enemyTurn(){
       e.quadMoveDone=true;
       const hits=e.split2Done?4:3;
       let total=0;
+      triggerSplitterMoveFx('quad',hits);
       addLog(`✦ TRUMP III — QUAD SHARD: the Splitter becomes four for a single impossible heartbeat.`,'bsp');
       for(let i=0;i<hits;i++){
         const qd=Math.max(10,Math.floor(e.str*0.43)+ri(2,7));
@@ -3534,6 +3546,7 @@ function enemyTurn(){
       e.split2Done=true;
       e.str=Math.max(1,Math.floor(e.str*1.12));
       e.agi=Math.max(1,Math.floor(e.agi*1.08));
+      triggerSplitterMoveFx('dual',2);
       addLog(`✦ TRUMP II — DUAL FORM: Concept Splitter divides into two synchronized hunters.`,'bsp');
       addLog(`Each half grows sharper. Incoming pressure rises.`,'bsp');
       const esp=document.getElementById('esprite');
@@ -3545,6 +3558,7 @@ function enemyTurn(){
     if(e.splitTurn%3===0){
       const fd=Math.max(14,Math.floor(e.str*(e.split2Done?1.18:1.02))+ri(4,10));
       const dealt=p.defending?Math.max(1,Math.floor(fd*0.75)):fd;
+      triggerSplitterMoveFx('fracture',1);
       p.hp=Math.max(0,p.hp-dealt);
       addLog(`✦ TRUMP I — FRACTURE EDICT: ${dealt} schism damage cleaves through intent.`,'bsp');
       aAtk('e');aHit('p',dealt);
@@ -3962,6 +3976,57 @@ function aHit(who,dmg){
     if(who==='p'){G.runStats.dmgTaken=(G.runStats.dmgTaken||0)+dmg;if(dmg>=6)buzz(14);else if(dmg>=3)buzz(10);}
   }
   if(who==='p'&&dmg>0)shakeScene();
+}
+
+function triggerSplitterMoveFx(kind='fracture',hitCount=1){
+  if(document.documentElement.classList.contains('ga-reduce-motion'))return;
+  const fx=document.getElementById('splitter-fx');
+  const scene=document.getElementById('scene');
+  if(!fx||!scene)return;
+  fx.innerHTML='';
+  const heavy=kind==='quad';
+  const dual=kind==='dual';
+  const shards=heavy?24:(dual?16:12);
+  for(let i=0;i<shards;i++){
+    const s=document.createElement('div');
+    s.className='sfx-shard';
+    const ang=(360/shards)*i+ri(-8,8);
+    const dist=heavy?ri(80,200):(dual?ri(70,165):ri(60,145));
+    const rad=ang*Math.PI/180;
+    const x=Math.cos(rad)*dist;
+    const y=Math.sin(rad)*dist*(heavy?0.86:0.72);
+    s.style.left='50%';
+    s.style.top=heavy?'50%':'54%';
+    s.style.setProperty('--r',`${ang}deg`);
+    s.style.setProperty('--x',`${x}px`);
+    s.style.setProperty('--y',`${y}px`);
+    s.style.height=(heavy?ri(48,78):ri(42,66))+'px';
+    s.style.animation=`sfxShardBurst ${heavy?520:430}ms ease-out forwards`;
+    s.style.animationDelay=(i*(heavy?14:10))+'ms';
+    fx.appendChild(s);
+  }
+  const rings=heavy?3:(dual?2:1);
+  for(let i=0;i<rings;i++){
+    const r=document.createElement('div');
+    r.className='sfx-ring';
+    r.style.setProperty('--sc',String((heavy?7.6:6.4)+(i*1.6)));
+    r.style.animation=`sfxRingPulse ${heavy?560:430}ms ease-out forwards`;
+    r.style.animationDelay=(i*80)+'ms';
+    fx.appendChild(r);
+  }
+  scene.classList.remove('splitter-flash');
+  void scene.offsetWidth;
+  scene.classList.add('splitter-flash');
+  if(kind==='quad'&&hitCount>1){
+    for(let i=1;i<hitCount;i++){
+      setTimeout(()=>{
+        scene.classList.remove('splitter-flash');
+        void scene.offsetWidth;
+        scene.classList.add('splitter-flash');
+      },120*i);
+    }
+  }
+  setTimeout(()=>{fx.innerHTML='';scene.classList.remove('splitter-flash');},heavy?980:760);
 }
 
 // ══════════════════════════════════════════════════════════
