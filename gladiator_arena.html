@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5">
 <title>Gladiator Arena</title>
-<meta name="description" content="Eighteen-round browser gladiator roguelike: shop, loot, bosses, and a daily seed.">
+<meta name="description" content="Nineteen-round browser gladiator roguelike: shop, loot, bosses, and a daily seed.">
 <meta name="theme-color" content="#060302">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -102,8 +102,8 @@ body{font-family:'Cinzel',Georgia,serif;display:flex;flex-direction:column;heigh
 /* boss auras */
 .aura-demon{animation:ademon 1.6s ease-in-out infinite alternate}
 @keyframes ademon{from{filter:drop-shadow(0 6px 14px rgba(0,0,0,.95)) drop-shadow(0 0 12px rgba(200,10,10,.5))}to{filter:drop-shadow(0 6px 14px rgba(0,0,0,.95)) drop-shadow(0 0 28px rgba(255,20,20,.8)) brightness(1.06)}}
-.aura-god{animation:agod 2s ease-in-out infinite alternate}
-@keyframes agod{from{filter:drop-shadow(0 6px 14px rgba(0,0,0,.95)) drop-shadow(0 0 14px rgba(80,120,255,.4))}to{filter:drop-shadow(0 6px 14px rgba(0,0,0,.95)) drop-shadow(0 0 32px rgba(100,160,255,.75)) brightness(1.08)}}
+.aura-god{animation:agod 1.6s ease-in-out infinite alternate}
+@keyframes agod{from{filter:drop-shadow(0 6px 14px rgba(0,0,0,.95)) drop-shadow(0 0 16px rgba(80,120,255,.48)) drop-shadow(0 0 12px rgba(180,230,255,.18))}to{filter:drop-shadow(0 6px 14px rgba(0,0,0,.95)) drop-shadow(0 0 42px rgba(120,190,255,.92)) drop-shadow(0 0 26px rgba(200,245,255,.42)) brightness(1.14) contrast(1.06)}}
 
 /* combat animations */
 .swrap.hit svg{animation:shit .4s ease-out}
@@ -207,6 +207,9 @@ body{font-family:'Cinzel',Georgia,serif;display:flex;flex-direction:column;heigh
 .scr{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center}
 .sbg{position:absolute;inset:0;background:rgba(2,1,0,.88)}
 .sbox{position:relative;background:linear-gradient(155deg,#160b04,#0c0502);border:2px solid #4a2c0e;border-radius:8px;padding:22px 26px;max-width:420px;width:92%;text-align:center;box-shadow:0 0 60px rgba(0,0,0,.95),inset 0 0 0 1px rgba(80,44,14,.15)}
+.sbox.end-adam-victory{border-color:#7eaa42;box-shadow:0 0 70px rgba(170,255,120,.28),0 0 130px rgba(220,255,170,.12),inset 0 0 0 1px rgba(180,255,140,.2);animation:adamEndPulse 2.2s ease-in-out infinite alternate}
+.sbox.end-adam-defeat{border-color:#7a9438;box-shadow:0 0 58px rgba(120,180,70,.24),0 0 110px rgba(180,220,120,.1),inset 0 0 0 1px rgba(140,210,90,.16);animation:adamEndPulse 2.6s ease-in-out infinite alternate}
+@keyframes adamEndPulse{from{transform:scale(1);filter:brightness(.96)}to{transform:scale(1.01);filter:brightness(1.08)}}
 
 .sico{font-size:44px;display:block;margin-bottom:10px;line-height:1}
 .stit{font-family:'Cinzel Decorative',serif;font-size:20px;font-weight:700;color:#e8b84b;letter-spacing:4px;text-shadow:0 0 22px rgba(232,184,75,.4);margin-bottom:4px}
@@ -470,6 +473,7 @@ body{font-family:'Cinzel',Georgia,serif;display:flex;flex-direction:column;heigh
 .ft-time{background:#0e0a1a;color:#b8a0ff;border:1px solid #5a4090;animation:ftpulse2 1s ease-in-out infinite alternate}
 .ft-curse{background:#180c20;color:#c040ff;border:1px solid #6020a0}
 .ft-drain{background:#100810;color:#9040dd;border:1px solid #501880}
+.ft-god2{background:#06142a;color:#9fd6ff;border:1px solid #3a70a8;animation:ftpulse2 .85s ease-in-out infinite alternate}
 
 /* ── SOUL SYSTEM ──────────────────────────────────────────*/
 .ck-souls{border-color:#5010a0!important}.ck-souls b{color:#b040ff!important}
@@ -541,6 +545,41 @@ body{font-family:'Cinzel',Georgia,serif;display:flex;flex-direction:column;heigh
 @keyframes ahighlord{from{filter:drop-shadow(0 6px 14px rgba(0,0,0,.95)) drop-shadow(0 0 24px rgba(255,150,70,.7)) drop-shadow(0 0 16px rgba(90,240,255,.45))}to{filter:drop-shadow(0 6px 14px rgba(0,0,0,.95)) drop-shadow(0 0 62px rgba(255,170,80,.98)) drop-shadow(0 0 48px rgba(120,250,255,.8)) brightness(1.22) contrast(1.12)}}
 .bb-highlord{background:linear-gradient(90deg,#2a1208,#120a1a);color:#ffd8a0;border:1px solid #d48038;box-shadow:0 0 22px rgba(255,150,70,.45)}
 .ft-highlord{background:#231108;color:#ffd090;border:1px solid #a86028;animation:ftpulse .8s ease-in-out infinite alternate}
+.aura-adam{animation:aadam 1.05s ease-in-out infinite alternate}
+@keyframes aadam{from{filter:drop-shadow(0 6px 14px rgba(0,0,0,.95)) drop-shadow(0 0 28px rgba(180,255,170,.62)) drop-shadow(0 0 16px rgba(255,220,130,.42))}to{filter:drop-shadow(0 6px 14px rgba(0,0,0,.95)) drop-shadow(0 0 66px rgba(195,255,145,.98)) drop-shadow(0 0 50px rgba(255,235,140,.86)) brightness(1.24) contrast(1.1)}}
+.bb-adam{background:linear-gradient(90deg,#12200e,#1a1408);color:#d8ffb0;border:1px solid #8ac050;box-shadow:0 0 20px rgba(170,255,120,.38)}
+.ft-adam{background:#13220e;color:#d4ff9a;border:1px solid #6ca840;animation:ftpulse 1s ease-in-out infinite alternate}
+
+/* Garden of Eve finale mode */
+#scene.garden-eve #sky{
+  background:
+    radial-gradient(circle at 18% 18%,rgba(210,255,170,.2),transparent 40%),
+    radial-gradient(circle at 82% 14%,rgba(255,240,180,.14),transparent 44%),
+    linear-gradient(180deg,#050d06 0%,#10220e 20%,#1f3a14 45%,#346020 68%,#6f8a2e 88%,#a6b85a 100%);
+}
+#scene.garden-eve{
+  box-shadow:inset 0 -30px 62px rgba(0,0,0,.62),0 0 70px rgba(160,230,110,.2),0 0 130px rgba(230,230,140,.12);
+}
+#scene.garden-eve #stands{filter:saturate(1.2) hue-rotate(-10deg) brightness(1.14)}
+#scene.garden-eve #wall,#scene.garden-eve .col,#scene.garden-eve .tg{opacity:.4;filter:hue-rotate(-18deg) saturate(1.3)}
+#scene.garden-eve #sand{
+  background:
+    radial-gradient(ellipse 55% 35% at 50% 56%,rgba(170,215,110,.42),rgba(95,132,40,.38) 58%,transparent 78%),
+    linear-gradient(180deg,#6d8a34 0%,#86a040 34%,#a8bd58 64%,#7f9338 100%);
+  box-shadow:0 -14px 28px rgba(180,240,120,.18),inset 0 8px 30px rgba(60,90,24,.35);
+}
+#scene.adam-presence::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:11;
+  background:
+    radial-gradient(ellipse 74% 46% at 50% 42%,rgba(220,255,180,.08),transparent 62%),
+    radial-gradient(ellipse 100% 80% at 50% 64%,rgba(10,22,8,.48),rgba(0,0,0,.72) 82%);
+  animation:adamPresencePulse 1.7s ease-in-out infinite alternate;
+}
+@keyframes adamPresencePulse{from{opacity:.55;filter:brightness(.95)}to{opacity:.9;filter:brightness(1.12)}}
 /* Highlord grand finale mode */
 #scene.highlord-finale #sky{
   background:linear-gradient(180deg,#00020a 0%,#120022 22%,#2a0838 44%,#3a101e 64%,#4a1a10 82%,#1a0a04 100%);
@@ -709,11 +748,40 @@ html.ga-reduce-motion #archon-heaven{animation:none;opacity:.72}
 .sn-round{font-size:7px;letter-spacing:3px;color:#402040;display:block;margin-top:4px}
 #si-skip{position:absolute;bottom:14px;right:18px;font-family:'Cinzel',serif;font-size:8px;color:#503048;letter-spacing:2px;cursor:pointer;z-index:22;opacity:.65}
 #si-skip:hover{opacity:1}
+/* ── ADAM INTRO (Garden of Eve) ─────────────────────────── */
+#adam-intro{position:fixed;inset:0;z-index:280;background:#040a04;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center}
+#adam-intro.afading{animation:kfade 1.15s ease-out forwards}
+#ai-garden{position:absolute;inset:0;background:
+  radial-gradient(ellipse 58% 44% at 50% 22%,rgba(220,255,180,.35),transparent 55%),
+  radial-gradient(circle at 18% 88%,rgba(120,190,70,.22),transparent 46%),
+  radial-gradient(circle at 82% 90%,rgba(230,220,130,.2),transparent 44%),
+  linear-gradient(180deg,#071206 0%,#13260e 36%,#2e4e1e 72%,#6f8f3a 100%);
+  animation:aiGardenBreath 4.5s ease-in-out infinite alternate}
+@keyframes aiGardenBreath{from{filter:brightness(.9) hue-rotate(-8deg)}to{filter:brightness(1.14) hue-rotate(7deg)}}
+#ai-vines{position:absolute;inset:0;opacity:.34;pointer-events:none;z-index:2;
+  background:
+    repeating-linear-gradient(104deg,transparent 0 26px,rgba(110,170,70,.14) 26px 30px),
+    radial-gradient(circle at 30% 78%,rgba(150,220,100,.22),transparent 42%),
+    radial-gradient(circle at 70% 74%,rgba(230,220,130,.2),transparent 40%);
+  animation:aiVineDrift 10s linear infinite}
+@keyframes aiVineDrift{from{transform:translateY(0)}to{transform:translateY(12px)}}
+.acrack{position:absolute;bottom:0;width:var(--w);background:linear-gradient(0deg,rgba(220,255,160,.9),rgba(160,220,100,.45),transparent);border-radius:1px;transform-origin:bottom center;animation:kcrackrise var(--d) ease-out var(--dl) both}
+#ai-lore{text-align:center;position:relative;z-index:10;margin-bottom:1.6rem;padding:0 18px;max-width:520px}
+.al{font-family:'Cinzel',serif;letter-spacing:2.5px;display:block;margin:5px 0;opacity:0;animation:klapp .75s ease-out var(--dl) forwards}
+.al-s{font-size:9px;color:#5b7a34}.al-m{font-size:12px;color:#b8df78;font-weight:700}
+.al-b{font-size:15px;color:#f0ffd0;font-weight:900;letter-spacing:4px;text-shadow:0 0 22px rgba(210,255,160,.52)}
+#ai-name{position:relative;z-index:10;text-align:center;opacity:0;animation:knamein 1.2s ease-out var(--dl) forwards}
+.an-main{font-family:'Cinzel Decorative',serif;font-size:clamp(20px,6vw,38px);font-weight:700;color:#e8ffbf;letter-spacing:9px;text-shadow:0 0 28px rgba(200,255,150,.82),0 0 66px rgba(140,210,90,.44),2px 2px 0 #102008;display:block;animation:anTitlePulse 2.8s ease-in-out infinite alternate}
+@keyframes anTitlePulse{from{letter-spacing:9px;color:#d8efa8}to{letter-spacing:10px;color:#f4ffd6}}
+.an-sub{font-size:9px;letter-spacing:5px;color:#9cc85a;display:block;margin-top:6px;font-weight:700}
+.an-round{font-size:7px;letter-spacing:3px;color:#6a8c34;display:block;margin-top:4px}
+#ai-skip{position:absolute;bottom:14px;right:18px;font-family:'Cinzel',serif;font-size:8px;color:#6a8c34;letter-spacing:2px;cursor:pointer;z-index:22;opacity:.65}
+#ai-skip:hover{opacity:1}
 @media (prefers-reduced-motion: reduce){
-  #si-chronosphere,#si-tick,#si-grain,#si-abyss,.sn-main{animation:none!important}
+  #si-chronosphere,#si-tick,#si-grain,#si-abyss,.sn-main,#ai-garden,#ai-vines,.an-main{animation:none!important}
   #si-chronosphere{transform:none}
 }
-html.ga-reduce-motion #si-chronosphere,html.ga-reduce-motion #si-tick,html.ga-reduce-motion #si-grain,html.ga-reduce-motion #si-abyss,html.ga-reduce-motion .sn-main{animation:none!important}
+html.ga-reduce-motion #si-chronosphere,html.ga-reduce-motion #si-tick,html.ga-reduce-motion #si-grain,html.ga-reduce-motion #si-abyss,html.ga-reduce-motion .sn-main,html.ga-reduce-motion #ai-garden,html.ga-reduce-motion #ai-vines,html.ga-reduce-motion .an-main{animation:none!important}
 html.ga-reduce-motion #si-chronosphere{transform:none}
 
 /* ── DAILY SEED MODE ──────────────────────────────────────*/
@@ -765,6 +833,18 @@ html:not(.ga-reduce-motion) .si.shop-afford-pulse{animation:shopAffordPulse 1.5s
 /* Screen shake (hits) */
 @keyframes sceneShake{0%,100%{transform:translate(0,0)}35%{transform:translate(-5px,2px)}70%{transform:translate(4px,-2px)}}
 html:not(.ga-reduce-motion) #scene.scene-shake{animation:sceneShake .22s ease-out}
+
+/* Undying God move FX */
+#god-fx{position:absolute;inset:0;pointer-events:none;z-index:14;overflow:hidden}
+.gfx-ring{position:absolute;left:50%;top:52%;width:18px;height:18px;border-radius:50%;border:2px solid rgba(170,225,255,.9);transform:translate(-50%,-50%);opacity:0}
+.gfx-rune{position:absolute;left:50%;top:50%;font-size:20px;transform:translate(-50%,-50%) scale(.4);opacity:0;color:#b8d8ff;text-shadow:0 0 16px rgba(120,200,255,.95),0 0 28px rgba(180,230,255,.7)}
+.gfx-beam{position:absolute;left:50%;top:-14%;width:20px;height:130%;transform:translateX(-50%);opacity:0;background:linear-gradient(180deg,rgba(180,230,255,0),rgba(130,200,255,.7) 30%,rgba(110,130,255,.55) 70%,rgba(90,110,255,.08))}
+@keyframes gfxRingPulse{0%{opacity:.95;transform:translate(-50%,-50%) scale(.12)}100%{opacity:0;transform:translate(-50%,-50%) scale(9.4)}}
+@keyframes gfxRuneBurst{0%{opacity:0;transform:translate(-50%,-50%) scale(.35)}28%{opacity:1;transform:translate(-50%,-50%) scale(1.1)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.85)}}
+@keyframes gfxBeamDrop{0%{opacity:0;transform:translateX(-50%) translateY(-100px)}20%{opacity:.9}100%{opacity:0;transform:translateX(-50%) translateY(120px)}}
+@keyframes godSceneFlash{0%{box-shadow:inset 0 0 0 0 rgba(120,180,255,0)}35%{box-shadow:inset 0 0 170px 10px rgba(120,180,255,.24)}100%{box-shadow:inset 0 0 0 0 rgba(120,160,255,0)}}
+html:not(.ga-reduce-motion) #scene.god-flash{animation:godSceneFlash .56s ease-out}
+html.ga-reduce-motion #god-fx{display:none}
 
 /* Concept Splitter move FX */
 #splitter-fx{position:absolute;inset:0;pointer-events:none;z-index:12;overflow:hidden}
@@ -861,6 +941,7 @@ html.ga-reduce-motion #highlord-fx{display:none}
 <!-- ══ SCENE ══════════════════════════════════════════════ -->
 <div id="scene">
   <div id="archon-heaven" class="hidden" aria-hidden="true"></div>
+  <div id="god-fx" aria-hidden="true"></div>
   <div id="splitter-fx" aria-hidden="true"></div>
   <div id="reptilian-fx" aria-hidden="true"></div>
   <div id="highlord-fx" aria-hidden="true"></div>
@@ -1168,6 +1249,18 @@ html.ga-reduce-motion #highlord-fx{display:none}
     <span class="sn-round" id="si-round-line">ROUND 10 · TIME IS A WEAPON</span>
   </div>
   <div id="si-skip" onclick="skipSaturnIntro()">SKIP ▶</div>
+</div>
+<div id="adam-intro" class="hidden">
+  <div id="ai-garden"></div>
+  <div id="ai-vines"></div>
+  <div id="ai-cracks"></div>
+  <div id="ai-lore"></div>
+  <div id="ai-name" style="--dl:0s">
+    <span class="an-main">CONCEPT OF ADAM</span>
+    <span class="an-sub">THE FIRST MAN · IMAGE OF GOD</span>
+    <span class="an-round">ROUND 19 · GARDEN OF EVE · ORIGIN GIVEN FORM</span>
+  </div>
+  <div id="ai-skip" onclick="skipAdamIntro()">SKIP ▶</div>
 </div>
 
 <!-- ══ END ════════════════════════════════════════════════ -->
@@ -2450,6 +2543,51 @@ const CHARS = {
   <path d="M56 16 L56 59" stroke="#70f0ff" stroke-width="1.1" opacity=".85"/>
   <path d="M54 24 Q56 26 58 24" stroke="#ffb060" stroke-width=".9" fill="none" opacity=".85"/>
   <path d="M54 38 Q56 40 58 38" stroke="#80f0ff" stroke-width=".9" fill="none" opacity=".85"/>
+</svg>`,
+  conceptadam:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="cadBody" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8ffce"/>
+      <stop offset="38%" style="stop-color:#c8ef88"/>
+      <stop offset="62%" style="stop-color:#9ac85e"/>
+      <stop offset="100%" style="stop-color:#2c4420"/>
+    </linearGradient>
+    <linearGradient id="cadHalo" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#fffad8"/>
+      <stop offset="100%" style="stop-color:#b6eb7a"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="36" cy="101" rx="28" ry="6.2" fill="rgba(180,255,140,.5)"/>
+  <ellipse cx="36" cy="58" rx="34" ry="40" fill="rgba(190,230,120,.17)"/>
+  <ellipse cx="36" cy="10" rx="24" ry="7" fill="url(#cadHalo)" opacity=".72"/>
+  <ellipse cx="36" cy="12" rx="28" ry="9" fill="none" stroke="#f8ffd0" stroke-width="1.2" opacity=".9"/>
+  <ellipse cx="36" cy="12" rx="34" ry="11" fill="none" stroke="#d8ff90" stroke-width=".9" opacity=".65"/>
+  <rect x="20" y="36" width="32" height="34" rx="8" fill="url(#cadBody)" stroke="#567030" stroke-width="1.2"/>
+  <path d="M18 40 Q36 28 54 40" stroke="#efffc4" stroke-width="1.1" fill="none" opacity=".7"/>
+  <path d="M22 44 Q36 52 50 44" stroke="rgba(255,255,255,.4)" stroke-width="1.2" fill="none"/>
+  <path d="M22 58 Q36 66 50 58" stroke="rgba(210,255,170,.52)" stroke-width="1.1" fill="none"/>
+  <rect x="23" y="70" width="10" height="22" rx="3" fill="#203018"/>
+  <rect x="39" y="70" width="10" height="22" rx="3" fill="#182410"/>
+  <rect x="30" y="32" width="12" height="12" rx="3" fill="#263818"/>
+  <ellipse cx="36" cy="23" rx="17" ry="13" fill="url(#cadBody)" stroke="#789a48" stroke-width="1.2"/>
+  <path d="M24 20 L20 8 L29 16" fill="#304818" stroke="#d8ff9a" stroke-width=".9"/>
+  <path d="M48 20 L52 8 L43 16" fill="#283c16" stroke="#f8ffd0" stroke-width=".9"/>
+  <path d="M36 17 L36 5" stroke="#f8ffd8" stroke-width="1.1"/>
+  <ellipse cx="30" cy="24" rx="4.4" ry="3.2" fill="#0a1206"/>
+  <ellipse cx="42" cy="24" rx="4.4" ry="3.2" fill="#0a1206"/>
+  <ellipse cx="30" cy="24" rx="1.7" ry="1.2" fill="#f0ffb0"/>
+  <ellipse cx="42" cy="24" rx="1.7" ry="1.2" fill="#f0ffb0"/>
+  <path d="M24 12 L30 4 L36 12 L42 4 L48 12" stroke="#f4ffd6" stroke-width="1.3" fill="none" opacity=".8"/>
+  <path d="M31 31 Q36 35 41 31" stroke="#d8ff9a" stroke-width="1.1" fill="none"/>
+  <rect x="53" y="15" width="6" height="46" rx="1.4" fill="#223214" stroke="#d8ff9a" stroke-width=".9"/>
+  <rect x="50" y="30" width="12" height="4.5" rx="1.6" fill="#3c5424" stroke="#f6ffd4" stroke-width=".7"/>
+  <circle cx="56" cy="28" r="2.2" fill="#f8ffd8" stroke="#d0ff92" stroke-width=".6"/>
+  <path d="M53 15 Q58 7 60 1 Q62 -3 56 -2 Q50 0 49 7 Q48 12 53 15 Z" fill="#f4ffd2" stroke="#fbffe6" stroke-width="1"/>
+  <path d="M56 16 L56 59" stroke="#d8ff9a" stroke-width="1.1" opacity=".9"/>
+  <path d="M8 28 L18 32 L14 40 L4 36 Z" fill="#293e1a" stroke="#d8ff9a" stroke-width=".9"/>
+  <path d="M64 28 L54 32 L58 40 L68 36 Z" fill="#293e1a" stroke="#d8ff9a" stroke-width=".9"/>
+  <path d="M10 42 Q4 56 10 68" stroke="#2c4018" stroke-width="9" fill="none" stroke-linecap="round"/>
+  <path d="M62 42 Q68 56 62 68" stroke="#2c4018" stroke-width="9" fill="none" stroke-linecap="round"/>
 </svg>`
 };
 
@@ -2466,7 +2604,7 @@ const ENEMIES=[
   {name:"Daemonicus",     charKey:"daemonicus", hp:195,str:32, agi:14, def:16, gold:210,title:"The Corrupted One",  isBoss:true,  bossType:"demon",
     specialName:"DEMON SURGE",specialDesc:"Every 4 turns — double strike",surgeCd:4},
   {name:"Undying God",     charKey:"undying",   hp:240,str:40, agi:17, def:20, gold:300,title:"Death Incarnate",    isBoss:true,  bossType:"god",
-    specialName:"RESURRECTION",specialDesc:"Rises from near-death once",resurrected:false},
+    specialName:"RESURRECTION + STARFALL REAP + SOUL NOVA",specialDesc:"Rises once, drains life, then executes with timed celestial scythe.",resurrected:false},
   {name:"Kronos",          charKey:"kronos",    hp:300,str:50, agi:10, def:26, gold:500,title:"The Primordial Titan",isBoss:true,  bossType:"kronos",
     specialName:"PRIMORDIAL SLAM + ANCIENT DRAIN + STONE REBIRTH + ETERNAL FURY",specialDesc:"Four cursed mechanics."},
   {name:"Saturn",          charKey:"saturn",    hp:340,str:56, agi:18, def:30, gold:700,title:"The Lord of Broken Clocks",isBoss:true,  bossType:"saturn",
@@ -2487,6 +2625,8 @@ const ENEMIES=[
     specialName:"COMET REQUIEM + GLITCH PARADOX + SHATTER ABSOLUTION",specialDesc:"Rains comets and corrupts reality itself."},
   {name:"Concept of Truth",charKey:"cosmichighlord",hp:5200,str:220,agi:44,def:96,gold:9200,title:"The Idea That Defines Truth",isBoss:true,bossType:"highlord",
     specialName:"AXIOM CROWN + ORIGIN VERDICT + ABSOLUTE DECREE",specialDesc:"Defines what truth means across all narratives."},
+  {name:"Concept Of Adam",charKey:"conceptadam",hp:7600,str:280,agi:52,def:120,gold:12600,title:"The First Man in God's Image",isBoss:true,bossType:"adam",
+    specialName:"GOD'S INSIGHT + GOD'S GIFT + GOD'S IMAGE + GOD'S HAND",specialDesc:"The Garden of Eve itself answers his command."},
 ];
 
 // ═══ TIERED GEAR SYSTEM ═══
@@ -2542,6 +2682,7 @@ const LOOT_RARITY_META={
   legendary:{label:'Legendary',color:'#c06be0'},
   mythic:{label:'Mythic',color:'#e0b84f'},
   ascendant:{label:'Ascendant',color:'#7af5ff'},
+  cosmic:{label:'Cosmic',color:'#b8f6ff'},
 };
 const LOOT_ARMOR_SLOTS=['boots','gloves','helmet','chestplate'];
 const LOOT_WEAPON_TYPES=['sword','axe','staff','knuckles'];
@@ -2554,6 +2695,7 @@ const LOOT_AFFIXES={
   legendary:['Kingsbane','Titanbound','Eternal','Doomforged'],
   mythic:['Chrono-Shattered','Godslayer','Voidforged','Starborn'],
   ascendant:['Truthforged','Axiom-Bound','Heavenpiercing','Paradox-Eater'],
+  cosmic:['Genesis-Bound','Astral Crowned','Cosmic Warden','God-Image Forged'],
 };
 const LOOT_PASSIVES=[
   {id:'none',txt:''},
@@ -2740,7 +2882,7 @@ function rollLootRarity(roundIdx,isBoss){
   return 'rare';
 }
 function lootTier(rarity){
-  return {common:0,uncommon:1,rare:2,legendary:3,mythic:4,ascendant:5}[rarity]||0;
+  return {common:0,uncommon:1,rare:2,legendary:3,mythic:4,ascendant:5,cosmic:6}[rarity]||0;
 }
 function buildLootItem(roundIdx,e){
   const rarity=rollLootRarity(roundIdx,!!(e&&e.isBoss));
@@ -2778,6 +2920,31 @@ function buildLootItem(roundIdx,e){
     name:isWeapon?`${affix} ${LOOT_SLOT_NAMES.weapon}`:`${affix} ${LOOT_SLOT_NAMES[slot]}`,
     stats:roll,
   };
+}
+function buildCosmicLootItem(roundIdx,e){
+  const it=buildLootItem(roundIdx,e);
+  const cosmicNamesBySlot={
+    weapon:['Cosmic Edge','Genesis Cleaver','Eve-Star Staff','Firstfire Knuckles'],
+    boots:['Gardenstride Greaves','Celestial Root Boots'],
+    gloves:['Adamic Grasp Gauntlets','Hand of Dawn Gloves'],
+    helmet:['Crown of First Light','Eden Halo Helm'],
+    chestplate:['Origin Carapace','Garden Aegis Plate'],
+  };
+  const names=cosmicNamesBySlot[it.slot]||['Cosmic Relic'];
+  const chosen=names[ri(0,names.length-1)];
+  const passivePool=['ferocity','phaseShift','execution','chronoWard','lifesteal','crit','dodge'];
+  const boost=1.38;
+  it.rarity='cosmic';
+  it.rarityLabel='Cosmic';
+  it.color='#b8f6ff';
+  it.affix=(LOOT_AFFIXES.cosmic||['Cosmic'])[ri(0,(LOOT_AFFIXES.cosmic||['Cosmic']).length-1)];
+  it.name=chosen;
+  for(const k of ['str','agi','def','hp']){
+    if(it.stats[k])it.stats[k]=Math.max(it.stats[k]+1,Math.floor(it.stats[k]*boost));
+  }
+  if(it.stats.bossBonus)it.stats.bossBonus=Math.min(0.22,Math.max(it.stats.bossBonus+0.02,it.stats.bossBonus*1.45));
+  if(!it.passive||it.passive==='none')it.passive=passivePool[ri(0,passivePool.length-1)];
+  return it;
 }
 function lootBonusText(it){
   const bits=[];
@@ -2857,6 +3024,21 @@ function grantLootDrop(p,e,roundIdx){
   const drop=buildLootItem(roundIdx,e);
   p.inventory.push(drop);
   return drop;
+}
+function rollPostTruthCosmicDropCount(){
+  // Guaranteed 1 cosmic piece; 49% chance to get 2 instead.
+  return rnd()<0.49 ? 2 : 1;
+}
+function grantPostTruthCosmicDrops(p,e,roundIdx){
+  ensureInv(p);ensureLoadout(p);
+  const count=rollPostTruthCosmicDropCount();
+  const drops=[];
+  for(let i=0;i<count;i++){
+    const d=buildCosmicLootItem(roundIdx,e);
+    p.inventory.push(d);
+    drops.push(d);
+  }
+  return drops;
 }
 
 // Equip weapon — shop upgrade only (sequential tiers); old weapon → satchel
@@ -3211,7 +3393,7 @@ function buildShareCard(result){
     else if((i+1) === result.deathRound) bar.push('🗡️');
     else bar.push('⬛');
   }
-  const enemyName = result.deathRound ? ['Slave','Barbarian','Legionnaire','Praetorian','Champion','Berserker','Daemonicus','Undying','Kronos','Saturn','Aeternon','Nemesis','Concept Lizard','Concept Reptilian','Concept Dragon','Concept Splitter','Concept Shatterer','Concept of Truth'][result.deathRound-1] : 'Concept of Truth';
+  const enemyName = result.deathRound ? ['Slave','Barbarian','Legionnaire','Praetorian','Champion','Berserker','Daemonicus','Undying','Kronos','Saturn','Aeternon','Nemesis','Concept Lizard','Concept Reptilian','Concept Dragon','Concept Splitter','Concept Shatterer','Concept of Truth','Concept Of Adam'][result.deathRound-1] : 'Concept Of Adam';
   const outcome = result.won ? '👑 CHAMPION' : `${enemyName} R${result.deathRound}`;
   const hpTxt = result.won ? `HP ${result.finalHp}/${result.maxHp}` : '';
   const modLine=(result.dailyModTag&&String(result.dailyModTag))?`\nSigil: ${result.dailyModTag}`:'';
@@ -3247,6 +3429,8 @@ function startFight(){
   if(ahHeaven)ahHeaven.classList.add('hidden');
   const sceneEl=document.getElementById('scene');
   if(sceneEl)sceneEl.classList.remove('highlord-finale');
+  if(sceneEl)sceneEl.classList.remove('garden-eve');
+  if(sceneEl)sceneEl.classList.remove('adam-presence');
   const truthArena=document.getElementById('truth-arena');
   if(truthArena)truthArena.classList.remove('pulse');
   const shStorm=document.getElementById('shatterer-storm');
@@ -3315,6 +3499,10 @@ function startFight(){
     if(shStorm)shStorm.classList.add('on');
     if(sceneEl)sceneEl.classList.add('highlord-finale');
     if(truthArena)truthArena.classList.add('pulse');
+  } else if(et.bossType==='adam'){
+    document.getElementById('esprite').querySelector('svg').classList.add('aura-adam');
+    if(sceneEl)sceneEl.classList.add('garden-eve');
+    if(sceneEl)sceneEl.classList.add('adam-presence');
   } else if(et.bossType==='void'){
     document.getElementById('esprite').querySelector('svg').classList.add('aura-void');
   } else if(et.bossType==='nemesis'){
@@ -3343,6 +3531,8 @@ function startFight(){
     badge.innerHTML=`<div class="boss-badge bb-shatterer">☄ REALITY SHATTERER</div>`;
   } else if(et.isBoss&&et.bossType==='highlord'){
     badge.innerHTML=`<div class="boss-badge bb-highlord">👑 CONCEPT OF TRUTH</div>`;
+  } else if(et.isBoss&&et.bossType==='adam'){
+    badge.innerHTML=`<div class="boss-badge bb-adam">✶ CONCEPT OF ADAM</div>`;
   } else if(et.isBoss&&et.bossType==='void'){
     badge.innerHTML=`<div class="boss-badge bb-void">◈ THE NAMELESS</div>`;
   } else if(et.isBoss&&et.bossType==='nemesis'){
@@ -3429,6 +3619,14 @@ function startFight(){
     G.enemy.agi=Math.max(1,Math.round(G.enemy.agi*q));
     G.enemy.def=Math.max(1,Math.round(G.enemy.def*q));
   }
+  if(et.bossType==='adam'){
+    const q=1.42;
+    G.enemy.maxHp=Math.max(1,Math.round(G.enemy.maxHp*q));
+    G.enemy.hp=G.enemy.maxHp;
+    G.enemy.str=Math.max(1,Math.round(G.enemy.str*q));
+    G.enemy.agi=Math.max(1,Math.round(G.enemy.agi*q));
+    G.enemy.def=Math.max(1,Math.round(G.enemy.def*q));
+  }
 
   if(et.bossType==='nemesis'){
     G.busy=true;
@@ -3508,6 +3706,16 @@ function startFight(){
       addLog(`Lore: before empires, before gods, before language — this entity authored what 'true' means.`,'bsp');
       G.busy=false;render();
     },2850);
+    render();return;
+  }else if(et.bossType==='adam'){
+    G.busy=true;
+    showAdamIntro(()=>{
+      addLog(`The arena blooms into the Garden of Eve. Leaves whisper in a language older than Rome.`,'bsp');
+      addLog(`CONCEPT OF ADAM steps forward: first-born flesh, carrying GOD'S INSIGHT, GOD'S GIFT, GOD'S IMAGE, and GOD'S HAND.`,'bsp');
+      addLog(`He does not rule by argument. He rules by origin.`,'bsp');
+      addLog(`Lore: before kings and scripture, he walked with creation and named what breath could become.`,'bsp');
+      G.busy=false;render();
+    });
     render();return;
   }else if(et.bossType==='void'){
     G.busy=true;
@@ -3622,6 +3830,10 @@ function act(a){
       d=Math.max(0,e.hp-1);
       e.undyingGuard=false;
       addLog(`✦ UNDYING AEGIS cracks — lethal damage is denied once.`,'bsp');
+    }
+    if(e&&e.isBoss&&e.bossType==='adam'&&(e.godsImageTurns||0)>0&&wasHit){
+      addLog(`✧ GOD'S IMAGE reflects your strike — Adam cannot be wounded right now.`,'bsp');
+      return{dmg:0,blocked:true};
     }
     if(!e||e.bossType!=='nemesis'||!e.finalPhase){
       if(wasHit){e.hp=Math.max(0,e.hp-d);p.lastDmgDealt=d;}
@@ -3782,6 +3994,84 @@ function enemyTurn(){
     if(p.hp<=0){addLog(`The demon's surge claims you!`,'bsp');document.getElementById('psprite').classList.add('dead');setTimeout(showDefeat,900);return;}
     G.myTurn=true;render();return;
   }
+
+  // ── UNDYING GOD MECHANICS ───────────────────────────────
+  if(e.isBoss&&e.bossType==='god'){
+    e.godTurn=(e.godTurn||0)+1;
+
+    // Mid-fight awakening: becomes more oppressive even before resurrection.
+    if(e.hp/e.maxHp<0.62&&!e.godAwakened){
+      e.godAwakened=true;
+      e.str=Math.floor(e.str*1.18);
+      e.agi=Math.floor(e.agi*1.12);
+      addLog(`✦ CELESTIAL AWAKENING — the Undying God sharpens his cosmic edge.`,'god');
+      triggerGodMoveFx('nova');
+      G.myTurn=true;render();return;
+    }
+
+    // Timer 1 (every 3 turns): Soul Nova drains and heals.
+    if(e.godTurn%3===0){
+      const novaDmg=Math.max(8,Math.floor(e.str*0.92)+ri(3,8));
+      let dealt=novaDmg;
+      if(p.defending)dealt=Math.max(2,Math.floor(novaDmg*0.82));
+      if(p.hasSoulAegis&&!p.soulAegisUsed&&dealt>=p.hp){
+        p.soulAegisUsed=true;
+        addLog(`✦ SOUL AEGIS absorbs SOUL NOVA!`,'sp');
+      }else{
+        p.hp=Math.max(0,p.hp-dealt);
+        const siphon=Math.max(4,Math.floor(dealt*0.5));
+        e.hp=Math.min(e.maxHp,e.hp+siphon);
+        addLog(`✶ SOUL NOVA — ${dealt} astral damage, Undying God siphons ${siphon} HP!`,'god');
+        aAtk('e');aHit('p',dealt);
+      }
+      triggerGodMoveFx('nova');
+      p.defending=false;
+      if(p.hp<=0){
+        const riseChance=getBlessingRiseChance(p);
+        if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
+          p.blessingUsed=true;p.hp=0;G.busy=true;
+          document.getElementById('psprite').classList.add('dead');render();
+          triggerResurrection();return;
+        }
+        addLog(`Soul and steel fail together under the nova.`,'sp');
+        document.getElementById('psprite').classList.add('dead');setTimeout(showDefeat,900);return;
+      }
+      G.myTurn=true;render();return;
+    }
+
+    // Timer 2 (every 5 turns): Starfall Reap, high damage armor-piercing strike.
+    if(e.godTurn%5===0){
+      const reapDef=Math.max(1,Math.floor(p.def*0.45));
+      const reap=calcDmg(e.str,p.agi,reapDef,1.95,(ptot.dodge||0)*0.82);
+      if(reap<0){
+        addLog(`☄ STARFALL REAP cleaves the arena — you evade by a breath!`,'en');
+        sfxDodge();
+      }else{
+        if(p.hasSoulAegis&&!p.soulAegisUsed&&reap>=p.hp){
+          p.soulAegisUsed=true;
+          addLog(`✦ SOUL AEGIS shatters to block STARFALL REAP!`,'sp');
+        }else{
+          p.hp=Math.max(0,p.hp-reap);
+          addLog(`☄ STARFALL REAP — ${reap} cosmic damage! Armor is partly ignored.`,'god');
+          aAtk('e');aHit('p',reap);
+        }
+      }
+      triggerGodMoveFx('reap');
+      p.defending=false;
+      if(p.hp<=0){
+        const riseChance=getBlessingRiseChance(p);
+        if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
+          p.blessingUsed=true;p.hp=0;G.busy=true;
+          document.getElementById('psprite').classList.add('dead');render();
+          triggerResurrection();return;
+        }
+        addLog(`You are harvested by falling stars.`,'sp');
+        document.getElementById('psprite').classList.add('dead');setTimeout(showDefeat,900);return;
+      }
+      G.myTurn=true;render();return;
+    }
+  }
+  // ── END UNDYING GOD ─────────────────────────────────────
 
   // ── KRONOS MECHANICS ────────────────────────────────────
   if(e.isBoss&&e.bossType==='kronos'){
@@ -4171,6 +4461,118 @@ function enemyTurn(){
     }
   }
   // ── END CONCEPT SHATTERER ───────────────────────────────
+
+  // ── CONCEPT OF ADAM MECHANICS ───────────────────────────
+  if(e.isBoss&&e.bossType==='adam'){
+    e.adamTurn=(e.adamTurn||0)+1;
+    if(e.adamTurn%2===1){
+      const weight=Math.max(3,Math.floor(e.str*0.08));
+      p.hp=Math.max(0,p.hp-weight);
+      addLog(`✧ PRESENCE OF ORIGIN — Adam's sheer being crushes for ${weight} ambient damage.`,'bsp');
+      triggerHighlordMoveFx('crown');
+      if(p.hp<=0){
+        const riseChance=getBlessingRiseChance(p);
+        if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
+          p.blessingUsed=true;p.hp=0;G.busy=true;
+          document.getElementById('psprite').classList.add('dead');render();
+          triggerResurrection();return;
+        }
+        addLog(`You collapse before the weight of first creation.`,'sp');
+        document.getElementById('psprite').classList.add('dead');setTimeout(showDefeat,900);return;
+      }
+    }
+
+    if(e.godsImageTurns>0){
+      e.godsImageTurns=Math.max(0,e.godsImageTurns-1);
+      if(e.godsImageTurns===0)addLog(`✧ GOD'S IMAGE fades — Adam's flesh can be pierced again.`,'bsp');
+    }
+
+    if(!e.adamLore1&&e.hp/e.maxHp<0.84){
+      e.adamLore1=true;
+      addLog(`Lore: this is not a man who learned power. This is power learning to be a man.`,'bsp');
+    }
+    if(!e.adamLore2&&e.hp/e.maxHp<0.46){
+      e.adamLore2=true;
+      addLog(`Lore: where he looks, names become law. Where he reaches, law becomes wound.`,'bsp');
+    }
+
+    if(e.hp/e.maxHp<0.76&&!e.godsImageUsed){
+      e.godsImageUsed=true;
+      e.godsImageTurns=2;
+      p.timeLocked=Math.max(p.timeLocked||0,1);
+      addLog(`✧ GOD'S IMAGE — Adam is untouchable for 2 turns, and your next action is erased.`,'bsp');
+      triggerHighlordMoveFx('crown');
+      G.myTurn=true;render();return;
+    }
+
+    if(e.hp/e.maxHp<0.58&&!e.godsGiftUsed&&e.hp>0){
+      e.godsGiftUsed=true;
+      const heal=Math.floor(e.maxHp*0.28);
+      e.hp=Math.min(e.maxHp,e.hp+heal);
+      e.str=Math.floor(e.str*1.12);
+      e.def=Math.floor(e.def*1.10);
+      addLog(`✦ GOD'S GIFT — Adam restores ${heal} HP and his form hardens.`,'bsp');
+      triggerHighlordMoveFx('retcon');
+      G.myTurn=true;render();return;
+    }
+
+    if(e.adamTurn%5===0){
+      const hand=Math.max(52,Math.floor(e.str*1.16)+ri(12,24));
+      if(p.hasSoulAegis&&!p.soulAegisUsed&&hand>=p.hp){
+        p.soulAegisUsed=true;
+        addLog(`✦ SOUL AEGIS absorbs GOD'S HAND!`,'sp');
+      }else{
+        p.hp=Math.max(0,p.hp-hand);
+        addLog(`☩ GOD'S HAND — ${hand} unavoidable origin damage.`,'bsp');
+        aAtk('e');aHit('p',hand);
+      }
+      triggerHighlordMoveFx('decree');
+      p.defending=false;
+      if(p.hp<=0){
+        const riseChance=getBlessingRiseChance(p);
+        if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
+          p.blessingUsed=true;p.hp=0;G.busy=true;
+          document.getElementById('psprite').classList.add('dead');render();
+          triggerResurrection();return;
+        }
+        addLog(`The first hand closes on your final breath.`,'sp');
+        document.getElementById('psprite').classList.add('dead');setTimeout(showDefeat,900);return;
+      }
+      G.myTurn=true;render();return;
+    }
+
+    if(e.adamTurn%3===0){
+      const seenDef=Math.max(1,Math.floor(p.def*0.58));
+      const insight=calcDmg(e.str,p.agi,seenDef,1.62,(ptot.dodge||0)*0.65);
+      triggerHighlordMoveFx('retcon');
+      if(insight<0){
+        addLog(`✶ GOD'S INSIGHT reads your intent — still, you slip the line this time.`,'en');
+        sfxDodge();
+      }else{
+        if(p.hasSoulAegis&&!p.soulAegisUsed&&insight>=p.hp){
+          p.soulAegisUsed=true;
+          addLog(`✦ SOUL AEGIS absorbs GOD'S INSIGHT!`,'sp');
+        }else{
+          p.hp=Math.max(0,p.hp-insight);
+          addLog(`✶ GOD'S INSIGHT — ${insight} damage; your defense is read before you move.`,'bsp');
+          aAtk('e');aHit('p',insight);
+        }
+      }
+      p.defending=false;
+      if(p.hp<=0){
+        const riseChance=getBlessingRiseChance(p);
+        if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
+          p.blessingUsed=true;p.hp=0;G.busy=true;
+          document.getElementById('psprite').classList.add('dead');render();
+          triggerResurrection();return;
+        }
+        addLog(`He sees the answer before you ask it.`,'sp');
+        document.getElementById('psprite').classList.add('dead');setTimeout(showDefeat,900);return;
+      }
+      G.myTurn=true;render();return;
+    }
+  }
+  // ── END CONCEPT OF ADAM ─────────────────────────────────
 
   // ── COSMIC REPTILIAN HIGHLORD MECHANICS ─────────────────
   if(e.isBoss&&e.bossType==='highlord'){
@@ -4804,14 +5206,21 @@ function endFight(won){
   const gAdd=computeRoundGoldReward(e);
   p.gold+=gAdd;p.wins++;
   // Award soul fragments
-  const SOUL_REWARDS=[5,8,12,16,20,28,50,80,120,180,260,360,520,620,760,980,1400,1900];
+  const SOUL_REWARDS=[5,8,12,16,20,28,50,80,120,180,260,360,520,620,760,980,1400,1900,2600];
   const souls=SOUL_REWARDS[G.ei]||0;
   p.souls=(p.souls||0)+souls;
   if(G.ei>=14&&unlockWarcryAscension()){
     addLog(`🔥 LEGACY AWAKENED — War Cry evolves permanently into PRIMAL HOWL!`,'sp');
     addLog(`PRIMAL HOWL: +8 STR for 3 turns, +2 Resonance, shorter cooldown.`,'sp');
   }
-  const drop=grantLootDrop(p,e,G.ei);
+  let drops=[];
+  // One round before Concept of Truth and all following enemies use cosmic drops.
+  const postTruth=G.ei>=16;
+  if(postTruth){
+    drops=grantPostTruthCosmicDrops(p,e,G.ei);
+  }else{
+    drops=[grantLootDrop(p,e,G.ei)];
+  }
   // Blood Covenant: heal after each kill
   if(p.hasBloodCovenant){p.hp=Math.min(p.maxHp,p.hp+25);}
   // Remove battle brew bonus
@@ -4823,7 +5232,15 @@ function endFight(won){
   // Reset per-fight soul item state
   p.soulAegisUsed=false;
   addLog(`${e.name} FALLS! ${e.isBoss?'The void trembles!':'The crowd erupts!'} +${gAdd} gold · +${souls} souls!`,'sp');
-  addLog(`💎 ${drop.rarityLabel.toUpperCase()} LOOT — ${drop.icon} ${drop.name} (${lootBonusText(drop)})`,'sp');
+  if(postTruth){
+    addLog(`🌌 COSMIC CACHE — ${e.name} drops ${drops.length} cosmic piece${drops.length>1?'s':''}!`,'sp');
+    for(const d of drops){
+      addLog(`💎 ${d.rarityLabel.toUpperCase()} LOOT — ${d.icon} ${d.name} (${lootBonusText(d)})`,'sp');
+    }
+  }else{
+    const d=drops[0];
+    addLog(`💎 ${d.rarityLabel.toUpperCase()} LOOT — ${d.icon} ${d.name} (${lootBonusText(d)})`,'sp');
+  }
   sfxVictory();
   G.busy=true;render();
   document.getElementById('esprite').classList.add('dead');
@@ -4995,6 +5412,39 @@ function triggerHighlordMoveFx(kind='crown'){
   setTimeout(()=>{try{fx.innerHTML='';scene.classList.remove('scene-shake');}catch(_){}},860);
 }
 
+function triggerGodMoveFx(kind='nova'){
+  const fx=document.getElementById('god-fx');
+  const scene=document.getElementById('scene');
+  const esp=document.getElementById('esprite');
+  if(!fx||!scene)return;
+  fx.innerHTML='';
+  const rune=document.createElement('div');
+  rune.className='gfx-rune';
+  rune.textContent=kind==='reap'?'☄':'✶';
+  rune.style.animation='gfxRuneBurst 780ms ease-out forwards';
+  fx.appendChild(rune);
+  const ring=document.createElement('div');
+  ring.className='gfx-ring';
+  ring.style.animation='gfxRingPulse 700ms ease-out forwards';
+  fx.appendChild(ring);
+  if(kind==='reap'){
+    const beam=document.createElement('div');
+    beam.className='gfx-beam';
+    beam.style.animation='gfxBeamDrop 760ms ease-out forwards';
+    fx.appendChild(beam);
+  }
+  if(esp){
+    esp.classList.remove('ghost');
+    void esp.offsetWidth;
+    esp.classList.add('ghost');
+    setTimeout(()=>{try{esp.classList.remove('ghost');}catch(_){}},460);
+  }
+  scene.classList.remove('god-flash');
+  void scene.offsetWidth;
+  scene.classList.add('god-flash');
+  setTimeout(()=>{try{fx.innerHTML='';scene.classList.remove('god-flash');}catch(_){}},860);
+}
+
 // ══════════════════════════════════════════════════════════
 // RENDER
 // ══════════════════════════════════════════════════════════
@@ -5049,6 +5499,14 @@ function render(){
   if(e.isBoss&&e.bossType==='demon')et.push(`<span class="ft ft-demon">SURGE ${e.surgeTurnCount%4===0?'NOW':4-(e.surgeTurnCount%4)}</span>`);
   if(e.isBoss&&e.bossType==='god'&&!e.resurrected&&e.hp/e.maxHp<0.5)et.push(`<span class="ft ft-god">WEAKENING</span>`);
   if(e.resurrected)et.push(`<span class="ft ft-god">RISEN</span>`);
+  if(e.isBoss&&e.bossType==='god'){
+    const gTurn=e.godTurn||0;
+    const novaIn=3-(gTurn%3);
+    const reapIn=5-(gTurn%5);
+    et.push(`<span class="ft ft-god2">NOVA IN ${novaIn===3?'NOW':novaIn}</span>`);
+    et.push(`<span class="ft ft-god2">REAP IN ${reapIn===5?'NOW':reapIn}</span>`);
+    if(e.godAwakened)et.push('<span class="ft ft-god">AWAKENED</span>');
+  }
   if(e.isBoss&&e.bossType==='kronos'){
     const slamIn=3-((e.slamTurn||0)%3);
     et.push(`<span class="ft ft-slam">SLAM IN ${slamIn}</span>`);
@@ -5095,6 +5553,15 @@ function render(){
     if((e.nullfieldTurns||0)>0)et.push(`<span class="ft ft-highlord">NULLFIELD ×${e.nullfieldTurns}</span>`);
     if(!e.originRewriteDone&&e.hp/e.maxHp<0.72)et.push('<span class="ft ft-highlord">RETCON NEAR</span>');
     if(e.apotheosis)et.push('<span class="ft ft-highlord">APOTHEOSIS</span>');
+  }
+  if(e.isBoss&&e.bossType==='adam'){
+    const aIn=3-((e.adamTurn||0)%3);
+    const hIn=5-((e.adamTurn||0)%5);
+    et.push(`<span class="ft ft-adam">INSIGHT IN ${aIn===3?'NOW':aIn}</span>`);
+    et.push(`<span class="ft ft-adam">HAND IN ${hIn===5?'NOW':hIn}</span>`);
+    if((e.godsImageTurns||0)>0)et.push(`<span class="ft ft-adam">IMAGE ×${e.godsImageTurns}</span>`);
+    if(!e.godsGiftUsed&&e.hp/e.maxHp<0.68)et.push('<span class="ft ft-adam">GIFT NEAR</span>');
+    if(e.godsGiftUsed)et.push('<span class="ft ft-adam">GIFT TAKEN</span>');
   }
   if(e.isBoss&&e.bossType==='concept'){
     const bIn=3-((e.conceptTurn||0)%3);
@@ -5320,7 +5787,7 @@ function showShop(){
   satchel+='<div class="shop-satchel-block shop-loot-block" style="margin-top:8px">';
   satchel+='<div class="shop-satchel-head" style="color:#d0b878"><span style="margin-right:4px">🎒</span> Satchel Loot<span class="satchel-sub" style="color:#7a6a44">Tap an item to equip into its slot</span></div>';
   if(!p.inventory.length){
-    satchel+='<div class="inv-empty" style="color:#7a6a44">No loot yet. Gladiators can drop Common, Uncommon, Rare, Legendary, Mythic, and Ascendant gear.</div>';
+    satchel+='<div class="inv-empty" style="color:#7a6a44">No loot yet. Gladiators can drop Common, Uncommon, Rare, Legendary, Mythic, Ascendant, and Cosmic gear.</div>';
   }else{
     satchel+='<div class="inv-list">';
     [...p.inventory].reverse().forEach((it,revIx)=>{
@@ -5356,7 +5823,14 @@ function buyGear(type,tier){
   showShop();
 }
 
-function buyItem(id){
+function updateShopGoldOnly(){
+  const p=G.player;
+  const goldEl=document.getElementById('shop-gold-txt');
+  if(goldEl)goldEl.innerHTML=`<small>GOLD</small> ${p.gold}`;
+}
+
+function buyItem(id,opt){
+  const fast=!!(opt&&opt.fast);
   const item=SHOP.find(i=>i.id===id);if(!item)return;
   // Apply grace discount to Angel's Blessing
   const cost=id==='bl'&&hasMilestone('grace')?item.cost-10:item.cost;
@@ -5365,8 +5839,12 @@ function buyItem(id){
   if(item.rep===false&&G.player[id+'_owned'])return false;
   G.player.gold-=cost;item.fn(G.player);
   if(item.rep===false)G.player[id+'_owned']=true;
-  sfxBuy();
-  showShop();
+  if(fast&&id==='bb'){
+    updateShopGoldOnly();
+  }else{
+    sfxBuy();
+    showShop();
+  }
   return true;
 }
 
@@ -5387,9 +5865,11 @@ function pickWave10Permanent(id){
 
 let holdBuyTimer=null;
 let holdBuyInterval=null;
+let holdBuyCount=0;
 function stopHoldBuy(){
   if(holdBuyTimer){clearTimeout(holdBuyTimer);holdBuyTimer=null;}
   if(holdBuyInterval){clearInterval(holdBuyInterval);holdBuyInterval=null;}
+  holdBuyCount=0;
 }
 function startHoldBuy(id,ev){
   if(id!=='bb')return;
@@ -5398,9 +5878,16 @@ function startHoldBuy(id,ev){
   if(!buyItem(id))return;
   holdBuyTimer=setTimeout(()=>{
     holdBuyInterval=setInterval(()=>{
-      if(!buyItem(id))stopHoldBuy();
-    },150);
-  },260);
+      if(!buyItem(id,{fast:true})){
+        stopHoldBuy();
+        showShop();
+        return;
+      }
+      holdBuyCount++;
+      // Refresh full shop occasionally so affordability states stay accurate.
+      if(holdBuyCount%6===0)showShop();
+    },70);
+  },120);
 }
 
 function nextFight(){
@@ -5449,11 +5936,22 @@ function showVictory(){
   saveRunState();
   const p=G.player;hideAllScreens();
   document.getElementById('end-scr').classList.remove('hidden');
-  document.getElementById('end-ico').textContent='👑';
-  document.getElementById('end-tit').textContent='IMMORTAL';
+  const endBox=document.querySelector('#end-scr .sbox');
+  if(endBox)endBox.classList.remove('end-adam-victory','end-adam-defeat');
   const narrow=typeof window.matchMedia==='function'&&window.matchMedia('(max-width:520px)').matches;
-  document.getElementById('end-sub').textContent=narrow?'Champion — all rounds cleared':'All Challengers Fallen · You Are The Arena';
-  document.getElementById('end-bod').innerHTML=`You faced gladiators. You faced gods.<br>You faced the void. You faced yourself.<br><b style="color:#e8b84b">Nothing remains. You are everything.</b>`;
+  const finalBoss=G.enemy&&G.enemy.bossType==='adam';
+  if(finalBoss){
+    if(endBox)endBox.classList.add('end-adam-victory');
+    document.getElementById('end-ico').textContent='🌿';
+    document.getElementById('end-tit').textContent='ORIGINBREAKER';
+    document.getElementById('end-sub').textContent=narrow?'Adam fallen · Garden silent':'Concept Of Adam Defeated · Garden of Eve Falls Quiet';
+    document.getElementById('end-bod').innerHTML=`You cut through first flesh and first law.<br>The Garden of Eve exhales and closes behind you.<br><b style="color:#d8ff9a">Even origin can bleed.</b>`;
+  }else{
+    document.getElementById('end-ico').textContent='👑';
+    document.getElementById('end-tit').textContent='IMMORTAL';
+    document.getElementById('end-sub').textContent=narrow?'Champion — all rounds cleared':'All Challengers Fallen · You Are The Arena';
+    document.getElementById('end-bod').innerHTML=`You faced gladiators. You faced gods.<br>You faced the void. You faced yourself.<br><b style="color:#e8b84b">Nothing remains. You are everything.</b>`;
+  }
   const rs=G.runStats||{};
   document.getElementById('end-stats').innerHTML=`
     <div class="sst">HP: <b>${p.hp}/${p.maxHp}</b></div><div class="sst">STR: <b>${p.str}</b></div>
@@ -5470,12 +5968,23 @@ function showDefeat(){
   if(p.activeBattleBonus>0){p.maxHp-=p.activeBattleBonus;p.activeBattleBonus=0;}
   hideAllScreens();
   document.getElementById('end-scr').classList.remove('hidden');
-  document.getElementById('end-ico').textContent='💀';
-  document.getElementById('end-tit').textContent='FALLEN';
+  const endBox=document.querySelector('#end-scr .sbox');
+  if(endBox)endBox.classList.remove('end-adam-victory','end-adam-defeat');
   const narrow=typeof window.matchMedia==='function'&&window.matchMedia('(max-width:520px)').matches;
   const killer=e?e.name:'your enemy';
-  document.getElementById('end-sub').textContent=narrow?`R${G.ei+1} · ${killer}`:`Slain by ${killer}`;
-  document.getElementById('end-bod').innerHTML=`The arena claims another soul.<br>You fell on Round <b style="color:#e8b84b">${G.ei+1}</b>.`;
+  const adamKill=e&&e.bossType==='adam';
+  if(adamKill){
+    if(endBox)endBox.classList.add('end-adam-defeat');
+    document.getElementById('end-ico').textContent='🍎';
+    document.getElementById('end-tit').textContent='EXILED';
+    document.getElementById('end-sub').textContent=narrow?`R${G.ei+1} · Adam`:`Cast out by Concept Of Adam`;
+    document.getElementById('end-bod').innerHTML=`The first man closes his hand and the Garden rejects your name.<br>You fall on Round <b style="color:#d8ff9a">${G.ei+1}</b>, beneath leaves that remember everyone.`;
+  }else{
+    document.getElementById('end-ico').textContent='💀';
+    document.getElementById('end-tit').textContent='FALLEN';
+    document.getElementById('end-sub').textContent=narrow?`R${G.ei+1} · ${killer}`:`Slain by ${killer}`;
+    document.getElementById('end-bod').innerHTML=`The arena claims another soul.<br>You fell on Round <b style="color:#e8b84b">${G.ei+1}</b>.`;
+  }
   const rs=G.runStats||{};
   document.getElementById('end-stats').innerHTML=`
     <div class="sst">STR: <b>${p.str}</b></div><div class="sst">DEF: <b>${p.def}</b></div>
@@ -6032,6 +6541,57 @@ function _finishSaturnIntro(){
   },1150);
 }
 
+let _adamIntroCallback=null;
+function showAdamIntro(onComplete){
+  _adamIntroCallback=onComplete;
+  const scr=document.getElementById('adam-intro');
+  const cc=document.getElementById('ai-cracks');cc.innerHTML='';
+  [
+    {left:'10%',w:'2px',h:'42%',d:'0.95s',dl:'0.25s'},
+    {left:'24%',w:'3px',h:'61%',d:'1.12s',dl:'0.58s'},
+    {left:'39%',w:'2px',h:'74%',d:'1.06s',dl:'0.36s'},
+    {left:'54%',w:'3px',h:'66%',d:'1.2s',dl:'0.86s'},
+    {left:'70%',w:'2px',h:'50%',d:'1.02s',dl:'0.72s'},
+    {left:'86%',w:'2px',h:'62%',d:'1.16s',dl:'0.46s'},
+  ].forEach(c=>{
+    const d=document.createElement('div');d.className='acrack';
+    d.style.cssText=`left:${c.left};--w:${c.w};--h:${c.h};--d:${c.d};--dl:${c.dl}`;cc.appendChild(d);
+  });
+  const lore=document.getElementById('ai-lore');lore.innerHTML='';
+  [
+    {txt:'After Truth came a memory older than doctrine.',cls:'al al-s',dl:.45},
+    {txt:'The garden opens. The witness becomes the soil.',cls:'al al-m',dl:1.25},
+    {txt:'',cls:'al al-s',dl:1.9},
+    {txt:'The first breath returns wearing armor.',cls:'al al-s',dl:2.35},
+    {txt:'He sees what you will do before your hand decides.',cls:'al al-m',dl:3.3},
+    {txt:'',cls:'al al-s',dl:4.0},
+    {txt:'GOD\'S INSIGHT. GOD\'S GIFT. GOD\'S IMAGE. GOD\'S HAND.',cls:'al al-b',dl:4.7},
+    {txt:'Concept Of Adam stands where beginnings were written.',cls:'al al-s',dl:5.95},
+  ].forEach(({txt,cls,dl})=>{
+    const d=document.createElement('span');d.className=cls;d.textContent=txt;
+    d.style.setProperty('--dl',dl+'s');lore.appendChild(d);
+  });
+  const nameEl=document.getElementById('ai-name');
+  nameEl.style.setProperty('--dl','7.15s');
+  nameEl.style.animation='none';void nameEl.offsetWidth;nameEl.style.animation='';
+  scr.classList.remove('hidden');
+  initAudio();
+  setTimeout(()=>{if(typeof sfxAdamIntro==='function')sfxAdamIntro();},120);
+  setTimeout(()=>{if(typeof sfxGodsHand==='function')sfxGodsHand();},3400);
+  if(typeof sfxBossEnter==='function'){setTimeout(sfxBossEnter,480);setTimeout(sfxBossEnter,7800);}
+  setTimeout(()=>_finishAdamIntro(),10400);
+}
+function skipAdamIntro(){_finishAdamIntro();}
+function _finishAdamIntro(){
+  const scr=document.getElementById('adam-intro');
+  if(scr.classList.contains('hidden'))return;
+  scr.classList.add('afading');
+  setTimeout(()=>{
+    scr.classList.add('hidden');scr.classList.remove('afading');
+    if(_adamIntroCallback){_adamIntroCallback();_adamIntroCallback=null;}
+  },1150);
+}
+
 // ══════════════════════════════════════════════════════════
 // AUDIO ENGINE — Web Audio API music + SFX
 // ══════════════════════════════════════════════════════════
@@ -6423,6 +6983,37 @@ function sfxSaturnIntro(){_sfx(()=>{
     hg.gain.exponentialRampToValueAtTime(.001,hb+.09);
     n.connect(hg);hg.connect(sGain);n.start(hb);
   });
+})}
+
+function sfxAdamIntro(){_sfx(()=>{
+  const t=AC.currentTime;
+  [132,166.1,207.65,261.63].forEach((f,i)=>{
+    const ot=t+i*.18;
+    const o=AC.createOscillator();const g=AC.createGain();
+    o.type='triangle';
+    o.frequency.setValueAtTime(f*1.02,ot);
+    o.frequency.exponentialRampToValueAtTime(f*.74,ot+.66);
+    g.gain.setValueAtTime(.001,ot);
+    g.gain.linearRampToValueAtTime(.18/(i*.35+1),ot+.08);
+    g.gain.exponentialRampToValueAtTime(.001,ot+.78);
+    o.connect(g);g.connect(sGain);o.start(ot);o.stop(ot+.82);
+  });
+  const choir=AC.createOscillator();const cg=AC.createGain();
+  choir.type='sine';
+  choir.frequency.setValueAtTime(264,t+.12);
+  choir.frequency.exponentialRampToValueAtTime(330,t+.86);
+  cg.gain.setValueAtTime(.001,t+.1);
+  cg.gain.linearRampToValueAtTime(.2,t+.28);
+  cg.gain.exponentialRampToValueAtTime(.001,t+1.2);
+  choir.connect(cg);cg.connect(sGain);choir.start(t+.12);choir.stop(t+1.24);
+  const spark=AC.createOscillator();const sg=AC.createGain();
+  spark.type='square';
+  spark.frequency.setValueAtTime(980,t+.58);
+  spark.frequency.exponentialRampToValueAtTime(240,t+.92);
+  sg.gain.setValueAtTime(.001,t+.54);
+  sg.gain.linearRampToValueAtTime(.12,t+.62);
+  sg.gain.exponentialRampToValueAtTime(.001,t+1.02);
+  spark.connect(sg);sg.connect(sGain);spark.start(t+.58);spark.stop(t+1.04);
 })}
 
 function sfxArchonHeaven(){_sfx(()=>{
