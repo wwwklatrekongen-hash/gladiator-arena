@@ -17,7 +17,7 @@
 html,body{height:100%;overflow:hidden;background:#060302}
 body{
   font-family:'Cinzel',Georgia,serif;display:flex;flex-direction:column;height:100vh;
-  font-size:calc(11px * var(--ga-font,1));
+  font-size:calc(12px * var(--ga-font,1));
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
   text-rendering:optimizeLegibility;
@@ -165,11 +165,11 @@ html.ga-reduce-motion .tg-glow{animation:none}
   text-shadow:
     0 0 32px rgba(255,200,80,.55),0 0 2px rgba(20,8,2,.9),
     1px 1px 0 #3a2010,2px 3px 6px rgba(0,0,0,.85)}
-#sub{font-size:clamp(8px,1.05vw,10px);letter-spacing:clamp(5px,.9vw,9px);color:#8a6048;margin-top:3px;text-shadow:0 1px 2px rgba(0,0,0,.75),0 0 8px rgba(255,220,180,.08)}
+#sub{font-size:clamp(9px,1.1vw,11px);letter-spacing:clamp(4px,.85vw,8px);color:#c8a898;margin-top:3px;text-shadow:0 1px 3px rgba(0,0,0,.85),0 0 10px rgba(255,220,180,.06)}
 #rnd{
-  position:absolute;top:9px;right:12px;font-size:clamp(9px,1.1vw,11px);font-weight:700;color:#d4b8a0;letter-spacing:2px;z-index:5;
-  padding:5px 10px;border-radius:5px;background:rgba(12,6,4,.72);border:1px solid rgba(120,72,48,.55);
-  text-shadow:0 1px 3px rgba(0,0,0,.85);box-shadow:inset 0 1px 0 rgba(255,220,160,.1)}
+  position:absolute;top:9px;right:12px;font-size:clamp(10px,1.15vw,12px);font-weight:700;color:#f0dcc8;letter-spacing:1.5px;z-index:5;
+  padding:6px 12px;border-radius:6px;background:rgba(14,8,6,.82);border:1px solid rgba(160,100,72,.6);
+  text-shadow:0 1px 4px rgba(0,0,0,.9);box-shadow:inset 0 1px 0 rgba(255,230,200,.12)}
 
 /* ── FIGHTERS ─────────────────────────────────────────── */
 .fstage{position:absolute;bottom:26%;text-align:center;pointer-events:none;z-index:8}
@@ -177,7 +177,7 @@ html.ga-reduce-motion .tg-glow{animation:none}
 #estage{right:2%;width:200px}
 
 .fname{font-size:clamp(11px,1.15vw,13px);font-weight:700;letter-spacing:1.5px;color:#f0c878;text-shadow:0 0 12px rgba(232,184,75,.55),0 1px 3px rgba(0,0,0,.95);margin-bottom:3px}
-.etitle{font-size:clamp(8px,1vw,10px);color:#a07858;letter-spacing:1.2px;margin-bottom:4px;text-transform:uppercase;line-height:1.35;max-width:18em;margin-left:auto;margin-right:auto}
+.etitle{font-size:clamp(9px,1.05vw,11px);color:#c8a090;letter-spacing:1px;margin-bottom:4px;text-transform:uppercase;line-height:1.4;max-width:18em;margin-left:auto;margin-right:auto}
 
 /* character art wrapper */
 .swrap{display:inline-block;line-height:1;cursor:default;position:relative}
@@ -221,7 +221,7 @@ html.ga-reduce-motion .tg-glow{animation:none}
 .hh{background:linear-gradient(90deg,#2e6606,#4eaa14)}
 .hm{background:linear-gradient(90deg,#a86010,#d89828)}
 .hl{background:linear-gradient(90deg,#780606,#b81414)}
-.hpn{font-size:clamp(9px,1.05vw,11px);font-weight:700;color:#9a7860;margin-top:4px;letter-spacing:.3px}
+.hpn{font-size:clamp(10px,1.1vw,12px);font-weight:700;color:#d0b8a0;margin-top:4px;letter-spacing:.25px;text-shadow:0 1px 2px rgba(0,0,0,.65)}
 .ftags{display:flex;justify-content:center;gap:5px;margin-top:5px;flex-wrap:wrap}
 .ft{font-size:clamp(8px,1vw,9px);font-weight:700;padding:3px 6px;border-radius:3px;letter-spacing:.5px;text-transform:uppercase;line-height:1.2}
 .ft-g{background:#060e1e;color:#4a7add;border:1px solid #1c3c6a}
@@ -249,30 +249,28 @@ html.ga-reduce-motion .tg-glow{animation:none}
 @keyframes fup{0%{opacity:1;transform:translateY(0) scale(1)}50%{opacity:1;transform:translateY(-42px) scale(1.22)}100%{opacity:0;transform:translateY(-78px) scale(.65)}}
 
 /* ── BOTTOM PANEL ─────────────────────────────────────── */
-#panel{flex:1;background:#060301;border-top:2px solid #2c1206;display:flex;min-height:0;overflow:hidden}
+#panel{flex:1;background:linear-gradient(180deg,#0c0806,#060301 28%);border-top:2px solid #3a2210;display:flex;min-height:0;overflow:hidden}
 
-#logpanel{width:min(280px,32vw);flex-shrink:0;border-right:1px solid #2a1408;padding:10px 12px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#3a2010 transparent;background:rgba(4,2,1,.35)}
-#loglabel{font-size:clamp(9px,1vw,10px);letter-spacing:2.5px;color:#7a5840;border-bottom:1px solid #2a1408;padding-bottom:8px;margin-bottom:8px;text-transform:uppercase;font-weight:700}
-.lg{font-size:clamp(11px,1.1vw,13px);color:#6d4a32;padding:6px 0;border-bottom:1px solid rgba(44,18,6,.3);line-height:1.55;letter-spacing:.02em}
+#logpanel{width:min(312px,38vw);flex-shrink:0;border-right:1px solid #3a2412;padding:12px 14px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#5a3820 rgba(0,0,0,.2);background:linear-gradient(165deg,rgba(18,10,6,.88),rgba(6,4,2,.72))}
+#loglabel{font-size:clamp(10px,1.05vw,11px);letter-spacing:1.8px;color:#d8b898;border-bottom:1px solid #3a2412;padding-bottom:10px;margin-bottom:10px;text-transform:uppercase;font-weight:700;text-shadow:0 1px 2px rgba(0,0,0,.5)}
+.lg{font-size:clamp(11px,1.12vw,14px);color:#d4c4b0;padding:7px 0;border-bottom:1px solid rgba(60,36,20,.45);line-height:1.62;letter-spacing:.015em;text-shadow:0 1px 2px rgba(0,0,0,.35)}
 .lg:last-child{border:none}
-.lg.pl{color:#6ec040}
-.lg.en{color:#e84848}
-.lg.sp{color:#f0c060;font-weight:700}
-.lg.gh{color:#98dcff;font-weight:700;letter-spacing:.3px}
-.lg.bsp{color:#ff6a7a;font-weight:700;letter-spacing:.3px}
-.lg.god{color:#88b0ff;font-weight:700;letter-spacing:.3px}
+.lg.pl{color:#8ee060}
+.lg.en{color:#ff6868}
+.lg.sp{color:#ffd878;font-weight:700}
+.lg.gh{color:#b0e8ff;font-weight:700;letter-spacing:.25px}
+.lg.bsp{color:#ff8a9a;font-weight:700;letter-spacing:.25px}
+.lg.god{color:#a8c8ff;font-weight:700;letter-spacing:.25px}
 
-#ctrl{flex:1;padding:10px 12px;display:flex;flex-direction:column;gap:10px;min-width:0;overflow:hidden}
+#ctrl{flex:1;padding:12px 14px;display:flex;flex-direction:column;gap:11px;min-width:0;overflow:hidden;background:linear-gradient(180deg,rgba(10,6,4,.35),transparent 40%)}
 
 /* stat row */
 .srow{display:flex;gap:7px;align-items:center;flex-wrap:wrap;padding:4px 0}
-.ck{background:linear-gradient(180deg,#120802,#080402);border:1px solid #2c1608;border-radius:6px;padding:6px 11px;font-size:clamp(10px,1.05vw,11px);font-weight:700;color:#8a6048;letter-spacing:.35px;white-space:nowrap;display:inline-flex;align-items:center;gap:5px;line-height:1.3;transition:border-color .15s,background .15s}
-.ck:hover{border-color:#4a2c14}
-.ck b{color:#e8b84b;font-weight:700}
+.ck{background:linear-gradient(180deg,#1a0e06,#0c0804);border:1px solid #4a2c18;border-radius:6px;padding:7px 12px;font-size:clamp(10px,1.08vw,12px);font-weight:700;color:#c8a890;letter-spacing:.3px;white-space:nowrap;display:inline-flex;align-items:center;gap:5px;line-height:1.35;transition:border-color .15s,background .15s;text-shadow:0 1px 2px rgba(0,0,0,.4)}
+.ck:hover{border-color:#5c3820}
+.ck b{color:#ffe8a8;font-weight:700}
 .ckg{border-color:#4e2e08;background:linear-gradient(180deg,#1a0e02,#0a0602)}
 .ckg b{color:#f0c860}
-.ck-souls{border-color:#401070;background:linear-gradient(180deg,#120420,#080212)}
-.ck-souls b{color:#b040ff}
 .ckt{margin-left:auto;font-size:clamp(9px,1vw,10px);font-weight:700;letter-spacing:.8px;padding:5px 11px;border-radius:5px;text-transform:uppercase}
 .ckt.y{border-color:#2a5010;background:linear-gradient(180deg,#0a1a04,#060c02);color:#7ae020;box-shadow:0 0 10px rgba(80,220,10,.12)}
 .ckt.e{border-color:#5a1008;background:linear-gradient(180deg,#180404,#0a0202);color:#e83018;box-shadow:0 0 10px rgba(220,40,20,.12)}
@@ -292,8 +290,8 @@ html.ga-reduce-motion .tg-glow{animation:none}
 .ab:disabled::before,.ab:disabled::after{display:none}
 .abi{font-size:clamp(18px,2.2vw,22px);line-height:1;filter:drop-shadow(0 2px 3px rgba(0,0,0,.6));transition:transform .2s}
 .ab:hover:not(:disabled) .abi{transform:scale(1.15)}
-.abn{font-size:clamp(10px,1.05vw,11px);font-weight:700;letter-spacing:.9px;color:var(--ab-accent-text,#d8b050);text-shadow:0 1px 3px rgba(0,0,0,.75)}
-.abd{font-size:clamp(8px,1vw,9.5px);color:#9a7858;line-height:1.35;letter-spacing:.15px;min-height:11px;max-width:100%;padding:0 3px}
+.abn{font-size:clamp(11px,1.1vw,12px);font-weight:700;letter-spacing:.75px;color:var(--ab-accent-text,#d8b050);text-shadow:0 1px 4px rgba(0,0,0,.85)}
+.abd{font-size:clamp(9px,1.05vw,10.5px);color:#d0b8a0;line-height:1.4;letter-spacing:.12px;min-height:12px;max-width:100%;padding:0 4px;text-shadow:0 1px 2px rgba(0,0,0,.5)}
 
 /* Per-ability color theming */
 .ab-slash{--ab-accent:#a8c068;--ab-accent-rgb:168,192,104;--ab-accent-text:#c8d890}
@@ -315,7 +313,7 @@ html.ga-reduce-motion .tg-glow{animation:none}
 /* ── OVERLAYS ─────────────────────────────────────────── */
 .scr{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center}
 .sbg{position:absolute;inset:0;background:rgba(2,1,0,.88)}
-.sbox{position:relative;background:linear-gradient(155deg,#160b04,#0c0502);border:2px solid #4a2c0e;border-radius:8px;padding:22px 26px;max-width:420px;width:92%;text-align:center;box-shadow:0 0 60px rgba(0,0,0,.95),inset 0 0 0 1px rgba(80,44,14,.15)}
+.sbox{position:relative;background:linear-gradient(155deg,#1c1008,#0c0604);border:2px solid #5a3820;border-radius:10px;padding:22px 26px;max-width:420px;width:92%;text-align:center;box-shadow:0 0 60px rgba(0,0,0,.95),inset 0 0 0 1px rgba(120,80,40,.18)}
 /* Title card: scroll when vault / extras overflow the viewport (body is overflow:hidden) */
 #intro-scr{align-items:flex-start;justify-content:center;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:clamp(14px,3.5vh,32px) 12px max(32px,env(safe-area-inset-bottom,0px))}
 #intro-scr .sbg{position:fixed;inset:0;z-index:0}
@@ -326,21 +324,21 @@ html.ga-reduce-motion .tg-glow{animation:none}
 
 .sico{font-size:44px;display:block;margin-bottom:10px;line-height:1}
 .stit{font-family:'Cinzel Decorative',serif;font-size:clamp(20px,4.2vw,26px);font-weight:700;color:#f0c878;letter-spacing:3px;text-shadow:0 0 22px rgba(232,184,75,.45);margin-bottom:6px;line-height:1.2}
-.ssub{font-size:clamp(9px,1vw,10px);color:#6a4830;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:12px;line-height:1.4}
-.sbod{font-size:clamp(12px,1.15vw,14px);color:#8a6848;line-height:1.65;margin-bottom:14px}
+.ssub{font-size:clamp(10px,1.05vw,11px);color:#a88870;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;line-height:1.45}
+.sbod{font-size:clamp(13px,1.2vw,15px);color:#d8c8b8;line-height:1.68;margin-bottom:14px;text-shadow:0 1px 2px rgba(0,0,0,.35)}
 
 .sgrd{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:12px}
-.sst{font-size:10px;color:#4e3012;text-align:left;padding:2px 0}
-.sst b{color:#b07830}
+.sst{font-size:clamp(10px,1vw,11px);color:#8a6048;text-align:left;padding:2px 0}
+.sst b{color:#e8b870}
 
-.sbtn{display:inline-block;background:linear-gradient(180deg,#281408,#140802);border:2px solid #4e2c0e;border-radius:6px;padding:10px 22px;font-family:'Cinzel',serif;font-size:clamp(11px,1.1vw,12px);font-weight:700;color:#f0c878;letter-spacing:2px;cursor:pointer;transition:all .18s;text-transform:uppercase;margin:0 3px;line-height:1.35}
+.sbtn{display:inline-block;background:linear-gradient(180deg,#281408,#140802);border:2px solid #5a3818;border-radius:6px;padding:10px 22px;font-family:'Cinzel',serif;font-size:clamp(12px,1.12vw,13px);font-weight:700;color:#f8d898;letter-spacing:1.8px;cursor:pointer;transition:all .18s;text-transform:uppercase;margin:0 3px;line-height:1.35;text-shadow:0 1px 3px rgba(0,0,0,.5)}
 .sbtn:hover{background:linear-gradient(180deg,#3c1c0a,#180a04);border-color:#7a4818;box-shadow:0 0 18px rgba(160,110,18,.25)}
 .sbtn:disabled{opacity:.32;cursor:not-allowed;filter:grayscale(.15);box-shadow:none}
 .sbtn:disabled:hover{background:linear-gradient(180deg,#281408,#140802);border-color:#4e2c0e;box-shadow:none}
 
-.ia-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:clamp(10px,1.05vw,11px);margin-bottom:12px;border:1px solid #341808;border-radius:6px;padding:10px 12px;background:rgba(0,0,0,.38);text-align:left}
-.ia-item{color:#6a4830;line-height:1.65}
-.ia-item b{color:#b88850}
+.ia-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:clamp(11px,1.08vw,12px);margin-bottom:12px;border:1px solid #4a3018;border-radius:8px;padding:12px 14px;background:rgba(8,4,2,.55);text-align:left;box-shadow:inset 0 1px 0 rgba(255,200,120,.05)}
+.ia-item{color:#c0a898;line-height:1.68}
+.ia-item b{color:#f0d0a0}
 
 /* ── MERCHANT SHOP — redesigned ────────────────────────────*/
 #shop-scr .sbox{max-width:560px;padding:20px 22px 22px;max-height:min(92vh,720px);display:flex;flex-direction:column;overflow:hidden;min-height:0}
@@ -475,8 +473,8 @@ html.ga-reduce-motion .tg-glow{animation:none}
 
 /* ── LEGACY SYSTEM ────────────────────────────────────────*/
 #legacy-hud{position:absolute;top:10px;left:12px;z-index:6;pointer-events:none}
-.lhud-row{font-size:8px;font-weight:700;letter-spacing:2px;color:#6a4020;line-height:1.6;text-shadow:1px 1px 3px rgba(0,0,0,.9)}
-.lhud-row b{color:#c8a040}
+.lhud-row{font-size:clamp(9px,1vw,10px);font-weight:700;letter-spacing:1.2px;color:#a87850;line-height:1.65;text-shadow:0 1px 4px rgba(0,0,0,.9)}
+.lhud-row b{color:#f0c870}
 .lhud-curse{color:#9060cc;text-shadow:0 0 8px rgba(140,80,220,.45)}
 .lhud-eternal{color:#60a0ff;text-shadow:0 0 8px rgba(80,140,255,.45)}
 
@@ -499,11 +497,11 @@ html.ga-reduce-motion .tg-glow{animation:none}
   100%{filter:drop-shadow(0 6px 14px rgba(0,0,0,.95))}}
 
 /* Legacy intro panel */
-#legacy-intro{margin-top:14px;border-top:1px solid #2a1608;padding-top:10px;min-height:20px}
-.li-row{font-size:9px;color:#5a3818;letter-spacing:1.5px;line-height:1.9;text-align:center}
-.li-row b{color:#a07030}
-.li-unlocked{color:#9060cc;font-size:8px;letter-spacing:1.5px;line-height:1.9;display:block}
-.li-next{font-size:8px;color:#3a2010;letter-spacing:1px;margin-top:4px}
+#legacy-intro{margin-top:14px;border-top:1px solid #3a2412;padding-top:10px;min-height:20px}
+.li-row{font-size:clamp(10px,1vw,11px);color:#a08068;letter-spacing:1px;line-height:1.85;text-align:center}
+.li-row b{color:#e8b070}
+.li-unlocked{color:#b888e8;font-size:clamp(9px,.95vw,10px);letter-spacing:1px;line-height:1.85;display:block}
+.li-next{font-size:clamp(9px,.95vw,10px);color:#7a5848;letter-spacing:.8px;margin-top:4px}
 .li-bar{width:100%;height:4px;background:rgba(0,0,0,.4);border-radius:2px;overflow:hidden;margin-top:4px}
 .li-fill{height:100%;background:linear-gradient(90deg,#6040a0,#9060cc);border-radius:2px;transition:width .6s}
 
@@ -591,7 +589,6 @@ html.ga-reduce-motion .tg-glow{animation:none}
 .ft-god2{background:#06142a;color:#9fd6ff;border:1px solid #3a70a8;animation:ftpulse2 .85s ease-in-out infinite alternate}
 
 /* ── SOUL SYSTEM ──────────────────────────────────────────*/
-.ck-souls{border-color:#5010a0!important}.ck-souls b{color:#b040ff!important}
 .ft-soul{background:#0e0418;color:#c040ff;border:1px solid #6010b0}
 .ft-void{background:#06020e;color:#8020e0;border:1px solid #401080;animation:ftpulse2 1.2s ease-in-out infinite alternate}
 .ft-unmade{background:#06020e;color:#ff60ff;border:1px solid #8020a0;animation:ftpulse .7s ease-in-out infinite alternate}
@@ -608,7 +605,8 @@ html.ga-reduce-motion .tg-glow{animation:none}
 .soul-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px}
 .soul-item{background:linear-gradient(180deg,#0e0420,#08021a);border:1.5px solid #2a0850;border-radius:5px;padding:9px 10px;cursor:pointer;text-align:left;transition:all .14s}
 .soul-item:hover:not(.sbk){border-color:#6010c0;background:linear-gradient(180deg,#180630,#0c0422);transform:translateY(-1px)}
-.soul-item.sbk{opacity:.32;cursor:not-allowed}
+.soul-item.soul-pickable{cursor:pointer}
+.soul-item.picked{border-color:#9040c0!important;background:linear-gradient(180deg,#200838,#120420)!important;box-shadow:0 0 16px rgba(180,80,220,.28),inset 0 0 0 1px rgba(255,200,255,.12)!important}
 .soul-item.owned{border-color:#3a1060;opacity:.55;cursor:not-allowed}
 .si-icon{font-size:16px;margin-bottom:3px}
 .si-name{font-size:10px;font-weight:700;color:#a030e0;letter-spacing:.5px}
@@ -1167,6 +1165,114 @@ html.ga-reduce-motion #lightbringer-arena .lb-beam-sweep{animation:none!importan
   background:radial-gradient(ellipse 55% 85% at 50% 100%,rgba(120,40,200,.22),rgba(255,220,140,.06) 40%,transparent 70%);
   animation:cdGroundWeave 4.5s ease-in-out infinite alternate;
 }
+
+/* ── PENTARCHON — fifth-coordinate arena (orthogonal void + thermic rim) ── */
+#pentarchon-arena{position:absolute;inset:0;pointer-events:none;z-index:8;opacity:0;transition:opacity 1s ease;overflow:hidden}
+#scene.pentarchon-axis #pentarchon-arena{opacity:1}
+.pa-void{position:absolute;inset:-4%;background:
+  radial-gradient(ellipse 80% 50% at 50% 0%,rgba(255,120,60,.12),transparent 45%),
+  radial-gradient(ellipse 60% 40% at 20% 80%,rgba(80,40,200,.18),transparent 50%),
+  radial-gradient(ellipse 55% 35% at 82% 75%,rgba(40,200,255,.14),transparent 48%),
+  radial-gradient(circle at 50% 115%,rgba(200,60,120,.15),transparent 42%),
+  linear-gradient(168deg,#030008 0%,#060214 22%,#100828 48%,#08041a 72%,#020206 100%);
+  animation:paVoidShift 14s ease-in-out infinite alternate}
+@keyframes paVoidShift{from{filter:hue-rotate(0deg) brightness(1)}to{filter:hue-rotate(16deg) brightness(1.05)}}
+.pa-grid{position:absolute;left:-20%;right:-20%;height:55%;bottom:8%;transform-origin:50% 100%;opacity:.22;mix-blend-mode:screen;
+  background:
+    repeating-linear-gradient(90deg,rgba(120,200,255,.5) 0 1px,transparent 1px 24px),
+    repeating-linear-gradient(0deg,rgba(200,120,255,.35) 0 1px,transparent 1px 22px);
+  mask-image:linear-gradient(180deg,transparent,rgba(0,0,0,.9) 35%,rgba(0,0,0,.55) 100%)}
+.pa-grid-back{transform:perspective(420px) rotateX(68deg) scale(1.05);animation:paGridDriftBack 22s linear infinite}
+.pa-grid-mid{transform:perspective(380px) rotateX(72deg) scale(1.08);opacity:.28;animation:paGridDriftMid 16s linear infinite reverse}
+@keyframes paGridDriftBack{from{transform:perspective(420px) rotateX(68deg) scale(1.05) translateX(0)}to{transform:perspective(420px) rotateX(68deg) scale(1.05) translateX(-26px)}}
+@keyframes paGridDriftMid{from{transform:perspective(380px) rotateX(72deg) scale(1.08) translateX(0)}to{transform:perspective(380px) rotateX(72deg) scale(1.08) translateX(20px)}}
+.pa-shear{position:absolute;inset:0;background:
+  repeating-linear-gradient(102deg,transparent 0 38px,rgba(255,200,120,.045) 38px 39px,transparent 39px 76px);
+  animation:paShearSkew 11s ease-in-out infinite alternate;opacity:.5;mix-blend-mode:screen}
+@keyframes paShearSkew{from{transform:skewX(0deg)}to{transform:skewX(-2.2deg)}}
+.pa-axis{position:absolute;background:linear-gradient(180deg,transparent,rgba(255,230,200,.38),transparent);box-shadow:0 0 18px rgba(100,200,255,.22);opacity:.42}
+.pa-ax1{left:10%;top:12%;width:3px;height:62%;transform:rotate(8deg);animation:paAxisPulse 3.2s ease-in-out infinite}
+.pa-ax2{right:14%;top:10%;width:3px;height:64%;transform:rotate(-6deg);animation:paAxisPulse 3.8s ease-in-out infinite .4s}
+.pa-ax3{left:22%;bottom:18%;width:48%;height:2px;transform:rotate(-3deg);background:linear-gradient(90deg,transparent,rgba(255,230,200,.35),transparent);animation:paAxisPulse 2.9s ease-in-out infinite .2s}
+.pa-ax4{right:18%;bottom:24%;width:42%;height:2px;transform:rotate(5deg);background:linear-gradient(90deg,transparent,rgba(255,230,200,.35),transparent);animation:paAxisPulse 3.5s ease-in-out infinite .6s}
+@keyframes paAxisPulse{from{opacity:.2}to{opacity:.58}}
+.pa-hub{position:absolute;left:50%;top:38%;width:min(42vw,180px);height:min(42vw,180px);transform:translate(-50%,-50%);
+  border:1px solid rgba(180,230,255,.24);border-radius:50%;
+  box-shadow:0 0 42px rgba(120,100,255,.22),inset 0 0 36px rgba(255,120,80,.1);
+  animation:paHubSpin 48s linear infinite}
+.pa-hub::before{content:'';position:absolute;inset:12%;border:1px solid rgba(255,160,120,.2);border-radius:50%;transform:rotate(45deg)}
+@keyframes paHubSpin{from{transform:translate(-50%,-50%) rotate(0)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+.pa-frame{position:absolute;width:36px;height:36px;border:2px solid rgba(200,220,255,.28);opacity:.38;animation:paFrameGlow 4s ease-in-out infinite alternate;border-radius:2px}
+.pa-fr-tl{left:6%;top:10%;border-right:none;border-bottom:none}
+.pa-fr-tr{right:6%;top:10%;border-left:none;border-bottom:none;animation-delay:.5s}
+.pa-fr-bl{left:8%;bottom:22%;border-right:none;border-top:none;animation-delay:1s}
+.pa-fr-br{right:8%;bottom:26%;border-left:none;border-top:none;animation-delay:1.5s}
+@keyframes paFrameGlow{from{box-shadow:0 0 8px rgba(120,200,255,.12)}to{box-shadow:0 0 22px rgba(255,180,120,.22)}}
+.pa-rune{position:absolute;font-family:'Cinzel',serif;font-size:clamp(14px,2vw,20px);font-weight:700;color:rgba(255,248,240,.2);text-shadow:0 0 16px rgba(180,100,255,.5);animation:paRuneFloat 7s ease-in-out infinite}
+.pa-rune::before{content:'◇'}
+.pr1{left:12%;top:24%}
+.pr2{right:16%;top:38%;animation-delay:1.6s}
+.pr3{left:48%;top:14%;animation-delay:.8s}
+@keyframes paRuneFloat{0%,100%{opacity:.28;transform:translateY(0)}50%{opacity:.55;transform:translateY(-8px)}}
+
+#scene.pentarchon-axis{box-shadow:inset 0 -36px 72px rgba(30,0,60,.5),0 0 90px rgba(100,60,200,.2),0 -24px 80px rgba(255,140,80,.08)}
+#scene.pentarchon-axis #sky{
+  background:
+    radial-gradient(ellipse 100% 70% at 50% -8%,rgba(255,160,100,.1),transparent 40%),
+    radial-gradient(circle at 8% 25%,rgba(60,140,255,.14),transparent 28%),
+    radial-gradient(circle at 92% 22%,rgba(200,80,200,.12),transparent 26%),
+    linear-gradient(188deg,#000008 0%,#050218 16%,#120828 38%,#1a0834 55%,#10041c 74%,#06020a 100%);
+}
+#scene.pentarchon-axis .star{background:#e8f0ff;box-shadow:0 0 5px rgba(140,220,255,.5),0 0 2px rgba(255,200,255,.35)}
+#scene.pentarchon-axis #moon{
+  background:radial-gradient(circle at 40% 38%,#1a2040 0%,#080818 48%,#000 78%);
+  box-shadow:0 0 36px rgba(100,200,255,.28),0 0 70px rgba(200,100,255,.16),inset 0 0 24px rgba(0,0,0,.95);
+}
+#scene.pentarchon-axis #stands{
+  background:linear-gradient(180deg,#020008 0%,#080418 35%,#100820 68%,#140a28 100%);
+  box-shadow:inset 0 -16px 40px rgba(60,30,120,.42),0 4px 0 rgba(20,10,40,.55);
+}
+#scene.pentarchon-axis #stands::before{
+  background:repeating-linear-gradient(92deg,transparent,transparent 5px,rgba(100,160,255,.055) 5px,rgba(100,160,255,.055) 6px),
+  linear-gradient(180deg,rgba(255,200,120,.05) 0%,transparent 45%);
+}
+#scene.pentarchon-axis .cf-in::before{background:radial-gradient(circle,#304060,#101020)!important}
+#scene.pentarchon-axis .cf-in::after{background:linear-gradient(180deg,#281838,#100818)!important}
+#scene.pentarchon-axis #wall,#scene.pentarchon-axis .col,#scene.pentarchon-axis .tg{opacity:.3;filter:hue-rotate(215deg) saturate(1.2) brightness(.78)}
+#scene.pentarchon-axis #sand{
+  background:
+    linear-gradient(180deg,rgba(30,8,32,.96) 0%,rgba(18,6,28,.94) 28%,rgba(12,4,20,.96) 55%,rgba(8,2,12,.98) 100%);
+  border-top:3px solid rgba(120,200,255,.3);
+  box-shadow:inset 0 22px 55px rgba(255,160,80,.06),inset 0 -28px 55px rgba(40,20,80,.52),0 -4px 0 rgba(200,120,255,.12);
+}
+#scene.pentarchon-axis #sand::before{
+  background:
+    repeating-linear-gradient(86deg,transparent,transparent 40px,rgba(120,200,255,.065) 40px,rgba(120,200,255,.065) 41px),
+    repeating-linear-gradient(-8deg,transparent,transparent 68px,rgba(255,140,100,.045) 68px,rgba(255,140,100,.045) 69px);
+}
+#scene.pentarchon-axis #sand::after{
+  opacity:.82;
+  background:
+    radial-gradient(ellipse 50% 38% at 48% 48%,rgba(80,160,255,.11),transparent 54%),
+    radial-gradient(ellipse 40% 28% at 72% 58%,rgba(255,100,140,.09),transparent 48%);
+}
+#scene.pentarchon-axis::after{
+  background:
+    radial-gradient(ellipse 130% 72% at 50% 88%,rgba(60,20,100,.4),transparent 54%),
+    linear-gradient(180deg,rgba(40,0,80,.16) 0%,transparent 38%,rgba(0,0,0,.48) 100%)!important;
+}
+#scene.pentarchon-axis #estage::before{
+  content:'';position:absolute;left:50%;top:-10%;width:132%;height:44%;transform:translateX(-50%);pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse 58% 78% at 50% 0%,rgba(180,100,255,.13),rgba(80,200,255,.09) 42%,transparent 74%);
+  animation:pentStageHalo 3.6s ease-in-out infinite alternate;
+}
+#scene.pentarchon-axis #estage::after{
+  content:'';position:absolute;left:50%;bottom:12%;width:145%;height:28%;transform:translateX(-50%);pointer-events:none;z-index:0;opacity:.88;
+  background:radial-gradient(ellipse 58% 88% at 50% 100%,rgba(100,60,200,.28),rgba(255,140,100,.08) 38%,transparent 72%);
+  animation:pentGroundWeave 4.2s ease-in-out infinite alternate;
+}
+@keyframes pentStageHalo{from{opacity:.62}to{opacity:1}}
+@keyframes pentGroundWeave{from{opacity:.68;transform:translateX(-50%) scale(1)}to{opacity:.95;transform:translateX(-50%) scale(1.03)}}
 @keyframes cdEnemyHalo{from{opacity:.55}to{opacity:1}}
 @keyframes cdGroundWeave{from{opacity:.55;transform:translateX(-50%) scale(1)}to{opacity:.95;transform:translateX(-50%) scale(1.04)}}
 .aura-castseraph{animation:acastseraph 1.15s ease-in-out infinite alternate}
@@ -1193,11 +1299,22 @@ html.ga-reduce-motion #lightbringer-arena .lb-beam-sweep{animation:none!importan
 
 @media (prefers-reduced-motion: reduce){
   #castdown-arena .cd-void,#castdown-arena .cd-mandala,#castdown-arena .cd-chains,#castdown-arena .cd-horizon,#castdown-arena .cd-fracture,#castdown-arena .cd-sigil,#castdown-arena .cd-orb,#castdown-arena .cd-rune{animation:none!important}
+  #pentarchon-arena .pa-void,#pentarchon-arena .pa-grid,#pentarchon-arena .pa-shear,#pentarchon-arena .pa-axis,#pentarchon-arena .pa-hub,#pentarchon-arena .pa-frame,#pentarchon-arena .pa-rune{animation:none!important}
   .castwheel-svg .cw-spin{animation:none!important}
   #scene.castdown-court #estage::before,#scene.castdown-court #estage::after{animation:none!important}
+  #scene.pentarchon-axis #estage::before,#scene.pentarchon-axis #estage::after{animation:none!important}
 }
 html.ga-reduce-motion #castdown-arena{display:none}
 html.ga-reduce-motion #scene.castdown-court #estage::before,html.ga-reduce-motion #scene.castdown-court #estage::after{animation:none!important}
+html.ga-reduce-motion #pentarchon-arena .pa-void,
+html.ga-reduce-motion #pentarchon-arena .pa-grid,
+html.ga-reduce-motion #pentarchon-arena .pa-shear,
+html.ga-reduce-motion #pentarchon-arena .pa-axis,
+html.ga-reduce-motion #pentarchon-arena .pa-hub,
+html.ga-reduce-motion #pentarchon-arena .pa-frame,
+html.ga-reduce-motion #pentarchon-arena .pa-rune{animation:none!important}
+html.ga-reduce-motion #scene.pentarchon-axis #estage::before,
+html.ga-reduce-motion #scene.pentarchon-axis #estage::after{animation:none!important}
 
 @media (prefers-reduced-motion: reduce){
   #si-chronosphere,#si-tick,#si-grain,#si-abyss,.sn-main,#ai-garden,#ai-vines,.an-main,.conceptlight-svg .lb-crown,.conceptlight-svg .lb-corona-outer,.conceptlight-svg .lb-crown-jewel,.conceptlight-svg .lb-bearer-orb,.conceptlight-svg .lb-cross-rays,.conceptlight-svg .lb-motes .lb-mote,.conceptlight-svg .lb-mantle,.conceptlight-svg .lb-hair,.conceptlight-svg .lb-throne-ring,.conceptlight-svg .lb-engraving,.conceptlight-svg .lb-blade-gleam,#scene.first-light #estage::before,#scene.first-light #estage::after,
@@ -1223,7 +1340,7 @@ html.ga-reduce-motion #lightbringer-arena .lb-beam-sweep{animation:none!importan
 .mode-btn{display:flex!important;flex-direction:column;gap:2px;padding:12px 14px!important;margin:0!important;text-align:center;font-family:'Cinzel',serif;letter-spacing:1px!important;line-height:1.3}
 .mode-btn .mode-ico{font-size:22px;line-height:1;margin-bottom:3px}
 .mode-btn .mode-label{font-size:11px;font-weight:700;letter-spacing:2.5px;color:#e8b84b}
-.mode-btn .mode-sub{font-size:clamp(9px,1vw,10px);color:#7a5848;letter-spacing:.6px;font-weight:400;text-transform:none;line-height:1.4}
+.mode-btn .mode-sub{font-size:clamp(10px,1.05vw,11px);color:#b09888;letter-spacing:.45px;font-weight:400;text-transform:none;line-height:1.45}
 .mode-daily{background:linear-gradient(180deg,#181028,#0a0618)!important;border-color:#4a30a0!important}
 .mode-daily:hover{background:linear-gradient(180deg,#241a38,#140a24)!important;border-color:#6040c8!important;box-shadow:0 0 18px rgba(120,80,220,.25)!important}
 .mode-daily .mode-label{color:#b080ff}
@@ -1231,7 +1348,7 @@ html.ga-reduce-motion #lightbringer-arena .lb-beam-sweep{animation:none!importan
 .mode-daily.completed{opacity:.6}
 .mode-daily.completed .mode-label::after{content:' ✓';color:#7ae020}
 
-#daily-status{font-size:clamp(10px,1.05vw,11px);color:#7a5848;text-align:center;margin:8px 0 4px;letter-spacing:.35px;min-height:16px;line-height:1.45}
+#daily-status{font-size:clamp(11px,1.08vw,12px);color:#b8a090;text-align:center;margin:8px 0 4px;letter-spacing:.3px;min-height:16px;line-height:1.5}
 #daily-status b{color:#b080ff}
 #daily-status .ds-streak{color:#e8b84b;font-weight:700}
 
@@ -1255,7 +1372,7 @@ html.ga-reduce-motion #lightbringer-arena .lb-beam-sweep{animation:none!importan
 .mv-toggle:focus-visible{box-shadow:inset 0 0 0 2px rgba(232,184,75,.45)}
 .mv-toggle-main{display:flex;flex-direction:column;gap:3px;min-width:0}
 .mv-toggle-title{font-size:clamp(12px,1.15vw,13px);letter-spacing:2px;text-shadow:0 0 12px rgba(232,184,75,.2)}
-.mv-toggle-hint{font-size:clamp(8px,1vw,9px);font-weight:600;letter-spacing:.8px;color:#9a8068;text-transform:none;line-height:1.35}
+.mv-toggle-hint{font-size:clamp(9px,1.02vw,10px);font-weight:600;letter-spacing:.65px;color:#c0a890;text-transform:none;line-height:1.4}
 .mv-toggle-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
 .mv-balance{font-size:clamp(10px,1.05vw,11px);color:#e0c898;font-weight:700;letter-spacing:.5px;padding:5px 9px;background:rgba(0,0,0,.4);border:1px solid #5a4020;border-radius:5px;white-space:nowrap}
 .mv-balance b{color:#ffd870}
@@ -1272,7 +1389,7 @@ html.ga-reduce-motion .mv-chevron{transition:none}
 .mv-body-scroll{max-height:min(52vh,440px);overflow-y:auto;overflow-x:hidden;padding:4px 2px 8px 0;margin-right:-2px;scrollbar-width:thin;scrollbar-color:#5a4020 transparent;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
 .mv-body-scroll::-webkit-scrollbar{width:6px}
 .mv-body-scroll::-webkit-scrollbar-thumb{background:#4a3018;border-radius:4px}
-.mv-sources{font-size:clamp(9px,1vw,10px);color:#9a8870;line-height:1.6;margin:10px 0 8px}
+.mv-sources{font-size:clamp(10px,1.05vw,11px);color:#c0b0a0;line-height:1.65;margin:10px 0 8px}
 .mv-sources .mv-slab{display:inline-block;margin:3px 5px 3px 0;padding:4px 8px;background:rgba(0,0,0,.42);border-radius:4px;border:1px solid #4a3018;font-size:clamp(8px,1vw,9px);letter-spacing:.25px}
 .mv-next{font-size:clamp(9px,1vw,10px);color:#a8b888;margin-bottom:10px;padding:9px 11px;background:rgba(18,28,14,.5);border:1px solid #3a5028;border-radius:6px;line-height:1.5}
 .mv-section{font-family:'Cinzel',serif;font-size:clamp(9px,1vw,10px);font-weight:700;letter-spacing:1.8px;color:#c8a870;margin:12px 0 8px;padding-bottom:2px;border-bottom:1px solid rgba(74,50,24,.5)}
@@ -1285,7 +1402,7 @@ html.ga-reduce-motion .mv-chevron{transition:none}
 .mv-card:hover{border-color:#5a4028;box-shadow:0 2px 12px rgba(0,0,0,.25)}
 .mv-card .mv-ico{font-size:20px;display:block;margin-bottom:5px}
 .mv-card .mv-name{font-family:'Cinzel',serif;font-weight:700;color:#f0d0a8;letter-spacing:.8px;font-size:clamp(10px,1.05vw,11px);margin-bottom:5px}
-.mv-card .mv-desc{color:#9a8068;line-height:1.5;margin-bottom:8px;min-height:2.8em}
+.mv-card .mv-desc{color:#c8b0a0;line-height:1.55;margin-bottom:8px;min-height:2.8em}
 .mv-card .mv-cost{color:#d8b0ff;font-weight:700;margin-bottom:8px;font-size:clamp(10px,1.05vw,11px)}
 .mv-card button.mv-buy{width:100%;font-size:clamp(9px,1vw,10px)!important;padding:9px 8px!important;letter-spacing:.8px;margin:0!important;border-radius:5px!important}
 
@@ -1300,23 +1417,33 @@ html.ga-reduce-motion .mv-chevron{transition:none}
 /* Share card */
 #daily-share{margin:10px 0;padding:12px 14px;background:linear-gradient(180deg,#0a0618,#06040e);border:1px solid #4a30a0;border-radius:5px}
 .ds-label{font-size:9px;color:#8060c0;letter-spacing:2px;margin-bottom:6px;font-family:'Cinzel',serif;font-weight:700}
-.ds-card{font-family:'Courier New',monospace;font-size:12px;color:#e8b84b;background:rgba(0,0,0,.4);padding:10px 12px;border-radius:4px;text-align:left;margin:0 0 8px;white-space:pre;overflow-x:auto;line-height:1.55;letter-spacing:1px;border:1px solid #2a1a4a}
+.ds-card{font-family:'Courier New',Consolas,monospace;font-size:clamp(12px,1.1vw,13px);color:#f0d070;background:rgba(0,0,0,.5);padding:12px 14px;border-radius:6px;text-align:left;margin:0 0 8px;white-space:pre;overflow-x:auto;line-height:1.6;letter-spacing:.8px;border:1px solid #3a2a5a}
 .ds-card .dc-title{color:#b080ff;font-weight:700}
 #ds-copy.copied{background:linear-gradient(180deg,#0a2808,#040c02)!important;border-color:#2a6010!important;color:#7ae020!important}
 #ds-copy.ds-copy-wide{width:100%;max-width:100%;padding:12px 14px!important;font-size:clamp(11px,3.2vw,13px)!important;margin-top:4px}
 
 /* Intro: settings + version */
-.intro-extras{margin:10px 0 6px;padding:12px 14px;background:rgba(8,4,2,.58);border:1px solid #4a3018;border-radius:8px;text-align:left;box-shadow:inset 0 1px 0 rgba(255,200,120,.04)}
-.intro-row{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin-bottom:8px;font-size:clamp(10px,1.05vw,11px);color:#9a7860;line-height:1.45}
+.intro-extras{margin:10px 0 6px;padding:14px 16px;background:rgba(12,8,4,.65);border:1px solid #5a3820;border-radius:8px;text-align:left;box-shadow:inset 0 1px 0 rgba(255,200,120,.06)}
+.intro-row{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin-bottom:8px;font-size:clamp(11px,1.08vw,12px);color:#c8b0a0;line-height:1.5}
 .intro-row.chkrow{flex-direction:column;align-items:flex-start;gap:6px}
 .skin-row-wrap{margin-top:4px}
 .skin-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;justify-content:center}
-.skin-chip{font-family:'Cinzel',serif;font-size:clamp(9px,1vw,10px);padding:6px 12px;border-radius:5px;border:1px solid #5a4020;background:rgba(10,6,4,.55);color:#d8b890;cursor:pointer;letter-spacing:.4px}
+.skin-chip{font-family:'Cinzel',serif;font-size:clamp(10px,1.05vw,11px);padding:7px 14px;border-radius:5px;border:1px solid #5a4020;background:rgba(10,6,4,.55);color:#e8d0b0;cursor:pointer;letter-spacing:.35px}
 .skin-chip.on{border-color:#e8b84b;background:rgba(70,48,12,.82);color:#fffce8;box-shadow:0 0 10px rgba(232,184,75,.25)}
-.ilab{display:flex;align-items:center;gap:6px;color:#b89878;font-family:'Cinzel',serif;font-size:clamp(10px,1.05vw,11px)}
-.ilab select,.ilab input[type=range]{accent-color:#c89840;font-family:inherit}
+.ilab{display:flex;align-items:center;gap:8px;color:#d8c8b0;font-family:'Cinzel',serif;font-size:clamp(11px,1.08vw,12px);flex-wrap:wrap}
+.ilab select,.ilab input[type=range]{accent-color:#d8a848;font-family:inherit}
+.ilab select{
+  appearance:none;-webkit-appearance:none;
+  border:1px solid #5a3820;border-radius:6px;color:#f5ebe0;padding:8px 32px 8px 12px;font-size:clamp(11px,1.05vw,12px);min-height:38px;cursor:pointer;max-width:min(300px,92vw);
+  box-shadow:inset 0 1px 0 rgba(255,220,180,.06);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23d8b898' d='M1 1.5L6 6l5-4.5'/%3E%3C/svg%3E"),linear-gradient(180deg,#1e1208,#100804);
+  background-repeat:no-repeat,no-repeat;background-position:right 10px center,0 0;background-size:12px auto,100% 100%
+}
+.ilab select:focus{outline:2px solid rgba(232,184,75,.5);outline-offset:1px}
+.ilab select option{background:#140a06;color:#f0e8e0}
+.ilab input[type=range]{min-width:120px;vertical-align:middle}
 .continue-run-btn{margin-top:6px!important;padding:10px 14px!important;font-size:10px!important;background:linear-gradient(180deg,#102818,#06140c)!important;border-color:#2a6040!important;color:#a8e8c0!important}
-.intro-ver{margin-top:10px;font-size:clamp(8px,1vw,9px);letter-spacing:2px;color:#6a4830;opacity:.92;line-height:1.4}
+.intro-ver{margin-top:10px;font-size:clamp(9px,1.05vw,10px);letter-spacing:1.5px;color:#9a7868;opacity:.95;line-height:1.45}
 
 /* Shop affordance */
 @keyframes shopAffordPulse{0%,100%{box-shadow:inset 0 0 0 1px rgba(232,184,75,.25)}50%{box-shadow:inset 0 0 0 2px rgba(232,184,75,.55),0 0 18px rgba(232,184,75,.2)}}
@@ -1398,19 +1525,19 @@ html.ga-reduce-motion #highlord-fx{display:none}
 /* Tap to unlock audio */
 #audio-tap-layer{position:fixed;inset:0;z-index:400;background:rgba(4,2,1,.72);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(2px)}
 #audio-tap-layer.hidden{display:none!important}
-#audio-tap-layer .atl-inner{font-family:'Cinzel',serif;font-size:clamp(13px,3.5vw,16px);color:#e8c878;letter-spacing:3px;padding:22px 28px;border:1px solid #6a4820;border-radius:8px;background:rgba(12,8,4,.9);text-align:center;max-width:90%}
+#audio-tap-layer .atl-inner{font-family:'Cinzel',serif;font-size:clamp(14px,3.6vw,17px);color:#f8e0b8;letter-spacing:2.5px;padding:24px 32px;border:1px solid #7a5830;border-radius:10px;background:rgba(16,10,6,.94);text-align:center;max-width:90%;line-height:1.5;text-shadow:0 1px 3px rgba(0,0,0,.5)}
 
 /* Error toast */
-#error-toast{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:420;max-width:92%;padding:12px 16px;font-size:clamp(11px,1.15vw,13px);color:#ffe8e8;background:rgba(50,8,8,.94);border:1px solid #c03030;border-radius:8px;box-shadow:0 6px 24px rgba(0,0,0,.6);font-family:'Cinzel',serif;letter-spacing:.35px;line-height:1.45;display:none}
+#error-toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:420;max-width:min(520px,94%);padding:14px 20px;font-size:clamp(12px,1.2vw,14px);color:#fff0f0;background:rgba(56,12,12,.96);border:1px solid #e05050;border-radius:10px;box-shadow:0 8px 28px rgba(0,0,0,.65);font-family:'Cinzel',serif;letter-spacing:.25px;line-height:1.5;display:none}
 #error-toast.show{display:block}
 
 /* First-run tips */
 #tips-overlay{position:fixed;inset:0;z-index:410;background:rgba(0,0,0,.78);display:flex;align-items:center;justify-content:center;padding:16px}
 #tips-overlay.hidden{display:none!important}
-.tips-box{max-width:440px;background:linear-gradient(180deg,#1a1008,#0c0604);border:1px solid #5a3818;border-radius:8px;padding:20px 22px;color:#d8b898;font-family:'Cinzel',serif;font-size:clamp(12px,1.15vw,14px);line-height:1.6;box-shadow:0 12px 40px rgba(0,0,0,.65)}
-.tips-box h3{font-size:clamp(14px,1.3vw,16px);color:#f0c878;letter-spacing:2.5px;margin-bottom:12px}
-.tips-box ul{margin:10px 0 0 20px;color:#b89878}
-.tips-box li{margin:6px 0}
+.tips-box{max-width:460px;background:linear-gradient(180deg,#22140c,#0c0804);border:1px solid #6a4828;border-radius:10px;padding:22px 24px;color:#e8d8c8;font-family:'Cinzel',serif;font-size:clamp(13px,1.2vw,15px);line-height:1.65;box-shadow:0 12px 40px rgba(0,0,0,.65)}
+.tips-box h3{font-size:clamp(15px,1.35vw,17px);color:#ffd890;letter-spacing:2px;margin-bottom:14px;text-shadow:0 1px 3px rgba(0,0,0,.4)}
+.tips-box ul{margin:10px 0 0 20px;color:#d0c0a8}
+.tips-box li{margin:8px 0}
 
 @media (prefers-reduced-motion: reduce){
   .star,.cf,.f1,.f2,.f3,#stands::before,.tg-glow,.swrap.hit svg,.swrap.atk svg,.aura-demon,.aura-god,
@@ -1458,6 +1585,24 @@ html.ga-reduce-motion #highlord-fx{display:none}
     <div class="cd-sigil s1"></div><div class="cd-sigil s2"></div><div class="cd-sigil s3"></div>
     <div class="cd-orb o1"></div><div class="cd-orb o2"></div><div class="cd-orb o3"></div>
     <div class="cd-rune r1"></div><div class="cd-rune r2"></div><div class="cd-rune r3"></div>
+  </div>
+  <div id="pentarchon-arena" aria-hidden="true">
+    <div class="pa-void"></div>
+    <div class="pa-grid pa-grid-back"></div>
+    <div class="pa-grid pa-grid-mid"></div>
+    <div class="pa-shear"></div>
+    <div class="pa-axis pa-ax1"></div>
+    <div class="pa-axis pa-ax2"></div>
+    <div class="pa-axis pa-ax3"></div>
+    <div class="pa-axis pa-ax4"></div>
+    <div class="pa-hub"></div>
+    <div class="pa-frame pa-fr-tl"></div>
+    <div class="pa-frame pa-fr-tr"></div>
+    <div class="pa-frame pa-fr-bl"></div>
+    <div class="pa-frame pa-fr-br"></div>
+    <div class="pa-rune pr1"></div>
+    <div class="pa-rune pr2"></div>
+    <div class="pa-rune pr3"></div>
   </div>
   <div id="shatterer-storm" aria-hidden="true">
     <div class="st-void"></div>
@@ -1597,7 +1742,6 @@ html.ga-reduce-motion #highlord-fx{display:none}
       <div class="ck" id="ckinv" style="cursor:default" title="Loot items in satchel">🎒 <b id="ckinvnum">0</b></div>
       <div class="ck" id="ckloot" style="cursor:default" title="Equipped loot pieces">💎 <b id="cklootnum">0</b></div>
       <div class="ck ckt y" id="ckturn">● YOUR TURN</div>
-      <button class="ck ck-souls" id="cksouls" style="cursor:default">💀 <b>0</b></button>
       <button class="ck" id="btn-music" onclick="toggleMusic()" title="Toggle Music" style="cursor:pointer;margin-left:auto">♪</button>
       <button class="ck" id="btn-sfx" onclick="toggleSFX()" title="Toggle SFX" style="cursor:pointer">🔊</button>
     </div>
@@ -1652,7 +1796,7 @@ html.ga-reduce-motion #highlord-fx{display:none}
             <option value="hard">Hard</option>
           </select>
         </label>
-        <label class="ilab">Text size <input type="range" id="set-font" min="85" max="130" value="112" title="UI font scale (all screens)"></label>
+        <label class="ilab">Text size <input type="range" id="set-font" min="85" max="130" value="118" title="UI font scale (all screens)"></label>
       </div>
       <div class="intro-row chkrow">
         <label class="ilab"><input type="checkbox" id="set-motion" title="Less motion / shake"> Reduce screen FX</label>
@@ -1742,9 +1886,9 @@ html.ga-reduce-motion #highlord-fx{display:none}
     <span class="sico" style="font-size:36px">💀</span>
     <div class="soul-stit">SOUL EMPORIUM</div>
     <div class="soul-ssub">The void offers its gifts</div>
-    <div class="soul-balance" id="soul-balance"><small>SOUL FRAGMENTS:</small> 0</div>
+    <div class="soul-balance" id="soul-balance"><small>PICK TWO GIFTS</small> · <b>0/2</b> chosen</div>
     <div class="soul-grid" id="soul-grid"></div>
-    <div class="soul-note" id="soul-shop-note">These weapons carry the weight of fallen champions.<br>Some are necessary for what lies ahead.</div>
+    <div class="soul-note" id="soul-shop-note">The void offers five boons — claim <b>two</b>, free of charge.<br>Tap a card to select or deselect; then enter the arena.</div>
     <button class="soul-sbtn" onclick="continueFightFromSoulShop()">ENTER THE ARENA →</button>
   </div>
 </div>
@@ -3707,7 +3851,7 @@ const ENEMIES=[
     specialName:"SOLAR VERDICT + UMBRAL MIRROR",specialDesc:"Heaven brands you; shadow answers what you deny."},
   {name:"Concept Reptilian",charKey:"conceptreptilian",hp:1860,str:112,agi:26,def:48,gold:3000,title:"Seraph of the Cinder Fang",isBoss:true,bossType:"reptilian",
     specialName:"FIREBRAND COMBO + CINDER VEIL + HEAVENFALL BLADE",specialDesc:"Wields a sword of fire; heaven itself drops the killing edge."},
-  {name:"Concept Dragon",  charKey:"conceptdragon",hp:2640,str:84,agi:20,def:40,gold:2500,title:"Dragon of Concepts",isBoss:true,bossType:"concept",
+  {name:"Concept Dragon",  charKey:"conceptdragon",hp:2772,str:88,agi:21,def:42,gold:2500,title:"Dragon of Concepts",isBoss:true,bossType:"concept",
     specialName:"WARP SPACE-TIME + GRAVITY BREATH",specialDesc:"Bends turns, crushes with gravity."},
   {name:"Concept Splitter",charKey:"conceptsplitter",hp:1980,str:130,agi:30,def:58,gold:4200,title:"The Final Schism",isBoss:true,bossType:"splitter",
     specialName:"TRUMP I FRACTURE + TRUMP II DUAL FORM + TRUMP III QUAD SHARD",specialDesc:"Splits into two at 40%, then erupts into four on turn 8 (one move)."},
@@ -3762,15 +3906,15 @@ const WAVE10_PERMA_POOL=[
 
 // Soul items — Soul Emporium after Round 5
 const SOUL_ITEMS=[
-  {id:"sra",icon:"🗡️",name:"Soulreaper Axe",     desc:"+18 STR · +25% dmg vs bosses",cost:30,
+  {id:"sra",icon:"🗡️",name:"Soulreaper Axe",     desc:"+18 STR · +25% dmg vs bosses",
     fn:p=>{p.str+=18;p.hasSoulreaperAxe=true;p.soulItemCount=(p.soulItemCount||0)+1}},
-  {id:"phc",icon:"👁️",name:"Phantom Cloak",       desc:"Ghost Step: 10% on dodge · 40% on 3× Boots",cost:25,
+  {id:"phc",icon:"👁️",name:"Phantom Cloak",       desc:"Ghost Step: 10% on dodge · 40% on 3× Boots",
     fn:p=>{p.hasPhantomCloak=true;p.soulItemCount=(p.soulItemCount||0)+1}},
-  {id:"vma",icon:"🌑",name:"Void Mantle",          desc:"+12 DEF · Defend reflects 14 dmg",cost:22,
+  {id:"vma",icon:"🌑",name:"Void Mantle",          desc:"+12 DEF · Defend reflects 14 dmg",
     fn:p=>{p.def+=12;p.hasVoidMantle=true;p.soulItemCount=(p.soulItemCount||0)+1}},
-  {id:"bco",icon:"🩸",name:"Blood Covenant",       desc:"+35 HP after every fight won",cost:35,
+  {id:"bco",icon:"🩸",name:"Blood Covenant",       desc:"+35 HP after every fight won",
     fn:p=>{p.hasBloodCovenant=true;p.soulItemCount=(p.soulItemCount||0)+1}},
-  {id:"sae",icon:"✦",name:"Soul Aegis",            desc:"Absorbs ONE instant-kill · once",cost:40,
+  {id:"sae",icon:"✦",name:"Soul Aegis",            desc:"Absorbs ONE instant-kill · once",
     fn:p=>{p.hasSoulAegis=true;p.soulItemCount=(p.soulItemCount||0)+1}},
 ];
 
@@ -3930,7 +4074,7 @@ const META_SHOP_ITEMS=[
   {id:'v_def',icon:'🛡',name:'Wax Tablet',desc:'+2 DEF next run.',cost:32,bon:{def:2}},
   {id:'v_agi',icon:'👟',name:'Sand Sprinter',desc:'+2 AGI next run.',cost:30,bon:{agi:2}},
   {id:'v_vit',icon:'❤',name:'Second Wind',desc:'+14 max HP and heal (next run).',cost:38,bon:{maxHp:14}},
-  {id:'v_soul',icon:'💀',name:'Soul Scrap',desc:'+35 soul fragments at run start.',cost:36,bon:{souls:35}},
+  {id:'v_soul',icon:'🪙',name:'Specter\'s Toll',desc:'+55 starting gold on your next Classic or Peaceful run.',cost:36,bon:{gold:55}},
 ];
 const META_PERM_MAX_STAT=10;
 const META_PERM_MAX_EDEN=5;
@@ -3947,7 +4091,7 @@ function defaultMetaVault(){
     marks:0,
     sources:{daily:0,milestone:0,echo:0,combat:0,time:0,victory:0,streak:0,claim:0,turns:0},
     lifetime:{playMs:0,roundsWon:0,bossKills:0,fullClears:0,dailiesFinished:0,totalTurns:0,runsEnded:0},
-    nextRun:{gold:0,str:0,def:0,agi:0,maxHp:0,souls:0},
+    nextRun:{gold:0,str:0,def:0,agi:0,maxHp:0},
     perm:{str:0,def:0,agi:0,vit:0,eden:0},
   };
 }
@@ -4078,23 +4222,21 @@ function mergeNextRunBonus(v,bon){
   n.def=(n.def|0)+(bon.def|0);
   n.agi=(n.agi|0)+(bon.agi|0);
   n.maxHp=(n.maxHp|0)+(bon.maxHp|0);
-  n.souls=(n.souls|0)+(bon.souls|0);
 }
 function applyMetaVaultToPlayer(p){
   if(!p)return null;
   const v=loadMetaVault();
   const n=v.nextRun;
-  const g=n.gold|0,s=n.str|0,df=n.def|0,a=n.agi|0,h=n.maxHp|0,so=n.souls|0;
-  if(!g&&!s&&!df&&!a&&!h&&!so)return null;
+  const g=n.gold|0,s=n.str|0,df=n.def|0,a=n.agi|0,h=n.maxHp|0;
+  if(!g&&!s&&!df&&!a&&!h)return null;
   if(g)p.gold=(p.gold|0)+g;
   if(s)p.str=(p.str|0)+s;
   if(df)p.def=(p.def|0)+df;
   if(a)p.agi=(p.agi|0)+a;
   if(h){p.maxHp=(p.maxHp|0)+h;p.hp=(p.hp|0)+h;}
-  if(so)p.souls=(p.souls|0)+so;
-  v.nextRun={gold:0,str:0,def:0,agi:0,maxHp:0,souls:0};
+  v.nextRun={gold:0,str:0,def:0,agi:0,maxHp:0};
   saveMetaVault(v);
-  return{g,s,df,a,h,so};
+  return{g,s,df,a,h};
 }
 /** Permanent vault ranks + optional Apotheosis (×2 STR/DEF/AGI/HP when all tracks maxed). */
 function applyPermanentMetaToPlayer(p){
@@ -4188,7 +4330,6 @@ function metaBuyItem(id){
   if(b.def)parts.push(`+${b.def} DEF`);
   if(b.agi)parts.push(`+${b.agi} AGI`);
   if(b.maxHp)parts.push(`+${b.maxHp} HP`);
-  if(b.souls)parts.push(`+${b.souls} souls`);
   const el=document.getElementById('milestone-toast');
   if(el){
     el.innerHTML=`<span class="mt-ico">${it.icon}</span>
@@ -4257,7 +4398,6 @@ function renderMetaVaultIntro(){
   if(n.def)np.push(`+${n.def} DEF`);
   if(n.agi)np.push(`+${n.agi} AGI`);
   if(n.maxHp)np.push(`+${n.maxHp} HP`);
-  if(n.souls)np.push(`+${n.souls} souls`);
   nx.textContent=np.length?`Next Classic / Peaceful run: ${np.join(' · ')}`:'No one-run supplies queued — optional cards below.';
   if(pgrid){
     const pm=v.perm||{};
@@ -4288,25 +4428,25 @@ function peekPendingDailyBonus(){
     const raw=localStorage.getItem(LS_DAILY_PENDING_BONUS);
     if(!raw)return null;
     const o=JSON.parse(raw);
-    const gold=o.gold|0,souls=o.souls|0;
-    if(gold<=0&&souls<=0)return null;
-    return{gold,souls};
+    const gold=o.gold|0;
+    if(gold<=0)return null;
+    return{gold};
   }catch(_){return null}
 }
 
 function addPendingDailyBonus(bundle){
-  const g=bundle.gold|0,s=bundle.souls|0;
-  if(g<=0&&s<=0)return;
-  let cur={gold:0,souls:0};
+  const g=bundle.gold|0;
+  if(g<=0)return;
+  let cur=0;
   try{
     const raw=localStorage.getItem(LS_DAILY_PENDING_BONUS);
     if(raw){
       const o=JSON.parse(raw);
-      cur.gold=o.gold|0;cur.souls=o.souls|0;
+      cur=o.gold|0;
     }
   }catch(_){}
-  cur.gold+=g;cur.souls+=s;
-  try{localStorage.setItem(LS_DAILY_PENDING_BONUS,JSON.stringify(cur));}catch(_){}
+  cur+=g;
+  try{localStorage.setItem(LS_DAILY_PENDING_BONUS,JSON.stringify({gold:cur}));}catch(_){}
 }
 
 /** Applies queued daily prizes to the player; only for new Classic / Peaceful runs (not Daily). */
@@ -4316,12 +4456,11 @@ function consumePendingDailyBonus(p){
     const raw=localStorage.getItem(LS_DAILY_PENDING_BONUS);
     if(!raw)return null;
     const b=JSON.parse(raw);
-    const g=b.gold|0,s=b.souls|0;
-    if(g<=0&&s<=0){localStorage.removeItem(LS_DAILY_PENDING_BONUS);return null;}
-    if(g>0)p.gold=(p.gold|0)+g;
-    if(s>0)p.souls=(p.souls|0)+s;
+    const g=b.gold|0;
     localStorage.removeItem(LS_DAILY_PENDING_BONUS);
-    return{gold:g,souls:s};
+    if(g<=0)return null;
+    p.gold=(p.gold|0)+g;
+    return{gold:g};
   }catch(_){return null}
 }
 
@@ -4330,13 +4469,11 @@ function computeDailyPrizeRewards(result){
   const streakGold=Math.min(streak*12,84);
   if(result&&result.won){
     return{
-      gold:185+streakGold,
-      souls:30+Math.min(12,Math.floor(streak/2)*3),
+      gold:215+streakGold,
     };
   }
   return{
-    gold:58+Math.floor(streakGold*0.55),
-    souls:10+Math.min(8,Math.floor(streak/3)*2),
+    gold:68+Math.floor(streakGold*0.55),
   };
 }
 
@@ -4345,7 +4482,7 @@ function showDailyPrizeToast(rew){
   if(!el)return;
   el.innerHTML=`<span class="mt-ico">☀</span>
     <div class="mt-name">Daily prize claimed</div>
-    <div class="mt-desc">+${rew.gold} gold · +${rew.souls} souls on your next Classic or Peaceful run</div>
+    <div class="mt-desc">+${rew.gold} gold on your next Classic or Peaceful run</div>
     <div class="mt-sub">Streak bonuses already included.</div>`;
   el.classList.remove('hidden','show');
   void el.offsetWidth;
@@ -4379,12 +4516,12 @@ function updateDailyPrizeBanner(){
     const preview=computeDailyPrizeRewards(r);
     el.innerHTML=`<div class="daily-prize-claim">
       <button type="button" class="sbtn dp-claim" onclick="claimDailyPrize()">☀ CLAIM DAILY PRIZE</button>
-      <span class="dp-hint">Today: <b style="color:#b080ff">${preview.gold} gold</b> · <b style="color:#b080ff">${preview.souls} souls</b> on your next Classic / Peaceful run (streak included).</span>
+      <span class="dp-hint">Today: <b style="color:#b080ff">${preview.gold} gold</b> on your next Classic / Peaceful run (streak included).</span>
     </div>`;
     return;
   }
   if(pending){
-    el.innerHTML=`<div class="daily-prize-ready">☀ Bonus ready: +${pending.gold} gold · +${pending.souls} souls — start Classic or Peaceful to collect.</div>`;
+    el.innerHTML=`<div class="daily-prize-ready">☀ Bonus ready: +${pending.gold} gold — start Classic or Peaceful to collect.</div>`;
     return;
   }
   if(completed&&r&&r.prizeClaimed){
@@ -4430,7 +4567,7 @@ function freshPlayer(){
     weaponTier:0,armorTier:0,hasChainmail:false,enhancedBlock:false,vsBossBonus:0,
     hasBlessing:false,blessingUsed:false,battleBrewBonus:0,activeBattleBonus:0,
     titanCursed:false,
-    souls:0,lastDmgDealt:8,
+    lastDmgDealt:8,
     hasSoulreaperAxe:false,hasPhantomCloak:false,hasVoidMantle:false,
     hasBloodCovenant:false,hasSoulAegis:false,soulAegisUsed:false,soulItemCount:0,
     nemesisComboCount:0,timeLocked:0,timeDecayed:false,conceptWarpStacks:0,
@@ -4511,9 +4648,21 @@ function buildLootItem(roundIdx,e){
     ascendant:['ferocity','phaseShift','execution','crit','lifesteal','dodge','chronoWard']
   };
   const passivePool=poolByRarity[rarity]||['crit','dodge'];
-  const passive=(rnd()<passiveOdds)?passivePool[ri(0,passivePool.length-1)]:'none';
-  const labelPart=isWeapon?`${meta.label} ${weaponType[0].toUpperCase()+weaponType.slice(1)}`:meta.label;
-  return{
+  let passive='none';
+  let passive2=null;
+  if(rarity==='ascendant'&&isWeapon){
+    const ascWeaponSingles=['crit','lifesteal','dodge','recoil','chronoWard'];
+    passive=ascWeaponSingles[ri(0,ascWeaponSingles.length-1)];
+    if(rnd()<0.10){
+      let p2,guard=0;
+      do{p2=ascWeaponSingles[ri(0,ascWeaponSingles.length-1)];guard++;}
+      while(p2===passive&&guard<24);
+      if(p2!==passive)passive2=p2;
+    }
+  }else{
+    passive=(rnd()<passiveOdds)?passivePool[ri(0,passivePool.length-1)]:'none';
+  }
+  const out={
     id:`loot_${Date.now()}_${ri(100,999)}`,
     slot,weaponType,rarity,rarityLabel:meta.label,color:meta.color,
     icon:isWeapon?'⚔️':LOOT_SLOT_ICONS[slot],
@@ -4521,7 +4670,10 @@ function buildLootItem(roundIdx,e){
     name:isWeapon?`${affix} ${LOOT_SLOT_NAMES.weapon}`:`${affix} ${LOOT_SLOT_NAMES[slot]}`,
     stats:roll,
   };
+  if(passive2)out.passive2=passive2;
+  return out;
 }
+
 function buildCosmicLootItem(roundIdx,e){
   const it=buildLootItem(roundIdx,e);
   const cosmicNamesBySlot={
@@ -4556,7 +4708,29 @@ function lootBonusText(it){
   if(it.stats.bossBonus)bits.push(`+${Math.round(it.stats.bossBonus*100)}% vs bosses`);
   const ptxt=(LOOT_PASSIVES.find(p=>p.id===it.passive)||LOOT_PASSIVES[0]).txt;
   if(ptxt)bits.push(ptxt);
+  if(it.passive2){
+    const t2=(LOOT_PASSIVES.find(p=>p.id===it.passive2)||LOOT_PASSIVES[0]).txt;
+    if(t2)bits.push(t2);
+  }
   return bits.join(' · ');
+}
+function accumulateLootPassiveIntoTotals(t,tier,pid){
+  if(!pid||pid==='none')return;
+  if(pid==='crit')t.critChance+=0.03+tier*0.012;
+  else if(pid==='lifesteal')t.lifesteal+=0.02+tier*0.01;
+  else if(pid==='dodge')t.dodge+=0.015+tier*0.008;
+  else if(pid==='recoil')t.recoilCut+=0.05+tier*0.03;
+  else if(pid==='chronoWard')t.chronoWard+=0.08+tier*0.05;
+  else if(pid==='ferocity'){
+    t.critChance+=0.02+tier*0.012;
+    t.lifesteal+=0.015+tier*0.008;
+  }else if(pid==='phaseShift'){
+    t.dodge+=0.012+tier*0.007;
+    t.chronoWard+=0.06+tier*0.04;
+  }else if(pid==='execution'){
+    t.critChance+=0.024+tier*0.01;
+    t.recoilCut+=0.04+tier*0.025;
+  }
 }
 function getPassiveTotals(p){
   ensureLoadout(p);
@@ -4570,21 +4744,8 @@ function getPassiveTotals(p){
   for(const s of ['weapon','boots','gloves','helmet','chestplate']){
     const it=p.loadout[s];if(!it||!it.passive)continue;
     const tier=lootTier(it.rarity);
-    if(it.passive==='crit')t.critChance+=0.03+tier*0.012;
-    else if(it.passive==='lifesteal')t.lifesteal+=0.02+tier*0.01;
-    else if(it.passive==='dodge')t.dodge+=0.015+tier*0.008;
-    else if(it.passive==='recoil')t.recoilCut+=0.05+tier*0.03;
-    else if(it.passive==='chronoWard')t.chronoWard+=0.08+tier*0.05;
-    else if(it.passive==='ferocity'){
-      t.critChance+=0.02+tier*0.012;
-      t.lifesteal+=0.015+tier*0.008;
-    }else if(it.passive==='phaseShift'){
-      t.dodge+=0.012+tier*0.007;
-      t.chronoWard+=0.06+tier*0.04;
-    }else if(it.passive==='execution'){
-      t.critChance+=0.024+tier*0.01;
-      t.recoilCut+=0.04+tier*0.025;
-    }
+    accumulateLootPassiveIntoTotals(t,tier,it.passive);
+    if(it.passive2)accumulateLootPassiveIntoTotals(t,tier,it.passive2);
   }
   return t;
 }
@@ -4780,7 +4941,7 @@ function rollDailyModFromSeed(seed){
   return{...DAILY_MOD_TABLE[i]};
 }
 function loadGameSettings(){
-  const def={difficulty:'normal',fontPct:112,reduceMotion:false,logImportantOnly:false,skinId:'classic'};
+  const def={difficulty:'normal',fontPct:118,reduceMotion:false,logImportantOnly:false,skinId:'classic'};
   try{return{...def,...JSON.parse(localStorage.getItem(LS_GAME_SETTINGS)||'{}')};}catch(_){return{...def};}
 }
 function saveGameSettings(partial){
@@ -4794,7 +4955,7 @@ function applyMotionFromSettings(){
 }
 function applyFontFromSettings(){
   const s=loadGameSettings();
-  const pct=Math.max(85,Math.min(130,Number(s.fontPct)||112));
+  const pct=Math.max(85,Math.min(130,Number(s.fontPct)||118));
   document.documentElement.style.setProperty('--ga-font',String(pct/100));
 }
 function getDifficultyMods(){
@@ -4969,9 +5130,9 @@ function beginGame(isDaily,opts={}){
   G._permApplyResult=applyPermanentMetaToPlayer(G.player);
   if(!_dailyMode){
     const vb=applyMetaVaultToPlayer(G.player);
-    if(vb&&(vb.g||vb.s||vb.df||vb.a||vb.h||vb.so))G._vaultBonusApplied=vb;
+    if(vb&&(vb.g||vb.s||vb.df||vb.a||vb.h))G._vaultBonusApplied=vb;
     const db=consumePendingDailyBonus(G.player);
-    if(db&&(db.gold||db.souls))G._dailyBonusApplied=db;
+    if(db&&db.gold)G._dailyBonusApplied=db;
   }
   hideAllScreens();
   document.getElementById('panel').classList.remove('hidden');
@@ -5078,6 +5239,7 @@ function startFight(){
   if(sceneEl)sceneEl.classList.remove('adam-presence');
   if(sceneEl)sceneEl.classList.remove('first-light','lb-scene-solar','lb-scene-communion','lb-scene-image','lb-scene-lance','lb-scene-firstray','lb-scene-ascent');
   if(sceneEl)sceneEl.classList.remove('castdown-court');
+  if(sceneEl)sceneEl.classList.remove('pentarchon-axis');
   const lbArena=document.getElementById('lightbringer-arena');
   if(lbArena)lbArena.classList.remove('lb-fx-solar','lb-fx-communion','lb-fx-image','lb-fx-lance','lb-fx-firstray','lb-fx-ascent');
   const truthArena=document.getElementById('truth-arena');
@@ -5125,13 +5287,12 @@ function startFight(){
     if(v.df)bits.push(`+${v.df} DEF`);
     if(v.a)bits.push(`+${v.a} AGI`);
     if(v.h)bits.push(`+${v.h} HP`);
-    if(v.so)bits.push(`+${v.so} souls`);
     if(bits.length)addLog(`🏛 Arena Vault supplies: ${bits.join(' · ')}.`,'sp');
     G._vaultBonusApplied=null;
   }
   if(G._dailyBonusApplied){
     const b=G._dailyBonusApplied;
-    addLog(`☀ Daily prize: +${b.gold} gold · +${b.souls} souls.`,'sp');
+    addLog(`☀ Daily prize: +${b.gold} gold.`,'sp');
     G._dailyBonusApplied=null;
   }
   if(G.daily&&G.dailyMod&&G.dailyMod.tag&&!G._dailyModLogged){
@@ -5185,7 +5346,7 @@ function startFight(){
   } else if(et.bossType==='pentad'){
     document.getElementById('esprite').querySelector('svg').classList.add('aura-pentad');
     if(shStorm)shStorm.classList.add('on');
-    if(truthArena)truthArena.classList.add('pulse');
+    if(sceneEl)sceneEl.classList.add('pentarchon-axis');
   } else if(et.bossType==='void'){
     document.getElementById('esprite').querySelector('svg').classList.add('aura-void');
   } else if(et.bossType==='nemesis'){
@@ -7557,10 +7718,6 @@ function endFight(won){
   ensureInv(p);ensureLoadout(p);
   const gAdd=computeRoundGoldReward(e);
   p.gold+=gAdd;p.wins++;
-  // Award soul fragments
-  const SOUL_REWARDS=[5,8,12,16,20,28,50,80,120,180,260,360,520,620,760,980,1400,1900,2600,7200,8800,10400,12800,16800];
-  const souls=SOUL_REWARDS[G.ei]||0;
-  p.souls=(p.souls||0)+souls;
   if(G.ei>=14&&unlockWarcryAscension()){
     addLog(`🔥 LEGACY AWAKENED — War Cry evolves permanently into PRIMAL HOWL!`,'sp');
     addLog(`PRIMAL HOWL: +8 STR for 3 turns, +2 Resonance, shorter cooldown.`,'sp');
@@ -7583,7 +7740,7 @@ function endFight(won){
   }
   // Reset per-fight soul item state
   p.soulAegisUsed=false;
-  addLog(`${e.name} FALLS! ${e.isBoss?'The void trembles!':'The crowd erupts!'} +${gAdd} gold · +${souls} souls!`,'sp');
+  addLog(`${e.name} FALLS! ${e.isBoss?'The void trembles!':'The crowd erupts!'} +${gAdd} gold!`,'sp');
   if(e.bossType==='lightbringer'){
     addLog(`☀ The True Son is silent — and the sky bruises into shapes that are not weather. Heaven sends hunters through broken geometry.`,'bsp');
   }
@@ -8108,8 +8265,6 @@ function render(){
   document.getElementById('ckagi').innerHTML=`AGI <b>${p.agi}</b>`;
   document.getElementById('ckdef').innerHTML=`DEF <b>${p.def}</b>`;
   document.getElementById('ckgold').innerHTML=`<b>${p.gold}</b> gold`;
-  const soulsEl=document.getElementById('cksouls');
-  if(soulsEl)soulsEl.innerHTML=`💀 <b>${p.souls||0}</b>`;
   const tc=document.getElementById('ckturn');
   if(G.myTurn&&!G.busy){tc.textContent='● YOUR TURN';tc.className='ck ckt y';}
   else{tc.textContent='● ENEMY TURN';tc.className='ck ckt e';}
@@ -8401,31 +8556,68 @@ function nextFight(){
 
 function showSoulShop(){
   document.getElementById('soul-shop-scr').classList.remove('hidden');
+  G._soulEmporiumPicks=[];
+  renderSoulShopGrid();
+}
+
+function renderSoulShopGrid(){
   const p=G.player;
-  document.getElementById('soul-balance').innerHTML=`<small>SOUL FRAGMENTS:</small> ${p.souls||0}`;
+  const picks=G._soulEmporiumPicks=G._soulEmporiumPicks||[];
+  const n=picks.length;
+  const bal=document.getElementById('soul-balance');
+  if(bal)bal.innerHTML=`<small>PICK TWO GIFTS</small> · <b>${n}/2</b> chosen`;
+  const note=document.getElementById('soul-shop-note');
+  if(note){
+    note.innerHTML=n>=2
+      ?`Two gifts locked in. Press <b>Enter the Arena</b> when ready — tap a card to change a pick.`
+      :`Tap <b>${2-n}</b> more gift${2-n===1?'':'s'} below (tap again to deselect). All free — no fragments.`;
+  }
   document.getElementById('soul-grid').innerHTML=SOUL_ITEMS.map(item=>{
-    const owned=p[item.id+'_si_owned'];
-    const cantBuy=((p.souls||0)<item.cost)||owned;
-    return`<div class="soul-item${cantBuy?(owned?' owned':' sbk'):''}" onclick="buySoulItem('${item.id}')">
+    const owned=!!p[item.id+'_si_owned'];
+    const picked=picks.includes(item.id);
+    let cls='soul-item';
+    if(owned)cls+=' owned';
+    else if(picked)cls+=' picked';
+    else cls+=' soul-pickable';
+    const foot=owned?'✓ Already claimed this run':picked?'✓ Selected':'Tap to select';
+    return`<div class="${cls}" onclick="pickSoulEmporiumItem('${item.id}')">
       <div class="si-icon">${item.icon}</div>
       <div class="si-name">${item.name}</div>
       <div class="si-desc">${item.desc}</div>
-      <div class="${owned?'si-owned':'si-cost'}">${owned?'✓ Equipped':item.cost+' souls'}</div>
+      <div class="${owned?'si-owned':'si-cost'}">${foot}</div>
     </div>`;
   }).join('');
 }
 
-function buySoulItem(id){
+function pickSoulEmporiumItem(id){
   const item=SOUL_ITEMS.find(i=>i.id===id);
   const p=G.player;
-  if(!item||(p.souls||0)<item.cost||p[id+'_si_owned'])return;
-  p.souls-=item.cost;
-  item.fn(p);
-  p[id+'_si_owned']=true;
-  showSoulShop();
+  if(!item||p[id+'_si_owned'])return;
+  const picks=G._soulEmporiumPicks=G._soulEmporiumPicks||[];
+  const ix=picks.indexOf(id);
+  if(ix>=0)picks.splice(ix,1);
+  else{
+    if(picks.length>=2){
+      if(typeof showErrorToast==='function')showErrorToast('Two gifts only — deselect one to choose another.');
+      return;
+    }
+    picks.push(id);
+  }
+  renderSoulShopGrid();
 }
 
 function continueFightFromSoulShop(){
+  const picks=G._soulEmporiumPicks||[];
+  if(picks.length!==2){
+    if(typeof showErrorToast==='function')showErrorToast('Choose exactly two gifts before entering the arena.');
+    return;
+  }
+  const p=G.player;
+  for(const id of picks){
+    const it=SOUL_ITEMS.find(i=>i.id===id);
+    if(it&&!p[id+'_si_owned']){it.fn(p);p[id+'_si_owned']=true;}
+  }
+  G._soulEmporiumPicks=null;
   hideAllScreens();startFight();
 }
 
@@ -10038,7 +10230,7 @@ function syncIntroControlsFromStorage(){
   const diff=document.getElementById('set-difficulty');
   if(diff)diff.value=s.difficulty||'normal';
   const font=document.getElementById('set-font');
-  if(font)font.value=String(s.fontPct??112);
+  if(font)font.value=String(s.fontPct??118);
   const mot=document.getElementById('set-motion');
   if(mot)mot.checked=!!s.reduceMotion;
   const lf=document.getElementById('set-logfilter');
