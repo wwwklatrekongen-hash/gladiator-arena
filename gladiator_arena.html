@@ -787,12 +787,66 @@ html.ga-reduce-motion #archon-heaven{animation:none;opacity:.72}
 .an-round{font-size:7px;letter-spacing:3px;color:#6a8c34;display:block;margin-top:4px}
 #ai-skip{position:absolute;bottom:14px;right:18px;font-family:'Cinzel',serif;font-size:8px;color:#6a8c34;letter-spacing:2px;cursor:pointer;z-index:22;opacity:.65}
 #ai-skip:hover{opacity:1}
+/* ── LIGHT BRINGER INTRO ───────────────────────────────── */
+#light-intro{position:fixed;inset:0;z-index:280;background:#060810;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center}
+#light-intro.lifading{animation:kfade 1.15s ease-out forwards}
+#li-sun{position:absolute;inset:0;background:
+  radial-gradient(circle at 50% 28%,rgba(255,252,240,.95) 0%,rgba(255,240,200,.35) 12%,rgba(255,220,140,.12) 28%,transparent 52%),
+  radial-gradient(ellipse 80% 50% at 50% 100%,rgba(255,200,90,.18),transparent 45%),
+  linear-gradient(180deg,#020408 0%,#0a1428 40%,#1a2848 78%,#2a3a68 100%);
+  animation:liSunPulse 3.2s ease-in-out infinite alternate}
+@keyframes liSunPulse{from{filter:brightness(.92)}to{filter:brightness(1.18)}}
+#li-lore{text-align:center;position:relative;z-index:10;margin-bottom:1.6rem;padding:0 18px;max-width:540px}
+.ll{font-family:'Cinzel',serif;letter-spacing:2.5px;display:block;margin:5px 0;opacity:0;animation:klapp .75s ease-out var(--dl) forwards}
+.ll-s{font-size:9px;color:#8a98b8}.ll-m{font-size:12px;color:#e8e8ff;font-weight:700}
+.ll-b{font-size:14px;color:#fff8e0;font-weight:900;letter-spacing:3px;text-shadow:0 0 26px rgba(255,240,160,.55)}
+#li-name{position:relative;z-index:10;text-align:center;opacity:0;animation:knamein 1.2s ease-out var(--dl) forwards}
+.ln-main{font-family:'Cinzel Decorative',serif;font-size:clamp(19px,5.5vw,36px);font-weight:700;color:#fffef8;letter-spacing:8px;text-shadow:0 0 32px rgba(255,248,200,.9),0 0 80px rgba(255,200,80,.35);display:block;animation:lnPulse 2.4s ease-in-out infinite alternate}
+@keyframes lnPulse{from{letter-spacing:8px;color:#f8f8ff}to{letter-spacing:9px;color:#fffce8}}
+.ln-sub{font-size:9px;letter-spacing:5px;color:#c8c8e8;display:block;margin-top:6px;font-weight:700}
+.ln-round{font-size:7px;letter-spacing:3px;color:#8890b0;display:block;margin-top:4px}
+#li-skip{position:absolute;bottom:14px;right:18px;font-family:'Cinzel',serif;font-size:8px;color:#8890b0;letter-spacing:2px;cursor:pointer;z-index:22;opacity:.65}
+#li-skip:hover{opacity:1}
+.aura-light{animation:alight 1.05s ease-in-out infinite alternate}
+@keyframes alight{from{filter:drop-shadow(0 6px 14px rgba(0,0,0,.95)) drop-shadow(0 0 36px rgba(255,252,235,.82)) drop-shadow(0 0 24px rgba(255,210,100,.55)) drop-shadow(0 -8px 28px rgba(255,248,200,.35))}to{filter:drop-shadow(0 6px 14px rgba(0,0,0,.95)) drop-shadow(0 0 88px rgba(255,254,248,.98)) drop-shadow(0 0 64px rgba(255,220,140,.88)) drop-shadow(0 -12px 40px rgba(255,240,180,.5)) brightness(1.32) contrast(1.1)}}
+/* Light Bearer crown — SVG micro-animations (respect reduce-motion below) */
+.conceptlight-svg .lb-crown{transform-origin:36px 19px;animation:lbCrownBreath 3.6s ease-in-out infinite}
+.conceptlight-svg .lb-corona-outer{transform-origin:36px 10px;animation:lbCoronaDrift 4.2s ease-in-out infinite alternate}
+.conceptlight-svg .lb-crown-jewel{animation:lbJewelGlint 2s ease-in-out infinite alternate}
+.conceptlight-svg .lb-bearer-orb{animation:lbOrbPulse 1.85s ease-in-out infinite alternate}
+.conceptlight-svg .lb-cross-rays{animation:lbRayTurn 22s linear infinite}
+@keyframes lbCrownBreath{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-0.9px) scale(1.018)}}
+@keyframes lbCoronaDrift{from{opacity:.55;transform:scale(1)}to{opacity:.92;transform:scale(1.04)}}
+@keyframes lbJewelGlint{from{filter:brightness(1)}to{filter:brightness(1.35)}}
+@keyframes lbOrbPulse{from{opacity:.72}to{opacity:1}}
+@keyframes lbRayTurn{from{transform:rotate(0deg);transform-origin:36px 6px}to{transform:rotate(360deg);transform-origin:36px 6px}}
+.bb-lightbringer{background:linear-gradient(92deg,#3a2810 0%,#1a1428 38%,#0c1830 100%);color:#fffef0;border:1px solid #f0d878;box-shadow:0 0 22px rgba(255,220,140,.38),0 0 48px rgba(255,248,220,.12),inset 0 1px 0 rgba(255,255,255,.12);letter-spacing:.12em;font-size:6.5px!important;padding:3px 8px!important;line-height:1.35}
+.ft-light{background:#181c30;color:#f0f0ff;border:1px solid #7090d0;animation:ftpulse2 .85s ease-in-out infinite alternate}
+#scene.first-light #sky{
+  background:
+    radial-gradient(circle at 50% 8%,rgba(255,252,240,.55),rgba(255,240,200,.2) 22%,transparent 48%),
+    radial-gradient(circle at 20% 70%,rgba(255,220,140,.12),transparent 40%),
+    linear-gradient(180deg,#040810 0%,#101828 35%,#283450 70%,#405070 100%);
+}
+#scene.first-light{box-shadow:inset 0 -28px 60px rgba(0,0,0,.55),0 0 90px rgba(255,240,200,.16),0 -40px 100px rgba(255,252,235,.08)}
+#scene.first-light #estage::before{content:'';position:absolute;left:50%;top:-6%;width:120%;height:38%;transform:translateX(-50%);pointer-events:none;background:radial-gradient(ellipse 55% 70% at 50% 0%,rgba(255,252,240,.14),transparent 72%);animation:lbStageHalo 3.5s ease-in-out infinite alternate;z-index:0}
+@keyframes lbStageHalo{from{opacity:.55}to{opacity:1}}
+.swrap.light-flare svg{animation:liFlareFx .68s ease-out}
+.swrap.light-fruit svg{animation:liFruitFx .82s ease-out}
+.swrap.light-lance svg{animation:liLanceFx .74s cubic-bezier(.2,.8,.2,1)}
+@keyframes liFlareFx{0%{filter:brightness(1)}40%{filter:brightness(1.55) saturate(1.15);transform:scale(1.06)}100%{filter:brightness(1);transform:scale(1)}}
+@keyframes liFruitFx{0%{filter:brightness(1)}35%{filter:brightness(1.45) hue-rotate(12deg);transform:translateY(-3px) scale(1.08)}100%{filter:brightness(1);transform:translateY(0) scale(1)}}
+@keyframes liLanceFx{0%{transform:translateX(0)}45%{transform:translateX(28px) scale(1.1)}100%{transform:translateX(0) scale(1)}}
+.end-light-victory .stit{color:#fff8e0!important;text-shadow:0 0 24px rgba(255,230,160,.5)!important}
+.end-light-victory{border-color:#d8c878!important;box-shadow:0 0 72px rgba(255,220,140,.24),inset 0 0 0 1px rgba(255,230,160,.2)!important}
 @media (prefers-reduced-motion: reduce){
-  #si-chronosphere,#si-tick,#si-grain,#si-abyss,.sn-main,#ai-garden,#ai-vines,.an-main{animation:none!important}
-  #si-chronosphere{transform:none}
+  #si-chronosphere,#si-tick,#si-grain,#si-abyss,.sn-main,#ai-garden,#ai-vines,.an-main,.conceptlight-svg .lb-crown,.conceptlight-svg .lb-corona-outer,.conceptlight-svg .lb-crown-jewel,.conceptlight-svg .lb-bearer-orb,.conceptlight-svg .lb-cross-rays,#scene.first-light #estage::before{animation:none!important}
+  #si-chronosphere,.conceptlight-svg .lb-crown{transform:none}
 }
 html.ga-reduce-motion #si-chronosphere,html.ga-reduce-motion #si-tick,html.ga-reduce-motion #si-grain,html.ga-reduce-motion #si-abyss,html.ga-reduce-motion .sn-main,html.ga-reduce-motion #ai-garden,html.ga-reduce-motion #ai-vines,html.ga-reduce-motion .an-main{animation:none!important}
 html.ga-reduce-motion #si-chronosphere{transform:none}
+html.ga-reduce-motion .conceptlight-svg .lb-crown,html.ga-reduce-motion .conceptlight-svg .lb-corona-outer,html.ga-reduce-motion .conceptlight-svg .lb-crown-jewel,html.ga-reduce-motion .conceptlight-svg .lb-bearer-orb,html.ga-reduce-motion .conceptlight-svg .lb-cross-rays,html.ga-reduce-motion #scene.first-light #estage::before{animation:none!important}
+html.ga-reduce-motion .conceptlight-svg .lb-crown{transform:none}
 
 /* ── DAILY SEED MODE ──────────────────────────────────────*/
 .mode-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:4px 0 8px}
@@ -832,7 +886,12 @@ html.ga-reduce-motion #si-chronosphere{transform:none}
 .mv-sources{font-size:8px;color:#7a6048;line-height:1.55;margin-bottom:8px}
 .mv-sources .mv-slab{display:inline-block;margin:2px 6px 2px 0;padding:2px 6px;background:rgba(0,0,0,.35);border-radius:3px;border:1px solid #3a2010}
 .mv-next{font-size:8px;color:#8a9868;margin-bottom:8px;padding:6px 8px;background:rgba(20,32,16,.4);border:1px solid #3a5028;border-radius:4px}
+.mv-section{font-family:'Cinzel',serif;font-size:8px;font-weight:700;letter-spacing:2px;color:#a07840;margin:10px 0 6px}
+.mv-progress{font-size:8px;color:#8a9868;margin-bottom:8px;padding:4px 8px;background:rgba(30,24,12,.45);border-radius:4px;border:1px solid #4a3820}
 .mv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:8px}
+.mv-card.mv-perm-card{border-color:#5a4030}
+.mv-card.mv-perm-max{opacity:.72;border-color:#3a5028}
+.mv-card .mv-rank{color:#7a9a60;font-size:7px;margin-bottom:4px}
 .mv-card{background:rgba(6,4,2,.65);border:1px solid #4a3218;border-radius:6px;padding:8px 10px;font-size:8px;color:#a88868}
 .mv-card .mv-ico{font-size:18px;display:block;margin-bottom:4px}
 .mv-card .mv-name{font-family:'Cinzel',serif;font-weight:700;color:#e8c090;letter-spacing:1px;font-size:9px;margin-bottom:4px}
@@ -1195,7 +1254,11 @@ html.ga-reduce-motion #highlord-fx{display:none}
       </div>
       <div class="mv-body hidden" id="meta-vault-body">
         <div class="mv-sources" id="meta-vault-sources"></div>
+        <div class="mv-progress" id="meta-vault-perm-progress"></div>
         <div class="mv-next" id="meta-vault-next"></div>
+        <div class="mv-section">Permanent ascension</div>
+        <div class="mv-grid" id="meta-vault-perm"></div>
+        <div class="mv-section">Next run supplies</div>
         <div class="mv-grid" id="meta-vault-grid"></div>
       </div>
     </div>
@@ -1321,6 +1384,16 @@ html.ga-reduce-motion #highlord-fx{display:none}
     <span class="an-round">ROUND 19 · GARDEN OF EVE · ORIGIN GIVEN FORM</span>
   </div>
   <div id="ai-skip" onclick="skipAdamIntro()">SKIP ▶</div>
+</div>
+<div id="light-intro" class="hidden">
+  <div id="li-sun"></div>
+  <div id="li-lore"></div>
+  <div id="li-name" style="--dl:0s">
+    <span class="ln-main">CONCEPT OF LIGHT</span>
+    <span class="ln-sub">THE TRUE SON · SEVEN SPIRES · BEARER OF THE FIRST CROWN</span>
+    <span class="ln-round">ROUND 20 · CAST DOWN FROM HEAVEN · THE CROWN STILL HOLDS ITS LIGHT</span>
+  </div>
+  <div id="li-skip" onclick="skipLightIntro()">SKIP ▶</div>
 </div>
 
 <!-- ══ END ════════════════════════════════════════════════ -->
@@ -2653,6 +2726,100 @@ const CHARS = {
   <circle cx="56" cy="28" r="2.2" fill="#f8ffd8" stroke="#d0ff92" stroke-width=".6"/>
   <path d="M53 15 Q58 7 60 1 Q62 -3 56 -2 Q50 0 49 7 Q48 12 53 15 Z" fill="#f4ffd2" stroke="#fbffe6" stroke-width="1"/>
   <path d="M56 16 L56 59" stroke="#d8ff9a" stroke-width="1.1" opacity=".9"/>
+</svg>`,
+  conceptlight:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg" class="conceptlight-svg">
+  <defs>
+    <radialGradient id="lbHalo" cx="50%" cy="0%" r="95%">
+      <stop offset="0%" style="stop-color:#fffef8"/><stop offset="22%" style="stop-color:#fff4c8"/><stop offset="55%" style="stop-color:#ffe090"/><stop offset="100%" style="stop-color:transparent"/>
+    </radialGradient>
+    <linearGradient id="lbCrownMetal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fffef0"/><stop offset="22%" style="stop-color:#f8e8a8"/><stop offset="48%" style="stop-color:#e8c060"/><stop offset="72%" style="stop-color:#c89830"/><stop offset="100%" style="stop-color:#8a6020"/>
+    </linearGradient>
+    <linearGradient id="lbCrownShadow" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff8e0"/><stop offset="100%" style="stop-color:#a07028"/>
+    </linearGradient>
+    <radialGradient id="lbGem" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" style="stop-color:#ffffff"/><stop offset="40%" style="stop-color:#fff8c0"/><stop offset="100%" style="stop-color:#f0b030"/>
+    </radialGradient>
+    <radialGradient id="lbCoreGem" cx="40%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#ffffff"/><stop offset="35%" style="stop-color:#e8f8ff"/><stop offset="70%" style="stop-color:#80c0ff"/><stop offset="100%" style="stop-color:#3058a0"/>
+    </radialGradient>
+    <filter id="lbGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="lbSoftGlow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="2.4" result="g"/><feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <linearGradient id="lbRobe" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fafcff"/><stop offset="40%" style="stop-color:#d0dcff"/><stop offset="100%" style="stop-color:#304878"/>
+    </linearGradient>
+  </defs>
+  <!-- Ground & ambient -->
+  <ellipse cx="36" cy="100" rx="31" ry="6.2" fill="rgba(255,248,210,.55)"/>
+  <ellipse cx="36" cy="58" rx="40" ry="46" fill="url(#lbHalo)" opacity=".14"/>
+  <!-- Crown corona (behind figure) -->
+  <ellipse cx="36" cy="10" rx="34" ry="16" fill="none" stroke="rgba(255,248,200,.35)" stroke-width="1.4" class="lb-corona-outer"/>
+  <ellipse cx="36" cy="8" rx="28" ry="12" fill="none" stroke="rgba(255,235,160,.28)" stroke-width="1" opacity=".85"/>
+  <!-- LIGHT BEARER'S CROWN — seven spires (seven bearers of the first light) -->
+  <g class="lb-crown" filter="url(#lbGlow)">
+    <!-- Circlet base -->
+    <path d="M14 21 Q36 14 58 21 L56 25 Q36 19 16 25 Z" fill="url(#lbCrownShadow)" stroke="#b88830" stroke-width="0.9"/>
+    <path d="M15.5 20.5 Q36 13.5 56.5 20.5 Q36 17 15.5 20.5" fill="url(#lbCrownMetal)" stroke="#fff8d8" stroke-width="0.75" opacity=".98"/>
+    <!-- Inner filigree band -->
+    <path d="M18 22 Q36 18.5 54 22" fill="none" stroke="rgba(255,252,235,.65)" stroke-width="0.55" stroke-dasharray="1.2 1.8"/>
+    <!-- Central king-spire (tallest) -->
+    <path d="M36 13 L33 20 L39 20 Z" fill="url(#lbCrownMetal)" stroke="#fffef5" stroke-width="0.6"/>
+    <circle cx="36" cy="11.2" r="2.8" fill="url(#lbCoreGem)" stroke="#e8f4ff" stroke-width="0.5" class="lb-crown-jewel"/>
+    <path d="M36 6.5 L34.2 10.5 L37.8 10.5 Z" fill="#fffef8" stroke="#ffe8a0" stroke-width="0.35" opacity=".95"/>
+    <!-- Left spires -->
+    <path d="M26 15.5 L24.5 20.5 L27.5 20.5 Z" fill="url(#lbCrownMetal)" stroke="#fff0c0" stroke-width="0.45"/>
+    <circle cx="26" cy="14.8" r="1.35" fill="url(#lbGem)" opacity=".95"/>
+    <path d="M20.5 17 L19.2 21.2 L22 21.2 Z" fill="url(#lbCrownMetal)" stroke="#f8e0a0" stroke-width="0.4"/>
+    <circle cx="20.5" cy="16.5" r="1.1" fill="url(#lbGem)"/>
+    <path d="M31 14.2 L30 19 L32.8 19 Z" fill="url(#lbCrownMetal)" stroke="#fff8e0" stroke-width="0.4"/>
+    <circle cx="31" cy="13.6" r="1.05" fill="url(#lbGem)"/>
+    <!-- Right spires (mirror) -->
+    <path d="M46 15.5 L47.5 20.5 L44.5 20.5 Z" fill="url(#lbCrownMetal)" stroke="#fff0c0" stroke-width="0.45"/>
+    <circle cx="46" cy="14.8" r="1.35" fill="url(#lbGem)" opacity=".95"/>
+    <path d="M51.5 17 L52.8 21.2 L50 21.2 Z" fill="url(#lbCrownMetal)" stroke="#f8e0a0" stroke-width="0.4"/>
+    <circle cx="51.5" cy="16.5" r="1.1" fill="url(#lbGem)"/>
+    <path d="M41 14.2 L42 19 L39.2 19 Z" fill="url(#lbCrownMetal)" stroke="#fff8e0" stroke-width="0.4"/>
+    <circle cx="41" cy="13.6" r="1.05" fill="url(#lbGem)"/>
+    <!-- Bearer-lanterns: tiny suspended orbs at circlet -->
+    <line x1="22" y1="23" x2="22" y2="26" stroke="rgba(255,240,200,.55)" stroke-width="0.4"/>
+    <circle cx="22" cy="27.2" r="1.15" fill="url(#lbGem)" opacity=".88" class="lb-bearer-orb"/>
+    <line x1="36" y1="23.5" x2="36" y2="27" stroke="rgba(255,240,200,.5)" stroke-width="0.4"/>
+    <circle cx="36" cy="28.2" r="1.25" fill="url(#lbCoreGem)" opacity=".9" class="lb-bearer-orb"/>
+    <line x1="50" y1="23" x2="50" y2="26" stroke="rgba(255,240,200,.55)" stroke-width="0.4"/>
+    <circle cx="50" cy="27.2" r="1.15" fill="url(#lbGem)" opacity=".88" class="lb-bearer-orb"/>
+    <!-- Side arcs (heavenly vault) -->
+    <path d="M16 19 Q10 8 36 4 Q62 8 56 19" fill="none" stroke="rgba(255,248,220,.4)" stroke-width="0.65" stroke-linecap="round"/>
+    <path d="M20 17 Q36 10 52 17" fill="none" stroke="rgba(255,235,180,.35)" stroke-width="0.45"/>
+  </g>
+  <!-- Radiant cross behind head -->
+  <g opacity=".55" class="lb-cross-rays">
+    <path d="M36 2 L36 12 M30 6 L42 6 M32.5 3.5 L39.5 8.5 M39.5 3.5 L32.5 8.5" stroke="rgba(255,252,240,.7)" stroke-width="0.5" stroke-linecap="round"/>
+  </g>
+  <!-- Face & body -->
+  <ellipse cx="36" cy="28" rx="14" ry="15" fill="#ffebd8" stroke="#c89868" stroke-width="1"/>
+  <ellipse cx="31" cy="28" rx="3.2" ry="2.3" fill="#1a1410"/><ellipse cx="41" cy="28" rx="3.2" ry="2.3" fill="#1a1410"/>
+  <ellipse cx="31" cy="28" rx="1.1" ry=".85" fill="#fff8f0"/><ellipse cx="41" cy="28" rx="1.1" ry=".85" fill="#fff8f0"/>
+  <path d="M33 34 Q36 37 39 34" stroke="#a07050" stroke-width=".85" fill="none"/>
+  <path d="M22 40 L50 40" stroke="rgba(255,255,255,.5)" stroke-width=".65"/>
+  <rect x="19" y="40" width="34" height="36" rx="8" fill="url(#lbRobe)" stroke="#6080c0" stroke-width="1.05"/>
+  <path d="M23 50 Q36 58 49 50" stroke="rgba(255,255,255,.42)" stroke-width="1" fill="none"/>
+  <!-- Breast sigil: stylized crown mark -->
+  <path d="M36 48 L34 52 L38 52 Z" fill="url(#lbCrownMetal)" stroke="#fff8e0" stroke-width="0.35" opacity=".9"/>
+  <circle cx="36" cy="50.5" r="1.6" fill="url(#lbCoreGem)" opacity=".75"/>
+  <path d="M14 44 Q9 56 12 70" stroke="#ffe8d8" stroke-width="7.2" fill="none" stroke-linecap="round"/>
+  <path d="M58 44 Q63 56 60 70" stroke="#ffe8d8" stroke-width="7.2" fill="none" stroke-linecap="round"/>
+  <rect x="23" y="74" width="10" height="22" rx="3" fill="#283c60"/>
+  <rect x="38" y="74" width="10" height="22" rx="3" fill="#1e3050"/>
+  <!-- Blade of exile — fuller, brighter -->
+  <rect x="51" y="16" width="7.5" height="52" rx="1.7" fill="#1a2840" stroke="#c8d8f0" stroke-width="0.9"/>
+  <path d="M51 16 Q56.5 4 61.5 0 Q63.5 -2.5 57 -1.5 Q51.5 1 50.5 9 Q50 13 51 16 Z" fill="url(#lbCrownMetal)" stroke="#fffef0" stroke-width="1"/>
+  <path d="M55 18 L55 64" stroke="rgba(255,252,240,.85)" stroke-width="1.35" stroke-linecap="round"/>
+  <path d="M52 32 L58 32" stroke="rgba(200,220,255,.5)" stroke-width="0.6"/>
 </svg>`
 };
 
@@ -2692,6 +2859,8 @@ const ENEMIES=[
     specialName:"AXIOM CROWN + ORIGIN VERDICT + ABSOLUTE DECREE",specialDesc:"Defines what truth means across all narratives."},
   {name:"Concept Of Adam",charKey:"conceptadam",hp:7600,str:280,agi:52,def:120,gold:12600,title:"The First Man in God's Image",isBoss:true,bossType:"adam",
     specialName:"GOD'S INSIGHT + GOD'S GIFT + GOD'S IMAGE + GOD'S HAND",specialDesc:"The Garden of Eve itself answers his command."},
+  {name:"Concept of Light",charKey:"conceptlight",hp:27800,str:505,agi:88,def:252,gold:48500,title:"Cast From Heaven · Bearer of the First Crown",isBoss:true,bossType:"lightbringer",
+    specialName:"SOLAR FLOURISH + COMMUNION OF EXILE + IMAGE OF THE FATHER + LUMEN LANCE",specialDesc:"Wears the Light Bearer's Crown — seven spires for seven witnesses, gems for every truth heaven refused to dim. Struck from the throne yet unmatched below it; Adam was clay's prayer, this is the answer."},
 ];
 
 // ═══ TIERED GEAR SYSTEM ═══
@@ -2788,7 +2957,7 @@ const LS_GAME_SETTINGS='ga_game_settings_v1';
 const LS_RUN_SAVE='ga_run_save_v1';
 const LS_INTRO_TIPS='ga_intro_tips_seen_v1';
 const LS_WARCRY_ASCENDED='ga_warcry_ascended_v1';
-const GAME_VER='1.4.0';
+const GAME_VER='1.5.0';
 
 function currentDailyNumber(){
   return Math.max(1, Math.floor((Date.now()-LAUNCH_EPOCH_MS)/DAY_MS)+1);
@@ -2897,13 +3066,41 @@ const META_SHOP_ITEMS=[
   {id:'v_vit',icon:'❤',name:'Second Wind',desc:'+14 max HP and heal (next run).',cost:38,bon:{maxHp:14}},
   {id:'v_soul',icon:'💀',name:'Soul Scrap',desc:'+35 soul fragments at run start.',cost:36,bon:{souls:35}},
 ];
+const META_PERM_MAX_STAT=10;
+const META_PERM_MAX_EDEN=5;
+const META_PERM_TOTAL=META_PERM_MAX_STAT*4+META_PERM_MAX_EDEN;
+const META_PERM_SHOP=[
+  {key:'str',icon:'💪',name:'Iron Oath',desc:`+1 STR per rank forever (max ${META_PERM_MAX_STAT}).`},
+  {key:'def',icon:'🛡',name:'Stone Covenant',desc:`+1 DEF per rank forever (max ${META_PERM_MAX_STAT}).`},
+  {key:'agi',icon:'👟',name:'Wind Pact',desc:`+1 AGI per rank forever (max ${META_PERM_MAX_STAT}).`},
+  {key:'vit',icon:'❤',name:'Bloodline',desc:`+8 max HP per rank forever (max ${META_PERM_MAX_STAT}).`},
+  {key:'eden',icon:'🍎',name:'Forbidden Covenant',desc:`+1.8% vs bosses & +12 start gold per rank (max ${META_PERM_MAX_EDEN}). Unlocks the truth-tree.`},
+];
 function defaultMetaVault(){
   return{
     marks:0,
     sources:{daily:0,milestone:0,echo:0,combat:0,time:0,victory:0,streak:0,claim:0,turns:0},
     lifetime:{playMs:0,roundsWon:0,bossKills:0,fullClears:0,dailiesFinished:0,totalTurns:0,runsEnded:0},
     nextRun:{gold:0,str:0,def:0,agi:0,maxHp:0,souls:0},
+    perm:{str:0,def:0,agi:0,vit:0,eden:0},
   };
+}
+function permRankMax(key){
+  return key==='eden'?META_PERM_MAX_EDEN:META_PERM_MAX_STAT;
+}
+function permUpgradeCost(key,currentRank){
+  const lv=Math.max(0,currentRank|0);
+  if(key==='eden')return 42+lv*24;
+  return 18+lv*13;
+}
+function permTotalRanks(v){
+  const p=v.perm||{};
+  return(p.str|0)+(p.def|0)+(p.agi|0)+(p.vit|0)+(p.eden|0);
+}
+function isMetaPermApotheosis(v){
+  const p=v.perm||{};
+  return(p.str|0)>=META_PERM_MAX_STAT&&(p.def|0)>=META_PERM_MAX_STAT&&(p.agi|0)>=META_PERM_MAX_STAT
+    &&(p.vit|0)>=META_PERM_MAX_STAT&&(p.eden|0)>=META_PERM_MAX_EDEN;
 }
 function loadMetaVault(){
   try{
@@ -2915,6 +3112,11 @@ function loadMetaVault(){
     d.sources={...d.sources,...o.sources};
     d.lifetime={...d.lifetime,...o.lifetime};
     d.nextRun={...d.nextRun,...o.nextRun};
+    d.perm={...d.perm,...(o.perm||{})};
+    for(const k of ['str','def','agi','vit','eden']){
+      const mx=k==='eden'?META_PERM_MAX_EDEN:META_PERM_MAX_STAT;
+      d.perm[k]=Math.max(0,Math.min(mx,d.perm[k]|0));
+    }
     return d;
   }catch(_){return defaultMetaVault()}
 }
@@ -3027,6 +3229,79 @@ function applyMetaVaultToPlayer(p){
   saveMetaVault(v);
   return{g,s,df,a,h,so};
 }
+/** Permanent vault ranks + optional Apotheosis (×2 STR/DEF/AGI/HP when all tracks maxed). */
+function applyPermanentMetaToPlayer(p){
+  if(!p)return{msg:null};
+  const v=loadMetaVault();
+  const r=v.perm||{};
+  const s=r.str|0,df=r.def|0,a=r.agi|0,vi=r.vit|0,ed=r.eden|0;
+  const bits=[];
+  if(s){p.str=(p.str|0)+s;bits.push(`+${s} STR`);}
+  if(df){p.def=(p.def|0)+df;bits.push(`+${df} DEF`);}
+  if(a){p.agi=(p.agi|0)+a;bits.push(`+${a} AGI`);}
+  if(vi){
+    const h=vi*8;
+    p.maxHp=(p.maxHp|0)+h;
+    p.hp=(p.hp|0)+h;
+    bits.push(`+${h} HP`);
+  }
+  if(ed){
+    p.vsBossBonus=(p.vsBossBonus||0)+ed*0.018;
+    p.gold=(p.gold|0)+ed*12;
+    bits.push(`Covenant ×${ed}`);
+  }
+  let apoth=false;
+  if(isMetaPermApotheosis(v)){
+    apoth=true;
+    const ratio=p.maxHp>0?p.hp/p.maxHp:1;
+    p.str=Math.floor((p.str|0)*2);
+    p.def=Math.floor((p.def|0)*2);
+    p.agi=Math.floor((p.agi|0)*2);
+    const om=p.maxHp|0;
+    p.maxHp=Math.max(1,Math.floor(om*2));
+    p.hp=Math.max(1,Math.floor(p.maxHp*ratio));
+    p.vsBossBonus=(p.vsBossBonus||0)+0.12;
+    p.metaApotheosis=true;
+    bits.push('APOTHEOSIS ×2 core stats · apex passives');
+  }
+  const msg=bits.length?`🏛 Vault ascension: ${bits.join(' · ')}`:null;
+  return{msg,apoth};
+}
+function metaBuyPermUpgrade(key){
+  const mx=permRankMax(key);
+  if(!mx)return;
+  const v=loadMetaVault();
+  v.perm=v.perm||{str:0,def:0,agi:0,vit:0,eden:0};
+  const cur=v.perm[key]|0;
+  if(cur>=mx){
+    if(typeof showErrorToast==='function')showErrorToast('That ascension path is complete.');
+    return;
+  }
+  const cost=permUpgradeCost(key,cur);
+  if((v.marks|0)<cost){
+    if(typeof showErrorToast==='function')showErrorToast('Not enough marks.');
+    return;
+  }
+  v.marks-=cost;
+  v.perm[key]=cur+1;
+  saveMetaVault(v);
+  renderMetaVaultIntro();
+  const def=META_PERM_SHOP.find(x=>x.key===key);
+  const nm=def?def.name:key;
+  const done=v.perm[key]>=mx;
+  const ap=isMetaPermApotheosis(v);
+  const el=document.getElementById('milestone-toast');
+  if(el){
+    el.innerHTML=`<span class="mt-ico">${def?def.icon:'🏛'}</span>
+      <div class="mt-name">Permanent upgrade</div>
+      <div class="mt-desc">${nm} → rank ${v.perm[key]}/${mx}${done?' · MAX':''}</div>
+      <div class="mt-sub">${ap?'APOTHEOSIS COMPLETE — double stats & apex passives on every run!':`−${cost} marks`}</div>`;
+    el.classList.remove('hidden','show');
+    void el.offsetWidth;
+    el.classList.add('show');
+    setTimeout(()=>el.classList.add('hidden'),ap?5200:3800);
+  }
+}
 function metaBuyItem(id){
   const it=META_SHOP_ITEMS.find(x=>x.id===id);
   if(!it)return;
@@ -3067,7 +3342,9 @@ function toggleMetaVaultPanel(){
 function renderMetaVaultIntro(){
   const bal=document.getElementById('meta-vault-balance');
   const src=document.getElementById('meta-vault-sources');
+  const pr=document.getElementById('meta-vault-perm-progress');
   const nx=document.getElementById('meta-vault-next');
+  const pgrid=document.getElementById('meta-vault-perm');
   const grid=document.getElementById('meta-vault-grid');
   if(!bal||!src||!nx||!grid)return;
   const v=loadMetaVault();
@@ -3075,6 +3352,13 @@ function renderMetaVaultIntro(){
   bal.innerHTML=`<b>${m}</b> marks`;
   const s=v.sources||{};
   src.innerHTML=`<span class="mv-slab">Daily ${s.daily|0}</span><span class="mv-slab">Streak ${s.streak|0}</span><span class="mv-slab">Claims ${s.claim|0}</span><span class="mv-slab">Milestones ${s.milestone|0}</span><span class="mv-slab">Echo ${s.echo|0}</span><span class="mv-slab">Fights ${s.combat|0}</span><span class="mv-slab">Turns ${s.turns|0}</span><span class="mv-slab">Time ${s.time|0}</span><span class="mv-slab">Victory ${s.victory|0}</span><br><span style="opacity:.85">Lifetime: ${Math.floor((v.lifetime.playMs||0)/60000)}m arena · ${v.lifetime.roundsWon|0} wins · ${v.lifetime.bossKills|0} bosses · ${v.lifetime.fullClears|0} full clears · ${v.lifetime.dailiesFinished|0} dailies</span>`;
+  if(pr){
+    const tot=permTotalRanks(v);
+    const ap=isMetaPermApotheosis(v);
+    pr.innerHTML=ap
+      ?`<b style="color:#d8ff9a">APOTHEOSIS ACTIVE</b> — all ascension paths maxed. Every run: ×2 STR/DEF/AGI/max HP (after permanent ranks), +12% vs bosses from this tree, +10% lifesteal / +4.5% dodge / +8% crit / +6% recoil cut.`
+      :`<b>Ascension</b> ${tot}/${META_PERM_TOTAL} — max every path including <b>Forbidden Covenant</b> to unlock <b>Apotheosis</b> (100% core stat multiplier + apex passives).`;
+  }
   const n=v.nextRun||{};
   const np=[];
   if(n.gold)np.push(`+${n.gold} gold`);
@@ -3083,7 +3367,20 @@ function renderMetaVaultIntro(){
   if(n.agi)np.push(`+${n.agi} AGI`);
   if(n.maxHp)np.push(`+${n.maxHp} HP`);
   if(n.souls)np.push(`+${n.souls} souls`);
-  nx.textContent=np.length?`Next Classic / Peaceful run: ${np.join(' · ')}`:'No vault supplies queued — buy cards below before you enter.';
+  nx.textContent=np.length?`Next Classic / Peaceful run: ${np.join(' · ')}`:'No one-run supplies queued — optional cards below.';
+  if(pgrid){
+    const pm=v.perm||{};
+    pgrid.innerHTML=META_PERM_SHOP.map(def=>{
+      const k=def.key;
+      const rk=pm[k]|0;
+      const mx=permRankMax(k);
+      const done=rk>=mx;
+      const cost=done?0:permUpgradeCost(k,rk);
+      const aff=!done&&(v.marks|0)>=cost?'':' disabled';
+      const cls=done?'mv-card mv-perm-card mv-perm-max':'mv-card mv-perm-card';
+      return`<div class="${cls}"><span class="mv-ico">${def.icon}</span><div class="mv-name">${def.name}</div><div class="mv-rank">Rank <b>${rk}</b> / ${mx}</div><div class="mv-desc">${def.desc}</div><div class="mv-cost">${done?'MAXED':cost+' marks'}</div><button type="button" class="sbtn mv-buy"${aff} onclick="metaBuyPermUpgrade('${k}')" ${done?'disabled':''}>${done?'✓':`BUY +1`}</button></div>`;
+    }).join('');
+  }
   grid.innerHTML=META_SHOP_ITEMS.map(it=>{
     const aff=(v.marks|0)>=it.cost?'':' disabled';
     return`<div class="mv-card"><span class="mv-ico">${it.icon}</span><div class="mv-name">${it.name}</div><div class="mv-desc">${it.desc}</div><div class="mv-cost">${it.cost} marks</div><button type="button" class="sbtn mv-buy"${aff} onclick="metaBuyItem('${it.id}')">BUY</button></div>`;
@@ -3373,6 +3670,12 @@ function lootBonusText(it){
 function getPassiveTotals(p){
   ensureLoadout(p);
   const t={critChance:0,lifesteal:0,dodge:0,recoilCut:0,chronoWard:0};
+  if(p&&p.metaApotheosis){
+    t.lifesteal+=0.10;
+    t.dodge+=0.045;
+    t.critChance+=0.08;
+    t.recoilCut+=0.06;
+  }
   for(const s of ['weapon','boots','gloves','helmet','chestplate']){
     const it=p.loadout[s];if(!it||!it.passive)continue;
     const tier=lootTier(it.rarity);
@@ -3531,6 +3834,8 @@ function combatStr(base,isBoss){
     v=Math.floor(v*bossMult);
     if(G.player.timeDecayed)v=Math.floor(v*0.85);
     if((G.player.conceptWarpStacks||0)>0)v=Math.floor(v*(1-Math.min(0.24,G.player.conceptWarpStacks*0.06)));
+    const lr=Math.min(6,G.player.lightRadianceStacks|0);
+    if(lr>0)v=Math.floor(v*(1-lr*0.055));
   }
   return v;
 }
@@ -3756,6 +4061,7 @@ function beginGame(isDaily,opts={}){
      peacefulMode,
      runStartTurn:0,totalTurns:0,deathRound:null,wonAll:false,
      dailyMod,runStats:{dmgToEnemy:0,dmgTaken:0},_dailyModLogged:false,_dailyBonusApplied:null,_vaultBonusApplied:null};
+  G._permApplyResult=applyPermanentMetaToPlayer(G.player);
   if(!_dailyMode){
     const vb=applyMetaVaultToPlayer(G.player);
     if(vb&&(vb.g||vb.s||vb.df||vb.a||vb.h||vb.so))G._vaultBonusApplied=vb;
@@ -3817,7 +4123,7 @@ function buildShareCard(result){
     else if((i+1) === result.deathRound) bar.push('🗡️');
     else bar.push('⬛');
   }
-  const enemyName = result.deathRound ? ['Slave','Barbarian','Legionnaire','Praetorian','Champion','Berserker','Daemonicus','Undying','Kronos','Saturn','Aeternon','Nemesis','Concept Lizard','Concept Reptilian','Concept Dragon','Concept Splitter','Concept Shatterer','Concept of Truth','Concept Of Adam'][result.deathRound-1] : 'Concept Of Adam';
+    const enemyName = result.deathRound ? ['Slave','Barbarian','Legionnaire','Praetorian','Champion','Berserker','Daemonicus','Undying','Kronos','Saturn','Aeternon','Nemesis','Concept Lizard','Concept Reptilian','Concept Dragon','Concept Splitter','Concept Shatterer','Concept of Truth','Concept Of Adam','Concept of Light'][result.deathRound-1] : 'Concept of Light';
   const outcome = result.won ? '👑 CHAMPION' : `${enemyName} R${result.deathRound}`;
   const hpTxt = result.won ? `HP ${result.finalHp}/${result.maxHp}` : '';
   const modLine=(result.dailyModTag&&String(result.dailyModTag))?`\nSigil: ${result.dailyModTag}`:'';
@@ -3855,6 +4161,7 @@ function startFight(){
   if(sceneEl)sceneEl.classList.remove('highlord-finale');
   if(sceneEl)sceneEl.classList.remove('garden-eve');
   if(sceneEl)sceneEl.classList.remove('adam-presence');
+  if(sceneEl)sceneEl.classList.remove('first-light');
   const truthArena=document.getElementById('truth-arena');
   if(truthArena)truthArena.classList.remove('pulse');
   const shStorm=document.getElementById('shatterer-storm');
@@ -3878,6 +4185,7 @@ function startFight(){
   const p=G.player;
   p.defending=false;p.buffTurns=0;p.warcryCD=0;p.warcryResonance=0;p.timeLocked=0;p.timeDecayed=false;
   p.conceptWarpStacks=0;
+  p.lightRadianceStacks=0;
   // Apply Berserker's Draft bonus for this fight
   if(p.battleBrewBonus>0){
     p.maxHp+=p.battleBrewBonus;
@@ -3886,6 +4194,10 @@ function startFight(){
     p.battleBrewBonus=0;
   }
   G.myTurn=true;G.busy=false;G.log=[];
+  if(G._permApplyResult&&G._permApplyResult.msg){
+    addLog(G._permApplyResult.msg,'sp');
+    G._permApplyResult=null;
+  }
   if(G._vaultBonusApplied){
     const v=G._vaultBonusApplied;
     const bits=[];
@@ -3944,6 +4256,10 @@ function startFight(){
     document.getElementById('esprite').querySelector('svg').classList.add('aura-adam');
     if(sceneEl)sceneEl.classList.add('garden-eve');
     if(sceneEl)sceneEl.classList.add('adam-presence');
+  } else if(et.bossType==='lightbringer'){
+    document.getElementById('esprite').querySelector('svg').classList.add('aura-light');
+    if(sceneEl)sceneEl.classList.add('first-light');
+    if(shStorm)shStorm.classList.add('on');
   } else if(et.bossType==='void'){
     document.getElementById('esprite').querySelector('svg').classList.add('aura-void');
   } else if(et.bossType==='nemesis'){
@@ -3974,6 +4290,8 @@ function startFight(){
     badge.innerHTML=`<div class="boss-badge bb-highlord">👑 CONCEPT OF TRUTH</div>`;
   } else if(et.isBoss&&et.bossType==='adam'){
     badge.innerHTML=`<div class="boss-badge bb-adam">✶ CONCEPT OF ADAM</div>`;
+  } else if(et.isBoss&&et.bossType==='lightbringer'){
+    badge.innerHTML=`<div class="boss-badge bb-lightbringer">👑 LIGHT BEARER'S CROWN · TRUE SON</div>`;
   } else if(et.isBoss&&et.bossType==='void'){
     badge.innerHTML=`<div class="boss-badge bb-void">◈ THE NAMELESS</div>`;
   } else if(et.isBoss&&et.bossType==='nemesis'){
@@ -4068,6 +4386,14 @@ function startFight(){
     G.enemy.agi=Math.max(1,Math.round(G.enemy.agi*q));
     G.enemy.def=Math.max(1,Math.round(G.enemy.def*q));
   }
+  if(et.bossType==='lightbringer'){
+    const q=1.62;
+    G.enemy.maxHp=Math.max(1,Math.round(G.enemy.maxHp*q));
+    G.enemy.hp=G.enemy.maxHp;
+    G.enemy.str=Math.max(1,Math.round(G.enemy.str*q));
+    G.enemy.agi=Math.max(1,Math.round(G.enemy.agi*q));
+    G.enemy.def=Math.max(1,Math.round(G.enemy.def*q));
+  }
 
   if(et.bossType==='nemesis'){
     G.busy=true;
@@ -4155,6 +4481,18 @@ function startFight(){
       addLog(`CONCEPT OF ADAM steps forward: first-born flesh, carrying GOD'S INSIGHT, GOD'S GIFT, GOD'S IMAGE, and GOD'S HAND.`,'bsp');
       addLog(`He does not rule by argument. He rules by origin.`,'bsp');
       addLog(`Lore: before kings and scripture, he walked with creation and named what breath could become.`,'bsp');
+      G.busy=false;render();
+    });
+    render();return;
+  }else if(et.bossType==='lightbringer'){
+    G.busy=true;
+    showLightIntro(()=>{
+      addLog(`The arena whites out — weightless, judgment-bright, as if the sky remembered its favorite child.`,'bsp');
+      addLog(`CONCEPT OF LIGHT descends: not a rebel's spite, but heaven's true son — cast down, yet still reflecting the one who made him.`,'bsp');
+      addLog(`Lore: Adam was shaped from dust and given breath. The Light was shaped in glory and given the Father's own radiance.`,'bsp');
+      addLog(`Lore: every blow he throws is a memory of the throne; every mercy he denies is the ache of exile.`,'bsp');
+      addLog(`SOLAR FLOURISH, COMMUNION OF EXILE, IMAGE OF THE FATHER, LUMEN LANCE — you face the mirror, not the myth.`,'bsp');
+      addLog("Detail: the Light Bearer's Crown crowns him still — circlet of gold, seven spires, gems like trapped dawn, lanterns that never stopped testifying.",'bsp');
       G.busy=false;render();
     });
     render();return;
@@ -4284,6 +4622,10 @@ function act(a){
     }
     if(e&&e.isBoss&&e.bossType==='adam'&&(e.godsImageTurns||0)>0&&wasHit){
       addLog(`✧ GOD'S IMAGE reflects your strike — Adam cannot be wounded right now.`,'bsp');
+      return{dmg:0,blocked:true};
+    }
+    if(e&&e.isBoss&&e.bossType==='lightbringer'&&(e.haloEdenTurns||0)>0&&wasHit){
+      addLog(`☀ IMAGE OF THE FATHER — your blade finds only the Maker's likeness; the True Son cannot be wounded while he mirrors heaven.`,'bsp');
       return{dmg:0,blocked:true};
     }
     if(!e||e.bossType!=='nemesis'||!e.finalPhase){
@@ -5057,6 +5399,151 @@ function enemyTurn(){
   }
   // ── END CONCEPT OF ADAM ─────────────────────────────────
 
+  // ── CONCEPT OF LIGHT (Light Bringer) ────────────────────
+  if(e.isBoss&&e.bossType==='lightbringer'){
+    if((e.haloEdenTurns||0)>0){
+      e.haloEdenTurns=Math.max(0,e.haloEdenTurns-1);
+      if(e.haloEdenTurns===0)addLog(`☀ IMAGE OF THE FATHER fades — the cast-down son is mortal again, if only for a breath.`,'bsp');
+    }
+    e.lightTurn=(e.lightTurn||0)+1;
+
+    if(!e.lightLore1&&e.hp/e.maxHp<0.92){
+      e.lightLore1=true;
+      addLog(`Revelation: CONCEPT OF ADAM was clay taught to kneel. The Light is spirit cast down — and still bearing his Father's seal.`,'bsp');
+    }
+    if(!e.lightLore2&&e.hp/e.maxHp<0.72){
+      e.lightLore2=true;
+      addLog(`Revelation: they name him fallen — yet every ray off his skin is a borrowed splendor from the throne he left.`,'bsp');
+    }
+    if(!e.lightLore3&&e.hp/e.maxHp<0.38){
+      e.lightLore3=true;
+      addLog(`Revelation: to fight him is to strike the mirror; the wound you open is shaped like the Creator's own countenance.`,'bsp');
+    }
+
+    if(e.lightTurn%2===1){
+      const warm=Math.max(5,Math.floor(e.str*0.085));
+      p.hp=Math.max(0,p.hp-warm);
+      p.lightRadianceStacks=Math.min(6,(p.lightRadianceStacks|0)+1);
+      addLog(`☀ SOLAR FLOURISH — light that once crowned heaven sears for ${warm}; RADIANCE ×${p.lightRadianceStacks} — exile still burns bright.`,'bsp');
+      triggerLightbringerFx('flare');
+      triggerHighlordMoveFx('crown');
+      applyPeacefulPlayerImmortality(p);
+      if(p.hp<=0){
+        const riseChance=getBlessingRiseChance(p);
+        if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
+          p.blessingUsed=true;p.hp=0;G.busy=true;
+          document.getElementById('psprite').classList.add('dead');render();
+          triggerResurrection();return;
+        }
+        addLog(`You go quiet under the morning that watched him cast out.`,'sp');
+        document.getElementById('psprite').classList.add('dead');setTimeout(showDefeat,900);return;
+      }
+    }
+
+    if(e.hp/e.maxHp<0.64&&!e.forbiddenFruitUsed&&e.hp>0){
+      e.forbiddenFruitUsed=true;
+      const heal=Math.floor(e.maxHp*0.22);
+      e.hp=Math.min(e.maxHp,e.hp+heal);
+      p.warcryResonance=Math.max(0,(p.warcryResonance|0)-2);
+      if((p.buffTurns|0)>0)p.buffTurns=Math.max(0,(p.buffTurns|0)-1);
+      const bite=Math.max(16,Math.floor(p.maxHp*0.07));
+      p.hp=Math.max(0,p.hp-bite);
+      addLog(`✧ COMMUNION OF EXILE — he shares the cup of his fall: ${bite} HP torn from you, your roar silenced, +${heal} HP as heaven's memory floods back into him.`,'bsp');
+      triggerLightbringerFx('fruit');
+      applyPeacefulPlayerImmortality(p);
+      if(p.hp<=0){
+        const riseChance=getBlessingRiseChance(p);
+        if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
+          p.blessingUsed=true;p.hp=0;G.busy=true;
+          document.getElementById('psprite').classList.add('dead');render();
+          triggerResurrection();return;
+        }
+        addLog(`The covenant of the cast-down finishes what the throne began.`,'sp');
+        document.getElementById('psprite').classList.add('dead');setTimeout(showDefeat,900);return;
+      }
+      G.myTurn=true;render();return;
+    }
+
+    if(e.hp/e.maxHp<0.44&&!e.haloEdenUsed&&e.hp>0){
+      e.haloEdenUsed=true;
+      e.haloEdenTurns=2;
+      p.timeLocked=Math.max(p.timeLocked||0,1);
+      addLog(`☀ IMAGE OF THE FATHER — for 2 turns he is untouchable, flawless reflection; your next rhythm is stolen like breath from a prayer.`,'bsp');
+      triggerLightbringerFx('flare');
+      G.myTurn=true;render();return;
+    }
+
+    if(e.lightTurn%4===0){
+      const lance=Math.max(58,Math.floor(e.str*1.22)+ri(14,28));
+      triggerLightbringerFx('lance');
+      if(p.hasSoulAegis&&!p.soulAegisUsed&&lance>=p.hp){
+        p.soulAegisUsed=true;
+        addLog(`✦ SOUL AEGIS absorbs LUMEN LANCE!`,'sp');
+      }else{
+        p.hp=Math.max(0,p.hp-lance);
+        addLog(`✧ LUMEN LANCE — ${lance} spear-light, the same grammar heaven used when it said *go*.`,'bsp');
+        aAtk('e');aHit('p',lance);
+      }
+      p.defending=false;
+      applyPeacefulPlayerImmortality(p);
+      if(p.hp<=0){
+        const riseChance=getBlessingRiseChance(p);
+        if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
+          p.blessingUsed=true;p.hp=0;G.busy=true;
+          document.getElementById('psprite').classList.add('dead');render();
+          triggerResurrection();return;
+        }
+        addLog(`The beam leaves only ash — as if your name were never written beside his.`,'sp');
+        document.getElementById('psprite').classList.add('dead');setTimeout(showDefeat,900);return;
+      }
+      G.myTurn=true;render();return;
+    }
+
+    if(e.lightTurn%3===0){
+      const readDef=Math.max(1,Math.floor(p.def*0.5));
+      const gleam=calcDmg(e.str,p.agi,readDef,1.58,(getPassiveTotals(p).dodge||0)*0.62);
+      triggerLightbringerFx('flare');
+      if(gleam<0){
+        addLog(`☀ FIRST RAY glances — you twist between photons.`,'en');
+        sfxDodge();
+      }else{
+        if(p.hasSoulAegis&&!p.soulAegisUsed&&gleam>=p.hp){
+          p.soulAegisUsed=true;
+          addLog(`✦ SOUL AEGIS absorbs FIRST RAY!`,'sp');
+        }else{
+          p.hp=Math.max(0,p.hp-gleam);
+          addLog(`☀ FIRST RAY — ${gleam} damage; the True Son reads you with the same eyes that once pleased his Maker.`,'bsp');
+          aAtk('e');aHit('p',gleam);
+        }
+      }
+      p.defending=false;
+      applyPeacefulPlayerImmortality(p);
+      if(p.hp<=0){
+        const riseChance=getBlessingRiseChance(p);
+        if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
+          p.blessingUsed=true;p.hp=0;G.busy=true;
+          document.getElementById('psprite').classList.add('dead');render();
+          triggerResurrection();return;
+        }
+        addLog(`Judgment without shelter — the mirror does not forgive what heaven forgot.`,'sp');
+        document.getElementById('psprite').classList.add('dead');setTimeout(showDefeat,900);return;
+      }
+      G.myTurn=true;render();return;
+    }
+
+    if(e.hp/e.maxHp<0.22&&!e.radiantAscent){
+      e.radiantAscent=true;
+      e.str=Math.floor(e.str*1.24);
+      e.def=Math.floor(e.def*1.16);
+      e.agi=Math.floor(e.agi*1.12);
+      p.lightRadianceStacks=Math.min(6,(p.lightRadianceStacks|0)+2);
+      addLog(`✺ RADIANT ASCENT — the Crown flares white; each spire answers the last. Cornered, he burns like the instant heaven shut its gates.`,'bsp');
+      triggerLightbringerFx('lance');
+      G.myTurn=true;render();return;
+    }
+  }
+  // ── END CONCEPT OF LIGHT ────────────────────────────────
+
   // ── COSMIC REPTILIAN HIGHLORD MECHANICS ─────────────────
   if(e.isBoss&&e.bossType==='highlord'){
     e.hlTurn=(e.hlTurn||0)+1;
@@ -5700,7 +6187,7 @@ function endFight(won){
   const gAdd=computeRoundGoldReward(e);
   p.gold+=gAdd;p.wins++;
   // Award soul fragments
-  const SOUL_REWARDS=[5,8,12,16,20,28,50,80,120,180,260,360,520,620,760,980,1400,1900,2600];
+  const SOUL_REWARDS=[5,8,12,16,20,28,50,80,120,180,260,360,520,620,760,980,1400,1900,2600,7200];
   const souls=SOUL_REWARDS[G.ei]||0;
   p.souls=(p.souls||0)+souls;
   if(G.ei>=14&&unlockWarcryAscension()){
@@ -5920,6 +6407,17 @@ function triggerAdamMoveFx(kind='presence'){
   },kind==='image'?880:kind==='gift'?920:kind==='hand'?760:700);
 }
 
+function triggerLightbringerFx(kind='flare'){
+  if(document.documentElement.classList.contains('ga-reduce-motion'))return;
+  const esp=document.getElementById('esprite');
+  if(!esp)return;
+  const cls=kind==='fruit'?'light-fruit':kind==='lance'?'light-lance':'light-flare';
+  esp.classList.remove('light-flare','light-fruit','light-lance');
+  void esp.offsetWidth;
+  esp.classList.add(cls);
+  setTimeout(()=>{try{esp.classList.remove(cls);}catch(_){}},kind==='lance'?780:720);
+}
+
 function triggerGodMoveFx(kind='nova'){
   const fx=document.getElementById('god-fx');
   const scene=document.getElementById('scene');
@@ -5996,6 +6494,8 @@ function render(){
   if(p.loadout&&p.loadout.weapon){
     pt.push(`<span class="ft" style="background:#080c14;color:${p.loadout.weapon.color};border:1px solid ${p.loadout.weapon.color}">${p.loadout.weapon.weaponType.toUpperCase()}</span>`);
   }
+  if(p.metaApotheosis)pt.push('<span class="ft" style="background:#1a2040;color:#fff8d8;border:1px solid #e8c060">☀ APOTHEOSIS</span>');
+  if((p.lightRadianceStacks||0)>0)pt.push(`<span class="ft ft-light">RADIANCE ×${p.lightRadianceStacks}</span>`);
   document.getElementById('ptags').innerHTML=pt.join('');
   // enemy
   document.getElementById('ename').textContent=e.name.toUpperCase();
@@ -6072,6 +6572,16 @@ function render(){
     if(!e.godsGiftUsed&&e.hp/e.maxHp<0.68)et.push('<span class="ft ft-adam">GIFT NEAR</span>');
     if(e.godsGiftUsed)et.push('<span class="ft ft-adam">GIFT TAKEN</span>');
   }
+  if(e.isBoss&&e.bossType==='lightbringer'){
+    const fIn=3-((e.lightTurn||0)%3);
+    const lIn=4-((e.lightTurn||0)%4);
+    et.push(`<span class="ft ft-light">RAY IN ${fIn===3?'NOW':fIn}</span>`);
+    et.push(`<span class="ft ft-light">LANCE IN ${lIn===4?'NOW':lIn}</span>`);
+    if((e.haloEdenTurns||0)>0)et.push(`<span class="ft ft-light">FATHER'S IMAGE ×${e.haloEdenTurns}</span>`);
+    if(!e.forbiddenFruitUsed&&e.hp/e.maxHp<0.72)et.push('<span class="ft ft-light">COMMUNION NEAR</span>');
+    if(e.forbiddenFruitUsed)et.push('<span class="ft ft-light">COMMUNION SPENT</span>');
+    if(e.radiantAscent)et.push('<span class="ft ft-light">RADIANT</span>');
+  }
   if(e.isBoss&&e.bossType==='concept'){
     const bIn=3-((e.conceptTurn||0)%3);
     et.push(`<span class="ft ft-concept">BREATH IN ${bIn===3?'NOW':bIn}</span>`);
@@ -6113,7 +6623,7 @@ function render(){
     :G.log;
   document.getElementById('logentries').innerHTML=logRows.map(l=>`<div class="lg ${l.cls}">${l.msg}</div>`).join('');
   // chips
-  const strDisp=p.str+(p.buffTurns>0?'+5':'')+(p.titanCursed||e.unmakingActive||p.timeDecayed||(p.conceptWarpStacks||0)>0?' ⬇':'');
+  const strDisp=p.str+(p.buffTurns>0?'+5':'')+(p.titanCursed||e.unmakingActive||p.timeDecayed||(p.conceptWarpStacks||0)>0||(p.lightRadianceStacks||0)>0?' ⬇':'');
   document.getElementById('ckstr').innerHTML=`STR <b>${strDisp}</b>`;
   document.getElementById('ckagi').innerHTML=`AGI <b>${p.agi}</b>`;
   document.getElementById('ckdef').innerHTML=`DEF <b>${p.def}</b>`;
@@ -6446,10 +6956,17 @@ function showVictory(){
   const p=G.player;hideAllScreens();
   document.getElementById('end-scr').classList.remove('hidden');
   const endBox=document.querySelector('#end-scr .sbox');
-  if(endBox)endBox.classList.remove('end-adam-victory','end-adam-defeat');
+  if(endBox)endBox.classList.remove('end-adam-victory','end-adam-defeat','end-light-victory');
   const narrow=typeof window.matchMedia==='function'&&window.matchMedia('(max-width:520px)').matches;
-  const finalBoss=G.enemy&&G.enemy.bossType==='adam';
-  if(finalBoss){
+  const finalAdam=G.enemy&&G.enemy.bossType==='adam';
+  const finalLight=G.enemy&&G.enemy.bossType==='lightbringer';
+  if(finalLight){
+    if(endBox)endBox.classList.add('end-light-victory');
+    document.getElementById('end-ico').textContent='☀';
+    document.getElementById('end-tit').textContent='MIRRORBREAKER';
+    document.getElementById('end-sub').textContent=narrow?'The cast-down son falls':'Concept of Light Defeated · Mirror of Heaven Shatters';
+    document.getElementById('end-bod').innerHTML=`You did not kill a devil — you outlasted the beloved, the one heaven once called son.<br>He reflected his Maker to the end; now the reflection goes dark, and only you remain.<br><b style="color:#ffe8a0">Cast down he came — cast down you laid him. The arena has no throne.</b>`;
+  }else if(finalAdam){
     if(endBox)endBox.classList.add('end-adam-victory');
     document.getElementById('end-ico').textContent='🌿';
     document.getElementById('end-tit').textContent='ORIGINBREAKER';
@@ -6479,11 +6996,18 @@ function showDefeat(){
   hideAllScreens();
   document.getElementById('end-scr').classList.remove('hidden');
   const endBox=document.querySelector('#end-scr .sbox');
-  if(endBox)endBox.classList.remove('end-adam-victory','end-adam-defeat');
+  if(endBox)endBox.classList.remove('end-adam-victory','end-adam-defeat','end-light-victory');
   const narrow=typeof window.matchMedia==='function'&&window.matchMedia('(max-width:520px)').matches;
   const killer=e?e.name:'your enemy';
+  const lightKill=e&&e.bossType==='lightbringer';
   const adamKill=e&&e.bossType==='adam';
-  if(adamKill){
+  if(lightKill){
+    if(endBox)endBox.classList.add('end-adam-defeat');
+    document.getElementById('end-ico').textContent='☀';
+    document.getElementById('end-tit').textContent='UNHALLOWED';
+    document.getElementById('end-sub').textContent=narrow?`R${G.ei+1} · True Son`:`Judged by Concept of Light — the Cast-Down`;
+    document.getElementById('end-bod').innerHTML=`He fell from heaven once; in you he finds the verdict of dust.<br>You fall on Round <b style="color:#ffe8a0">${G.ei+1}</b>, beneath light that still aches to please its Father.`;
+  }else if(adamKill){
     if(endBox)endBox.classList.add('end-adam-defeat');
     document.getElementById('end-ico').textContent='🍎';
     document.getElementById('end-tit').textContent='EXILED';
@@ -7107,6 +7631,45 @@ function _finishAdamIntro(){
   setTimeout(()=>{
     scr.classList.add('hidden');scr.classList.remove('afading');
     if(_adamIntroCallback){_adamIntroCallback();_adamIntroCallback=null;}
+  },1150);
+}
+
+let _lightIntroCallback=null;
+function showLightIntro(onComplete){
+  _lightIntroCallback=onComplete;
+  const scr=document.getElementById('light-intro');
+  const lore=document.getElementById('li-lore');lore.innerHTML='';
+  [
+    {txt:'Before Adam knelt in soil, another stood in radiance — beloved, bright, unshadowed.',cls:'ll ll-s',dl:.42},
+    {txt:'Heaven cast him down; the arena calls him forth — still wearing the face of his Maker.',cls:'ll ll-m',dl:1.2},
+    {txt:'',cls:'ll ll-s',dl:1.82},
+    {txt:'CONCEPT OF ADAM is the echo in clay. CONCEPT OF LIGHT is the son who mirrors God.',cls:'ll ll-m',dl:2.38},
+    {txt:'Every strike he throws is scripture he memorized above the clouds.',cls:'ll ll-s',dl:3.12},
+    {txt:'',cls:'ll ll-s',dl:3.72},
+    {txt:'CONCEPT OF LIGHT — THE TRUE SON — CAST FROM HEAVEN',cls:'ll ll-b',dl:4.28},
+    {txt:"The Light Bearer's Crown still fits: gold filigree, seven spires, gems drinking starlight — regalia of a son, not a stranger.",cls:'ll ll-s',dl:5.55},
+  ].forEach(({txt,cls,dl})=>{
+    const d=document.createElement('span');d.className=cls;d.textContent=txt;
+    d.style.setProperty('--dl',dl+'s');lore.appendChild(d);
+  });
+  const nameEl=document.getElementById('li-name');
+  nameEl.style.setProperty('--dl','6.85s');
+  nameEl.style.animation='none';void nameEl.offsetWidth;nameEl.style.animation='';
+  scr.classList.remove('hidden');
+  initAudio();
+  setTimeout(()=>{if(typeof sfxBossEnter==='function')sfxBossEnter();},100);
+  setTimeout(()=>{if(typeof sfxHeavenfallBlade==='function')sfxHeavenfallBlade();},900);
+  if(typeof sfxBossEnter==='function'){setTimeout(sfxBossEnter,5200);}
+  setTimeout(()=>_finishLightIntro(),9800);
+}
+function skipLightIntro(){_finishLightIntro();}
+function _finishLightIntro(){
+  const scr=document.getElementById('light-intro');
+  if(!scr||scr.classList.contains('hidden'))return;
+  scr.classList.add('lifading');
+  setTimeout(()=>{
+    scr.classList.add('hidden');scr.classList.remove('lifading');
+    if(_lightIntroCallback){_lightIntroCallback();_lightIntroCallback=null;}
   },1150);
 }
 
