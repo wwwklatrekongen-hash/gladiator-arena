@@ -3729,6 +3729,7 @@ function saveMetaVault(v){
   try{localStorage.setItem(LS_META_VAULT,JSON.stringify(v));}catch(_){}
 }
 function metaGrantMarks(amount,sourceKey){
+  if(!marksEarningEnabled())return;
   const n=Math.max(0,amount|0);
   if(n<=0)return;
   const v=loadMetaVault();
@@ -3801,12 +3802,12 @@ function maybeMetaAccruePlayTime(){
     __metaMsBank-=60000;
     gained+=2;
   }
-  if(gained>0){
+  if(gained>0&&marksEarningEnabled()){
     v.marks=(v.marks|0)+gained;
     v.sources.time=(v.sources.time||0)+gained;
   }
   saveMetaVault(v);
-  if(gained>0&&typeof renderMetaVaultIntro==='function')renderMetaVaultIntro();
+  if(gained>0&&marksEarningEnabled()&&typeof renderMetaVaultIntro==='function')renderMetaVaultIntro();
 }
 function mergeNextRunBonus(v,bon){
   if(!bon)return;
@@ -3956,7 +3957,8 @@ function renderMetaVaultIntro(){
   const m=v.marks|0;
   bal.innerHTML=`<b>${m}</b> marks`;
   const s=v.sources||{};
-  src.innerHTML=`<span class="mv-slab">Daily ${s.daily|0}</span><span class="mv-slab">Streak ${s.streak|0}</span><span class="mv-slab">Claims ${s.claim|0}</span><span class="mv-slab">Milestones ${s.milestone|0}</span><span class="mv-slab">Echo ${s.echo|0}</span><span class="mv-slab">Fights ${s.combat|0}</span><span class="mv-slab">Turns ${s.turns|0}</span><span class="mv-slab">Time ${s.time|0}</span><span class="mv-slab">Victory ${s.victory|0}</span><br><span style="opacity:.85">Lifetime: ${Math.floor((v.lifetime.playMs||0)/60000)}m arena · ${v.lifetime.roundsWon|0} wins · ${v.lifetime.bossKills|0} bosses · ${v.lifetime.fullClears|0} full clears · ${v.lifetime.dailiesFinished|0} dailies</span>`;
+  const markGate=!marksEarningEnabled()?`<br><span style="opacity:.88;color:#b89860">Marks accrue on <b>Normal</b> or <b>Hard</b> only — Story earns none.</span>`:'';
+  src.innerHTML=`<span class="mv-slab">Daily ${s.daily|0}</span><span class="mv-slab">Streak ${s.streak|0}</span><span class="mv-slab">Claims ${s.claim|0}</span><span class="mv-slab">Milestones ${s.milestone|0}</span><span class="mv-slab">Echo ${s.echo|0}</span><span class="mv-slab">Fights ${s.combat|0}</span><span class="mv-slab">Turns ${s.turns|0}</span><span class="mv-slab">Time ${s.time|0}</span><span class="mv-slab">Victory ${s.victory|0}</span><br><span style="opacity:.85">Lifetime: ${Math.floor((v.lifetime.playMs||0)/60000)}m arena · ${v.lifetime.roundsWon|0} wins · ${v.lifetime.bossKills|0} bosses · ${v.lifetime.fullClears|0} full clears · ${v.lifetime.dailiesFinished|0} dailies</span>${markGate}`;
   if(pr){
     const tot=permTotalRanks(v);
     const ap=isMetaPermApotheosis(v);
@@ -4516,6 +4518,11 @@ function getDifficultyMods(){
   if(d==='story')return{enemyHp:0.88,enemyStr:0.90,goldMult:1.08};
   if(d==='hard')return{enemyHp:1.12,enemyStr:1.10,goldMult:0.96};
   return{enemyHp:1,enemyStr:1,goldMult:1};
+}
+/** Arena Vault marks are only earned on Normal and Hard (not Story). */
+function marksEarningEnabled(){
+  const d=(loadGameSettings().difficulty)||'normal';
+  return d==='normal'||d==='hard';
 }
 function clearRunSave(){try{localStorage.removeItem(LS_RUN_SAVE);}catch(_){}}
 function peekRunSave(){
