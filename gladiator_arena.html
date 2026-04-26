@@ -3926,6 +3926,7 @@ const LOOT_RARITY_META={
   legendary:{label:'Legendary',color:'#c06be0'},
   mythic:{label:'Mythic',color:'#e0b84f'},
   ascendant:{label:'Ascendant',color:'#7af5ff'},
+  boundless:{label:'Boundless',color:'#d8fff8'},
   cosmic:{label:'Cosmic',color:'#b8f6ff'},
 };
 const LOOT_ARMOR_SLOTS=['boots','gloves','helmet','chestplate'];
@@ -3939,6 +3940,7 @@ const LOOT_AFFIXES={
   legendary:['Kingsbane','Titanbound','Eternal','Doomforged'],
   mythic:['Chrono-Shattered','Godslayer','Voidforged','Starborn'],
   ascendant:['Truthforged','Axiom-Bound','Heavenpiercing','Paradox-Eater'],
+  boundless:['Unchained','Horizon-Break','Oathless','Ever-Open'],
   cosmic:['Genesis-Bound','Astral Crowned','Cosmic Warden','God-Image Forged'],
 };
 const LOOT_PASSIVES=[
@@ -4608,7 +4610,14 @@ function rollLootRarity(roundIdx,isBoss){
     wA=(0.05+prog*0.08)+(isBoss?0.04:0);
     wM*=0.90;
   }
-  const ws=[['common',wC],['uncommon',wU],['rare',wR],['legendary',wE],['mythic',wM],['ascendant',wA]];
+  let wB=0;
+  // Round 18+ unlock: Boundless tier (after round 17).
+  if(roundNumber>17){
+    wB=(0.04+prog*0.052)+(isBoss?0.03:0);
+    wM*=0.86;
+    wA*=0.88;
+  }
+  const ws=[['common',wC],['uncommon',wU],['rare',wR],['legendary',wE],['mythic',wM],['ascendant',wA],['boundless',wB]];
   let total=0;for(const [,w]of ws)total+=Math.max(0,w);
   if(total<=0)return 'rare';
   let r=rnd()*total;
@@ -4620,7 +4629,16 @@ function rollLootRarity(roundIdx,isBoss){
   return 'rare';
 }
 function lootTier(rarity){
-  return {common:0,uncommon:1,rare:2,legendary:3,mythic:4,ascendant:5,cosmic:6}[rarity]||0;
+  return {common:0,uncommon:1,rare:2,legendary:3,mythic:4,ascendant:5,boundless:6,cosmic:7}[rarity]||0;
+}
+/** Fisher–Yates slice: pick n distinct passives from pool (n ≤ pool length). */
+function pickDistinctPassives(pool,n){
+  const a=pool.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j=ri(0,i);
+    const tmp=a[i];a[i]=a[j];a[j]=tmp;
+  }
+  return a.slice(0,Math.min(n|0,pool.length,a.length));
 }
 function buildLootItem(roundIdx,e){
   const rarity=rollLootRarity(roundIdx,!!(e&&e.isBoss));
@@ -4629,16 +4647,16 @@ function buildLootItem(roundIdx,e){
   const slot=isWeapon?'weapon':LOOT_ARMOR_SLOTS[ri(0,LOOT_ARMOR_SLOTS.length-1)];
   const weaponType=isWeapon?LOOT_WEAPON_TYPES[ri(0,LOOT_WEAPON_TYPES.length-1)]:null;
   const roll={
-    str:isWeapon?[1,2,4,6,9,13][t]:[0,1,2,3,5,8][t],
-    agi:slot==='boots'?[1,2,3,4,6,9][t]:slot==='gloves'?[0,1,2,3,4,6][t]:[0,0,1,2,3,5][t],
-    def:slot==='chestplate'?[1,2,4,6,9,14][t]:slot==='helmet'?[1,2,3,4,6,10][t]:slot==='gloves'?[0,1,1,2,3,5][t]:[0,0,1,1,2,4][t],
-    hp:slot==='chestplate'?[8,14,24,36,52,78][t]:slot==='helmet'?[4,8,12,18,28,42][t]:[0,4,8,12,18,30][t],
-    bossBonus:isWeapon?[0,0.01,0.02,0.04,0.06,0.09][t]:[0,0,0.01,0.02,0.04,0.065][t],
+    str:isWeapon?[1,2,4,6,9,13,16][t]:[0,1,2,3,5,8,11][t],
+    agi:slot==='boots'?[1,2,3,4,6,9,11][t]:slot==='gloves'?[0,1,2,3,4,6,8][t]:[0,0,1,2,3,5,7][t],
+    def:slot==='chestplate'?[1,2,4,6,9,14,17][t]:slot==='helmet'?[1,2,3,4,6,10,13][t]:slot==='gloves'?[0,1,1,2,3,5,7][t]:[0,0,1,1,2,4,6][t],
+    hp:slot==='chestplate'?[8,14,24,36,52,78,92][t]:slot==='helmet'?[4,8,12,18,28,42,52][t]:[0,4,8,12,18,30,38][t],
+    bossBonus:isWeapon?[0,0.01,0.02,0.04,0.06,0.09,0.108][t]:[0,0,0.01,0.02,0.04,0.065,0.082][t],
   };
   const meta=LOOT_RARITY_META[rarity];
   const affixPool=LOOT_AFFIXES[rarity]||LOOT_AFFIXES.common;
   const affix=affixPool[ri(0,affixPool.length-1)];
-  const passiveOdds={common:0.05,uncommon:0.18,rare:0.34,legendary:0.66,mythic:0.92,ascendant:1.0}[rarity]||0;
+  const passiveOdds={common:0.05,uncommon:0.18,rare:0.34,legendary:0.66,mythic:0.92,ascendant:1.0,boundless:1.0}[rarity]||0;
   const poolByRarity={
     common:['crit','dodge'],
     uncommon:['crit','lifesteal','dodge','recoil'],
@@ -4648,14 +4666,21 @@ function buildLootItem(roundIdx,e){
     ascendant:['ferocity','phaseShift','execution','crit','lifesteal','dodge','chronoWard']
   };
   const passivePool=poolByRarity[rarity]||['crit','dodge'];
+  const singlePassivePool=['crit','lifesteal','dodge','recoil','chronoWard'];
   let passive='none';
   let passive2=null;
-  if(rarity==='ascendant'&&isWeapon){
-    const ascWeaponSingles=['crit','lifesteal','dodge','recoil','chronoWard'];
-    passive=ascWeaponSingles[ri(0,ascWeaponSingles.length-1)];
+  let passive3=null;
+  if(rarity==='boundless'){
+    const nSig=rnd()<0.33?3:2;
+    const picks=pickDistinctPassives(singlePassivePool,nSig);
+    passive=picks[0]||'crit';
+    passive2=picks[1]||'dodge';
+    if(picks[2])passive3=picks[2];
+  }else if(rarity==='ascendant'&&isWeapon){
+    passive=singlePassivePool[ri(0,singlePassivePool.length-1)];
     if(rnd()<0.10){
       let p2,guard=0;
-      do{p2=ascWeaponSingles[ri(0,ascWeaponSingles.length-1)];guard++;}
+      do{p2=singlePassivePool[ri(0,singlePassivePool.length-1)];guard++;}
       while(p2===passive&&guard<24);
       if(p2!==passive)passive2=p2;
     }
@@ -4671,11 +4696,14 @@ function buildLootItem(roundIdx,e){
     stats:roll,
   };
   if(passive2)out.passive2=passive2;
+  if(passive3)out.passive3=passive3;
+  if(rarity==='boundless')out.veilSigils=passive3?3:2;
   return out;
 }
 
 function buildCosmicLootItem(roundIdx,e){
   const it=buildLootItem(roundIdx,e);
+  const fromBoundless=it.rarity==='boundless';
   const cosmicNamesBySlot={
     weapon:['Cosmic Edge','Genesis Cleaver','Eve-Star Staff','Firstfire Knuckles'],
     boots:['Gardenstride Greaves','Celestial Root Boots'],
@@ -4690,6 +4718,7 @@ function buildCosmicLootItem(roundIdx,e){
   it.rarity='cosmic';
   it.rarityLabel='Cosmic';
   it.color='#b8f6ff';
+  if(fromBoundless)it.veilSigils=it.passive3?3:2;
   it.affix=(LOOT_AFFIXES.cosmic||['Cosmic'])[ri(0,(LOOT_AFFIXES.cosmic||['Cosmic']).length-1)];
   it.name=chosen;
   for(const k of ['str','agi','def','hp']){
@@ -4706,6 +4735,10 @@ function lootBonusText(it){
   if(it.stats.def)bits.push(`+${it.stats.def} DEF`);
   if(it.stats.hp)bits.push(`+${it.stats.hp} HP`);
   if(it.stats.bossBonus)bits.push(`+${Math.round(it.stats.bossBonus*100)}% vs bosses`);
+  if((it.veilSigils|0)>=2){
+    bits.push((it.veilSigils|0)>=3?'Sigils ×3':'Sigils ×2');
+    return bits.join(' · ');
+  }
   const ptxt=(LOOT_PASSIVES.find(p=>p.id===it.passive)||LOOT_PASSIVES[0]).txt;
   if(ptxt)bits.push(ptxt);
   if(it.passive2){
@@ -4746,6 +4779,7 @@ function getPassiveTotals(p){
     const tier=lootTier(it.rarity);
     accumulateLootPassiveIntoTotals(t,tier,it.passive);
     if(it.passive2)accumulateLootPassiveIntoTotals(t,tier,it.passive2);
+    if(it.passive3)accumulateLootPassiveIntoTotals(t,tier,it.passive3);
   }
   return t;
 }
@@ -8441,7 +8475,7 @@ function showShop(){
   satchel+='<div class="shop-satchel-block shop-loot-block" style="margin-top:8px">';
   satchel+='<div class="shop-satchel-head" style="color:#d0b878"><span style="margin-right:4px">🎒</span> Satchel Loot<span class="satchel-sub" style="color:#7a6a44">Tap an item to equip into its slot</span></div>';
   if(!p.inventory.length){
-    satchel+='<div class="inv-empty" style="color:#7a6a44">No loot yet. Gladiators can drop Common, Uncommon, Rare, Legendary, Mythic, Ascendant, and Cosmic gear.</div>';
+    satchel+='<div class="inv-empty" style="color:#7a6a44">No loot yet. Gladiators can drop Common through Boundless gear; Cosmic caches appear in the final stretch.</div>';
   }else{
     satchel+='<div class="inv-list">';
     [...p.inventory].reverse().forEach((it,revIx)=>{
