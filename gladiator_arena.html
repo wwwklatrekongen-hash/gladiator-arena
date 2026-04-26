@@ -219,6 +219,10 @@ body{font-family:'Cinzel',Georgia,serif;display:flex;flex-direction:column;heigh
 .scr{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center}
 .sbg{position:absolute;inset:0;background:rgba(2,1,0,.88)}
 .sbox{position:relative;background:linear-gradient(155deg,#160b04,#0c0502);border:2px solid #4a2c0e;border-radius:8px;padding:22px 26px;max-width:420px;width:92%;text-align:center;box-shadow:0 0 60px rgba(0,0,0,.95),inset 0 0 0 1px rgba(80,44,14,.15)}
+/* Title card: scroll when vault / extras overflow the viewport (body is overflow:hidden) */
+#intro-scr{align-items:flex-start;justify-content:center;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:clamp(14px,3.5vh,32px) 12px max(32px,env(safe-area-inset-bottom,0px))}
+#intro-scr .sbg{position:fixed;inset:0;z-index:0}
+#intro-scr .sbox{position:relative;z-index:1;max-width:min(520px,96vw);width:96%;flex-shrink:0;margin-bottom:8px}
 .sbox.end-adam-victory{border-color:#7eaa42;box-shadow:0 0 70px rgba(170,255,120,.28),0 0 130px rgba(220,255,170,.12),inset 0 0 0 1px rgba(180,255,140,.2);animation:adamEndPulse 2.2s ease-in-out infinite alternate}
 .sbox.end-adam-defeat{border-color:#7a9438;box-shadow:0 0 58px rgba(120,180,70,.24),0 0 110px rgba(180,220,120,.1),inset 0 0 0 1px rgba(140,210,90,.16);animation:adamEndPulse 2.6s ease-in-out infinite alternate}
 @keyframes adamEndPulse{from{transform:scale(1);filter:brightness(.96)}to{transform:scale(1.01);filter:brightness(1.08)}}
@@ -1005,7 +1009,7 @@ html.ga-reduce-motion .conceptlight-svg .lb-crown,html.ga-reduce-motion .concept
 html.ga-reduce-motion .conceptlight-svg .lb-crown{transform:none}
 
 /* ── DAILY SEED MODE ──────────────────────────────────────*/
-.mode-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:4px 0 8px}
+.mode-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:6px 0 10px}
 .mode-btn{display:flex!important;flex-direction:column;gap:2px;padding:12px 14px!important;margin:0!important;text-align:center;font-family:'Cinzel',serif;letter-spacing:1px!important;line-height:1.3}
 .mode-btn .mode-ico{font-size:22px;line-height:1;margin-bottom:3px}
 .mode-btn .mode-label{font-size:11px;font-weight:700;letter-spacing:2.5px;color:#e8b84b}
@@ -1032,28 +1036,52 @@ html.ga-reduce-motion .conceptlight-svg .lb-crown{transform:none}
 #daily-prize-banner .daily-prize-ready{color:#7ae020;font-size:9px}
 #daily-prize-banner .daily-prize-done{opacity:.75;font-size:8px;color:#6a4820}
 
-.meta-vault-wrap{margin:12px 0 8px;padding:10px 12px;background:linear-gradient(180deg,rgba(18,12,8,.92),rgba(8,6,4,.88));border:1px solid #5a4018;border-radius:8px;text-align:left}
-.mv-header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px}
-.mv-toggle{font-family:'Cinzel',serif;font-size:10px;font-weight:700;letter-spacing:2px;color:#e8b84b;background:linear-gradient(180deg,#2a1810,#140c08);border:1px solid #6a4820;border-radius:5px;padding:8px 12px;cursor:pointer;flex:1;min-width:140px}
-.mv-toggle:hover{filter:brightness(1.08);box-shadow:0 0 12px rgba(224,176,64,.2)}
-.mv-balance{font-size:10px;color:#c8a878;font-weight:700;letter-spacing:1px}
+.meta-vault-wrap{margin:14px 0 10px;padding:0;background:linear-gradient(165deg,rgba(22,14,8,.95),rgba(10,6,4,.9));border:1px solid #6a4828;border-radius:10px;text-align:left;box-shadow:0 4px 24px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,200,120,.06);overflow:hidden}
+.meta-vault-wrap.mv-open{border-color:#8a6838;box-shadow:0 6px 28px rgba(0,0,0,.5),0 0 0 1px rgba(232,184,75,.12),inset 0 1px 0 rgba(255,220,160,.1)}
+.mv-header{display:flex;align-items:stretch;gap:0}
+.mv-toggle{
+  flex:1;display:flex;align-items:center;justify-content:space-between;gap:10px;text-align:left;
+  font-family:'Cinzel',serif;font-size:10px;font-weight:700;letter-spacing:1.5px;color:#e8b84b;
+  background:linear-gradient(180deg,#2e1a10,#160c08);border:none;border-radius:0;padding:12px 14px;cursor:pointer;width:100%;
+  transition:background .18s,filter .18s
+}
+.mv-toggle:hover,.mv-toggle:focus-visible{background:linear-gradient(180deg,#3a2214,#1a100a);filter:brightness(1.06);outline:none;box-shadow:inset 0 0 0 2px rgba(232,184,75,.25)}
+.mv-toggle:focus-visible{box-shadow:inset 0 0 0 2px rgba(232,184,75,.45)}
+.mv-toggle-main{display:flex;flex-direction:column;gap:3px;min-width:0}
+.mv-toggle-title{font-size:11px;letter-spacing:2.5px;text-shadow:0 0 12px rgba(232,184,75,.2)}
+.mv-toggle-hint{font-size:7px;font-weight:600;letter-spacing:1.2px;color:#7a6048;text-transform:none}
+.mv-toggle-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.mv-balance{font-size:9px;color:#c8a878;font-weight:700;letter-spacing:.8px;padding:4px 8px;background:rgba(0,0,0,.35);border:1px solid #4a3218;border-radius:5px;white-space:nowrap}
 .mv-balance b{color:#ffd870}
-.mv-body{margin-top:8px;padding-top:8px;border-top:1px solid #3a2810}
-.mv-sources{font-size:8px;color:#7a6048;line-height:1.55;margin-bottom:8px}
-.mv-sources .mv-slab{display:inline-block;margin:2px 6px 2px 0;padding:2px 6px;background:rgba(0,0,0,.35);border-radius:3px;border:1px solid #3a2010}
-.mv-next{font-size:8px;color:#8a9868;margin-bottom:8px;padding:6px 8px;background:rgba(20,32,16,.4);border:1px solid #3a5028;border-radius:4px}
-.mv-section{font-family:'Cinzel',serif;font-size:8px;font-weight:700;letter-spacing:2px;color:#a07840;margin:10px 0 6px}
-.mv-progress{font-size:8px;color:#8a9868;margin-bottom:8px;padding:4px 8px;background:rgba(30,24,12,.45);border-radius:4px;border:1px solid #4a3820}
-.mv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:8px}
+.mv-chevron{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:4px;background:rgba(0,0,0,.3);border:1px solid #5a4020;font-size:9px;color:#e8b84b;transition:transform .2s ease}
+.meta-vault-wrap.mv-open .mv-chevron{transform:rotate(180deg)}
+html.ga-reduce-motion .mv-chevron{transition:none}
+.mv-body{padding:0 12px 12px;border-top:1px solid rgba(58,40,16,.65);background:linear-gradient(180deg,rgba(8,5,3,.5),transparent 48px)}
+.mv-collapse-bar{display:flex;justify-content:flex-end;margin:8px 0 2px}
+.mv-collapse-btn{
+  font-family:'Cinzel',serif;font-size:8px;font-weight:700;letter-spacing:1.5px;color:#c8a878;
+  background:rgba(0,0,0,.25);border:1px solid #4a3218;border-radius:5px;padding:6px 12px;cursor:pointer;transition:background .15s,border-color .15s
+}
+.mv-collapse-btn:hover,.mv-collapse-btn:focus-visible{background:rgba(40,28,12,.55);border-color:#6a5020;color:#e8c090;outline:none}
+.mv-body-scroll{max-height:min(52vh,440px);overflow-y:auto;overflow-x:hidden;padding:4px 2px 8px 0;margin-right:-2px;scrollbar-width:thin;scrollbar-color:#5a4020 transparent;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.mv-body-scroll::-webkit-scrollbar{width:6px}
+.mv-body-scroll::-webkit-scrollbar-thumb{background:#4a3018;border-radius:4px}
+.mv-sources{font-size:8px;color:#8a7860;line-height:1.55;margin:10px 0 8px}
+.mv-sources .mv-slab{display:inline-block;margin:3px 5px 3px 0;padding:3px 7px;background:rgba(0,0,0,.38);border-radius:4px;border:1px solid #3a2410;font-size:7.5px;letter-spacing:.3px}
+.mv-next{font-size:8px;color:#9aaa78;margin-bottom:10px;padding:8px 10px;background:rgba(18,28,14,.45);border:1px solid #3a5028;border-radius:6px;line-height:1.45}
+.mv-section{font-family:'Cinzel',serif;font-size:8px;font-weight:700;letter-spacing:2px;color:#b89860;margin:12px 0 8px;padding-bottom:2px;border-bottom:1px solid rgba(74,50,24,.5)}
+.mv-progress{font-size:8px;color:#9aaa88;margin-bottom:10px;padding:8px 10px;background:rgba(28,22,10,.5);border-radius:6px;border:1px solid #4a3820;line-height:1.5}
+.mv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(152px,1fr));gap:10px}
 .mv-card.mv-perm-card{border-color:#5a4030}
-.mv-card.mv-perm-max{opacity:.72;border-color:#3a5028}
+.mv-card.mv-perm-max{opacity:.78;border-color:#3a5028}
 .mv-card .mv-rank{color:#7a9a60;font-size:7px;margin-bottom:4px}
-.mv-card{background:rgba(6,4,2,.65);border:1px solid #4a3218;border-radius:6px;padding:8px 10px;font-size:8px;color:#a88868}
-.mv-card .mv-ico{font-size:18px;display:block;margin-bottom:4px}
-.mv-card .mv-name{font-family:'Cinzel',serif;font-weight:700;color:#e8c090;letter-spacing:1px;font-size:9px;margin-bottom:4px}
-.mv-card .mv-desc{color:#7a6048;line-height:1.4;margin-bottom:6px;min-height:2.8em}
-.mv-card .mv-cost{color:#b080ff;font-weight:700;margin-bottom:6px}
-.mv-card button.mv-buy{width:100%;font-size:8px!important;padding:7px 8px!important;letter-spacing:1px;margin:0!important}
+.mv-card{background:rgba(6,4,2,.72);border:1px solid #4a3218;border-radius:8px;padding:10px 11px;font-size:8px;color:#a88868;transition:border-color .15s,box-shadow .15s}
+.mv-card:hover{border-color:#5a4028;box-shadow:0 2px 12px rgba(0,0,0,.25)}
+.mv-card .mv-ico{font-size:20px;display:block;margin-bottom:5px}
+.mv-card .mv-name{font-family:'Cinzel',serif;font-weight:700;color:#e8c090;letter-spacing:1px;font-size:9.5px;margin-bottom:4px}
+.mv-card .mv-desc{color:#8a7058;line-height:1.45;margin-bottom:8px;min-height:2.8em}
+.mv-card .mv-cost{color:#c8a0ff;font-weight:700;margin-bottom:8px;font-size:9px}
+.mv-card button.mv-buy{width:100%;font-size:8px!important;padding:8px 8px!important;letter-spacing:1px;margin:0!important;border-radius:5px!important}
 
 #daily-prize-end{margin-top:10px;padding-top:10px;border-top:1px solid #2a1a4a}
 #daily-claim-end{width:100%;padding:10px 14px!important;font-size:10px!important;letter-spacing:1.5px}
@@ -1072,7 +1100,7 @@ html.ga-reduce-motion .conceptlight-svg .lb-crown{transform:none}
 #ds-copy.ds-copy-wide{width:100%;max-width:100%;padding:12px 14px!important;font-size:clamp(11px,3.2vw,13px)!important;margin-top:4px}
 
 /* Intro: settings + version */
-.intro-extras{margin:10px 0 6px;padding:10px 12px;background:rgba(8,4,2,.55);border:1px solid #3a2010;border-radius:6px;text-align:left}
+.intro-extras{margin:10px 0 6px;padding:12px 14px;background:rgba(8,4,2,.58);border:1px solid #4a3018;border-radius:8px;text-align:left;box-shadow:inset 0 1px 0 rgba(255,200,120,.04)}
 .intro-row{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin-bottom:8px;font-size:9px;color:#8a6848}
 .intro-row.chkrow{flex-direction:column;align-items:flex-start;gap:6px}
 .skin-row-wrap{margin-top:4px}
@@ -1420,17 +1448,30 @@ html.ga-reduce-motion #highlord-fx{display:none}
     </div>
     <div class="meta-vault-wrap" id="meta-vault-wrap">
       <div class="mv-header">
-        <button type="button" class="mv-toggle" id="meta-vault-toggle" onclick="toggleMetaVaultPanel()">🏛 ARENA VAULT — pre-run supplies</button>
-        <span class="mv-balance" id="meta-vault-balance"><b>0</b> marks</span>
+        <button type="button" class="mv-toggle" id="meta-vault-toggle" aria-expanded="false" aria-controls="meta-vault-body" onclick="toggleMetaVaultPanel()">
+          <span class="mv-toggle-main">
+            <span class="mv-toggle-title">🏛 ARENA VAULT</span>
+            <span class="mv-toggle-hint">Permanent upgrades · one-run supplies · tap to open</span>
+          </span>
+          <span class="mv-toggle-right">
+            <span class="mv-balance" id="meta-vault-balance"><b>0</b> marks</span>
+            <span class="mv-chevron" aria-hidden="true">▼</span>
+          </span>
+        </button>
       </div>
-      <div class="mv-body hidden" id="meta-vault-body">
+      <div class="mv-body hidden" id="meta-vault-body" role="region" aria-label="Arena vault shop">
+        <div class="mv-collapse-bar">
+          <button type="button" class="mv-collapse-btn" onclick="closeMetaVaultPanel()">Close vault · Esc</button>
+        </div>
         <div class="mv-sources" id="meta-vault-sources"></div>
         <div class="mv-progress" id="meta-vault-perm-progress"></div>
         <div class="mv-next" id="meta-vault-next"></div>
-        <div class="mv-section">Permanent ascension</div>
-        <div class="mv-grid" id="meta-vault-perm"></div>
-        <div class="mv-section">Next run supplies</div>
-        <div class="mv-grid" id="meta-vault-grid"></div>
+        <div class="mv-body-scroll">
+          <div class="mv-section">Permanent ascension</div>
+          <div class="mv-grid" id="meta-vault-perm"></div>
+          <div class="mv-section">Next run supplies</div>
+          <div class="mv-grid" id="meta-vault-grid"></div>
+        </div>
       </div>
     </div>
     <div class="mode-grid">
@@ -3940,10 +3981,33 @@ function metaBuyItem(id){
     setTimeout(()=>el.classList.add('hidden'),3800);
   }
 }
-function toggleMetaVaultPanel(){
+function isMetaVaultPanelOpen(){
   const b=document.getElementById('meta-vault-body');
+  return !!(b&&!b.classList.contains('hidden'));
+}
+function setMetaVaultPanelOpen(open){
+  const b=document.getElementById('meta-vault-body');
+  const t=document.getElementById('meta-vault-toggle');
+  const w=document.getElementById('meta-vault-wrap');
+  const hint=t&&t.querySelector('.mv-toggle-hint');
   if(!b)return;
-  b.classList.toggle('hidden');
+  if(open){
+    b.classList.remove('hidden');
+    b.removeAttribute('hidden');
+    if(w)w.classList.add('mv-open');
+    if(t){t.setAttribute('aria-expanded','true');if(hint)hint.textContent='Permanent upgrades · one-run supplies · tap header to close';}
+  }else{
+    b.classList.add('hidden');
+    b.setAttribute('hidden','');
+    if(w)w.classList.remove('mv-open');
+    if(t){t.setAttribute('aria-expanded','false');if(hint)hint.textContent='Permanent upgrades · one-run supplies · tap to open';}
+  }
+}
+function toggleMetaVaultPanel(){
+  setMetaVaultPanelOpen(!isMetaVaultPanelOpen());
+}
+function closeMetaVaultPanel(){
+  setMetaVaultPanelOpen(false);
 }
 function renderMetaVaultIntro(){
   const bal=document.getElementById('meta-vault-balance');
@@ -9673,7 +9737,10 @@ function bindIntroSettings(){
   const diff=document.getElementById('set-difficulty');
   if(diff&&!diff.dataset.gaBound){
     diff.dataset.gaBound='1';
-    diff.addEventListener('change',()=>saveGameSettings({difficulty:diff.value}));
+    diff.addEventListener('change',()=>{
+      saveGameSettings({difficulty:diff.value});
+      if(typeof renderMetaVaultIntro==='function')renderMetaVaultIntro();
+    });
   }
   const font=document.getElementById('set-font');
   if(font&&!font.dataset.gaBound){
@@ -9733,6 +9800,14 @@ window.addEventListener('DOMContentLoaded',()=>{
     navigator.serviceWorker.register('./sw.js',{scope:'./'}).catch(()=>{});
   }
   window.addEventListener('keydown',e=>{
+    if(e.key==='Escape'){
+      const intro=document.getElementById('intro-scr');
+      if(intro&&!intro.classList.contains('hidden')&&typeof isMetaVaultPanelOpen==='function'&&isMetaVaultPanelOpen()){
+        e.preventDefault();
+        if(typeof closeMetaVaultPanel==='function')closeMetaVaultPanel();
+        return;
+      }
+    }
     const tag=(document.activeElement&&document.activeElement.tagName)||'';
     if(tag==='INPUT'||tag==='SELECT'||tag==='TEXTAREA')return;
     const panel=document.getElementById('panel');
