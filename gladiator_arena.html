@@ -1009,7 +1009,7 @@ html.ga-reduce-motion .conceptlight-svg .lb-crown,html.ga-reduce-motion .concept
 html.ga-reduce-motion .conceptlight-svg .lb-crown{transform:none}
 
 /* ── DAILY SEED MODE ──────────────────────────────────────*/
-.mode-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:6px 0 10px}
+.mode-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:6px 0 10px}
 .mode-btn{display:flex!important;flex-direction:column;gap:2px;padding:12px 14px!important;margin:0!important;text-align:center;font-family:'Cinzel',serif;letter-spacing:1px!important;line-height:1.3}
 .mode-btn .mode-ico{font-size:22px;line-height:1;margin-bottom:3px}
 .mode-btn .mode-label{font-size:11px;font-weight:700;letter-spacing:2.5px;color:#e8b84b}
@@ -1020,10 +1020,6 @@ html.ga-reduce-motion .conceptlight-svg .lb-crown{transform:none}
 .mode-daily .mode-sub{color:#6050a8}
 .mode-daily.completed{opacity:.6}
 .mode-daily.completed .mode-label::after{content:' ✓';color:#7ae020}
-.mode-peaceful{background:linear-gradient(180deg,#102816,#09150d)!important;border-color:#2f8a45!important}
-.mode-peaceful:hover{background:linear-gradient(180deg,#16381f,#0c1f12)!important;border-color:#46b761!important;box-shadow:0 0 18px rgba(90,220,130,.22)!important}
-.mode-peaceful .mode-label{color:#84ef9c}
-.mode-peaceful .mode-sub{color:#5ea86e}
 
 #daily-status{font-size:9px;color:#6a4620;text-align:center;margin:6px 0 2px;letter-spacing:.5px;min-height:14px}
 #daily-status b{color:#b080ff}
@@ -1222,7 +1218,7 @@ html.ga-reduce-motion #highlord-fx{display:none}
     <p><b>Mobile:</b> sound starts after you tap (browser rule). Use the overlay if music is silent.</p>
     <p><b>Keyboard:</b> keys <b>1–6</b> trigger Slash, Thrust, Defend, Taunt, Reckless, War Cry when it is your turn.</p>
     <ul>
-      <li>Tune difficulty, text size, motion, and log filter on the title card before you play.</li>
+      <li>Tune difficulty (Peaceful tour mode, Story, Normal, Hard), text size, motion, and log filter on the title card before you play.</li>
       <li>Your run is saved at the merchant between rounds — use Continue on the title screen.</li>
     </ul>
     <button type="button" class="sbtn" onclick="dismissTips()" style="margin-top:14px;width:100%">Got it</button>
@@ -1421,8 +1417,9 @@ html.ga-reduce-motion #highlord-fx{display:none}
     <div class="intro-extras">
       <div class="intro-row">
         <label class="ilab">Difficulty
-          <select id="set-difficulty" title="Enemy strength and gold tuning">
-            <option value="story">Story</option>
+          <select id="set-difficulty" title="Peaceful: tour mode (bosses fall fast, you cannot die). Story–Hard: combat tuning.">
+            <option value="peaceful">🕊️ Peaceful — tour / immortal</option>
+            <option value="story">Story — easier foes</option>
             <option value="normal" selected>Normal</option>
             <option value="hard">Hard</option>
           </select>
@@ -1484,11 +1481,6 @@ html.ga-reduce-motion #highlord-fx{display:none}
         <span class="mode-ico">☀️</span>
         <span class="mode-label">DAILY #<span id="daily-num">1</span></span>
         <span class="mode-sub" id="daily-sub">Same seed worldwide</span>
-      </button>
-      <button class="sbtn mode-btn mode-peaceful" onclick="beginGame(false,{peacefulMode:true})">
-        <span class="mode-ico">🕊️</span>
-        <span class="mode-label">PEACEFUL</span>
-        <span class="mode-sub">Bosses fall in 1 hit · you can't die</span>
       </button>
     </div>
     <div id="daily-status"></div>
@@ -4021,7 +4013,7 @@ function renderMetaVaultIntro(){
   const m=v.marks|0;
   bal.innerHTML=`<b>${m}</b> marks`;
   const s=v.sources||{};
-  const markGate=!marksEarningEnabled()?`<br><span style="opacity:.88;color:#b89860">Marks accrue on <b>Normal</b> or <b>Hard</b> only — Story earns none.</span>`:'';
+  const markGate=!marksEarningEnabled()?`<br><span style="opacity:.88;color:#b89860">Marks accrue on <b>Normal</b> or <b>Hard</b> only — not on Peaceful or Story.</span>`:'';
   src.innerHTML=`<span class="mv-slab">Daily ${s.daily|0}</span><span class="mv-slab">Streak ${s.streak|0}</span><span class="mv-slab">Claims ${s.claim|0}</span><span class="mv-slab">Milestones ${s.milestone|0}</span><span class="mv-slab">Echo ${s.echo|0}</span><span class="mv-slab">Fights ${s.combat|0}</span><span class="mv-slab">Turns ${s.turns|0}</span><span class="mv-slab">Time ${s.time|0}</span><span class="mv-slab">Victory ${s.victory|0}</span><br><span style="opacity:.85">Lifetime: ${Math.floor((v.lifetime.playMs||0)/60000)}m arena · ${v.lifetime.roundsWon|0} wins · ${v.lifetime.bossKills|0} bosses · ${v.lifetime.fullClears|0} full clears · ${v.lifetime.dailiesFinished|0} dailies</span>${markGate}`;
   if(pr){
     const tot=permTotalRanks(v);
@@ -4579,7 +4571,7 @@ function applyFontFromSettings(){
 }
 function getDifficultyMods(){
   const d=(loadGameSettings().difficulty)||'normal';
-  if(d==='story')return{enemyHp:0.88,enemyStr:0.90,goldMult:1.08};
+  if(d==='story'||d==='peaceful')return{enemyHp:0.88,enemyStr:0.90,goldMult:1.08};
   if(d==='hard')return{enemyHp:1.12,enemyStr:1.10,goldMult:0.96};
   return{enemyHp:1,enemyStr:1,goldMult:1};
 }
@@ -4607,6 +4599,7 @@ function saveRunState(){
       dailyMod:G.dailyMod||null,totalTurns:G.totalTurns||0,runStartTurn:G.runStartTurn||0,
       runStats:G.runStats||{dmgToEnemy:0,dmgTaken:0},
       completedRun:!!G.completedRun,clearedCount:G.clearedCount||0,
+      peacefulMode:!!G.peacefulMode,
     }));
   }catch(_){}
 }
@@ -4670,6 +4663,7 @@ function beginContinueRun(){
   }
   G={phase:'fight',player:o.player,enemy:null,ei:o.ei|0,log:o.log||[],myTurn:true,busy:false,
     daily:_dailyMode,dailyNum:o.dailyNum||0,dailySeed:o.dailySeed||0,
+    peacefulMode:!!o.peacefulMode,
     runStartTurn:o.runStartTurn||0,totalTurns:o.totalTurns||0,deathRound:null,wonAll:false,
     dailyMod:o.dailyMod||{tag:'',label:'',gold:1,enemy:1},
     runStats:o.runStats||{dmgToEnemy:0,dmgTaken:0},_dailyModLogged:true,
@@ -4719,7 +4713,8 @@ function getBlessingRiseChance(p){
 function beginGame(isDaily,opts={}){
   clearRunSave();
   _dailyMode = !!isDaily;
-  const peacefulMode=!!(opts&&opts.peacefulMode);
+  const diffNow=(loadGameSettings().difficulty)||'normal';
+  const peacefulMode=!!(opts&&opts.peacefulMode)||diffNow==='peaceful';
   if(_dailyMode){
     const info = getDailyInfo();
     _dailySeed = info.seed;
@@ -5001,7 +4996,8 @@ function startFight(){
     let nemStr=Math.max(50,Math.floor(((pp.str*1.05)+legacyCryTierBonus())*f));
     let nemAgi=Math.max(15,Math.floor(pp.agi*0.95*f));
     let nemDef=Math.max(25,Math.floor(pp.def*1.0*f));
-    if((loadGameSettings().difficulty||'normal')==='story'){
+    const diffSet=loadGameSettings().difficulty||'normal';
+    if(diffSet==='story'||diffSet==='peaceful'){
       const se=0.99;
       maxHp=Math.max(1,Math.floor(maxHp*se));
       nemStr=Math.max(1,Math.floor(nemStr*se));
