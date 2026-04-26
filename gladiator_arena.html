@@ -549,6 +549,16 @@ body{font-family:'Cinzel',Georgia,serif;display:flex;flex-direction:column;heigh
 @keyframes aadam{from{filter:drop-shadow(0 6px 14px rgba(0,0,0,.95)) drop-shadow(0 0 28px rgba(180,255,170,.62)) drop-shadow(0 0 16px rgba(255,220,130,.42))}to{filter:drop-shadow(0 6px 14px rgba(0,0,0,.95)) drop-shadow(0 0 66px rgba(195,255,145,.98)) drop-shadow(0 0 50px rgba(255,235,140,.86)) brightness(1.24) contrast(1.1)}}
 .bb-adam{background:linear-gradient(90deg,#12200e,#1a1408);color:#d8ffb0;border:1px solid #8ac050;box-shadow:0 0 20px rgba(170,255,120,.38)}
 .ft-adam{background:#13220e;color:#d4ff9a;border:1px solid #6ca840;animation:ftpulse 1s ease-in-out infinite alternate}
+.swrap.adam-presence svg{animation:adamPresenceFx .62s ease-out}
+.swrap.adam-image svg{animation:adamImageFx .86s ease-out}
+.swrap.adam-gift svg{animation:adamGiftFx .9s ease-out}
+.swrap.adam-hand svg{animation:adamHandFx .7s cubic-bezier(.2,.75,.2,1)}
+.swrap.adam-insight svg{animation:adamInsightFx .66s ease-out}
+@keyframes adamPresenceFx{0%{transform:scale(1)}35%{transform:scale(1.07) translateY(-1px);filter:brightness(1.38) saturate(1.16)}100%{transform:scale(1);filter:brightness(1)}}
+@keyframes adamImageFx{0%{filter:brightness(1)}32%{filter:brightness(1.45) contrast(1.18) saturate(1.24) hue-rotate(-8deg);transform:translateY(-2px) scale(1.06)}100%{filter:brightness(1);transform:translateY(0) scale(1)}}
+@keyframes adamGiftFx{0%{transform:scale(1);filter:brightness(1)}42%{transform:scale(1.1);filter:brightness(1.56) saturate(1.2)}100%{transform:scale(1);filter:brightness(1)}}
+@keyframes adamHandFx{0%{transform:translateX(0) scale(1)}40%{transform:translateX(-30px) scale(1.13)}100%{transform:translateX(0) scale(1)}}
+@keyframes adamInsightFx{0%{transform:scale(1)}28%{transform:scale(1.08) translateY(-2px);filter:brightness(1.28) contrast(1.2)}70%{transform:scale(1.02) translateY(-1px)}100%{transform:scale(1);filter:brightness(1)}}
 
 /* Garden of Eve finale mode */
 #scene.garden-eve #sky{
@@ -804,6 +814,35 @@ html.ga-reduce-motion #si-chronosphere{transform:none}
 #daily-status{font-size:9px;color:#6a4620;text-align:center;margin:6px 0 2px;letter-spacing:.5px;min-height:14px}
 #daily-status b{color:#b080ff}
 #daily-status .ds-streak{color:#e8b84b;font-weight:700}
+
+#daily-prize-banner{margin:8px 0 4px;text-align:center;font-size:9px;color:#8a6848;line-height:1.45}
+#daily-prize-banner .daily-prize-claim{display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 12px;background:rgba(10,6,28,.35);border:1px solid #4a30a0;border-radius:6px}
+#daily-prize-banner .dp-claim{padding:10px 18px!important;font-size:10px!important;letter-spacing:2px;margin:0!important}
+#daily-prize-banner .dp-hint{font-size:8px;color:#6050a8;max-width:280px}
+#daily-prize-banner .daily-prize-ready{color:#7ae020;font-size:9px}
+#daily-prize-banner .daily-prize-done{opacity:.75;font-size:8px;color:#6a4820}
+
+.meta-vault-wrap{margin:12px 0 8px;padding:10px 12px;background:linear-gradient(180deg,rgba(18,12,8,.92),rgba(8,6,4,.88));border:1px solid #5a4018;border-radius:8px;text-align:left}
+.mv-header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px}
+.mv-toggle{font-family:'Cinzel',serif;font-size:10px;font-weight:700;letter-spacing:2px;color:#e8b84b;background:linear-gradient(180deg,#2a1810,#140c08);border:1px solid #6a4820;border-radius:5px;padding:8px 12px;cursor:pointer;flex:1;min-width:140px}
+.mv-toggle:hover{filter:brightness(1.08);box-shadow:0 0 12px rgba(224,176,64,.2)}
+.mv-balance{font-size:10px;color:#c8a878;font-weight:700;letter-spacing:1px}
+.mv-balance b{color:#ffd870}
+.mv-body{margin-top:8px;padding-top:8px;border-top:1px solid #3a2810}
+.mv-sources{font-size:8px;color:#7a6048;line-height:1.55;margin-bottom:8px}
+.mv-sources .mv-slab{display:inline-block;margin:2px 6px 2px 0;padding:2px 6px;background:rgba(0,0,0,.35);border-radius:3px;border:1px solid #3a2010}
+.mv-next{font-size:8px;color:#8a9868;margin-bottom:8px;padding:6px 8px;background:rgba(20,32,16,.4);border:1px solid #3a5028;border-radius:4px}
+.mv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:8px}
+.mv-card{background:rgba(6,4,2,.65);border:1px solid #4a3218;border-radius:6px;padding:8px 10px;font-size:8px;color:#a88868}
+.mv-card .mv-ico{font-size:18px;display:block;margin-bottom:4px}
+.mv-card .mv-name{font-family:'Cinzel',serif;font-weight:700;color:#e8c090;letter-spacing:1px;font-size:9px;margin-bottom:4px}
+.mv-card .mv-desc{color:#7a6048;line-height:1.4;margin-bottom:6px;min-height:2.8em}
+.mv-card .mv-cost{color:#b080ff;font-weight:700;margin-bottom:6px}
+.mv-card button.mv-buy{width:100%;font-size:8px!important;padding:7px 8px!important;letter-spacing:1px;margin:0!important}
+
+#daily-prize-end{margin-top:10px;padding-top:10px;border-top:1px solid #2a1a4a}
+#daily-claim-end{width:100%;padding:10px 14px!important;font-size:10px!important;letter-spacing:1.5px}
+#daily-claim-end:disabled{opacity:.55;cursor:default}
 
 #daily-badge{position:absolute;top:10px;right:12px;z-index:6;pointer-events:none;font-size:8px;font-weight:700;letter-spacing:2px;color:#b080ff;text-shadow:1px 1px 3px rgba(0,0,0,.9);background:rgba(10,6,28,.7);padding:4px 8px;border:1px solid #4a30a0;border-radius:3px;display:flex;align-items:center;gap:6px}
 #daily-badge .db-num{color:#e8b84b}
@@ -1149,6 +1188,17 @@ html.ga-reduce-motion #highlord-fx{display:none}
       </div>
       <button type="button" class="sbtn continue-run-btn hidden" id="btn-continue-run" onclick="beginContinueRun()">Continue saved run →</button>
     </div>
+    <div class="meta-vault-wrap" id="meta-vault-wrap">
+      <div class="mv-header">
+        <button type="button" class="mv-toggle" id="meta-vault-toggle" onclick="toggleMetaVaultPanel()">🏛 ARENA VAULT — pre-run supplies</button>
+        <span class="mv-balance" id="meta-vault-balance"><b>0</b> marks</span>
+      </div>
+      <div class="mv-body hidden" id="meta-vault-body">
+        <div class="mv-sources" id="meta-vault-sources"></div>
+        <div class="mv-next" id="meta-vault-next"></div>
+        <div class="mv-grid" id="meta-vault-grid"></div>
+      </div>
+    </div>
     <div class="mode-grid">
       <button class="sbtn mode-btn" onclick="beginGame(false)">
         <span class="mode-ico">⚔️</span>
@@ -1163,10 +1213,11 @@ html.ga-reduce-motion #highlord-fx{display:none}
       <button class="sbtn mode-btn mode-peaceful" onclick="beginGame(false,{peacefulMode:true})">
         <span class="mode-ico">🕊️</span>
         <span class="mode-label">PEACEFUL</span>
-        <span class="mode-sub">Bosses fall in 1 hit</span>
+        <span class="mode-sub">Bosses fall in 1 hit · you can't die</span>
       </button>
     </div>
     <div id="daily-status"></div>
+    <div id="daily-prize-banner"></div>
     <div id="legacy-intro"></div>
     <div class="intro-ver" id="game-ver-line"></div>
   </div>
@@ -1285,6 +1336,9 @@ html.ga-reduce-motion #highlord-fx{display:none}
       <div class="ds-label">Daily Result — share your run</div>
       <pre class="ds-card" id="ds-card"></pre>
       <button class="sbtn ds-copy-wide" id="ds-copy" onclick="copyDailyShare()" style="padding:6px 16px;font-size:9px">COPY RESULT</button>
+      <div id="daily-prize-end" class="hidden">
+        <button type="button" class="sbtn" id="daily-claim-end" onclick="claimDailyPrize()">CLAIM DAILY PRIZE</button>
+      </div>
     </div>
     <button class="sbtn" onclick="restartGame()">FIGHT AGAIN</button>
   </div>
@@ -2555,7 +2609,12 @@ const CHARS = {
 </svg>`,
   conceptadam:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="cadBody" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="cadSkin" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffeccf"/>
+      <stop offset="50%" style="stop-color:#e8c79f"/>
+      <stop offset="100%" style="stop-color:#b9865e"/>
+    </linearGradient>
+    <linearGradient id="cadTunic" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#f8ffce"/>
       <stop offset="38%" style="stop-color:#c8ef88"/>
       <stop offset="62%" style="stop-color:#9ac85e"/>
@@ -2566,37 +2625,34 @@ const CHARS = {
       <stop offset="100%" style="stop-color:#b6eb7a"/>
     </linearGradient>
   </defs>
-  <ellipse cx="36" cy="101" rx="28" ry="6.2" fill="rgba(180,255,140,.5)"/>
-  <ellipse cx="36" cy="58" rx="34" ry="40" fill="rgba(190,230,120,.17)"/>
+  <ellipse cx="36" cy="101" rx="27" ry="6.2" fill="rgba(180,255,140,.42)"/>
+  <ellipse cx="36" cy="60" rx="32" ry="38" fill="rgba(190,230,120,.12)"/>
   <ellipse cx="36" cy="10" rx="24" ry="7" fill="url(#cadHalo)" opacity=".72"/>
-  <ellipse cx="36" cy="12" rx="28" ry="9" fill="none" stroke="#f8ffd0" stroke-width="1.2" opacity=".9"/>
-  <ellipse cx="36" cy="12" rx="34" ry="11" fill="none" stroke="#d8ff90" stroke-width=".9" opacity=".65"/>
-  <rect x="20" y="36" width="32" height="34" rx="8" fill="url(#cadBody)" stroke="#567030" stroke-width="1.2"/>
-  <path d="M18 40 Q36 28 54 40" stroke="#efffc4" stroke-width="1.1" fill="none" opacity=".7"/>
-  <path d="M22 44 Q36 52 50 44" stroke="rgba(255,255,255,.4)" stroke-width="1.2" fill="none"/>
-  <path d="M22 58 Q36 66 50 58" stroke="rgba(210,255,170,.52)" stroke-width="1.1" fill="none"/>
-  <rect x="23" y="70" width="10" height="22" rx="3" fill="#203018"/>
-  <rect x="39" y="70" width="10" height="22" rx="3" fill="#182410"/>
-  <rect x="30" y="32" width="12" height="12" rx="3" fill="#263818"/>
-  <ellipse cx="36" cy="23" rx="17" ry="13" fill="url(#cadBody)" stroke="#789a48" stroke-width="1.2"/>
-  <path d="M24 20 L20 8 L29 16" fill="#304818" stroke="#d8ff9a" stroke-width=".9"/>
-  <path d="M48 20 L52 8 L43 16" fill="#283c16" stroke="#f8ffd0" stroke-width=".9"/>
-  <path d="M36 17 L36 5" stroke="#f8ffd8" stroke-width="1.1"/>
-  <ellipse cx="30" cy="24" rx="4.4" ry="3.2" fill="#0a1206"/>
-  <ellipse cx="42" cy="24" rx="4.4" ry="3.2" fill="#0a1206"/>
-  <ellipse cx="30" cy="24" rx="1.7" ry="1.2" fill="#f0ffb0"/>
-  <ellipse cx="42" cy="24" rx="1.7" ry="1.2" fill="#f0ffb0"/>
-  <path d="M24 12 L30 4 L36 12 L42 4 L48 12" stroke="#f4ffd6" stroke-width="1.3" fill="none" opacity=".8"/>
-  <path d="M31 31 Q36 35 41 31" stroke="#d8ff9a" stroke-width="1.1" fill="none"/>
+  <ellipse cx="36" cy="12" rx="28" ry="9" fill="none" stroke="#f8ffd0" stroke-width="1.1" opacity=".9"/>
+  <ellipse cx="36" cy="12" rx="34" ry="11" fill="none" stroke="#d8ff90" stroke-width=".8" opacity=".6"/>
+  <path d="M26 22 Q36 15 46 22" stroke="#5c3a24" stroke-width="1.2" fill="none" opacity=".6"/>
+  <ellipse cx="36" cy="24" rx="13.5" ry="14" fill="url(#cadSkin)" stroke="#8e6242" stroke-width="1.1"/>
+  <path d="M30 19 Q36 15 42 19" stroke="#6e4a30" stroke-width="1.1" fill="none"/>
+  <ellipse cx="31" cy="24" rx="3.2" ry="2.4" fill="#2a1a10"/>
+  <ellipse cx="41" cy="24" rx="3.2" ry="2.4" fill="#2a1a10"/>
+  <ellipse cx="31" cy="24" rx="1.2" ry=".95" fill="#fff2dc"/>
+  <ellipse cx="41" cy="24" rx="1.2" ry=".95" fill="#fff2dc"/>
+  <path d="M36 24 L36 28" stroke="#95684a" stroke-width=".8"/>
+  <path d="M32 31 Q36 33 40 31" stroke="#8a503e" stroke-width="1" fill="none"/>
+  <path d="M24 36 L48 36" stroke="rgba(250,235,210,.5)" stroke-width=".8"/>
+  <rect x="21" y="36" width="30" height="35" rx="7" fill="url(#cadTunic)" stroke="#567030" stroke-width="1.2"/>
+  <path d="M22 45 Q36 52 50 45" stroke="rgba(255,255,255,.34)" stroke-width="1.1" fill="none"/>
+  <path d="M24 58 Q36 64 48 58" stroke="rgba(210,255,170,.48)" stroke-width="1.05" fill="none"/>
+  <rect x="31" y="36" width="10" height="11" rx="2.6" fill="#2b3e1c"/>
+  <path d="M16 40 Q11 52 14 66" stroke="url(#cadSkin)" stroke-width="7.6" fill="none" stroke-linecap="round"/>
+  <path d="M56 40 Q61 52 58 66" stroke="url(#cadSkin)" stroke-width="7.6" fill="none" stroke-linecap="round"/>
+  <rect x="24" y="70" width="9" height="22" rx="3" fill="#26371a"/>
+  <rect x="39" y="70" width="9" height="22" rx="3" fill="#1f2d14"/>
   <rect x="53" y="15" width="6" height="46" rx="1.4" fill="#223214" stroke="#d8ff9a" stroke-width=".9"/>
   <rect x="50" y="30" width="12" height="4.5" rx="1.6" fill="#3c5424" stroke="#f6ffd4" stroke-width=".7"/>
   <circle cx="56" cy="28" r="2.2" fill="#f8ffd8" stroke="#d0ff92" stroke-width=".6"/>
   <path d="M53 15 Q58 7 60 1 Q62 -3 56 -2 Q50 0 49 7 Q48 12 53 15 Z" fill="#f4ffd2" stroke="#fbffe6" stroke-width="1"/>
   <path d="M56 16 L56 59" stroke="#d8ff9a" stroke-width="1.1" opacity=".9"/>
-  <path d="M8 28 L18 32 L14 40 L4 36 Z" fill="#293e1a" stroke="#d8ff9a" stroke-width=".9"/>
-  <path d="M64 28 L54 32 L58 40 L68 36 Z" fill="#293e1a" stroke="#d8ff9a" stroke-width=".9"/>
-  <path d="M10 42 Q4 56 10 68" stroke="#2c4018" stroke-width="9" fill="none" stroke-linecap="round"/>
-  <path d="M62 42 Q68 56 62 68" stroke="#2c4018" stroke-width="9" fill="none" stroke-linecap="round"/>
 </svg>`
 };
 
@@ -2726,6 +2782,8 @@ const DAY_MS = 86400000;
 const LS_DAILY_PREFIX = 'ga_daily_';
 const LS_DAILY_STREAK = 'ga_daily_streak';
 const LS_DAILY_LAST_DAY = 'ga_daily_last_day';
+const LS_DAILY_PENDING_BONUS = 'ga_daily_pending_bonus_v1';
+const LS_META_VAULT='ga_meta_vault_v2';
 const LS_GAME_SETTINGS='ga_game_settings_v1';
 const LS_RUN_SAVE='ga_run_save_v1';
 const LS_INTRO_TIPS='ga_intro_tips_seen_v1';
@@ -2813,6 +2871,7 @@ function saveDailyResult(result){
   else streak = 1;
   localStorage.setItem(LS_DAILY_STREAK, streak);
   localStorage.setItem(LS_DAILY_LAST_DAY, info.dateStr);
+  if(typeof metaOnFirstDailyResult==='function')metaOnFirstDailyResult(result);
 }
 
 function getCurrentStreak(){
@@ -2824,6 +2883,351 @@ function getCurrentStreak(){
   const yesterdayStr = `${yesterday.getUTCFullYear()}-${String(yesterday.getUTCMonth()+1).padStart(2,'0')}-${String(yesterday.getUTCDate()).padStart(2,'0')}`;
   if(lastDay !== info.dateStr && lastDay !== yesterdayStr)return 0;
   return parseInt(localStorage.getItem(LS_DAILY_STREAK)||'0');
+}
+
+// ══════════════════════════════════════════════════════════
+// ARENA VAULT — meta marks, playtime, pre-run shop (Classic & Peaceful)
+// ══════════════════════════════════════════════════════════
+const META_SHOP_ITEMS=[
+  {id:'v_gold_s',icon:'🪙',name:'Gate Bribe',desc:'+45 starting gold on your next Classic or Peaceful run.',cost:14,bon:{gold:45}},
+  {id:'v_gold_l',icon:'💰',name:'Senator\'s Purse',desc:'+110 starting gold next run.',cost:32,bon:{gold:110}},
+  {id:'v_str',icon:'💪',name:'Trainer\'s Tonic',desc:'+2 STR next run.',cost:34,bon:{str:2}},
+  {id:'v_def',icon:'🛡',name:'Wax Tablet',desc:'+2 DEF next run.',cost:32,bon:{def:2}},
+  {id:'v_agi',icon:'👟',name:'Sand Sprinter',desc:'+2 AGI next run.',cost:30,bon:{agi:2}},
+  {id:'v_vit',icon:'❤',name:'Second Wind',desc:'+14 max HP and heal (next run).',cost:38,bon:{maxHp:14}},
+  {id:'v_soul',icon:'💀',name:'Soul Scrap',desc:'+35 soul fragments at run start.',cost:36,bon:{souls:35}},
+];
+function defaultMetaVault(){
+  return{
+    marks:0,
+    sources:{daily:0,milestone:0,echo:0,combat:0,time:0,victory:0,streak:0,claim:0,turns:0},
+    lifetime:{playMs:0,roundsWon:0,bossKills:0,fullClears:0,dailiesFinished:0,totalTurns:0,runsEnded:0},
+    nextRun:{gold:0,str:0,def:0,agi:0,maxHp:0,souls:0},
+  };
+}
+function loadMetaVault(){
+  try{
+    const raw=localStorage.getItem(LS_META_VAULT);
+    if(!raw)return defaultMetaVault();
+    const o=JSON.parse(raw);
+    const d=defaultMetaVault();
+    d.marks=Math.max(0,o.marks|0);
+    d.sources={...d.sources,...o.sources};
+    d.lifetime={...d.lifetime,...o.lifetime};
+    d.nextRun={...d.nextRun,...o.nextRun};
+    return d;
+  }catch(_){return defaultMetaVault()}
+}
+function saveMetaVault(v){
+  try{localStorage.setItem(LS_META_VAULT,JSON.stringify(v));}catch(_){}
+}
+function metaGrantMarks(amount,sourceKey){
+  const n=Math.max(0,amount|0);
+  if(n<=0)return;
+  const v=loadMetaVault();
+  v.marks=(v.marks|0)+n;
+  if(v.sources&&sourceKey in v.sources)v.sources[sourceKey]=(v.sources[sourceKey]|0)+n;
+  saveMetaVault(v);
+  if(typeof renderMetaVaultIntro==='function')renderMetaVaultIntro();
+}
+function metaOnFirstDailyResult(result){
+  const base=result&&result.won?48:20;
+  metaGrantMarks(base,'daily');
+  const streak=getCurrentStreak()|0;
+  metaGrantMarks(Math.min(36,streak*3),'streak');
+  const v=loadMetaVault();
+  v.lifetime.dailiesFinished=(v.lifetime.dailiesFinished||0)+1;
+  saveMetaVault(v);
+}
+function metaOnRoundWin(e){
+  if(!e)return;
+  let m=4+Math.floor((G&&G.ei||0)/2);
+  if(e.isBoss)m+=14;
+  metaGrantMarks(m,'combat');
+  const v=loadMetaVault();
+  v.lifetime.roundsWon=(v.lifetime.roundsWon||0)+1;
+  if(e.isBoss)v.lifetime.bossKills=(v.lifetime.bossKills||0)+1;
+  saveMetaVault(v);
+}
+function metaOnRunEndTurns(){
+  if(!G)return;
+  const turns=G.totalTurns|0;
+  metaGrantMarks(Math.floor(turns/42),'turns');
+  const v=loadMetaVault();
+  v.lifetime.totalTurns=(v.lifetime.totalTurns||0)+turns;
+  v.lifetime.runsEnded=(v.lifetime.runsEnded||0)+1;
+  saveMetaVault(v);
+}
+function metaOnRunDefeatBonus(){
+  if(!G||!G.player)return;
+  const w=G.player.wins|0;
+  metaGrantMarks(5+Math.min(28,w*2),'combat');
+  metaOnRunEndTurns();
+}
+function metaOnFullClear(){
+  metaGrantMarks(110,'victory');
+  metaOnRunEndTurns();
+  const v=loadMetaVault();
+  v.lifetime.fullClears=(v.lifetime.fullClears||0)+1;
+  saveMetaVault(v);
+}
+let __metaTimeLast=0,__metaAccThrottle=0,__metaMsBank=0;
+function maybeMetaAccruePlayTime(){
+  const t=Date.now();
+  if(t-__metaAccThrottle<4200)return;
+  __metaAccThrottle=t;
+  const intro=document.getElementById('intro-scr');
+  const panel=document.getElementById('panel');
+  const onIntro=intro&&!intro.classList.contains('hidden');
+  const onFight=panel&&!panel.classList.contains('hidden');
+  if(!onIntro&&!onFight)return;
+  if(!__metaTimeLast){__metaTimeLast=t;return;}
+  let dt=t-__metaTimeLast;
+  __metaTimeLast=t;
+  if(dt<0||dt>120000)return;
+  if(document.visibilityState!=='visible')return;
+  __metaMsBank+=dt;
+  const v=loadMetaVault();
+  v.lifetime.playMs=(v.lifetime.playMs||0)+dt;
+  let gained=0;
+  while(__metaMsBank>=60000){
+    __metaMsBank-=60000;
+    gained+=2;
+  }
+  if(gained>0){
+    v.marks=(v.marks|0)+gained;
+    v.sources.time=(v.sources.time||0)+gained;
+  }
+  saveMetaVault(v);
+  if(gained>0&&typeof renderMetaVaultIntro==='function')renderMetaVaultIntro();
+}
+function mergeNextRunBonus(v,bon){
+  if(!bon)return;
+  const n=v.nextRun;
+  n.gold=(n.gold|0)+(bon.gold|0);
+  n.str=(n.str|0)+(bon.str|0);
+  n.def=(n.def|0)+(bon.def|0);
+  n.agi=(n.agi|0)+(bon.agi|0);
+  n.maxHp=(n.maxHp|0)+(bon.maxHp|0);
+  n.souls=(n.souls|0)+(bon.souls|0);
+}
+function applyMetaVaultToPlayer(p){
+  if(!p)return null;
+  const v=loadMetaVault();
+  const n=v.nextRun;
+  const g=n.gold|0,s=n.str|0,df=n.def|0,a=n.agi|0,h=n.maxHp|0,so=n.souls|0;
+  if(!g&&!s&&!df&&!a&&!h&&!so)return null;
+  if(g)p.gold=(p.gold|0)+g;
+  if(s)p.str=(p.str|0)+s;
+  if(df)p.def=(p.def|0)+df;
+  if(a)p.agi=(p.agi|0)+a;
+  if(h){p.maxHp=(p.maxHp|0)+h;p.hp=(p.hp|0)+h;}
+  if(so)p.souls=(p.souls|0)+so;
+  v.nextRun={gold:0,str:0,def:0,agi:0,maxHp:0,souls:0};
+  saveMetaVault(v);
+  return{g,s,df,a,h,so};
+}
+function metaBuyItem(id){
+  const it=META_SHOP_ITEMS.find(x=>x.id===id);
+  if(!it)return;
+  const v=loadMetaVault();
+  if((v.marks|0)<it.cost){
+    if(typeof showErrorToast==='function')showErrorToast('Not enough marks.');
+    return;
+  }
+  v.marks-=it.cost;
+  mergeNextRunBonus(v,it.bon);
+  saveMetaVault(v);
+  renderMetaVaultIntro();
+  const b=it.bon;
+  const parts=[];
+  if(b.gold)parts.push(`+${b.gold} gold`);
+  if(b.str)parts.push(`+${b.str} STR`);
+  if(b.def)parts.push(`+${b.def} DEF`);
+  if(b.agi)parts.push(`+${b.agi} AGI`);
+  if(b.maxHp)parts.push(`+${b.maxHp} HP`);
+  if(b.souls)parts.push(`+${b.souls} souls`);
+  const el=document.getElementById('milestone-toast');
+  if(el){
+    el.innerHTML=`<span class="mt-ico">${it.icon}</span>
+      <div class="mt-name">Vault purchase</div>
+      <div class="mt-desc">${it.name} — ${parts.join(' · ')} next Classic / Peaceful run.</div>
+      <div class="mt-sub">−${it.cost} marks</div>`;
+    el.classList.remove('hidden','show');
+    void el.offsetWidth;
+    el.classList.add('show');
+    setTimeout(()=>el.classList.add('hidden'),3800);
+  }
+}
+function toggleMetaVaultPanel(){
+  const b=document.getElementById('meta-vault-body');
+  if(!b)return;
+  b.classList.toggle('hidden');
+}
+function renderMetaVaultIntro(){
+  const bal=document.getElementById('meta-vault-balance');
+  const src=document.getElementById('meta-vault-sources');
+  const nx=document.getElementById('meta-vault-next');
+  const grid=document.getElementById('meta-vault-grid');
+  if(!bal||!src||!nx||!grid)return;
+  const v=loadMetaVault();
+  const m=v.marks|0;
+  bal.innerHTML=`<b>${m}</b> marks`;
+  const s=v.sources||{};
+  src.innerHTML=`<span class="mv-slab">Daily ${s.daily|0}</span><span class="mv-slab">Streak ${s.streak|0}</span><span class="mv-slab">Claims ${s.claim|0}</span><span class="mv-slab">Milestones ${s.milestone|0}</span><span class="mv-slab">Echo ${s.echo|0}</span><span class="mv-slab">Fights ${s.combat|0}</span><span class="mv-slab">Turns ${s.turns|0}</span><span class="mv-slab">Time ${s.time|0}</span><span class="mv-slab">Victory ${s.victory|0}</span><br><span style="opacity:.85">Lifetime: ${Math.floor((v.lifetime.playMs||0)/60000)}m arena · ${v.lifetime.roundsWon|0} wins · ${v.lifetime.bossKills|0} bosses · ${v.lifetime.fullClears|0} full clears · ${v.lifetime.dailiesFinished|0} dailies</span>`;
+  const n=v.nextRun||{};
+  const np=[];
+  if(n.gold)np.push(`+${n.gold} gold`);
+  if(n.str)np.push(`+${n.str} STR`);
+  if(n.def)np.push(`+${n.def} DEF`);
+  if(n.agi)np.push(`+${n.agi} AGI`);
+  if(n.maxHp)np.push(`+${n.maxHp} HP`);
+  if(n.souls)np.push(`+${n.souls} souls`);
+  nx.textContent=np.length?`Next Classic / Peaceful run: ${np.join(' · ')}`:'No vault supplies queued — buy cards below before you enter.';
+  grid.innerHTML=META_SHOP_ITEMS.map(it=>{
+    const aff=(v.marks|0)>=it.cost?'':' disabled';
+    return`<div class="mv-card"><span class="mv-ico">${it.icon}</span><div class="mv-name">${it.name}</div><div class="mv-desc">${it.desc}</div><div class="mv-cost">${it.cost} marks</div><button type="button" class="sbtn mv-buy"${aff} onclick="metaBuyItem('${it.id}')">BUY</button></div>`;
+  }).join('');
+}
+
+function isDailyPrizeClaimed(){
+  const r=getDailyResult();
+  return !!(r&&r.prizeClaimed);
+}
+
+function peekPendingDailyBonus(){
+  try{
+    const raw=localStorage.getItem(LS_DAILY_PENDING_BONUS);
+    if(!raw)return null;
+    const o=JSON.parse(raw);
+    const gold=o.gold|0,souls=o.souls|0;
+    if(gold<=0&&souls<=0)return null;
+    return{gold,souls};
+  }catch(_){return null}
+}
+
+function addPendingDailyBonus(bundle){
+  const g=bundle.gold|0,s=bundle.souls|0;
+  if(g<=0&&s<=0)return;
+  let cur={gold:0,souls:0};
+  try{
+    const raw=localStorage.getItem(LS_DAILY_PENDING_BONUS);
+    if(raw){
+      const o=JSON.parse(raw);
+      cur.gold=o.gold|0;cur.souls=o.souls|0;
+    }
+  }catch(_){}
+  cur.gold+=g;cur.souls+=s;
+  try{localStorage.setItem(LS_DAILY_PENDING_BONUS,JSON.stringify(cur));}catch(_){}
+}
+
+/** Applies queued daily prizes to the player; only for new Classic / Peaceful runs (not Daily). */
+function consumePendingDailyBonus(p){
+  if(!p)return null;
+  try{
+    const raw=localStorage.getItem(LS_DAILY_PENDING_BONUS);
+    if(!raw)return null;
+    const b=JSON.parse(raw);
+    const g=b.gold|0,s=b.souls|0;
+    if(g<=0&&s<=0){localStorage.removeItem(LS_DAILY_PENDING_BONUS);return null;}
+    if(g>0)p.gold=(p.gold|0)+g;
+    if(s>0)p.souls=(p.souls|0)+s;
+    localStorage.removeItem(LS_DAILY_PENDING_BONUS);
+    return{gold:g,souls:s};
+  }catch(_){return null}
+}
+
+function computeDailyPrizeRewards(result){
+  const streak=getCurrentStreak()|0;
+  const streakGold=Math.min(streak*12,84);
+  if(result&&result.won){
+    return{
+      gold:185+streakGold,
+      souls:30+Math.min(12,Math.floor(streak/2)*3),
+    };
+  }
+  return{
+    gold:58+Math.floor(streakGold*0.55),
+    souls:10+Math.min(8,Math.floor(streak/3)*2),
+  };
+}
+
+function showDailyPrizeToast(rew){
+  const el=document.getElementById('milestone-toast');
+  if(!el)return;
+  el.innerHTML=`<span class="mt-ico">☀</span>
+    <div class="mt-name">Daily prize claimed</div>
+    <div class="mt-desc">+${rew.gold} gold · +${rew.souls} souls on your next Classic or Peaceful run</div>
+    <div class="mt-sub">Streak bonuses already included.</div>`;
+  el.classList.remove('hidden','show');
+  void el.offsetWidth;
+  el.classList.add('show');
+  setTimeout(()=>el.classList.add('hidden'),4200);
+}
+
+function updateDailyPrizeEndRow(){
+  const wrap=document.getElementById('daily-prize-end');
+  const btn=document.getElementById('daily-claim-end');
+  if(!wrap||!btn)return;
+  const show=!!(G&&G.daily);
+  if(!show){wrap.classList.add('hidden');return;}
+  wrap.classList.remove('hidden');
+  if(isDailyPrizeClaimed()){
+    btn.disabled=true;
+    btn.textContent='PRIZE CLAIMED ✓';
+  }else{
+    btn.disabled=false;
+    btn.textContent='CLAIM DAILY PRIZE';
+  }
+}
+
+function updateDailyPrizeBanner(){
+  const el=document.getElementById('daily-prize-banner');
+  if(!el)return;
+  const completed=isDailyCompleted();
+  const r=completed?getDailyResult():null;
+  const pending=peekPendingDailyBonus();
+  if(completed&&r&&!r.prizeClaimed){
+    const preview=computeDailyPrizeRewards(r);
+    el.innerHTML=`<div class="daily-prize-claim">
+      <button type="button" class="sbtn dp-claim" onclick="claimDailyPrize()">☀ CLAIM DAILY PRIZE</button>
+      <span class="dp-hint">Today: <b style="color:#b080ff">${preview.gold} gold</b> · <b style="color:#b080ff">${preview.souls} souls</b> on your next Classic / Peaceful run (streak included).</span>
+    </div>`;
+    return;
+  }
+  if(pending){
+    el.innerHTML=`<div class="daily-prize-ready">☀ Bonus ready: +${pending.gold} gold · +${pending.souls} souls — start Classic or Peaceful to collect.</div>`;
+    return;
+  }
+  if(completed&&r&&r.prizeClaimed){
+    el.innerHTML=`<div class="daily-prize-done">☀ Today's daily prize claimed. Come back tomorrow for another.</div>`;
+    return;
+  }
+  el.innerHTML='';
+}
+
+function claimDailyPrize(){
+  if(!isDailyCompleted()){
+    showErrorToast('Finish today’s daily run first.');
+    return;
+  }
+  if(isDailyPrizeClaimed()){
+    showErrorToast('Daily prize already claimed.');
+    return;
+  }
+  const r=getDailyResult();
+  if(!r){
+    showErrorToast('No daily result found.');
+    return;
+  }
+  const rew=computeDailyPrizeRewards(r);
+  addPendingDailyBonus(rew);
+  r.prizeClaimed=true;
+  try{localStorage.setItem(LS_DAILY_PREFIX+r.dateStr,JSON.stringify(r));}catch(_){}
+  updateDailyPrizeBanner();
+  updateDailyPrizeEndRow();
+  if(typeof metaGrantMarks==='function')metaGrantMarks(12,'claim');
+  showDailyPrizeToast(rew);
 }
 
 // ══════════════════════════════════════════════════════════
@@ -3302,6 +3706,7 @@ function hasWarcryAscended(){
 function unlockWarcryAscension(){
   if(hasWarcryAscended())return false;
   localStorage.setItem(LS_WARCRY_ASCENDED,'1');
+  if(typeof metaGrantMarks==='function')metaGrantMarks(40,'echo');
   return true;
 }
 function getWarcryProfile(){
@@ -3350,7 +3755,13 @@ function beginGame(isDaily,opts={}){
      daily:_dailyMode,dailyNum:_dailyNumber,dailySeed:_dailySeed,
      peacefulMode,
      runStartTurn:0,totalTurns:0,deathRound:null,wonAll:false,
-     dailyMod,runStats:{dmgToEnemy:0,dmgTaken:0},_dailyModLogged:false};
+     dailyMod,runStats:{dmgToEnemy:0,dmgTaken:0},_dailyModLogged:false,_dailyBonusApplied:null,_vaultBonusApplied:null};
+  if(!_dailyMode){
+    const vb=applyMetaVaultToPlayer(G.player);
+    if(vb&&(vb.g||vb.s||vb.df||vb.a||vb.h||vb.so))G._vaultBonusApplied=vb;
+    const db=consumePendingDailyBonus(G.player);
+    if(db&&(db.gold||db.souls))G._dailyBonusApplied=db;
+  }
   hideAllScreens();
   document.getElementById('panel').classList.remove('hidden');
   renderLegacyHUD();
@@ -3391,6 +3802,8 @@ function updateDailyIntro(){
   if(streak>0)statusHtml = `<span class="ds-streak">🔥 ${streak}-day streak</span>`;
   if(completed && streak>0)statusHtml += ` · Come back tomorrow to extend it`;
   status.innerHTML = statusHtml;
+  updateDailyPrizeBanner();
+  if(typeof renderMetaVaultIntro==='function')renderMetaVaultIntro();
   const cr=document.getElementById('btn-continue-run');
   if(cr&&typeof peekRunSave==='function')cr.classList.toggle('hidden',!peekRunSave());
 }
@@ -3473,6 +3886,23 @@ function startFight(){
     p.battleBrewBonus=0;
   }
   G.myTurn=true;G.busy=false;G.log=[];
+  if(G._vaultBonusApplied){
+    const v=G._vaultBonusApplied;
+    const bits=[];
+    if(v.g)bits.push(`+${v.g} gold`);
+    if(v.s)bits.push(`+${v.s} STR`);
+    if(v.df)bits.push(`+${v.df} DEF`);
+    if(v.a)bits.push(`+${v.a} AGI`);
+    if(v.h)bits.push(`+${v.h} HP`);
+    if(v.so)bits.push(`+${v.so} souls`);
+    if(bits.length)addLog(`🏛 Arena Vault supplies: ${bits.join(' · ')}.`,'sp');
+    G._vaultBonusApplied=null;
+  }
+  if(G._dailyBonusApplied){
+    const b=G._dailyBonusApplied;
+    addLog(`☀ Daily prize: +${b.gold} gold · +${b.souls} souls.`,'sp');
+    G._dailyBonusApplied=null;
+  }
   if(G.daily&&G.dailyMod&&G.dailyMod.tag&&!G._dailyModLogged){
     G._dailyModLogged=true;
     addLog(`☀ Daily sigil: ${G.dailyMod.label} — gold ×${(G.dailyMod.gold).toFixed(2)} · foes ×${(G.dailyMod.enemy).toFixed(2)}`,'bsp');
@@ -3964,6 +4394,7 @@ function act(a){
     endFight(true);return;
   }
   // Reckless recoil could drop player HP to 0
+  applyPeacefulPlayerImmortality(p);
   if(p.hp<=0){
     const riseChance=getBlessingRiseChance(p);
     if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
@@ -3977,6 +4408,17 @@ function act(a){
   }
   G.myTurn=false;render();
   setTimeout(enemyTurn,720);
+}
+
+function applyPeacefulPlayerImmortality(p){
+  if(!G||!G.peacefulMode||!p)return;
+  if(p.hp<1){
+    p.hp=1;
+    if(!p._peacefulImmortalLog){
+      p._peacefulImmortalLog=true;
+      addLog(`🕊️ PEACEFUL MODE — you cannot die.`,'sp');
+    }
+  }
 }
 
 function enemyTurn(){
@@ -4012,6 +4454,7 @@ function enemyTurn(){
     if(d2>0){const rd=p.defending?Math.max(0,d2-Math.floor(p.def*.75)):d2;p.hp=Math.max(0,p.hp-rd);tot+=rd;if(rd>0)aHit('p',rd);}
     addLog(`Total surge damage: ${tot}!`,'bsp');
     p.defending=false;
+    applyPeacefulPlayerImmortality(p);
     if(p.hp<=0){addLog(`The demon's surge claims you!`,'bsp');document.getElementById('psprite').classList.add('dead');setTimeout(showDefeat,900);return;}
     G.myTurn=true;render();return;
   }
@@ -4047,6 +4490,7 @@ function enemyTurn(){
       }
       triggerGodMoveFx('nova');
       p.defending=false;
+      applyPeacefulPlayerImmortality(p);
       if(p.hp<=0){
         const riseChance=getBlessingRiseChance(p);
         if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
@@ -4079,6 +4523,7 @@ function enemyTurn(){
       }
       triggerGodMoveFx('reap');
       p.defending=false;
+      applyPeacefulPlayerImmortality(p);
       if(p.hp<=0){
         const riseChance=getBlessingRiseChance(p);
         if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
@@ -4141,6 +4586,7 @@ function enemyTurn(){
       addLog(`⚡ PRIMORDIAL SLAM — The ground splits! ${slamDmg} unavoidable damage!`,'bsp');
       aAtk('e');aHit('p',slamDmg);
       p.defending=false;
+      applyPeacefulPlayerImmortality(p);
       if(p.hp<=0){
         const riseChance=getBlessingRiseChance(p);
         if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
@@ -4196,6 +4642,7 @@ function enemyTurn(){
           addLog(`⏳ CHRONO LOCK — ${lockDmg} damage and your next turn is stolen!`,'bsp');
         }
         aAtk('e');aHit('p',lockDmg);
+        applyPeacefulPlayerImmortality(p);
         if(p.hp<=0){
           const riseChance=getBlessingRiseChance(p);
           if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
@@ -4225,6 +4672,7 @@ function enemyTurn(){
       aAtk('e');aHit('p',d1);
       setTimeout(()=>aHit('p',d2),240);
       p.defending=false;
+      applyPeacefulPlayerImmortality(p);
       if(p.hp<=0){
         const riseChance=getBlessingRiseChance(p);
         if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
@@ -4245,6 +4693,7 @@ function enemyTurn(){
       addLog(`◇ DUALITY COLLAPSE — the Archon folds both truths into one wound: ${c}!`,'bsp');
       aAtk('e');aHit('p',c);
       p.defending=false;
+      applyPeacefulPlayerImmortality(p);
       if(p.hp<=0){
         const riseChance=getBlessingRiseChance(p);
         if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
@@ -4294,6 +4743,7 @@ function enemyTurn(){
       }
     }
     p.defending=false;
+    applyPeacefulPlayerImmortality(p);
     if(p.hp<=0){
       const riseChance=getBlessingRiseChance(p);
       if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
@@ -4348,6 +4798,7 @@ function enemyTurn(){
       aAtk('e');
       addLog(`Four mirrored strikes land for ${total} total damage.`,'bsp');
       p.defending=false;
+      applyPeacefulPlayerImmortality(p);
       if(p.hp<=0){
         const riseChance=getBlessingRiseChance(p);
         if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
@@ -4383,6 +4834,7 @@ function enemyTurn(){
       addLog(`✦ TRUMP I — FRACTURE EDICT: ${dealt} schism damage cleaves through intent.`,'bsp');
       aAtk('e');aHit('p',dealt);
       p.defending=false;
+      applyPeacefulPlayerImmortality(p);
       if(p.hp<=0){
         const riseChance=getBlessingRiseChance(p);
         if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
@@ -4433,6 +4885,7 @@ function enemyTurn(){
         aAtk('e');aHit('p',sd);
       }
       p.defending=false;
+      applyPeacefulPlayerImmortality(p);
       if(p.hp<=0){
         const riseChance=getBlessingRiseChance(p);
         if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
@@ -4460,6 +4913,7 @@ function enemyTurn(){
       addLog(`☄ COMET REQUIEM — ${comets} comets hammer you for ${total} total damage.`,'bsp');
       aAtk('e');
       p.defending=false;
+      applyPeacefulPlayerImmortality(p);
       if(p.hp<=0){
         const riseChance=getBlessingRiseChance(p);
         if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
@@ -4490,7 +4944,9 @@ function enemyTurn(){
       const weight=Math.max(3,Math.floor(e.str*0.08));
       p.hp=Math.max(0,p.hp-weight);
       addLog(`✧ PRESENCE OF ORIGIN — Adam's sheer being crushes for ${weight} ambient damage.`,'bsp');
+      triggerAdamMoveFx('presence');
       triggerHighlordMoveFx('crown');
+      applyPeacefulPlayerImmortality(p);
       if(p.hp<=0){
         const riseChance=getBlessingRiseChance(p);
         if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
@@ -4522,6 +4978,7 @@ function enemyTurn(){
       e.godsImageTurns=2;
       p.timeLocked=Math.max(p.timeLocked||0,1);
       addLog(`✧ GOD'S IMAGE — Adam is untouchable for 2 turns, and your next action is erased.`,'bsp');
+      triggerAdamMoveFx('image');
       triggerHighlordMoveFx('crown');
       G.myTurn=true;render();return;
     }
@@ -4533,12 +4990,14 @@ function enemyTurn(){
       e.str=Math.floor(e.str*1.12);
       e.def=Math.floor(e.def*1.10);
       addLog(`✦ GOD'S GIFT — Adam restores ${heal} HP and his form hardens.`,'bsp');
+      triggerAdamMoveFx('gift');
       triggerHighlordMoveFx('retcon');
       G.myTurn=true;render();return;
     }
 
     if(e.adamTurn%5===0){
       const hand=Math.max(52,Math.floor(e.str*1.16)+ri(12,24));
+      triggerAdamMoveFx('hand');
       if(p.hasSoulAegis&&!p.soulAegisUsed&&hand>=p.hp){
         p.soulAegisUsed=true;
         addLog(`✦ SOUL AEGIS absorbs GOD'S HAND!`,'sp');
@@ -4549,6 +5008,7 @@ function enemyTurn(){
       }
       triggerHighlordMoveFx('decree');
       p.defending=false;
+      applyPeacefulPlayerImmortality(p);
       if(p.hp<=0){
         const riseChance=getBlessingRiseChance(p);
         if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
@@ -4565,6 +5025,7 @@ function enemyTurn(){
     if(e.adamTurn%3===0){
       const seenDef=Math.max(1,Math.floor(p.def*0.58));
       const insight=calcDmg(e.str,p.agi,seenDef,1.62,(ptot.dodge||0)*0.65);
+      triggerAdamMoveFx('insight');
       triggerHighlordMoveFx('retcon');
       if(insight<0){
         addLog(`✶ GOD'S INSIGHT reads your intent — still, you slip the line this time.`,'en');
@@ -4580,6 +5041,7 @@ function enemyTurn(){
         }
       }
       p.defending=false;
+      applyPeacefulPlayerImmortality(p);
       if(p.hp<=0){
         const riseChance=getBlessingRiseChance(p);
         if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
@@ -4618,6 +5080,7 @@ function enemyTurn(){
       p.hp=Math.max(0,p.hp-auraTick);
       addLog(`✹ AURA OF UNWRITTEN AEONS — cosmic pressure deals ${auraTick} ambient damage.`,'bsp');
       triggerHighlordMoveFx('retcon');
+      applyPeacefulPlayerImmortality(p);
       if(p.hp<=0){
         const riseChance=getBlessingRiseChance(p);
         if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
@@ -4683,6 +5146,7 @@ function enemyTurn(){
         aAtk('e');aHit('p',decree);
       }
       p.defending=false;
+      applyPeacefulPlayerImmortality(p);
       if(p.hp<=0){
         const riseChance=getBlessingRiseChance(p);
         if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
@@ -4725,6 +5189,7 @@ function enemyTurn(){
       addLog(`☄ CHRONICLE EXTINGUISHMENT — ${hits} multiversal strikes land for ${total}.`,'bsp');
       aAtk('e');
       p.defending=false;
+      applyPeacefulPlayerImmortality(p);
       if(p.hp<=0){
         const riseChance=getBlessingRiseChance(p);
         if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
@@ -4781,6 +5246,7 @@ function enemyTurn(){
         p.hp=Math.max(0,p.hp-dealt);
         addLog(`🌌 GRAVITY BREATH — ${dealt} crushing unavoidable damage!`,'bsp');
         aAtk('e');aHit('p',dealt);
+        applyPeacefulPlayerImmortality(p);
         if(p.hp<=0){
           const riseChance=getBlessingRiseChance(p);
           if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
@@ -4806,6 +5272,7 @@ function enemyTurn(){
       p.hp=Math.max(0,p.hp-singular);
       addLog(`🕳 SINGULARITY MARK detonates for ${singular} conceptual damage.`,'bsp');
       aHit('p',singular);
+      applyPeacefulPlayerImmortality(p);
       if(p.hp<=0){
         const riseChance=getBlessingRiseChance(p);
         if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
@@ -4863,6 +5330,7 @@ function enemyTurn(){
         aAtk('e');aHit('p',dealt);
       }
       p.defending=false;
+      applyPeacefulPlayerImmortality(p);
       if(p.hp<=0){
         const riseChance=getBlessingRiseChance(p);
         if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
@@ -4897,6 +5365,7 @@ function enemyTurn(){
         addLog(`✦ SOUL AEGIS nullifies the FIREBRAND COMBO.`,'sp');
       }
       p.defending=false;
+      applyPeacefulPlayerImmortality(p);
       if(p.hp<=0){
         const riseChance=getBlessingRiseChance(p);
         if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
@@ -4936,6 +5405,7 @@ function enemyTurn(){
         aAtk('e');aHit('p',shred);
         const psp=document.getElementById('psprite');
         psp.classList.add('ghost');setTimeout(()=>psp.classList.remove('ghost'),700);
+        applyPeacefulPlayerImmortality(p);
         if(p.hp<=0){
           const riseChance=getBlessingRiseChance(p);
           if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
@@ -4960,6 +5430,7 @@ function enemyTurn(){
         sfxVoidEcho();
         addLog(`◈ VOID ECHO — ${echoDmg} dmg. Your strength devours you.`,'bsp');
         aAtk('e');aHit('p',echoDmg);
+        applyPeacefulPlayerImmortality(p);
         if(p.hp<=0){
           const riseChance=getBlessingRiseChance(p);
           if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
@@ -5057,6 +5528,7 @@ function enemyTurn(){
       }
     }
     p.defending=false;
+    applyPeacefulPlayerImmortality(p);
     if(p.hp<=0){
       const riseChance=getBlessingRiseChance(p);
       if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
@@ -5108,6 +5580,7 @@ function enemyTurn(){
     }
   }
   p.defending=false;
+  applyPeacefulPlayerImmortality(p);
 
   // Boss: Undying God RESURRECTION
   if(e.isBoss&&e.bossType==='god'&&!e.resurrected&&e.hp/e.maxHp<0.3&&e.hp>0){
@@ -5263,6 +5736,7 @@ function endFight(won){
     addLog(`💎 ${d.rarityLabel.toUpperCase()} LOOT — ${d.icon} ${d.name} (${lootBonusText(d)})`,'sp');
   }
   sfxVictory();
+  if(typeof metaOnRoundWin==='function')metaOnRoundWin(e);
   G.busy=true;render();
   document.getElementById('esprite').classList.add('dead');
   setTimeout(()=>{
@@ -5433,6 +5907,19 @@ function triggerHighlordMoveFx(kind='crown'){
   setTimeout(()=>{try{fx.innerHTML='';scene.classList.remove('scene-shake');}catch(_){}},860);
 }
 
+function triggerAdamMoveFx(kind='presence'){
+  if(document.documentElement.classList.contains('ga-reduce-motion'))return;
+  const esp=document.getElementById('esprite');
+  if(!esp)return;
+  const cls=kind==='image'?'adam-image':kind==='gift'?'adam-gift':kind==='hand'?'adam-hand':kind==='insight'?'adam-insight':'adam-presence';
+  esp.classList.remove('adam-presence','adam-image','adam-gift','adam-hand','adam-insight');
+  void esp.offsetWidth;
+  esp.classList.add(cls);
+  setTimeout(()=>{
+    try{esp.classList.remove(cls);}catch(_){}
+  },kind==='image'?880:kind==='gift'?920:kind==='hand'?760:700);
+}
+
 function triggerGodMoveFx(kind='nova'){
   const fx=document.getElementById('god-fx');
   const scene=document.getElementById('scene');
@@ -5473,6 +5960,7 @@ const pct=(c,m)=>Math.max(0,Math.round(c/m*100));
 const hcl=(c,m)=>c/m<.3?'hpin hl':c/m<.6?'hpin hm':'hpin hh';
 
 function render(){
+  if(typeof maybeMetaAccruePlayTime==='function')maybeMetaAccruePlayTime();
   const p=G.player,e=G.enemy;
   if(G&&p){
     if(!p.skinId)p.skinId=(loadGameSettings().skinId||'classic');
@@ -5979,6 +6467,7 @@ function showVictory(){
     <div class="sst">AGI: <b>${p.agi}</b></div><div class="sst">DEF: <b>${p.def}</b></div>
     <div class="sst">Wins: <b>${p.wins}</b></div><div class="sst">Gold: <b>${p.gold}</b></div>
     <div class="sst">Dmg dealt: <b>${rs.dmgToEnemy||0}</b></div><div class="sst">Dmg taken: <b>${rs.dmgTaken||0}</b></div>`;
+  if(typeof metaOnFullClear==='function')metaOnFullClear();
   if(G.daily)recordDailyResult(true);
 }
 
@@ -6011,6 +6500,7 @@ function showDefeat(){
     <div class="sst">STR: <b>${p.str}</b></div><div class="sst">DEF: <b>${p.def}</b></div>
     <div class="sst">AGI: <b>${p.agi}</b></div><div class="sst">Wins: <b>${p.wins}</b></div>
     <div class="sst">Dmg dealt: <b>${rs.dmgToEnemy||0}</b></div><div class="sst">Dmg taken: <b>${rs.dmgTaken||0}</b></div>`;
+  if(typeof metaOnRunDefeatBonus==='function')metaOnRunDefeatBonus();
   if(G.daily)recordDailyResult(false);
 }
 
@@ -6032,6 +6522,7 @@ function recordDailyResult(won){
   const card = document.getElementById('ds-card');
   const cardText = buildShareCard(result);
   card.innerHTML = cardText.split('\n').map((l,i)=>i===0?`<span class="dc-title">${l}</span>`:l).join('\n');
+  updateDailyPrizeEndRow();
 }
 
 function restartGame(){
@@ -6047,6 +6538,7 @@ function restartGame(){
   document.getElementById('daily-share').classList.add('hidden');
   renderLegacyIntro();
   updateDailyIntro();
+  if(typeof renderMetaVaultIntro==='function')renderMetaVaultIntro();
   const cr=document.getElementById('btn-continue-run');
   if(cr)cr.classList.add('hidden');
   const ver=document.getElementById('game-ver-line');
@@ -6126,6 +6618,7 @@ function legacyAddRise(){
   const n=legacyRises()+1;
   localStorage.setItem(LS_RISES,n);
   checkMilestoneUnlock(n);
+  if(typeof metaGrantMarks==='function')metaGrantMarks(22,'milestone');
   return n;
 }
 
@@ -6265,6 +6758,10 @@ const ECHO_MILESTONES={
 
 function showEchoAchievement(totalCries){
   const m=ECHO_MILESTONES[totalCries];if(!m)return;
+  if(typeof metaGrantMarks==='function'){
+    const mk=totalCries>=200?70:totalCries>=100?45:totalCries>=50?28:totalCries>=25?20:totalCries>=10?14:0;
+    if(mk)metaGrantMarks(mk,'echo');
+  }
   const scr=document.getElementById('echo-ach');
   document.getElementById('ech-title').textContent=m.title;
   const subs=scr.querySelectorAll('.ech-sub');if(subs[0])subs[0].textContent=m.sub;
@@ -7512,6 +8009,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   renderLegacyHUD();
   renderLegacyIntro();
   updateDailyIntro();
+  if(typeof renderMetaVaultIntro==='function')renderMetaVaultIntro();
   // Live countdown tick
   setInterval(()=>{
     const el=document.getElementById('daily-countdown');
