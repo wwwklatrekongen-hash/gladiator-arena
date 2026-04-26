@@ -98,6 +98,18 @@ body{font-family:'Cinzel',Georgia,serif;display:flex;flex-direction:column;heigh
 .swrap{display:inline-block;line-height:1;cursor:default;position:relative}
 .swrap svg{display:block;margin:0 auto;filter:drop-shadow(0 6px 14px rgba(0,0,0,.95)) drop-shadow(0 2px 4px rgba(0,0,0,.8))}
 .swrap.flip svg{transform:scaleX(-1)}
+/* Boss presentation — rim glow under sprite (cutscenes optional; art should still read) */
+#esprite.swrap.boss-sprite-wrap{position:relative}
+#esprite.swrap.boss-sprite-wrap::after{
+  content:'';
+  position:absolute;left:50%;bottom:-1px;width:98%;max-width:220px;height:26px;
+  transform:translateX(-50%);
+  border-radius:50%;
+  background:radial-gradient(ellipse 55% 100% at 50% 48%,rgba(255,236,180,.32) 0%,rgba(232,184,75,.26) 22%,rgba(200,110,55,.14) 48%,transparent 74%);
+  box-shadow:0 0 32px rgba(255,210,130,.22),0 6px 18px rgba(0,0,0,.4);
+  pointer-events:none;z-index:0;opacity:1;
+}
+#esprite.swrap.boss-sprite-wrap svg{position:relative;z-index:1}
 
 /* boss auras */
 .aura-demon{animation:ademon 1.6s ease-in-out infinite alternate}
@@ -2156,7 +2168,8 @@ const CHARS = {
   <line x1="42" y1="27" x2="42" y2="32" stroke="#1a0a02" stroke-width="1"/>
 </svg>`,
 
-  daemonicus:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg">
+  daemonicus:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg" class="ga-boss-svg">
+  <ellipse cx="36" cy="103" rx="34" ry="10" fill="rgba(255,200,140,.1)" opacity=".9"/>
   <!-- demon aura pulse glow -->
   <ellipse cx="36" cy="100" rx="22" ry="5" fill="rgba(120,0,0,.5)"/>
   <!-- dark energy tendrils -->
@@ -2199,11 +2212,22 @@ const CHARS = {
   <rect x="38" y="22" width="9" height="5" rx="2" fill="#ff1018"/>
   <rect x="26" y="23" width="7" height="3" rx="1" fill="#ff5040" opacity=".9"/>
   <rect x="39" y="23" width="7" height="3" rx="1" fill="#ff5040" opacity=".9"/>
+  <!-- detail: pauldrons, belt, horn grain, shield boss -->
+  <path d="M16 36 L19 31 L23 40 Z" fill="#120818" stroke="#ff2030" stroke-width=".55" opacity=".9"/>
+  <path d="M56 36 L53 31 L49 40 Z" fill="#120818" stroke="#ff2030" stroke-width=".55" opacity=".9"/>
+  <rect x="25" y="62" width="22" height="3.2" rx="1" fill="#080610" stroke="#501018" stroke-width=".45"/>
+  <circle cx="28" cy="63.6" r=".65" fill="#ff1820" opacity=".55"/><circle cx="36" cy="63.6" r=".65" fill="#ff1820" opacity=".55"/><circle cx="44" cy="63.6" r=".65" fill="#ff1820" opacity=".55"/>
+  <path d="M21 9 Q23 13 22 16 M51 9 Q49 13 50 16" stroke="#501830" stroke-width=".55" fill="none" opacity=".75"/>
+  <path d="M8 48 Q13 50 12 56 Q10 62 8 58" stroke="#ff1020" stroke-width=".8" fill="none" opacity=".45"/>
+  <circle cx="13" cy="52" r="3.2" fill="none" stroke="#ff3040" stroke-width=".5" opacity=".55"/>
+  <path d="M62 28 L64 34 L62 40 M64 32 L68 38" stroke="#ff1828" stroke-width=".7" fill="none" opacity=".65"/>
   <!-- dark mouth slit -->
   <rect x="30" y="29" width="14" height="3" rx="1.5" fill="#0a0410"/>
+  <path d="M32 30 Q36 31.2 40 30" stroke="#401018" stroke-width=".35" fill="none" opacity=".8"/>
 </svg>`,
 
-  undying:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg">
+  undying:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg" class="ga-boss-svg">
+  <ellipse cx="36" cy="103" rx="34" ry="10" fill="rgba(180,200,255,.11)" opacity=".88"/>
   <!-- cosmic void glow -->
   <ellipse cx="36" cy="100" rx="24" ry="6" fill="rgba(40,60,160,.4)"/>
   <!-- spectral energy wisps -->
@@ -2218,6 +2242,9 @@ const CHARS = {
   <circle cx="63" cy="34" r="1.5" fill="#8090ff" opacity=".9"/>
   <line x1="4" y1="30" x2="12" y2="50" stroke="#5070dd" stroke-width="2" opacity=".6" stroke-linecap="round"/>
   <line x1="60" y1="22" x2="68" y2="48" stroke="#5070dd" stroke-width="2" opacity=".6" stroke-linecap="round"/>
+  <path d="M32 86 L34 94 L31 98 M40 88 L38 96 L41 100" stroke="#203070" stroke-width="1.1" fill="none" opacity=".55" stroke-linecap="round"/>
+  <path d="M22 44 Q18 52 20 62" stroke="rgba(180,200,255,.2)" stroke-width=".9" fill="none"/>
+  <path d="M50 44 Q54 52 52 62" stroke="rgba(180,200,255,.2)" stroke-width=".9" fill="none"/>
   <!-- spectral tattered robe -->
   <path d="M20 40 L22 90 L28 86 L30 96 L36 88 L42 96 L44 86 L50 90 L52 40 Z" fill="#101828"/>
   <!-- robe light accents -->
@@ -2232,6 +2259,9 @@ const CHARS = {
   <path d="M62 18 Q76 28 70 44 Q60 38 62 26 Z" fill="#c0b8d8" stroke="#e8e0f0" stroke-width="1"/>
   <!-- spectral glow on scythe blade -->
   <path d="M64 22 Q72 30 68 40" stroke="#6080ff" stroke-width="1.5" fill="none" opacity=".8"/>
+  <path d="M61 24 L59 30 M63 42 L61 48" stroke="#a0b0e8" stroke-width=".55" fill="none" opacity=".5"/>
+  <ellipse cx="37" cy="18" rx="15" ry="3" fill="none" stroke="rgba(255,255,255,.08)" stroke-width=".45"/>
+  <path d="M32 21 Q36 23 40 21" stroke="rgba(0,0,0,.25)" stroke-width=".5" fill="none"/>
   <!-- skull face / void torso -->
   <rect x="22" y="34" width="30" height="24" rx="4" fill="#0c1020"/>
   <!-- bone ribcage visible -->
@@ -2266,9 +2296,12 @@ const CHARS = {
   <!-- crown gem glow -->
   <circle cx="37" cy="4" r="3" fill="#4060ee" opacity=".9"/>
   <circle cx="37" cy="4" r="1.5" fill="#80a0ff"/>
+  <path d="M24 4 L22 2 M40 4 L42 2 M33 1.5 L33 0 M39 1.5 L39 0" stroke="#6080d0" stroke-width=".45" opacity=".7"/>
+  <ellipse cx="37" cy="7" rx="10" ry="2" fill="none" stroke="rgba(100,140,255,.25)" stroke-width=".4"/>
 </svg>`,
 
-  kronos:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg">
+  kronos:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg" class="ga-boss-svg">
+  <ellipse cx="36" cy="103" rx="35" ry="11" fill="rgba(255,120,40,.1)" opacity=".9"/>
   <ellipse cx="36" cy="101" rx="26" ry="6" fill="rgba(0,0,0,.7)"/>
   <ellipse cx="36" cy="62" rx="30" ry="38" fill="rgba(180,55,0,.08)"/>
 
@@ -2387,9 +2420,16 @@ const CHARS = {
   <line x1="41" y1="28" x2="41" y2="32" stroke="#cc3808" stroke-width="1" opacity=".5"/>
   <!-- Ancient text above mouth -->
   <text x="29" y="27" font-size="3.5" fill="#501808" opacity=".7" font-family="serif">𒀭𒄿𒉈𒁾𒀭𒄿</text>
+  <!-- detail: lichen, bolt heads, extra crack -->
+  <ellipse cx="28" cy="41" rx="5" ry="2.2" fill="rgba(35,70,40,.22)" opacity=".85"/>
+  <ellipse cx="50" cy="56" rx="4" ry="1.8" fill="rgba(40,75,45,.18)"/>
+  <circle cx="41" cy="77" r="1.1" fill="#2e2c38" stroke="#ff7020" stroke-width=".35"/>
+  <circle cx="31" cy="79" r="1" fill="#2e2c38" stroke="#cc4810" stroke-width=".35"/>
+  <path d="M14 52 Q18 54 16 58" stroke="#ff5010" stroke-width="1.2" fill="none" opacity=".5"/>
 </svg>`,
 
-  saturn:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg">
+  saturn:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg" class="ga-boss-svg">
+  <ellipse cx="36" cy="103" rx="34" ry="10" fill="rgba(200,180,255,.1)" opacity=".9"/>
   <ellipse cx="36" cy="101" rx="24" ry="5.5" fill="rgba(80,60,130,.55)"/>
   <ellipse cx="36" cy="58" rx="28" ry="36" fill="rgba(120,90,210,.08)"/>
   <!-- time ring -->
@@ -2400,8 +2440,14 @@ const CHARS = {
   <line x1="58" y1="28" x2="62" y2="28" stroke="#d0c0ff" stroke-width="1.2"/>
   <line x1="36" y1="20" x2="36" y2="16" stroke="#d0c0ff" stroke-width="1.2"/>
   <line x1="36" y1="36" x2="36" y2="40" stroke="#d0c0ff" stroke-width="1.2"/>
+  <line x1="22" y1="24" x2="25" y2="27" stroke="#c8b8f0" stroke-width=".85"/>
+  <line x1="50" y1="24" x2="47" y2="27" stroke="#c8b8f0" stroke-width=".85"/>
+  <line x1="15" y1="31" x2="18" y2="33" stroke="#b8a8e8" stroke-width=".75"/>
+  <line x1="57" y1="31" x2="54" y2="33" stroke="#b8a8e8" stroke-width=".75"/>
   <!-- cloak -->
   <path d="M16 38 Q36 28 56 38 Q54 58 56 74 Q36 68 16 74 Q18 58 16 38 Z" fill="#1a122c" opacity=".9"/>
+  <path d="M20 48 Q36 42 52 48" fill="none" stroke="rgba(140,110,220,.2)" stroke-width=".55"/>
+  <path d="M22 62 Q36 58 50 62" fill="none" stroke="rgba(100,80,180,.18)" stroke-width=".5"/>
   <!-- torso -->
   <rect x="20" y="38" width="32" height="28" rx="5" fill="#201838"/>
   <rect x="22" y="40" width="28" height="10" rx="3" fill="#2e2450"/>
@@ -2427,6 +2473,9 @@ const CHARS = {
   <!-- crown -->
   <path d="M22 12 L26 3 L31 10 L36 1 L41 10 L46 3 L50 12 Z" fill="#2a2050" stroke="#8a70d0" stroke-width="1.1"/>
   <rect x="21" y="11" width="30" height="5" rx="1.8" fill="#20163a" stroke="#6a50b0" stroke-width="1"/>
+  <circle cx="28" cy="13" r="1.2" fill="#403070" stroke="#d0c0ff" stroke-width=".35"/>
+  <circle cx="44" cy="13" r="1.2" fill="#403070" stroke="#d0c0ff" stroke-width=".35"/>
+  <path d="M24 48 L23 54 M48 48 L49 54" stroke="#3e3460" stroke-width=".45" fill="none" opacity=".65"/>
   <!-- eyes -->
   <ellipse cx="29" cy="20" rx="4.2" ry="3.2" fill="#04020a"/>
   <ellipse cx="43" cy="20" rx="4.2" ry="3.2" fill="#04020a"/>
@@ -2436,9 +2485,13 @@ const CHARS = {
   <ellipse cx="43" cy="20" rx="1" ry=".8" fill="#d0e0ff"/>
   <!-- mouth -->
   <rect x="31" y="27" width="10" height="2.2" rx="1.1" fill="#0a0616"/>
+  <path d="M27 22 L25 25 M45 22 L47 25" stroke="rgba(180,200,255,.15)" stroke-width=".4"/>
+  <rect x="24" y="69" width="8" height="3" rx="1" fill="#141030" stroke="#5a4890" stroke-width=".35" opacity=".85"/>
+  <rect x="40" y="69" width="8" height="3" rx="1" fill="#141030" stroke="#5a4890" stroke-width=".35" opacity=".85"/>
 </svg>`,
 
-  aeternon:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg">
+  aeternon:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg" class="ga-boss-svg">
+  <ellipse cx="36" cy="103" rx="34" ry="10" fill="rgba(200,120,255,.1)" opacity=".88"/>
   <ellipse cx="36" cy="101" rx="24" ry="5.5" fill="rgba(100,0,200,.45)"/>
   <ellipse cx="36" cy="60" rx="32" ry="42" fill="rgba(80,0,160,.08)"/>
   <!-- Trailing void wisps -->
@@ -2518,9 +2571,15 @@ const CHARS = {
   <ellipse cx="37" cy="30" rx="8" ry="3" fill="#030108"/>
   <ellipse cx="37" cy="30" rx="5.5" ry="1.8" fill="#160430"/>
   <path d="M32 30 Q37 27 42 30" stroke="#5010a0" stroke-width="1" fill="none" opacity=".7"/>
+  <!-- detail: shard facets, vein filigree -->
+  <polygon points="6,28 10,26 9,31" fill="#1a0830" stroke="#8020e0" stroke-width=".35" opacity=".85"/>
+  <polygon points="66,28 62,26 63,31" fill="#1a0830" stroke="#8020e0" stroke-width=".35" opacity=".85"/>
+  <path d="M30 48 L32 52 L28 52 Z M42 48 L40 52 L44 52 Z" fill="none" stroke="rgba(200,80,255,.35)" stroke-width=".4"/>
+  <circle cx="37" cy="54" r="2" fill="none" stroke="rgba(160,40,240,.25)" stroke-width=".35" stroke-dasharray="1 1"/>
 </svg>`,
 
-  nemesis:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg">
+  nemesis:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg" class="ga-boss-svg">
+  <ellipse cx="36" cy="103" rx="34" ry="10" fill="rgba(255,160,160,.09)" opacity=".9"/>
   <ellipse cx="36" cy="101" rx="22" ry="5" fill="rgba(120,0,0,.5)"/>
   <!-- Blood shadow pool -->
   <ellipse cx="36" cy="97" rx="28" ry="4" fill="rgba(200,20,20,.2)"/>
@@ -2603,18 +2662,30 @@ const CHARS = {
   <!-- Mouth slit — just a thin line -->
   <rect x="32" y="27" width="10" height="2" rx="1" fill="#080000"/>
   <line x1="32" y1="28" x2="42" y2="28" stroke="#601818" stroke-width=".5"/>
+  <!-- detail: cape embroidery, blade notch, pauldron studs -->
+  <path d="M22 42 Q36 38 50 42" stroke="rgba(255,60,60,.15)" stroke-width=".55" fill="none"/>
+  <path d="M58 32 L60 36 L57 38" fill="none" stroke="#6a1010" stroke-width=".6" opacity=".8"/>
+  <circle cx="10" cy="48" r=".9" fill="#501010"/><circle cx="58" cy="48" r=".9" fill="#501010"/>
+  <path d="M34 14 L36 10 L38 14" stroke="#601818" stroke-width=".45" fill="none" opacity=".7"/>
 </svg>`
 ,
-  conceptdragon:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg">
+  conceptdragon:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg" class="ga-boss-svg">
+  <ellipse cx="36" cy="103" rx="34" ry="10" fill="rgba(255,200,100,.1)" opacity=".88"/>
   <ellipse cx="36" cy="101" rx="25" ry="6" fill="rgba(20,40,60,.5)"/>
   <ellipse cx="36" cy="58" rx="31" ry="38" fill="rgba(80,20,140,.08)"/>
   <!-- wings -->
   <path d="M16 46 Q4 30 8 16 Q20 26 28 44" fill="#120c24" stroke="#4a2a80" stroke-width="1.2" opacity=".9"/>
   <path d="M56 46 Q68 30 64 16 Q52 26 44 44" fill="#120c24" stroke="#4a2a80" stroke-width="1.2" opacity=".9"/>
+  <path d="M12 34 Q18 28 24 36 M60 34 Q54 28 48 36" stroke="rgba(112,224,255,.2)" stroke-width=".65" fill="none"/>
+  <path d="M10 42 L14 38 M62 42 L58 38" stroke="rgba(128,64,200,.25)" stroke-width=".5" fill="none"/>
   <!-- body -->
   <rect x="22" y="36" width="28" height="35" rx="10" fill="#0a1420" stroke="#2a6078" stroke-width="1.2"/>
   <path d="M26 42 Q36 50 46 42" stroke="#4ac0e0" stroke-width="1.2" fill="none" opacity=".75"/>
   <path d="M26 54 Q36 62 46 54" stroke="#8040d0" stroke-width="1.2" fill="none" opacity=".75"/>
+  <g fill="none" stroke="rgba(74,192,224,.22)" stroke-width=".45" opacity=".85">
+    <path d="M24 48 L26 52"/><path d="M28 50 L30 54"/><path d="M40 50 L42 54"/><path d="M44 48 L46 52"/>
+  </g>
+  <path d="M34 38 L35 34 L36 38 L37 34 L38 38" stroke="rgba(128,80,200,.35)" stroke-width=".55" fill="none" stroke-linecap="round"/>
   <!-- tail -->
   <path d="M36 70 Q34 82 38 92 Q40 98 35 102" stroke="#2a70a8" stroke-width="3" fill="none" stroke-linecap="round"/>
   <circle cx="35" cy="102" r="2.2" fill="#70e0ff"/>
@@ -2630,6 +2701,7 @@ const CHARS = {
   <!-- horns -->
   <path d="M26 11 Q20 4 24 1 Q29 5 30 12" fill="#1a2a38"/>
   <path d="M46 11 Q52 4 48 1 Q43 5 42 12" fill="#1a2a38"/>
+  <path d="M27 8 L28 4 M45 8 L44 4" stroke="rgba(112,224,255,.35)" stroke-width=".4" fill="none"/>
   <!-- concept halo -->
   <ellipse cx="36" cy="17" rx="20" ry="5" fill="none" stroke="#70e0ff" stroke-width="1.2" opacity=".7"/>
   <ellipse cx="36" cy="17" rx="24" ry="7" fill="none" stroke="#8040d0" stroke-width=".9" opacity=".55"/>
@@ -2641,8 +2713,10 @@ const CHARS = {
   <!-- gravity breath core -->
   <ellipse cx="36" cy="24" rx="6" ry="2.4" fill="#02080e"/>
   <ellipse cx="36" cy="24" rx="3.2" ry="1.3" fill="#70e0ff" opacity=".8"/>
+  <path d="M33 23 L32 25 M39 23 L40 25" stroke="#050a10" stroke-width=".35" fill="none" opacity=".6"/>
+  <ellipse cx="36" cy="21" rx="8" ry="1.2" fill="none" stroke="rgba(112,224,255,.2)" stroke-width=".35"/>
 </svg>`,
-  conceptlizard:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg">
+  conceptlizard:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg" class="ga-boss-svg">
   <defs>
     <linearGradient id="dlzBody" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#f8f0d8"/>
@@ -2656,6 +2730,7 @@ const CHARS = {
       <stop offset="100%" style="stop-color:#fff8e0;stop-opacity:0"/>
     </linearGradient>
   </defs>
+  <ellipse cx="36" cy="103" rx="34" ry="10" fill="rgba(255,248,220,.1)" opacity=".88"/>
   <!-- heaven column -->
   <rect x="28" y="0" width="16" height="38" fill="url(#dlzBeam)"/>
   <ellipse cx="36" cy="8" rx="22" ry="10" fill="#fffef6" opacity=".35"/>
@@ -2668,6 +2743,10 @@ const CHARS = {
   <!-- body -->
   <ellipse cx="36" cy="62" rx="22" ry="16" fill="url(#dlzBody)" stroke="#4a3068" stroke-width="1.2"/>
   <path d="M22 58 Q36 52 50 58" stroke="rgba(255,255,255,.25)" stroke-width="1" fill="none"/>
+  <g fill="none" stroke="rgba(80,48,104,.35)" stroke-width=".4" opacity=".9">
+    <path d="M24 64 Q30 66 36 64 Q42 66 48 64"/><path d="M23 68 Q30 70 36 68 Q42 70 49 68"/>
+  </g>
+  <ellipse cx="36" cy="70" rx="12" ry="5" fill="none" stroke="rgba(255,255,255,.12)" stroke-width=".35"/>
   <!-- limbs -->
   <rect x="24" y="72" width="7" height="18" rx="2" fill="#120810"/>
   <rect x="41" y="72" width="7" height="18" rx="2" fill="#f0e8d8"/>
@@ -2684,8 +2763,10 @@ const CHARS = {
   <path d="M28 18 L26 8 L30 16" fill="#e8d8ff" stroke="#604080" stroke-width=".6"/>
   <path d="M36 16 L36 4 L38 16" fill="#fffef8" stroke="#8060a0" stroke-width=".6"/>
   <path d="M44 18 L46 8 L42 16" fill="#1a0818" stroke="#402060" stroke-width=".6"/>
+  <path d="M25.5 88 L27 91 L28.5 88 M42.5 88 L44 91 L45.5 88" stroke="#2a1838" stroke-width=".65" fill="none" stroke-linecap="round"/>
+  <path d="M32 40 Q36 42 40 40" stroke="rgba(255,255,255,.15)" stroke-width=".35" fill="none"/>
 </svg>`,
-  conceptreptilian:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg">
+  conceptreptilian:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg" class="ga-boss-svg">
   <defs>
     <linearGradient id="crpBody" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#2c3a1a"/>
@@ -2699,6 +2780,7 @@ const CHARS = {
       <stop offset="100%" style="stop-color:#8a1200"/>
     </linearGradient>
   </defs>
+  <ellipse cx="36" cy="103" rx="34" ry="10" fill="rgba(255,180,80,.1)" opacity=".88"/>
   <ellipse cx="36" cy="101" rx="24" ry="5.5" fill="rgba(120,36,6,.45)"/>
   <ellipse cx="36" cy="58" rx="28" ry="34" fill="rgba(255,90,20,.07)"/>
   <path d="M18 44 Q10 54 8 66 Q6 74 10 78" stroke="#1a230a" stroke-width="11" fill="none" stroke-linecap="round"/>
@@ -2706,6 +2788,8 @@ const CHARS = {
   <rect x="21" y="37" width="30" height="30" rx="7" fill="url(#crpBody)" stroke="#4a5e1f" stroke-width="1.2"/>
   <path d="M24 44 Q36 50 48 44" stroke="#96b84e" stroke-width="1.2" fill="none" opacity=".75"/>
   <path d="M24 56 Q36 62 48 56" stroke="#6a8e28" stroke-width="1.2" fill="none" opacity=".75"/>
+  <path d="M26 40 L27 36 L28 40 L29 36 L30 40 L31 36 L32 40 L33 36 L34 40 L35 36 L36 40 L37 36 L38 40 L39 36 L40 40 L41 36 L42 40 L43 36 L44 40 L45 36 L46 40" stroke="rgba(180,220,100,.25)" stroke-width=".45" fill="none" stroke-linecap="round"/>
+  <ellipse cx="36" cy="52" rx="14" ry="10" fill="none" stroke="rgba(255,200,120,.08)" stroke-width=".5"/>
   <rect x="24" y="68" width="10" height="24" rx="3" fill="#121a06"/>
   <rect x="38" y="68" width="10" height="24" rx="3" fill="#121a06"/>
   <rect x="23" y="84" width="11" height="8" rx="2" fill="#201008"/>
@@ -2724,8 +2808,10 @@ const CHARS = {
   <path d="M53 22 Q58 14 60 8 Q62 3 57 2 Q52 3 50 10 Q49 16 53 22 Z" fill="url(#crpFire)" stroke="#ffc878" stroke-width="1.1"/>
   <path d="M55 20 Q58 13 58 8" stroke="#fff4c8" stroke-width="1" fill="none" opacity=".8"/>
   <path d="M56 24 Q60 28 62 22" stroke="#ff9440" stroke-width="1.1" fill="none" opacity=".85"/>
+  <path d="M32 26 L33 22 L34 26 M38 26 L39 22 L40 26" stroke="#4a6220" stroke-width=".4" fill="none" opacity=".75"/>
+  <ellipse cx="36" cy="34" rx="11" ry="2" fill="none" stroke="rgba(255,180,80,.12)" stroke-width=".35"/>
 </svg>`,
-  conceptsplitter:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg">
+  conceptsplitter:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg" class="ga-boss-svg">
   <defs>
     <linearGradient id="cspBody" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#90f0ff"/>
@@ -2734,6 +2820,7 @@ const CHARS = {
       <stop offset="100%" style="stop-color:#401060"/>
     </linearGradient>
   </defs>
+  <ellipse cx="36" cy="103" rx="34" ry="10" fill="rgba(180,240,255,.1)" opacity=".88"/>
   <ellipse cx="36" cy="100" rx="26" ry="5" fill="rgba(0,0,0,.55)"/>
   <!-- split halo -->
   <ellipse cx="36" cy="14" rx="24" ry="7" fill="none" stroke="#a8f4ff" stroke-width="1.3" opacity=".8"/>
@@ -2744,6 +2831,10 @@ const CHARS = {
   <!-- body -->
   <ellipse cx="36" cy="59" rx="22" ry="17" fill="url(#cspBody)" stroke="#307090" stroke-width="1.3"/>
   <path d="M20 56 Q36 48 52 56" stroke="rgba(255,255,255,.35)" stroke-width="1.1" fill="none"/>
+  <path d="M36 50 L36 68" stroke="rgba(255,255,255,.2)" stroke-width=".55" stroke-dasharray="2 2"/>
+  <polygon points="36,8 34,14 38,14" fill="rgba(168,244,255,.35)" stroke="#70c8e8" stroke-width=".35"/>
+  <polygon points="8,24 12,22 10,28" fill="#304858" stroke="#a8f4ff" stroke-width=".4" opacity=".85"/>
+  <polygon points="64,24 60,22 62,28" fill="#502850" stroke="#ff90d8" stroke-width=".4" opacity=".85"/>
   <!-- 4 blades / split limbs -->
   <rect x="7" y="46" width="10" height="6" rx="2" fill="#203848"/>
   <rect x="55" y="46" width="10" height="6" rx="2" fill="#401830"/>
@@ -2758,8 +2849,10 @@ const CHARS = {
   <ellipse cx="42" cy="24" rx="3.2" ry="2.5" fill="#120818"/>
   <ellipse cx="30" cy="24" rx="1.5" ry="1.2" fill="#70f0ff"/>
   <ellipse cx="42" cy="24" rx="1.5" ry="1.2" fill="#ff70c8"/>
+  <path d="M28 20 L29 17 L30 20 M42 20 L43 17 L44 20" stroke="rgba(0,0,0,.2)" stroke-width=".35" fill="none"/>
+  <rect x="35" y="30" width="2" height="8" rx=".5" fill="rgba(255,248,240,.5)" opacity=".7"/>
 </svg>`,
-  conceptshatterer:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg">
+  conceptshatterer:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg" class="ga-boss-svg">
   <defs>
     <linearGradient id="cshBody" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#80f8ff"/>
@@ -2768,6 +2861,7 @@ const CHARS = {
       <stop offset="100%" style="stop-color:#2a1048"/>
     </linearGradient>
   </defs>
+  <ellipse cx="36" cy="103" rx="34" ry="10" fill="rgba(160,220,255,.11)" opacity=".88"/>
   <ellipse cx="36" cy="101" rx="26" ry="5.5" fill="rgba(80,230,255,.4)"/>
   <ellipse cx="36" cy="58" rx="32" ry="38" fill="rgba(150,80,255,.1)"/>
   <path d="M8 44 L20 36 L18 48 L10 56 Z" fill="#102838" stroke="#60d0ff" stroke-width="1"/>
@@ -2789,8 +2883,13 @@ const CHARS = {
   <path d="M32 31 Q36 34 40 31" stroke="#70d8ff" stroke-width="1" fill="none"/>
   <path d="M6 18 L18 22 L14 30 L4 26 Z" fill="#0e1e30" stroke="#60c8ff" stroke-width="1"/>
   <path d="M66 18 L54 22 L58 30 L68 26 Z" fill="#241030" stroke="#ff80d8" stroke-width="1"/>
+  <path d="M4 52 L8 50 L6 56 M68 52 L64 50 L66 56" stroke="rgba(96,208,255,.4)" stroke-width=".55" fill="none" opacity=".75"/>
+  <rect x="33" y="52" width="6" height="2" rx=".5" fill="rgba(255,255,255,.15)" opacity=".6" transform="rotate(12 36 53)"/>
+  <rect x="18" y="40" width="3" height="3" rx=".4" fill="none" stroke="#ff80e8" stroke-width=".35" opacity=".55"/>
+  <rect x="51" y="40" width="3" height="3" rx=".4" fill="none" stroke="#70f8ff" stroke-width=".35" opacity=".55"/>
+  <path d="M34 26 L35 22 L36 26 M38 26 L39 22 L40 26" stroke="rgba(255,255,255,.25)" stroke-width=".3" fill="none"/>
 </svg>`,
-  cosmichighlord:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg">
+  cosmichighlord:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg" class="ga-boss-svg">
   <defs>
     <linearGradient id="chlBody" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#ffe0a8"/>
@@ -2800,6 +2899,7 @@ const CHARS = {
     </linearGradient>
   </defs>
   <ellipse cx="36" cy="101" rx="26" ry="6" fill="rgba(255,140,60,.42)"/>
+  <ellipse cx="36" cy="103" rx="14" ry="2.6" fill="rgba(255,252,235,.22)"/>
   <ellipse cx="36" cy="60" rx="33" ry="41" fill="rgba(120,230,255,.12)"/>
   <ellipse cx="36" cy="12" rx="26" ry="8" fill="none" stroke="#ffd090" stroke-width="1.2" opacity=".8"/>
   <ellipse cx="36" cy="12" rx="32" ry="10" fill="none" stroke="#70e8ff" stroke-width=".9" opacity=".6"/>
@@ -2829,17 +2929,26 @@ const CHARS = {
   <path d="M56 16 L56 59" stroke="#70f0ff" stroke-width="1.1" opacity=".85"/>
   <path d="M54 24 Q56 26 58 24" stroke="#ffb060" stroke-width=".9" fill="none" opacity=".85"/>
   <path d="M54 38 Q56 40 58 38" stroke="#80f0ff" stroke-width=".9" fill="none" opacity=".85"/>
+  <!-- detail: axiom plates, collar etch -->
+  <path d="M36 42 L36 62" stroke="rgba(40,20,8,.25)" stroke-width=".45" stroke-dasharray="1 2"/>
+  <circle cx="30" cy="48" r="1.2" fill="none" stroke="rgba(255,200,120,.35)" stroke-width=".4"/>
+  <circle cx="42" cy="48" r="1.2" fill="none" stroke="rgba(112,240,255,.35)" stroke-width=".4"/>
+  <path d="M32 34 L33 38 M40 34 L39 38" stroke="rgba(255,220,180,.3)" stroke-width=".35" fill="none"/>
+  <path d="M24 72 L22 78 M48 72 L50 78" stroke="rgba(255,160,80,.2)" stroke-width=".55" fill="none"/>
 </svg>`,
-  conceptadam:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg">
+  conceptadam:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg" class="ga-boss-svg">
   <defs>
-    <radialGradient id="cadFace" cx="38%" cy="32%" r="68%">
-      <stop offset="0%" style="stop-color:#f5dcc0"/><stop offset="45%" style="stop-color:#c9986e"/><stop offset="100%" style="stop-color:#7a4828"/>
+    <radialGradient id="cadFace" cx="40%" cy="26%" r="75%">
+      <stop offset="0%" style="stop-color:#f8e8d8"/><stop offset="32%" style="stop-color:#deb892"/><stop offset="58%" style="stop-color:#b07850"/><stop offset="100%" style="stop-color:#6a3820"/>
     </radialGradient>
     <linearGradient id="cadSkin" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#f0d4b0"/><stop offset="40%" style="stop-color:#c9986e"/><stop offset="100%" style="stop-color:#8a5c38"/>
     </linearGradient>
-    <linearGradient id="cadHair" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#5c4030"/><stop offset="100%" style="stop-color:#120a06"/>
+    <linearGradient id="cadHair" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fffef8"/><stop offset="28%" style="stop-color:#ece8e0"/><stop offset="55%" style="stop-color:#c8c2b8"/><stop offset="100%" style="stop-color:#6e6862"/>
+    </linearGradient>
+    <linearGradient id="cadBeard" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f4f0ea"/><stop offset="45%" style="stop-color:#d0cac2"/><stop offset="100%" style="stop-color:#5c5650"/>
     </linearGradient>
     <linearGradient id="cadArmor" x1="15%" y1="0%" x2="85%" y2="100%">
       <stop offset="0%" style="stop-color:#ecd8a8"/><stop offset="28%" style="stop-color:#c09050"/><stop offset="55%" style="stop-color:#8a5830"/><stop offset="100%" style="stop-color:#301808"/>
@@ -2871,39 +2980,53 @@ const CHARS = {
   <ellipse cx="36" cy="10" rx="24" ry="7" fill="url(#cadHalo)" opacity=".68"/>
   <ellipse cx="36" cy="12" rx="28" ry="9" fill="none" stroke="#f8ffd0" stroke-width="1.05" opacity=".88"/>
   <ellipse cx="36" cy="11" rx="32" ry="10.5" fill="none" stroke="#d8ff90" stroke-width="0.65" opacity=".45" stroke-dasharray="2 3"/>
-  <!-- Hair: volume + locks -->
-  <path d="M21 28 Q19 12 30 8 Q36 5.5 42 8 Q53 12 51 28 Q49 18 36 16 Q23 18 21 28" fill="url(#cadHair)" stroke="#1a0e08" stroke-width="0.55"/>
-  <path d="M24 20 Q28 14 32 16 Q30 22 26 24" fill="#2a1810" opacity=".85"/>
-  <path d="M48 20 Q44 14 40 16 Q42 22 46 24" fill="#2a1810" opacity=".85"/>
-  <path d="M26 18 Q36 10 46 18" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="0.45"/>
-  <path d="M30 12 Q36 9 42 12" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="0.35"/>
+  <!-- Hair back (silver-white mass behind head) -->
+  <path d="M19 32 Q17 14 28 7.5 Q36 4.5 44 7.5 Q55 14 53 32 Q51 22 36 18 Q21 22 19 32" fill="url(#cadHair)" stroke="#8a8580" stroke-width="0.5" opacity=".94"/>
+  <path d="M22 24 Q28 12 36 10 Q44 12 50 24" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="0.4"/>
   <!-- Ears -->
-  <ellipse cx="23.5" cy="25" rx="1.8" ry="2.4" fill="url(#cadSkin)" stroke="rgba(80,45,28,.4)" stroke-width="0.35" opacity=".95"/>
-  <ellipse cx="48.5" cy="25" rx="1.8" ry="2.4" fill="url(#cadSkin)" stroke="rgba(80,45,28,.4)" stroke-width="0.35" opacity=".95"/>
-  <!-- Face -->
-  <ellipse cx="36" cy="25" rx="12.5" ry="13.5" fill="url(#cadFace)" stroke="#5a3018" stroke-width="0.95"/>
-  <path d="M27 22 Q31 20 36 21 Q41 20 45 22" fill="none" stroke="rgba(50,28,16,.4)" stroke-width="0.7"/>
-  <path d="M29 26 Q32 24.5 34 26" fill="none" stroke="rgba(90,55,35,.22)" stroke-width="0.4"/>
-  <path d="M38 26 Q40 24.5 43 26" fill="none" stroke="rgba(90,55,35,.22)" stroke-width="0.4"/>
-  <path d="M30 27 Q33 29 36 28.5 Q39 29 42 27" fill="none" stroke="rgba(70,42,25,.18)" stroke-width="0.35"/>
-  <ellipse cx="31" cy="24" rx="2.5" ry="1.95" fill="#0c0604"/>
-  <ellipse cx="41" cy="24" rx="2.5" ry="1.95" fill="#0c0604"/>
-  <ellipse cx="31.35" cy="23.45" rx="0.95" ry="0.72" fill="#5a3820"/>
-  <ellipse cx="41.35" cy="23.45" rx="0.95" ry="0.72" fill="#5a3820"/>
-  <ellipse cx="31.65" cy="23.25" rx="0.42" ry="0.32" fill="rgba(255,255,255,.4)"/>
-  <ellipse cx="41.65" cy="23.25" rx="0.42" ry="0.32" fill="rgba(255,255,255,.4)"/>
-  <ellipse cx="31.25" cy="23.9" rx="0.55" ry="0.35" fill="#080404" opacity=".35"/>
-  <ellipse cx="41.25" cy="23.9" rx="0.55" ry="0.35" fill="#080404" opacity=".35"/>
-  <path d="M36 26.2 L36 29.8" stroke="rgba(70,42,28,.55)" stroke-width="0.55" stroke-linecap="round"/>
-  <!-- Beard layers -->
-  <path d="M29 29.5 Q36 27.5 43 29.5 Q45.5 35 41.5 39.5 Q36 42.5 30.5 39.5 Q26.5 35 29 29.5" fill="url(#cadHair)" opacity=".94" stroke="#1a0c06" stroke-width="0.5"/>
-  <path d="M31 31 Q36 36 41 31" fill="none" stroke="#3a2418" stroke-width="0.5"/>
-  <path d="M32 33 Q36 38 40 33" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="0.4"/>
-  <path d="M27 32 Q29 38 31 40" fill="none" stroke="#2a1810" stroke-width="1.2" stroke-linecap="round" opacity=".5"/>
-  <path d="M45 32 Q43 38 41 40" fill="none" stroke="#2a1810" stroke-width="1.2" stroke-linecap="round" opacity=".5"/>
-  <!-- Neck -->
-  <path d="M27.5 36 Q36 40.2 44.5 36" fill="url(#cadSkin)" stroke="rgba(70,40,25,.4)" stroke-width="0.55"/>
-  <path d="M32 37 Q36 38.5 40 37" fill="none" stroke="rgba(50,28,16,.25)" stroke-width="0.35"/>
+  <ellipse cx="23.2" cy="25.2" rx="1.85" ry="2.55" fill="url(#cadSkin)" stroke="rgba(80,45,28,.42)" stroke-width="0.35" opacity=".96"/>
+  <ellipse cx="48.8" cy="25.2" rx="1.85" ry="2.55" fill="url(#cadSkin)" stroke="rgba(80,45,28,.42)" stroke-width="0.35" opacity=".96"/>
+  <path d="M23.2 24 Q23.5 26.5 23.2 28" fill="none" stroke="rgba(50,30,18,.2)" stroke-width="0.3"/>
+  <path d="M48.8 24 Q48.5 26.5 48.8 28" fill="none" stroke="rgba(50,30,18,.2)" stroke-width="0.3"/>
+  <!-- Face: structured jaw & brow, not a single oval -->
+  <path d="M36 13.2 C44 13.2 50.2 17.8 50.2 25.2 C50.2 31.5 47.5 37.2 42 39.8 C40 40.8 36 41.4 32.5 40 C26.8 37.5 23.8 31.5 23.8 25.2 C23.8 17.8 28.5 13.2 36 13.2 Z" fill="url(#cadFace)" stroke="#5a3018" stroke-width="0.88"/>
+  <!-- Temple / cheek light -->
+  <path d="M28 24 Q32 22 35 26" fill="none" stroke="rgba(255,248,235,.14)" stroke-width="0.85"/>
+  <path d="M44 24 Q40 22 37 26" fill="none" stroke="rgba(255,248,235,.14)" stroke-width="0.85"/>
+  <!-- Brow line -->
+  <path d="M28.2 20.6 Q32.2 19.2 36 19.5 Q39.8 19.2 43.8 20.6" fill="none" stroke="rgba(40,26,16,.32)" stroke-width="0.75" stroke-linecap="round"/>
+  <!-- Eyes: almond, slight upward outer tilt -->
+  <path d="M29.2 23.4 Q31.8 21.85 34.2 23.35 Q31.8 25.15 29.2 23.4 Z" fill="#0a0604"/>
+  <path d="M37.8 23.4 Q40.4 21.85 42.8 23.35 Q40.4 25.15 37.8 23.4 Z" fill="#0a0604"/>
+  <ellipse cx="31.15" cy="23.35" rx="1.05" ry="0.78" fill="none" stroke="rgba(255,252,248,.22)" stroke-width="0.22"/>
+  <ellipse cx="40.85" cy="23.35" rx="1.05" ry="0.78" fill="none" stroke="rgba(255,252,248,.22)" stroke-width="0.22"/>
+  <ellipse cx="31.45" cy="23.15" rx="0.38" ry="0.28" fill="rgba(255,255,255,.5)"/>
+  <ellipse cx="41.15" cy="23.15" rx="0.38" ry="0.28" fill="rgba(255,255,255,.5)"/>
+  <ellipse cx="31.35" cy="23.55" rx="0.48" ry="0.32" fill="#1a1008" opacity=".4"/>
+  <ellipse cx="41.05" cy="23.55" rx="0.48" ry="0.32" fill="#1a1008" opacity=".4"/>
+  <!-- Nose: bridge + shadow -->
+  <path d="M36 24.8 L35.1 30.8 Q36 31.6 36.9 30.8 L36 24.8" fill="none" stroke="rgba(55,35,22,.38)" stroke-width="0.48" stroke-linejoin="round"/>
+  <path d="M34.2 30.5 Q36 31.4 37.8 30.5" fill="none" stroke="rgba(45,28,18,.25)" stroke-width="0.35"/>
+  <!-- Mouth -->
+  <path d="M33.2 33.2 Q36 34.6 38.8 33.2 Q36 35.4 33.2 33.2 Z" fill="rgba(140,72,58,.32)" stroke="rgba(90,48,38,.38)" stroke-width="0.32"/>
+  <path d="M33.8 33.5 Q36 34.1 38.2 33.5" fill="none" stroke="rgba(255,235,225,.2)" stroke-width="0.28"/>
+  <!-- Neck (under beard) -->
+  <path d="M27.5 35.5 Q36 39.5 44.5 35.5" fill="url(#cadSkin)" stroke="rgba(70,40,25,.4)" stroke-width="0.55"/>
+  <path d="M32 36.5 Q36 38 40 36.5" fill="none" stroke="rgba(50,28,16,.25)" stroke-width="0.35"/>
+  <!-- Front hair: crown, part, locks over temples (white) -->
+  <path d="M24 26 Q22 16 30 11 Q36 9 42 11 Q50 16 48 26 Q46 18 36 15.5 Q26 18 24 26" fill="url(#cadHair)" stroke="#7a7570" stroke-width="0.45" opacity=".97"/>
+  <path d="M27 14 Q36 11.5 45 14" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="0.5"/>
+  <path d="M30 12.5 Q36 10.8 42 12.5" fill="none" stroke="rgba(200,198,192,.5)" stroke-width="0.35"/>
+  <path d="M25 20 Q28 14 32 16 Q30 22 27 24" fill="#b8b4ae" opacity=".55"/>
+  <path d="M47 20 Q44 14 40 16 Q42 22 45 24" fill="#b8b4ae" opacity=".55"/>
+  <path d="M28 18 L26 28 M44 18 L46 28" stroke="rgba(255,255,255,.25)" stroke-width="0.55" stroke-linecap="round"/>
+  <!-- Beard: full silver, groomed planes -->
+  <path d="M28.5 29.2 Q36 27.2 43.5 29.2 Q46.2 34.5 43 38.5 Q36 42.8 29 38.5 Q25.8 34.5 28.5 29.2 Z" fill="url(#cadBeard)" opacity=".97" stroke="#5c5650" stroke-width="0.48"/>
+  <path d="M31 31.5 Q36 37.5 41 31.5" fill="none" stroke="rgba(80,72,68,.35)" stroke-width="0.55"/>
+  <path d="M32.5 33.5 Q36 39 39.5 33.5" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="0.38"/>
+  <path d="M27 31.5 Q28.5 37.5 31 40.2" fill="none" stroke="#8a8580" stroke-width="1.15" stroke-linecap="round" opacity=".55"/>
+  <path d="M45 31.5 Q43.5 37.5 41 40.2" fill="none" stroke="#8a8580" stroke-width="1.15" stroke-linecap="round" opacity=".55"/>
+  <path d="M36 37.5 Q36 40.2 36 41" fill="none" stroke="rgba(90,84,78,.4)" stroke-width="0.45" stroke-linecap="round"/>
   <!-- Eden mantle: folds + gold hem -->
   <path d="M17 39 Q14.5 58 19.5 75 L25 75 Q22 54 23.5 41 Z" fill="url(#cadGardenCloth)" stroke="#2a5018" stroke-width="0.55" opacity=".92"/>
   <path d="M19 44 Q20 58 22 70" fill="none" stroke="rgba(0,0,0,.2)" stroke-width="0.6"/>
@@ -2937,6 +3060,8 @@ const CHARS = {
   <circle cx="36" cy="51" r="0.8" fill="#e0c088" stroke="#1a0c06" stroke-width="0.22"/>
   <circle cx="31" cy="59" r="0.65" fill="#a88858" stroke="#1a0c06" stroke-width="0.2"/>
   <circle cx="41" cy="59" r="0.65" fill="#a88858" stroke="#1a0c06" stroke-width="0.2"/>
+  <circle cx="33" cy="53.5" r="0.5" fill="#c0a070" stroke="#1a0c06" stroke-width="0.18"/>
+  <circle cx="39" cy="53.5" r="0.5" fill="#c0a070" stroke="#1a0c06" stroke-width="0.18"/>
   <!-- Tree of life sigil -->
   <circle cx="36" cy="45" r="1.35" fill="none" stroke="rgba(190,255,150,.45)" stroke-width="0.4"/>
   <path d="M36 43.2 L35.2 52 M36 43.2 L36.8 52 M36 43.2 L36 41.5" stroke="rgba(210,255,170,.4)" stroke-width="0.42" stroke-linecap="round"/>
@@ -2945,7 +3070,8 @@ const CHARS = {
   <rect x="21" y="61.5" width="30" height="5" rx="1.2" fill="url(#cadLeather)" stroke="#5a4030" stroke-width="0.55"/>
   <rect x="33" y="61" width="6" height="6" rx="0.8" fill="url(#cadArmor)" stroke="#3a2010" stroke-width="0.45"/>
   <path d="M34.5 63 L37.5 63 M34.5 65 L37.5 65" stroke="#2a1810" stroke-width="0.35"/>
-  <circle cx="28" cy="64" r="0.35" fill="#1a1008" opacity=".4"/><circle cx="44" cy="64" r="0.35" fill="#1a1008" opacity=".4"/>
+  <circle cx="28" cy="64" r="0.35" fill="#1a1008" opacity=".4"/>  <circle cx="44" cy="64" r="0.35" fill="#1a1008" opacity=".4"/>
+  <path d="M23 63.5 H49" stroke="rgba(255,220,180,.12)" stroke-width="0.28" stroke-dasharray="2 1.5"/>
   <!-- Pteruges -->
   <path d="M23.5 66.5 L22.5 74.5 L24.5 75 L25.5 66.5 Z" fill="url(#cadArmorDark)" stroke="#4a3020" stroke-width="0.35" opacity=".88"/>
   <path d="M28 66.5 L27.2 76 L29 76.2 L29.8 66.5 Z" fill="url(#cadArmorDark)" stroke="#4a3020" stroke-width="0.35" opacity=".88"/>
@@ -2969,6 +3095,7 @@ const CHARS = {
   <path d="M24 85 Q25.5 87 27 85 M45 85 Q46.5 87 48 85" stroke="rgba(0,0,0,.15)" stroke-width="0.35"/>
   <!-- Sword -->
   <rect x="51.5" y="13" width="7.5" height="50" rx="1.6" fill="url(#cadBlade)" stroke="#6a5038" stroke-width="0.75"/>
+  <path d="M55.25 16 L55.25 58" stroke="rgba(255,252,248,.06)" stroke-width="0.55" stroke-linecap="round"/>
   <path d="M53 18 L54.5 58 M56.5 20 L55 56" stroke="rgba(255,252,240,.08)" stroke-width="0.4"/>
   <path d="M53.5 32 Q55.5 34 56.5 32" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="0.3"/>
   <rect x="48" y="27" width="14.5" height="6" rx="1.5" fill="url(#cadArmor)" stroke="#4a2818" stroke-width="0.55"/>
@@ -2981,7 +3108,7 @@ const CHARS = {
   <circle cx="55.25" cy="63.5" r="2.4" fill="url(#cadArmor)" stroke="#f4e8d0" stroke-width="0.4"/>
   <circle cx="55.25" cy="63.5" r="1.1" fill="#2a5018" opacity=".6"/>
 </svg>`,
-  conceptlight:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg" class="conceptlight-svg">
+  conceptlight:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg" class="conceptlight-svg ga-boss-svg">
   <defs>
     <radialGradient id="lbHalo" cx="50%" cy="0%" r="95%">
       <stop offset="0%" style="stop-color:#fffef8"/><stop offset="22%" style="stop-color:#fff4c8"/><stop offset="55%" style="stop-color:#ffe090"/><stop offset="100%" style="stop-color:transparent"/>
@@ -3165,13 +3292,18 @@ const CHARS = {
   <path d="M52 30 L58 30 M52 44 L58 44" stroke="rgba(255,255,255,.25)" stroke-width="0.45"/>
   <circle cx="55" cy="64" r="2.2" fill="url(#lbCrownMetal)" stroke="#fff8e0" stroke-width="0.4"/>
   <circle cx="55" cy="64" r="1" fill="url(#lbCoreGem)" opacity=".6"/>
+  <!-- detail: covenant micro-rings, mantle stitch -->
+  <ellipse cx="36" cy="88" rx="20" ry="3" fill="none" stroke="rgba(255,248,220,.08)" stroke-width="0.35" stroke-dasharray="1 2"/>
+  <path d="M14 52 Q20 50 24 54 M58 52 Q52 50 48 54" stroke="rgba(255,240,200,.12)" stroke-width="0.32" fill="none"/>
+  <circle cx="36" cy="46" r="2.2" fill="none" stroke="rgba(255,220,160,.15)" stroke-width="0.28"/>
 </svg>`,
-  castwheel:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg" class="castwheel-svg">
+  castwheel:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg" class="castwheel-svg ga-boss-svg">
   <defs>
     <radialGradient id="cwCore" cx="40%" cy="35%"><stop offset="0%" style="stop-color:#fff8e0"/><stop offset="55%" style="stop-color:#c8a060"/><stop offset="100%" style="stop-color:#402860"/></radialGradient>
     <linearGradient id="cwRing" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#f0d890"/><stop offset="100%" style="stop-color:#6040a8"/></linearGradient>
   </defs>
   <ellipse cx="36" cy="100" rx="30" ry="5" fill="rgba(120,60,180,.35)"/>
+  <ellipse cx="36" cy="103" rx="17" ry="2.7" fill="rgba(255,230,200,.18)"/>
   <g class="cw-spin" opacity=".95">
     <circle cx="36" cy="52" r="34" fill="none" stroke="url(#cwRing)" stroke-width="1.2" stroke-dasharray="8 6"/>
     <circle cx="36" cy="52" r="26" fill="none" stroke="rgba(255,220,140,.25)" stroke-width="0.6" stroke-dasharray="4 10"/>
@@ -3186,13 +3318,18 @@ const CHARS = {
     <circle cx="36" cy="29" r="2.2"/><circle cx="22" cy="37.5" r="1.8"/><circle cx="50" cy="37.5" r="1.8"/><circle cx="16" cy="51.5" r="1.5"/><circle cx="56" cy="51.5" r="1.5"/><circle cx="22" cy="65.5" r="1.8"/><circle cx="50" cy="65.5" r="1.8"/><circle cx="36" cy="73" r="2.2"/>
   </g>
   <path d="M36 8 L32 22 M36 8 L40 22 M20 18 L30 26 M52 18 L42 26 M12 40 L24 44 M60 40 L48 44 M14 62 L26 58 M58 62 L46 58" stroke="rgba(255,220,160,.45)" stroke-width="1" stroke-linecap="round"/>
+  <circle cx="36" cy="52" r="30" fill="none" stroke="rgba(255,210,140,.12)" stroke-width="0.35" stroke-dasharray="3 5"/>
+  <g fill="none" stroke="rgba(248,230,255,.35)" stroke-width="0.35">
+    <ellipse cx="36" cy="29" rx="1.6" ry="2.2"/><ellipse cx="22" cy="37.5" rx="1.3" ry="1.7"/><ellipse cx="50" cy="37.5" rx="1.3" ry="1.7"/>
+  </g>
 </svg>`,
-  castgate:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg" class="castgate-svg">
+  castgate:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg" class="castgate-svg ga-boss-svg">
   <defs>
     <linearGradient id="cgVoid" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#1a0828"/><stop offset="100%" style="stop-color:#000008"/></linearGradient>
     <radialGradient id="cgMaw" cx="50%" cy="40%"><stop offset="0%" style="stop-color:#ffd8a0"/><stop offset="40%" style="stop-color:#8040a0"/><stop offset="100%" style="stop-color:#080410"/></radialGradient>
   </defs>
   <ellipse cx="36" cy="100" rx="28" ry="4.5" fill="rgba(80,40,120,.4)"/>
+  <ellipse cx="36" cy="103" rx="15" ry="2.4" fill="rgba(200,170,255,.14)"/>
   <path d="M8 96 L14 18 Q36 8 58 18 L64 96" fill="none" stroke="rgba(255,200,120,.5)" stroke-width="2.2"/>
   <path d="M14 92 L18 22 Q36 14 54 22 L58 92 Z" fill="url(#cgVoid)" stroke="rgba(180,120,255,.35)" stroke-width="1"/>
   <ellipse cx="36" cy="48" rx="16" ry="28" fill="url(#cgMaw)" class="cg-pulse" opacity=".88"/>
@@ -3201,13 +3338,20 @@ const CHARS = {
     <path d="M22 88 L20 102 M30 90 L28 104 M42 90 L44 104 M50 88 L52 102"/><path d="M18 78 Q10 70 6 82 M54 78 Q62 70 66 82"/>
   </g>
   <circle cx="36" cy="42" r="3" fill="#fffef8" opacity=".15"/>
+  <path d="M16 88 Q36 82 56 88" fill="none" stroke="rgba(255,200,120,.25)" stroke-width="0.55"/>
+  <path d="M20 32 L22 70 M52 32 L50 70" stroke="rgba(180,120,255,.15)" stroke-width="0.45" fill="none"/>
+  <g fill="none" stroke="rgba(255,220,200,.2)" stroke-width="0.35" stroke-linecap="round">
+    <path d="M24 26 L26 20 M30 24 L32 18 M40 24 L42 18 M46 26 L48 20"/>
+  </g>
+  <ellipse cx="36" cy="48" rx="10" ry="18" fill="none" stroke="rgba(0,0,0,.15)" stroke-width="0.4"/>
 </svg>`,
-  castthrone:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg" class="castthrone-svg">
+  castthrone:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg" class="castthrone-svg ga-boss-svg">
   <defs>
     <linearGradient id="ctGold" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#ffe8a0"/><stop offset="100%" style="stop-color:#a06040"/></linearGradient>
     <linearGradient id="ctRobes" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#2a1838"/><stop offset="100%" style="stop-color:#0a0410"/></linearGradient>
   </defs>
   <ellipse cx="36" cy="100" rx="29" ry="5" fill="rgba(100,40,80,.35)"/>
+  <ellipse cx="36" cy="103" rx="16" ry="2.5" fill="rgba(255,215,150,.16)"/>
   <path d="M12 88 L16 44 L24 40 L20 88 Z M60 88 L56 44 L48 40 L52 88 Z" fill="url(#ctGold)" stroke="#fff0c0" stroke-width="0.5" opacity=".85"/>
   <rect x="20" y="56" width="32" height="34" rx="2" fill="url(#ctRobes)" stroke="rgba(255,200,120,.3)" stroke-width="0.8"/>
   <path d="M24 56 L28 38 L36 32 L44 38 L48 56" fill="url(#ctRobes)" stroke="rgba(255,220,160,.4)" stroke-width="0.7"/>
@@ -3218,6 +3362,10 @@ const CHARS = {
   </g>
   <path d="M30 26 Q36 30 42 26" stroke="rgba(255,100,80,.25)" stroke-width="0.8" fill="none"/>
   <rect x="34" y="42" width="4" height="22" fill="url(#ctGold)" opacity=".7"/>
+  <path d="M14 72 Q18 68 22 72 M50 72 Q46 68 42 72" stroke="url(#ctGold)" stroke-width="0.55" fill="none" opacity=".65"/>
+  <path d="M22 60 H50" stroke="rgba(255,200,140,.15)" stroke-width="0.4" stroke-dasharray="2 2"/>
+  <ellipse cx="36" cy="24" rx="8" ry="10" fill="none" stroke="rgba(255,100,80,.12)" stroke-width="0.45"/>
+  <path d="M30 34 L28 38 M42 34 L44 38" stroke="rgba(255,180,100,.2)" stroke-width="0.4" fill="none"/>
 </svg>`
 };
 
@@ -4626,7 +4774,7 @@ function startFight(){
   }
 
   // Set sprites
-  document.getElementById('esprite').className='swrap flip';
+  document.getElementById('esprite').className='swrap flip'+(et.isBoss?' boss-sprite-wrap':'');
   document.getElementById('psprite').className='swrap';
   document.getElementById('psprite').innerHTML=getPlayerSkinSvg(G.player);
   document.getElementById('esprite').innerHTML=CHARS[et.charKey]||CHARS.slave;
@@ -4814,95 +4962,150 @@ function startFight(){
     G.enemy.def=Math.max(1,Math.round(G.enemy.def*q));
   }
 
+  const _lightRoundIdx=ENEMIES.findIndex(x=>x.bossType==='lightbringer');
+  const skipPreLightCinematic=_lightRoundIdx>=0&&G.ei<_lightRoundIdx;
+
   if(et.bossType==='nemesis'){
-    G.busy=true;
-    showNemesisIntro(()=>{
-      addLog(`NEMESIS steps from your shadow.`,'bsp');
-      addLog(`Stats copied from you at ${G.enemy.str} STR · ${G.enemy.def} DEF · ${G.enemy.maxHp} HP.`,'bsp');
-      addLog(`Its blade ignores 50% of your armor.`,'bsp');
-      addLog(`Below 25% HP — you must land 3 hits in a row to pierce it.`,'bsp');
-      G.busy=false;render();
-    });
-    render();return;
+    if(skipPreLightCinematic){
+      addLog(`NEMESIS — shadow at ${G.enemy.str} STR · ${G.enemy.def} DEF · ${G.enemy.maxHp} HP. Pierce rhythm: three true hits below 25%.`,'bsp');
+      initAudio();
+      setTimeout(()=>{if(typeof sfxBossEnter==='function')sfxBossEnter();},60);
+    }else{
+      G.busy=true;
+      showNemesisIntro(()=>{
+        addLog(`NEMESIS steps from your shadow.`,'bsp');
+        addLog(`Stats copied from you at ${G.enemy.str} STR · ${G.enemy.def} DEF · ${G.enemy.maxHp} HP.`,'bsp');
+        addLog(`Its blade ignores 50% of your armor.`,'bsp');
+        addLog(`Below 25% HP — you must land 3 hits in a row to pierce it.`,'bsp');
+        G.busy=false;render();
+      });
+      render();return;
+    }
   }else if(et.bossType==='dual'){
-    G.busy=true;
-    initAudio();
-    setTimeout(()=>{if(typeof sfxArchonHeaven==='function')sfxArchonHeaven();},140);
-    setTimeout(()=>{
-      addLog(`The sky tears — not into weather, into judgment. A column of impossible daylight pins the arena.`,'bsp');
-      addLog(`CONCEPT LIZARD descends: Archon of Duality. One jaw speaks in hymns. The other speaks in absences.`,'bsp');
-      addLog(`SOLAR VERDICT burns the honest line across your skin. UMBRAL MIRROR finishes whatever you will not confess.`,'bsp');
-      G.busy=false;render();
-    },2400);
-    render();return;
+    if(skipPreLightCinematic){
+      addLog(`ARCHON OF DUALITY — daylight tears the roof; SOLAR VERDICT · UMBRAL MIRROR.`,'bsp');
+      initAudio();
+      setTimeout(()=>{if(typeof sfxArchonHeaven==='function')sfxArchonHeaven();},40);
+      setTimeout(()=>{if(typeof sfxBossEnter==='function')sfxBossEnter();},100);
+    }else{
+      G.busy=true;
+      initAudio();
+      setTimeout(()=>{if(typeof sfxArchonHeaven==='function')sfxArchonHeaven();},140);
+      setTimeout(()=>{
+        addLog(`The sky tears — not into weather, into judgment. A column of impossible daylight pins the arena.`,'bsp');
+        addLog(`CONCEPT LIZARD descends: Archon of Duality. One jaw speaks in hymns. The other speaks in absences.`,'bsp');
+        addLog(`SOLAR VERDICT burns the honest line across your skin. UMBRAL MIRROR finishes whatever you will not confess.`,'bsp');
+        G.busy=false;render();
+      },2400);
+      render();return;
+    }
   }else if(et.bossType==='splitter'){
-    G.busy=true;
-    initAudio();
-    setTimeout(()=>{if(typeof sfxBossEnter==='function')sfxBossEnter();},150);
-    setTimeout(()=>{
-      addLog(`The arena fractures into mirrors. One shape stands in every shard: CONCEPT SPLITTER.`,'bsp');
-      addLog(`Three trump moves govern this thing: FRACTURE EDICT, DUAL FORM, and QUAD SHARD.`,'bsp');
-      addLog(`At 40% HP it splits in two. On turn 8 it splits into four for a single devastating move.`,'bsp');
-      G.busy=false;render();
-    },2100);
-    render();return;
+    if(skipPreLightCinematic){
+      addLog(`CONCEPT SPLITTER — mirrors multiply; FRACTURE · DUAL FORM · QUAD SHARD.`,'bsp');
+      initAudio();
+      setTimeout(()=>{if(typeof sfxBossEnter==='function')sfxBossEnter();},80);
+    }else{
+      G.busy=true;
+      initAudio();
+      setTimeout(()=>{if(typeof sfxBossEnter==='function')sfxBossEnter();},150);
+      setTimeout(()=>{
+        addLog(`The arena fractures into mirrors. One shape stands in every shard: CONCEPT SPLITTER.`,'bsp');
+        addLog(`Three trump moves govern this thing: FRACTURE EDICT, DUAL FORM, and QUAD SHARD.`,'bsp');
+        addLog(`At 40% HP it splits in two. On turn 8 it splits into four for a single devastating move.`,'bsp');
+        G.busy=false;render();
+      },2100);
+      render();return;
+    }
   }else if(et.bossType==='concept'){
-    G.busy=true;
-    showConceptIntro(()=>{
-      addLog(`The DRAGON OF CONCEPTS descends beyond language.`,'bsp');
-      addLog(`It warps space-time and crushes thought into gravity.`,'bsp');
-      addLog(`Survive the breath cycles or be erased.`,'bsp');
-      G.busy=false;render();
-    });
-    render();return;
+    if(skipPreLightCinematic){
+      addLog(`DRAGON OF CONCEPTS — gravity breath, warped time; survive the cycle.`,'bsp');
+      initAudio();
+      setTimeout(()=>{if(typeof sfxBossEnter==='function')sfxBossEnter();},80);
+    }else{
+      G.busy=true;
+      showConceptIntro(()=>{
+        addLog(`The DRAGON OF CONCEPTS descends beyond language.`,'bsp');
+        addLog(`It warps space-time and crushes thought into gravity.`,'bsp');
+        addLog(`Survive the breath cycles or be erased.`,'bsp');
+        G.busy=false;render();
+      });
+      render();return;
+    }
   }else if(et.bossType==='reptilian'){
-    G.busy=true;
-    initAudio();
-    setTimeout(()=>{if(typeof sfxBossEnter==='function')sfxBossEnter();},200);
-    setTimeout(()=>{
-      addLog(`CONCEPT REPTILIAN descends with a sword of fire, scales lit like scripture.`,'bsp');
-      addLog(`FIREBRAND COMBO carves in bursts. CINDER VEIL strips your guard.`,'bsp');
-      addLog(`HEAVENFALL BLADE — a colossal sword drops from the sky. Pray your timing is true.`,'bsp');
-      G.busy=false;render();
-    },1900);
-    render();return;
+    if(skipPreLightCinematic){
+      addLog(`CINDER SERAPH — FIREBRAND · CINDER VEIL · HEAVENFALL BLADE.`,'bsp');
+      initAudio();
+      setTimeout(()=>{if(typeof sfxBossEnter==='function')sfxBossEnter();},80);
+    }else{
+      G.busy=true;
+      initAudio();
+      setTimeout(()=>{if(typeof sfxBossEnter==='function')sfxBossEnter();},200);
+      setTimeout(()=>{
+        addLog(`CONCEPT REPTILIAN descends with a sword of fire, scales lit like scripture.`,'bsp');
+        addLog(`FIREBRAND COMBO carves in bursts. CINDER VEIL strips your guard.`,'bsp');
+        addLog(`HEAVENFALL BLADE — a colossal sword drops from the sky. Pray your timing is true.`,'bsp');
+        G.busy=false;render();
+      },1900);
+      render();return;
+    }
   }else if(et.bossType==='shatterer'){
-    G.busy=true;
-    initAudio();
-    setTimeout(()=>{if(typeof sfxBossEnter==='function')sfxBossEnter();},120);
-    setTimeout(()=>{if(typeof sfxHeavenfallBlade==='function')sfxHeavenfallBlade();},380);
-    setTimeout(()=>{
-      addLog(`The sky cracks like glass. COMETS begin to rain through the wound.`,'bsp');
-      addLog(`CONCEPT SHATTERER steps out of the split and reality starts glitching around him.`,'bsp');
-      addLog(`COMET REQUIEM, GLITCH PARADOX, SHATTER ABSOLUTION — this is the strongest thing in the arena.`,'bsp');
-      G.busy=false;render();
-    },2300);
-    render();return;
+    if(skipPreLightCinematic){
+      addLog(`REALITY SHATTERER — comet rain, glitch paradox, final absolution.`,'bsp');
+      initAudio();
+      setTimeout(()=>{if(typeof sfxBossEnter==='function')sfxBossEnter();},70);
+      setTimeout(()=>{if(typeof sfxHeavenfallBlade==='function')sfxHeavenfallBlade();},200);
+    }else{
+      G.busy=true;
+      initAudio();
+      setTimeout(()=>{if(typeof sfxBossEnter==='function')sfxBossEnter();},120);
+      setTimeout(()=>{if(typeof sfxHeavenfallBlade==='function')sfxHeavenfallBlade();},380);
+      setTimeout(()=>{
+        addLog(`The sky cracks like glass. COMETS begin to rain through the wound.`,'bsp');
+        addLog(`CONCEPT SHATTERER steps out of the split and reality starts glitching around him.`,'bsp');
+        addLog(`COMET REQUIEM, GLITCH PARADOX, SHATTER ABSOLUTION — this is the strongest thing in the arena.`,'bsp');
+        G.busy=false;render();
+      },2300);
+      render();return;
+    }
   }else if(et.bossType==='highlord'){
-    G.busy=true;
-    initAudio();
-    setTimeout(()=>{if(typeof sfxBossEnter==='function')sfxBossEnter();},120);
-    setTimeout(()=>{if(typeof sfxHeavenfallBlade==='function')sfxHeavenfallBlade();},340);
-    setTimeout(()=>{if(typeof triggerHighlordMoveFx==='function')triggerHighlordMoveFx('crown');},640);
-    setTimeout(()=>{
-      addLog(`A throne of burning scripts descends. The arena becomes a cosmic amphitheater.`,'bsp');
-      addLog(`The crowd ascends into witnessing entities — stellar beings attending the grand finale.`,'bsp');
-      addLog(`CONCEPT OF TRUTH arrives — the principle that defines what truth even means.`,'bsp');
-      addLog(`AXIOM CROWN, ORIGIN VERDICT, ABSOLUTE DECREE — all stories kneel here.`,'bsp');
-      addLog(`Lore: before empires, before gods, before language — this entity authored what 'true' means.`,'bsp');
-      G.busy=false;render();
-    },2850);
-    render();return;
+    if(skipPreLightCinematic){
+      addLog(`CONCEPT OF TRUTH — AXIOM CROWN · ORIGIN VERDICT · ABSOLUTE DECREE.`,'bsp');
+      initAudio();
+      setTimeout(()=>{if(typeof sfxBossEnter==='function')sfxBossEnter();},70);
+      setTimeout(()=>{if(typeof sfxHeavenfallBlade==='function')sfxHeavenfallBlade();},220);
+      setTimeout(()=>{if(typeof triggerHighlordMoveFx==='function')triggerHighlordMoveFx('crown');},400);
+    }else{
+      G.busy=true;
+      initAudio();
+      setTimeout(()=>{if(typeof sfxBossEnter==='function')sfxBossEnter();},120);
+      setTimeout(()=>{if(typeof sfxHeavenfallBlade==='function')sfxHeavenfallBlade();},340);
+      setTimeout(()=>{if(typeof triggerHighlordMoveFx==='function')triggerHighlordMoveFx('crown');},640);
+      setTimeout(()=>{
+        addLog(`A throne of burning scripts descends. The arena becomes a cosmic amphitheater.`,'bsp');
+        addLog(`The crowd ascends into witnessing entities — stellar beings attending the grand finale.`,'bsp');
+        addLog(`CONCEPT OF TRUTH arrives — the principle that defines what truth even means.`,'bsp');
+        addLog(`AXIOM CROWN, ORIGIN VERDICT, ABSOLUTE DECREE — all stories kneel here.`,'bsp');
+        addLog(`Lore: before empires, before gods, before language — this entity authored what 'true' means.`,'bsp');
+        G.busy=false;render();
+      },2850);
+      render();return;
+    }
   }else if(et.bossType==='adam'){
-    G.busy=true;
-    showAdamIntro(()=>{
-      addLog(`The arena blooms into the Garden of Eve. Leaves whisper in a language older than Rome.`,'bsp');
-      addLog(`CONCEPT OF ADAM steps forward: first-born flesh, carrying GOD'S INSIGHT, GOD'S GIFT, GOD'S IMAGE, and GOD'S HAND.`,'bsp');
-      addLog(`He does not rule by argument. He rules by origin.`,'bsp');
-      addLog(`Lore: before kings and scripture, he walked with creation and named what breath could become.`,'bsp');
-      G.busy=false;render();
-    });
-    render();return;
+    if(skipPreLightCinematic){
+      addLog(`CONCEPT OF ADAM — Garden authority; INSIGHT · GIFT · IMAGE · GOD'S HAND.`,'bsp');
+      initAudio();
+      setTimeout(()=>{if(typeof sfxBossEnter==='function')sfxBossEnter();},80);
+    }else{
+      G.busy=true;
+      showAdamIntro(()=>{
+        addLog(`The arena blooms into the Garden of Eve. Leaves whisper in a language older than Rome.`,'bsp');
+        addLog(`CONCEPT OF ADAM steps forward: first-born flesh, carrying GOD'S INSIGHT, GOD'S GIFT, GOD'S IMAGE, and GOD'S HAND.`,'bsp');
+        addLog(`He does not rule by argument. He rules by origin.`,'bsp');
+        addLog(`Lore: before kings and scripture, he walked with creation and named what breath could become.`,'bsp');
+        G.busy=false;render();
+      });
+      render();return;
+    }
   }else if(et.bossType==='lightbringer'){
     G.busy=true;
     showLightIntro(()=>{
@@ -4937,33 +5140,51 @@ function startFight(){
     },2400);
     render();return;
   }else if(et.bossType==='void'){
-    G.busy=true;
-    showVoidIntro(()=>{
-      addLog(`AETERNON. It does not speak.`,'bsp');
-      addLog(`VOID ECHO — copies your damage back. UNMAKING — dissolves your strength at 50%.`,'bsp');
-      addLog(`RIFT SHRED — periodic void burst. NULL CHAIN — steals your next turn.`,'bsp');
-      addLog(`MIRROR CURSE — cannot die without soul items.`,'bsp');
-      G.busy=false;render();
-    });
-    render();return;
+    if(skipPreLightCinematic){
+      addLog(`AETERNON — VOID ECHO · UNMAKING · RIFT · NULL CHAIN · mirror curse without souls.`,'bsp');
+      initAudio();
+      setTimeout(()=>{if(typeof sfxBossEnter==='function')sfxBossEnter();},80);
+    }else{
+      G.busy=true;
+      showVoidIntro(()=>{
+        addLog(`AETERNON. It does not speak.`,'bsp');
+        addLog(`VOID ECHO — copies your damage back. UNMAKING — dissolves your strength at 50%.`,'bsp');
+        addLog(`RIFT SHRED — periodic void burst. NULL CHAIN — steals your next turn.`,'bsp');
+        addLog(`MIRROR CURSE — cannot die without soul items.`,'bsp');
+        G.busy=false;render();
+      });
+      render();return;
+    }
   }else if(et.bossType==='kronos'){
-    G.busy=true;
-    showKronosIntro(()=>{
-      addLog(`KRONOS stirs. The chains hold... barely.`,'bsp');
-      addLog(`He does not speak. He does not need to.`,'bsp');
-      addLog(`SLAM every 3 turns. Cannot be blocked. Cannot be dodged.`,'bsp');
-      G.busy=false;render();
-    });
-    render();return;
+    if(skipPreLightCinematic){
+      addLog(`KRONOS — primordial slam every third beat; chains sing, earth answers.`,'bsp');
+      initAudio();
+      setTimeout(()=>{if(typeof sfxBossEnter==='function')sfxBossEnter();},80);
+    }else{
+      G.busy=true;
+      showKronosIntro(()=>{
+        addLog(`KRONOS stirs. The chains hold... barely.`,'bsp');
+        addLog(`He does not speak. He does not need to.`,'bsp');
+        addLog(`SLAM every 3 turns. Cannot be blocked. Cannot be dodged.`,'bsp');
+        G.busy=false;render();
+      });
+      render();return;
+    }
   }else if(et.bossType==='saturn'){
-    G.busy=true;
-    showSaturnIntro(()=>{
-      addLog(`SATURN steps from the dark between seconds. The sand forgets your name.`,'bsp');
-      addLog(`CHRONO LOCK — stolen turns, carved damage. TIME REWIND — he rewrites defeat once.`,'bsp');
-      addLog(`AGE DECAY — when he is dying, you grow old inside your own armor.`,'bsp');
-      G.busy=false;render();
-    });
-    render();return;
+    if(skipPreLightCinematic){
+      addLog(`SATURN — CHRONO LOCK · TIME REWIND · AGE DECAY between the ticks.`,'bsp');
+      initAudio();
+      setTimeout(()=>{if(typeof sfxBossEnter==='function')sfxBossEnter();},80);
+    }else{
+      G.busy=true;
+      showSaturnIntro(()=>{
+        addLog(`SATURN steps from the dark between seconds. The sand forgets your name.`,'bsp');
+        addLog(`CHRONO LOCK — stolen turns, carved damage. TIME REWIND — he rewrites defeat once.`,'bsp');
+        addLog(`AGE DECAY — when he is dying, you grow old inside your own armor.`,'bsp');
+        G.busy=false;render();
+      });
+      render();return;
+    }
   } else if(et.isBoss){
     addLog(`${et.name} emerges from darkness!`,'bsp');
     addLog(`${et.specialName} — ${et.specialDesc}`,'bsp');
