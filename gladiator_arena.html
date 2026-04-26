@@ -971,6 +971,10 @@ html.ga-reduce-motion #archon-heaven{animation:none;opacity:.72}
   to{filter:drop-shadow(0 6px 14px rgba(0,0,0,.95)) drop-shadow(0 0 72px rgba(220,120,255,.92)) drop-shadow(0 0 48px rgba(255,220,140,.55)) brightness(1.18) contrast(1.08)}
 }
 .bb-castseraph{background:linear-gradient(94deg,#1a0828 0%,#301050 40%,#180820 100%);color:#f8e8ff;border:1px solid #c080e0;box-shadow:0 0 24px rgba(200,100,255,.35),0 0 40px rgba(255,200,100,.15);letter-spacing:.1em;font-size:6.5px!important;padding:3px 8px!important}
+.aura-pentad{animation:apentad 1.35s ease-in-out infinite alternate}
+@keyframes apentad{from{filter:drop-shadow(0 6px 14px rgba(0,0,0,.95)) drop-shadow(0 0 14px rgba(180,120,255,.45)) hue-rotate(0deg)}to{filter:drop-shadow(0 6px 14px rgba(0,0,0,.95)) drop-shadow(0 0 32px rgba(100,200,255,.65)) drop-shadow(0 0 18px rgba(255,200,255,.35)) hue-rotate(25deg) brightness(1.08)}}
+.bb-pentad{background:linear-gradient(98deg,#0a0418 0%,#281850 38%,#082038 72%,#120818 100%);color:#f0ecff;border:1px solid #8090ff;box-shadow:0 0 28px rgba(120,160,255,.4),0 0 52px rgba(200,100,255,.2),inset 0 1px 0 rgba(255,255,255,.1);letter-spacing:.14em;font-size:6.5px!important;padding:3px 8px!important;line-height:1.35}
+.ft-pentad{background:#0c0820;color:#d8d8ff;border:1px solid #6070c0;animation:ftpulse2 1s ease-in-out infinite alternate}
 .ft-cast{background:#140818;color:#e8b8ff;border:1px solid #7040a0;animation:ftpulse2 .9s ease-in-out infinite alternate}
 .castwheel-svg .cw-spin{transform-origin:36px 52px;animation:cwSpin 24s linear infinite}
 .castwheel-svg .cw-eye{animation:cwBlink 3.2s ease-in-out infinite}
@@ -1140,6 +1144,11 @@ html.ga-reduce-motion #reptilian-fx{display:none}
 @keyframes stGlitchPulse{0%{transform:translate(0,0);filter:hue-rotate(0deg)}25%{transform:translate(4px,-2px);filter:hue-rotate(70deg)}50%{transform:translate(-3px,2px);filter:hue-rotate(-40deg)}100%{transform:translate(0,0);filter:hue-rotate(0deg)}}
 #shatterer-storm.storm-shatter .st-void{animation:stShatterWave .65s ease-out 1}
 @keyframes stShatterWave{0%{opacity:.2;transform:scale(1)}45%{opacity:1;transform:scale(1.06)}100%{opacity:.2;transform:scale(1)}}
+/* Pentarchon — thermic comet rain + dimensional erase flash */
+#shatterer-storm.pentad-inferno .st-comet{background:linear-gradient(180deg,rgba(255,255,245,.98),rgba(255,200,80,.92),rgba(255,80,30,.85),rgba(200,20,90,.45),transparent);filter:drop-shadow(0 0 16px rgba(255,140,40,.95)) drop-shadow(0 0 28px rgba(255,60,20,.55))!important;animation-duration:.85s!important}
+#shatterer-storm.pentad-inferno .st-void{background:radial-gradient(circle at 50% 14%,rgba(255,120,40,.22),rgba(120,40,180,.12) 42%,rgba(20,0,40,.08) 70%,transparent 88%);mix-blend-mode:screen}
+@keyframes pentadEraseFlash{0%{filter:brightness(1) hue-rotate(0)}30%{filter:brightness(1.5) hue-rotate(210deg) contrast(1.12)}100%{filter:brightness(1) hue-rotate(0)}}
+html:not(.ga-reduce-motion) #scene.pentad-erase{animation:pentadEraseFlash .72s ease-out 1}
 html.ga-reduce-motion #shatterer-storm{display:none}
 
 /* Highlord move FX layer */
@@ -3366,6 +3375,48 @@ const CHARS = {
   <path d="M22 60 H50" stroke="rgba(255,200,140,.15)" stroke-width="0.4" stroke-dasharray="2 2"/>
   <ellipse cx="36" cy="24" rx="8" ry="10" fill="none" stroke="rgba(255,100,80,.12)" stroke-width="0.45"/>
   <path d="M30 34 L28 38 M42 34 L44 38" stroke="rgba(255,180,100,.2)" stroke-width="0.4" fill="none"/>
+</svg>`,
+  pentarchon:`<svg viewBox="0 0 72 104" width="90" height="130" xmlns="http://www.w3.org/2000/svg" class="ga-boss-svg pentarchon-svg">
+  <defs>
+    <linearGradient id="pnAx" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fffef8"/><stop offset="32%" style="stop-color:#c8a0ff"/><stop offset="66%" style="stop-color:#4060d8"/><stop offset="100%" style="stop-color:#040210"/>
+    </linearGradient>
+    <radialGradient id="pnCore" cx="42%" cy="38%" r="62%">
+      <stop offset="0%" style="stop-color:#ffffff"/><stop offset="45%" style="stop-color:#9080ff"/><stop offset="100%" style="stop-color:#080618"/>
+    </radialGradient>
+    <filter id="pnBloom" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="0.8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <ellipse cx="36" cy="103" rx="34" ry="10" fill="rgba(100,60,200,.14)"/>
+  <ellipse cx="36" cy="101" rx="22" ry="5" fill="rgba(40,20,80,.45)"/>
+  <!-- "viewport" frame — fourth wall -->
+  <path d="M6 14 L6 8 L12 8 M60 8 L66 8 L66 14 M66 90 L66 96 L60 96 M12 96 L6 96 L6 90" fill="none" stroke="rgba(255,248,255,.35)" stroke-width="0.9" stroke-linecap="round"/>
+  <path d="M9 12 H63 M9 92 H63 M8 16 V88 M64 16 V88" fill="none" stroke="rgba(180,140,255,.22)" stroke-width="0.45" stroke-dasharray="3 2"/>
+  <!-- Pentachoron projection: outer + inner triangle + connectors -->
+  <g fill="none" stroke="url(#pnAx)" stroke-width="0.85" opacity=".92" filter="url(#pnBloom)">
+    <path d="M36 18 L54 52 L18 52 Z"/>
+    <path d="M36 34 L46 58 L26 58 Z" opacity=".75"/>
+    <path d="M36 18 L36 34 M54 52 L46 58 M18 52 L26 58"/>
+  </g>
+  <g fill="url(#pnCore)" stroke="rgba(255,255,255,.4)" stroke-width="0.35">
+    <circle cx="36" cy="18" r="3.2"/><circle cx="54" cy="52" r="2.6"/><circle cx="18" cy="52" r="2.6"/>
+    <circle cx="36" cy="34" r="2"/><circle cx="46" cy="58" r="1.8"/><circle cx="26" cy="58" r="1.8"/>
+  </g>
+  <!-- Fifth axis — vertical through center -->
+  <path d="M36 4 L36 68" stroke="rgba(255,220,255,.25)" stroke-width="0.6" stroke-dasharray="1 3"/>
+  <ellipse cx="36" cy="48" rx="28" ry="22" fill="none" stroke="rgba(120,200,255,.15)" stroke-width="0.5"/>
+  <!-- Body / mantle in higher-D shadow -->
+  <path d="M14 72 Q36 62 58 72 L54 98 Q36 102 18 98 Z" fill="rgba(8,4,24,.88)" stroke="rgba(160,120,255,.35)" stroke-width="0.75"/>
+  <path d="M22 76 Q36 70 50 76" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="0.5"/>
+  <ellipse cx="36" cy="48" rx="10" ry="12" fill="url(#pnCore)" stroke="rgba(255,255,255,.25)" stroke-width="0.6" opacity=".95"/>
+  <ellipse cx="36" cy="46" rx="5" ry="4" fill="#020008" opacity=".75"/>
+  <ellipse cx="33" cy="45" rx="1.2" ry="0.9" fill="#e8f0ff" opacity=".9"/>
+  <ellipse cx="39" cy="45" rx="1.2" ry="0.9" fill="#e8f0ff" opacity=".9"/>
+  <path d="M34 50 Q36 52 38 50" stroke="rgba(200,180,255,.45)" stroke-width="0.4" fill="none"/>
+  <!-- Orthogonal crown -->
+  <path d="M28 28 L32 20 L36 24 L40 20 L44 28" fill="none" stroke="rgba(255,248,255,.5)" stroke-width="0.55" stroke-linejoin="round"/>
+  <circle cx="36" cy="22" r="1.4" fill="#fffef8" opacity=".85"/>
 </svg>`
 };
 
@@ -3413,6 +3464,8 @@ const ENEMIES=[
     specialName:"THRESHOLD PULSE + ABSENCE REND + NULL COMMUNION",specialDesc:"Space wears a doorway like a wound. What steps through is not a body but a verdict with too many limbs."},
   {name:"Chancellor of the Shattered Seat",charKey:"castthrone",hp:38200,str:598,agi:100,def:304,gold:74800,title:"Highest of the Cast Down",isBoss:true,bossType:"castseraph",seraphForm:3,
     specialName:"CITADEL SPEAR + SERAPH FURY + THRONE DEBT",specialDesc:"The broken seat still remembers weight. It collects what heaven owed in blood and pays in geometries you cannot name."},
+  {name:"The Pentarchon",charKey:"pentarchon",hp:56000,str:712,agi:124,def:368,gold:132000,title:"Axis Beyond Story · Wielder of the Fifth Coordinate",isBoss:true,bossType:"pentad",
+    specialName:"NARRATIVE SHEAR · META FOLD · ORTHOGONAL VERDICT · FIFTH-DIMENSION ERASER · PARALLAX PUPPETRY · INFERNO REALITY CASCADE",specialDesc:"Six orthogonal techniques: script-immunity, time-slip, law-from-nowhere, STR-eating dimensional erasure, resonance-fracture puppetry, and fiery comets that shatter the scene itself."},
 ];
 
 // ═══ TIERED GEAR SYSTEM ═══
@@ -4386,6 +4439,7 @@ function combatStr(base,isBoss){
     v=Math.floor(v*bossMult);
     if(G.player.timeDecayed)v=Math.floor(v*0.85);
     if((G.player.conceptWarpStacks||0)>0)v=Math.floor(v*(1-Math.min(0.24,G.player.conceptWarpStacks*0.06)));
+    if((G.player.pentEraserTurns||0)>0)v=Math.floor(v*0.64);
     const lr=Math.min(6,G.player.lightRadianceStacks|0);
     if(lr>0)v=Math.floor(v*(1-lr*0.055));
   }
@@ -4675,7 +4729,7 @@ function buildShareCard(result){
     else if((i+1) === result.deathRound) bar.push('🗡️');
     else bar.push('⬛');
   }
-    const enemyName = result.deathRound ? ['Slave','Barbarian','Legionnaire','Praetorian','Champion','Berserker','Daemonicus','Undying','Kronos','Saturn','Aeternon','Nemesis','Concept Lizard','Concept Reptilian','Concept Dragon','Concept Splitter','Concept Shatterer','Concept of Truth','Concept Of Adam','Concept of Light','Ophan Unmoored','Threshold of Absence','Chancellor of the Shattered Seat'][result.deathRound-1] : 'Chancellor';
+    const enemyName = result.deathRound ? ['Slave','Barbarian','Legionnaire','Praetorian','Champion','Berserker','Daemonicus','Undying','Kronos','Saturn','Aeternon','Nemesis','Concept Lizard','Concept Reptilian','Concept Dragon','Concept Splitter','Concept Shatterer','Concept of Truth','Concept Of Adam','Concept of Light','Ophan Unmoored','Threshold of Absence','Chancellor of the Shattered Seat','The Pentarchon'][result.deathRound-1] : 'Chancellor';
   const outcome = result.won ? '👑 CHAMPION' : `${enemyName} R${result.deathRound}`;
   const hpTxt = result.won ? `HP ${result.finalHp}/${result.maxHp}` : '';
   const modLine=(result.dailyModTag&&String(result.dailyModTag))?`\nSigil: ${result.dailyModTag}`:'';
@@ -4739,6 +4793,7 @@ function startFight(){
   p.defending=false;p.buffTurns=0;p.warcryCD=0;p.warcryResonance=0;p.timeLocked=0;p.timeDecayed=false;
   p.conceptWarpStacks=0;
   p.lightRadianceStacks=0;
+  p.pentEraserTurns=0;
   // Apply Berserker's Draft bonus for this fight
   if(p.battleBrewBonus>0){
     p.maxHp+=p.battleBrewBonus;
@@ -4817,6 +4872,10 @@ function startFight(){
     document.getElementById('esprite').querySelector('svg').classList.add('aura-castseraph');
     if(sceneEl)sceneEl.classList.add('castdown-court');
     if(shStorm)shStorm.classList.add('on');
+  } else if(et.bossType==='pentad'){
+    document.getElementById('esprite').querySelector('svg').classList.add('aura-pentad');
+    if(shStorm)shStorm.classList.add('on');
+    if(truthArena)truthArena.classList.add('pulse');
   } else if(et.bossType==='void'){
     document.getElementById('esprite').querySelector('svg').classList.add('aura-void');
   } else if(et.bossType==='nemesis'){
@@ -4851,6 +4910,8 @@ function startFight(){
     badge.innerHTML=`<div class="boss-badge bb-lightbringer">👑 LIGHT BEARER'S CROWN · TRUE SON</div>`;
   } else if(et.isBoss&&et.bossType==='castseraph'){
     badge.innerHTML=`<div class="boss-badge bb-castseraph">◈ CAST-DOWN SERAPH · HEAVEN'S HUNTER</div>`;
+  } else if(et.isBoss&&et.bossType==='pentad'){
+    badge.innerHTML=`<div class="boss-badge bb-pentad">◇ FIFTH COORDINATE · META-SOVEREIGN</div>`;
   } else if(et.isBoss&&et.bossType==='void'){
     badge.innerHTML=`<div class="boss-badge bb-void">◈ THE NAMELESS</div>`;
   } else if(et.isBoss&&et.bossType==='nemesis'){
@@ -4955,6 +5016,14 @@ function startFight(){
   }
   if(et.bossType==='castseraph'){
     const q=1.48+0.055*(et.seraphForm|0);
+    G.enemy.maxHp=Math.max(1,Math.round(G.enemy.maxHp*q));
+    G.enemy.hp=G.enemy.maxHp;
+    G.enemy.str=Math.max(1,Math.round(G.enemy.str*q));
+    G.enemy.agi=Math.max(1,Math.round(G.enemy.agi*q));
+    G.enemy.def=Math.max(1,Math.round(G.enemy.def*q));
+  }
+  if(et.bossType==='pentad'){
+    const q=1.78;
     G.enemy.maxHp=Math.max(1,Math.round(G.enemy.maxHp*q));
     G.enemy.hp=G.enemy.maxHp;
     G.enemy.str=Math.max(1,Math.round(G.enemy.str*q));
@@ -5139,6 +5208,21 @@ function startFight(){
       G.busy=false;render();
     },2400);
     render();return;
+  }else if(et.bossType==='pentad'){
+    G.busy=true;
+    initAudio();
+    setTimeout(()=>{if(typeof sfxBossEnter==='function')sfxBossEnter();},90);
+    setTimeout(()=>{if(typeof sfxHeavenfallBlade==='function')sfxHeavenfallBlade();},320);
+    setTimeout(()=>{if(typeof triggerHighlordMoveFx==='function')triggerHighlordMoveFx('crown');},520);
+    setTimeout(()=>{
+      addLog(`The crowd's roar clips into silence — not peace, but a sample rate failure. Something reads the arena from outside the page.`,'bsp');
+      addLog(`THE PENTARCHON manifests: a deity of five orthogonal axes, for whom gods are flat and stories are surfaces.`,'bsp');
+      addLog(`It does not break the fourth wall — it rotates it until you were always drawn on both sides of the glass.`,'bsp');
+      addLog(`Six moves cycle forever: NARRATIVE SHEAR · META FOLD · ORTHOGONAL VERDICT · FIFTH-DIMENSION ERASER · PARALLAX PUPPETRY · INFERNO REALITY CASCADE.`,'bsp');
+      addLog(`Thermic comets will hail through the HUD; the eraser eats the depth of your strength; puppetry fractures your rhythm.`,'bsp');
+      G.busy=false;render();
+    },2900);
+    render();return;
   }else if(et.bossType==='void'){
     if(skipPreLightCinematic){
       addLog(`AETERNON — VOID ECHO · UNMAKING · RIFT · NULL CHAIN · mirror curse without souls.`,'bsp');
@@ -5293,6 +5377,10 @@ function act(a){
       addLog(`◆ The seraph slips along another axis — your strike meets only the diagram, not the thing.`,'bsp');
       return{dmg:0,blocked:true};
     }
+    if(e&&e.isBoss&&e.bossType==='pentad'&&(e.metaVeilTurns||0)>0&&wasHit){
+      addLog(`◇ NARRATIVE SHEAR — your strike slides along the page; the Pentarchon edits the panel you thought you were in.`,'bsp');
+      return{dmg:0,blocked:true};
+    }
     if(!e||e.bossType!=='nemesis'||!e.finalPhase){
       if(wasHit){e.hp=Math.max(0,e.hp-d);p.lastDmgDealt=d;}
       return{dmg:d,blocked:false};
@@ -5412,6 +5500,10 @@ function act(a){
     addLog(`Your reckless blow tears through you both... You fall.`,'sp');
     document.getElementById('psprite').classList.add('dead');
     setTimeout(showDefeat,900);return;
+  }
+  if((p.pentEraserTurns||0)>0){
+    p.pentEraserTurns--;
+    if(p.pentEraserTurns===0)addLog(`◇ Fifth-dimensional erosion fades — your strikes recover their full weight.`,'sp');
   }
   G.myTurn=false;render();
   setTimeout(enemyTurn,720);
@@ -6379,6 +6471,138 @@ function enemyTurn(){
   }
   // ── END CAST-DOWN SERAPHS ─────────────────────────────────
 
+  // ── PENTARCHON (fifth-axis / meta deity) — six-move rotation ──
+  if(e.isBoss&&e.bossType==='pentad'){
+    e.pentTurn=(e.pentTurn||0)+1;
+    const pt=e.pentTurn;
+    const slot=(pt-1)%6;
+    if((e.metaVeilTurns||0)>0){
+      e.metaVeilTurns=Math.max(0,e.metaVeilTurns-1);
+      if(e.metaVeilTurns===0)addLog(`◇ NARRATIVE SHEAR lifts — the page admits wounds again.`,'bsp');
+    }
+    const pentDie=(line)=>{
+      const riseChance=getBlessingRiseChance(p);
+      if(p.hasBlessing&&!p.blessingUsed&&rnd()<riseChance){
+        p.blessingUsed=true;p.hp=0;G.busy=true;
+        document.getElementById('psprite').classList.add('dead');render();
+        triggerResurrection();return true;
+      }
+      addLog(line,'sp');
+      document.getElementById('psprite').classList.add('dead');setTimeout(showDefeat,900);return true;
+    };
+    if(!e.pentLore1&&e.hp/e.maxHp<0.88){e.pentLore1=true;addLog(`Lore: heaven measures devotion; the Pentarchon measures depth — how many layers your fiction has.`,'bsp');}
+    if(!e.pentLore2&&e.hp/e.maxHp<0.55){e.pentLore2=true;addLog(`Lore: it does not hate you. To hate, it would have to believe you are real in all five axes.`,'bsp');}
+    if(!e.pentLore3&&e.hp/e.maxHp<0.28){e.pentLore3=true;addLog(`Lore: the reader is not safe either — attention is just another coordinate.`,'bsp');}
+    if(e.hp/e.maxHp<0.42&&!e.pentAscend){
+      e.pentAscend=true;
+      e.str=Math.floor(e.str*1.16);
+      e.def=Math.floor(e.def*1.12);
+      e.agi=Math.floor(e.agi*1.08);
+      addLog(`◇ ORTHOGONAL ASCENSION — it squares causality against drama; the six techniques sharpen in higher space.`,'bsp');
+      triggerPentadMoveFx('tesseract');
+      triggerHighlordMoveFx('crown');
+      triggerShattererMoveFx('shatter');
+      G.myTurn=true;render();return;
+    }
+    if(slot===0){
+      const shearD=Math.max(18,Math.floor(e.str*0.095)+ri(5,14));
+      p.hp=Math.max(0,p.hp-shearD);
+      e.metaVeilTurns=2;
+      p.conceptWarpStacks=Math.min((p.conceptWarpStacks||0)+2,6);
+      triggerPentadMoveFx('shear');
+      triggerHighlordMoveFx('retcon');
+      addLog(`◇ NARRATIVE SHEAR — ${shearD} damage; for 2 enemy turns your violence edits nothing — the Pentarchon walks behind the text.`,'bsp');
+      aAtk('e');aHit('p',shearD);
+      p.defending=false;
+      applyPeacefulPlayerImmortality(p);
+      if(p.hp<=0&&pentDie(`You strike the caption, not the creature.`))return;
+      G.myTurn=true;render();return;
+    }
+    if(slot===1){
+      const fold=Math.max(16,Math.floor(e.str*0.11)+ri(6,16));
+      p.hp=Math.max(0,p.hp-fold);
+      p.timeLocked=Math.max(p.timeLocked||0,1);
+      triggerPentadMoveFx('fold');
+      triggerHighlordMoveFx('retcon');
+      addLog(`◇ META FOLD — ${fold} damage; your next action slips along a crease in time — the arena stutters.`,'bsp');
+      aAtk('e');aHit('p',fold);
+      applyPeacefulPlayerImmortality(p);
+      if(p.hp<=0&&pentDie(`The story cuts — you are not in frame.`))return;
+      G.myTurn=true;render();return;
+    }
+    if(slot===2){
+      const readDef=Math.max(1,Math.floor(p.def*0.32));
+      const ov=calcDmg(e.str,p.agi,readDef,1.48,(getPassiveTotals(p).dodge||0)*0.42);
+      triggerPentadMoveFx('verdict');
+      triggerHighlordMoveFx('decree');
+      if(ov<0){
+        addLog(`◇ ORTHOGONAL VERDICT — you slip the plane; the law passes through empty air.`,'en');
+        sfxDodge();
+      }else{
+        const dealt=p.defending?Math.max(1,Math.floor(ov*0.82)):ov;
+        p.hp=Math.max(0,p.hp-dealt);
+        addLog(`◇ ORTHOGONAL VERDICT — ${dealt} damage; judgment arrives from a direction your shield was never built to face.`,'bsp');
+        aAtk('e');aHit('p',dealt);
+      }
+      p.defending=false;
+      applyPeacefulPlayerImmortality(p);
+      if(p.hp<=0&&pentDie(`Verdict rendered in a court with no floor.`))return;
+      G.myTurn=true;render();return;
+    }
+    if(slot===3){
+      const er=Math.max(32,Math.floor(e.str*0.58)+ri(10,22));
+      p.pentEraserTurns=4;
+      triggerPentadMoveFx('erase');
+      triggerHighlordMoveFx('retcon');
+      triggerShattererMoveFx('glitch');
+      if(p.hasSoulAegis&&!p.soulAegisUsed&&er>=p.hp){
+        p.soulAegisUsed=true;
+        addLog(`✦ SOUL AEGIS absorbs the brunt of FIFTH-DIMENSION ERASER — yet the axis still thins your strength!`,'sp');
+      }else{
+        p.hp=Math.max(0,p.hp-er);
+        addLog(`◇ FIFTH-DIMENSION ERASER — ${er} damage; depth is stripped from your muscles — attacks land weaker for several of your turns.`,'bsp');
+        aAtk('e');aHit('p',er);
+      }
+      p.defending=false;
+      applyPeacefulPlayerImmortality(p);
+      if(p.hp<=0&&pentDie(`You fade in a direction no compass names.`))return;
+      G.myTurn=true;render();return;
+    }
+    if(slot===4){
+      p.conceptWarpStacks=Math.min((p.conceptWarpStacks||0)+2,7);
+      p.warcryResonance=Math.max(0,(p.warcryResonance|0)-2);
+      const pup=Math.max(14,Math.floor(e.str*0.078)+ri(5,14));
+      p.hp=Math.max(0,p.hp-pup);
+      triggerPentadMoveFx('puppet');
+      triggerSplitterMoveFx('fracture',2);
+      triggerLightbringerFx('flare');
+      addLog(`◇ PARALLAX PUPPETRY — ${pup} damage; your rhythm is hijacked — resonance thins and the crowd's eyes pull your strings.`,'bsp');
+      aAtk('e');aHit('p',pup);
+      applyPeacefulPlayerImmortality(p);
+      if(p.hp<=0&&pentDie(`The audience was always part of the weapon.`))return;
+      G.myTurn=true;render();return;
+    }
+    triggerPentadMoveFx('inferno');
+    triggerShattererMoveFx('comet');
+    let total=0;
+    const hits=5;
+    for(let i=0;i<hits;i++){
+      const c=Math.max(12,Math.floor(e.str*0.24)+ri(4,11));
+      const dealt=p.defending?Math.max(1,Math.floor(c*0.84)):c;
+      total+=dealt;
+      p.hp=Math.max(0,p.hp-dealt);
+      aHit('p',dealt);
+    }
+    triggerShattererMoveFx('shatter');
+    addLog(`◇ INFERNO REALITY CASCADE — five thermic comets fall through the fourth wall, shattering the scene for ${total} total damage!`,'bsp');
+    aAtk('e');
+    p.defending=false;
+    applyPeacefulPlayerImmortality(p);
+    if(p.hp<=0&&pentDie(`Reality receipts itself — you are not in the budget.`))return;
+    G.myTurn=true;render();return;
+  }
+  // ── END PENTARCHON ───────────────────────────────────────
+
   // ── COSMIC REPTILIAN HIGHLORD MECHANICS ─────────────────
   if(e.isBoss&&e.bossType==='highlord'){
     e.hlTurn=(e.hlTurn||0)+1;
@@ -7002,9 +7226,10 @@ function triggerGhostStep(negateHit=false){
   sfxGhostStep();
   const p=G.player,e=G.enemy;
   const cd=Math.max(1,Math.floor(p.str*.7)+ri(-1,2));
-  const immuneToGhostCounter=!!(e&&e.isBoss&&e.bossType==='concept');
+  const immuneToGhostCounter=!!(e&&e.isBoss&&(e.bossType==='concept'||e.bossType==='pentad'));
   if(immuneToGhostCounter){
-    addLog(`${GHOST_MSGS[Math.floor(rnd()*GHOST_MSGS.length)]} Ghost Step triggers — but the Concept Dragon is immune to the counter.`,'gh');
+    const who=e.bossType==='pentad'?'the Pentarchon':'the Concept Dragon';
+    addLog(`${GHOST_MSGS[Math.floor(rnd()*GHOST_MSGS.length)]} Ghost Step triggers — but ${who} is immune to the counter.`,'gh');
   }else{
     e.hp=Math.max(0,e.hp-cd);
     addLog(`${GHOST_MSGS[Math.floor(rnd()*GHOST_MSGS.length)]} Ghost Step — ${cd} counter dmg!`,'gh');
@@ -7022,7 +7247,7 @@ function endFight(won){
   const gAdd=computeRoundGoldReward(e);
   p.gold+=gAdd;p.wins++;
   // Award soul fragments
-  const SOUL_REWARDS=[5,8,12,16,20,28,50,80,120,180,260,360,520,620,760,980,1400,1900,2600,7200,8800,10400,12800];
+  const SOUL_REWARDS=[5,8,12,16,20,28,50,80,120,180,260,360,520,620,760,980,1400,1900,2600,7200,8800,10400,12800,16800];
   const souls=SOUL_REWARDS[G.ei]||0;
   p.souls=(p.souls||0)+souls;
   if(G.ei>=14&&unlockWarcryAscension()){
@@ -7050,6 +7275,9 @@ function endFight(won){
   addLog(`${e.name} FALLS! ${e.isBoss?'The void trembles!':'The crowd erupts!'} +${gAdd} gold · +${souls} souls!`,'sp');
   if(e.bossType==='lightbringer'){
     addLog(`☀ The True Son is silent — and the sky bruises into shapes that are not weather. Heaven sends hunters through broken geometry.`,'bsp');
+  }
+  if(e.bossType==='pentad'){
+    addLog(`◇ The Pentarchon folds its axes — for one breath, even the victory text does not know whose story this is.`,'bsp');
   }
   if(postTruth){
     addLog(`🌌 COSMIC CACHE — ${e.name} drops ${drops.length} cosmic piece${drops.length>1?'s':''}!`,'sp');
@@ -7193,6 +7421,52 @@ function triggerShattererMoveFx(kind='comet'){
   },760);
 }
 
+/** Pentarchon — themed storm / scene FX (inferno comets, glitch, erase flash) */
+function triggerPentadMoveFx(kind){
+  const storm=document.getElementById('shatterer-storm');
+  const scene=document.getElementById('scene');
+  const esp=document.getElementById('esprite');
+  if(!storm||!scene)return;
+  const inferno=kind==='inferno';
+  const reduce=document.documentElement.classList.contains('ga-reduce-motion');
+  if(reduce){
+    if(inferno){storm.classList.add('on','pentad-inferno','storm-comet');setTimeout(()=>{try{storm.classList.remove('pentad-inferno','storm-comet');}catch(_){}},420);}
+    if(kind==='erase'){scene.classList.add('pentad-erase');setTimeout(()=>{try{scene.classList.remove('pentad-erase');}catch(_){}},500);}
+    return;
+  }
+  storm.classList.add('on');
+  storm.classList.toggle('pentad-inferno',inferno);
+  let cls='storm-comet';
+  if(kind==='shear'||kind==='fold'||kind==='erase'||kind==='puppet')cls='storm-glitch';
+  else if(kind==='verdict'||kind==='tesseract')cls='storm-shatter';
+  if(inferno)cls='storm-comet';
+  storm.classList.remove('storm-comet','storm-glitch','storm-shatter');
+  void storm.offsetWidth;
+  storm.classList.add(cls);
+  if(esp){
+    esp.classList.remove('ghost');
+    void esp.offsetWidth;
+    esp.classList.add('ghost');
+    setTimeout(()=>{try{esp.classList.remove('ghost');}catch(_){}},420);
+  }
+  scene.classList.remove('scene-shake');
+  void scene.offsetWidth;
+  scene.classList.add('scene-shake');
+  if(kind==='erase'){
+    scene.classList.remove('pentad-erase');
+    void scene.offsetWidth;
+    scene.classList.add('pentad-erase');
+  }
+  const dur=inferno?1020:780;
+  setTimeout(()=>{
+    try{
+      storm.classList.remove(cls);
+      storm.classList.remove('pentad-inferno');
+      scene.classList.remove('scene-shake','pentad-erase');
+    }catch(_){}
+  },dur);
+}
+
 function triggerHighlordMoveFx(kind='crown'){
   const fx=document.getElementById('highlord-fx');
   const scene=document.getElementById('scene');
@@ -7334,6 +7608,7 @@ function render(){
   }
   if(p.metaApotheosis)pt.push('<span class="ft" style="background:#1a2040;color:#fff8d8;border:1px solid #e8c060">☀ APOTHEOSIS</span>');
   if((p.lightRadianceStacks||0)>0)pt.push(`<span class="ft ft-light">RADIANCE ×${p.lightRadianceStacks}</span>`);
+  if((p.pentEraserTurns||0)>0)pt.push(`<span class="ft ft-pentad">5D ERASE ×${p.pentEraserTurns}</span>`);
   document.getElementById('ptags').innerHTML=pt.join('');
   // enemy
   document.getElementById('ename').textContent=e.name.toUpperCase();
@@ -7441,6 +7716,14 @@ function render(){
       if(e.chancellorFury)et.push('<span class="ft ft-cast">FURY</span>');
     }
   }
+  if(e.isBoss&&e.bossType==='pentad'){
+    const pt=e.pentTurn||0;
+    const nx=['SHEAR','FOLD','VERDICT','ERASER','PUPPET','INFERNO'];
+    et.push(`<span class="ft ft-pentad">NEXT ${nx[pt%6]}</span>`);
+    et.push(`<span class="ft ft-pentad">◇ SIX-CYCLE</span>`);
+    if((e.metaVeilTurns||0)>0)et.push(`<span class="ft ft-pentad">SHEAR ×${e.metaVeilTurns}</span>`);
+    if(e.pentAscend)et.push('<span class="ft ft-pentad">ASCENDED</span>');
+  }
   if(e.isBoss&&e.bossType==='concept'){
     const bIn=3-((e.conceptTurn||0)%3);
     et.push(`<span class="ft ft-concept">BREATH IN ${bIn===3?'NOW':bIn}</span>`);
@@ -7482,7 +7765,7 @@ function render(){
     :G.log;
   document.getElementById('logentries').innerHTML=logRows.map(l=>`<div class="lg ${l.cls}">${l.msg}</div>`).join('');
   // chips
-  const strDisp=p.str+(p.buffTurns>0?'+5':'')+(p.titanCursed||e.unmakingActive||p.timeDecayed||(p.conceptWarpStacks||0)>0||(p.lightRadianceStacks||0)>0?' ⬇':'');
+  const strDisp=p.str+(p.buffTurns>0?'+5':'')+(p.titanCursed||e.unmakingActive||p.timeDecayed||(p.conceptWarpStacks||0)>0||(p.lightRadianceStacks||0)>0||(p.pentEraserTurns||0)>0?' ⬇':'');
   document.getElementById('ckstr').innerHTML=`STR <b>${strDisp}</b>`;
   document.getElementById('ckagi').innerHTML=`AGI <b>${p.agi}</b>`;
   document.getElementById('ckdef').innerHTML=`DEF <b>${p.def}</b>`;
@@ -7820,7 +8103,14 @@ function showVictory(){
   const finalAdam=G.enemy&&G.enemy.bossType==='adam';
   const finalLight=G.enemy&&G.enemy.bossType==='lightbringer';
   const finalCast=G.enemy&&G.enemy.bossType==='castseraph'&&(G.enemy.seraphForm|0)===3;
-  if(finalCast){
+  const finalPentad=G.enemy&&G.enemy.bossType==='pentad';
+  if(finalPentad){
+    if(endBox)endBox.classList.add('end-cast-victory');
+    document.getElementById('end-ico').textContent='◇';
+    document.getElementById('end-tit').textContent='META-Victor';
+    document.getElementById('end-sub').textContent=narrow?'Fifth axis broken':'The Pentarchon Falls · Fiction Breathes Again';
+    document.getElementById('end-bod').innerHTML=`You outlasted hunters, thrones, and the cast-down court — then unmade something that treated all of it as a flat plane.<br>The Pentarchon folded its fifth coordinate. For a moment the fourth wall is only mortar again.<br><b style="color:#c8d8ff">Even the story's architect learned your name has weight.</b>`;
+  }else if(finalCast){
     if(endBox)endBox.classList.add('end-cast-victory');
     document.getElementById('end-ico').textContent='◈';
     document.getElementById('end-tit').textContent='THRONELESS';
@@ -7868,7 +8158,14 @@ function showDefeat(){
   const lightKill=e&&e.bossType==='lightbringer';
   const adamKill=e&&e.bossType==='adam';
   const castKill=e&&e.bossType==='castseraph';
-  if(castKill){
+  const pentKill=e&&e.bossType==='pentad';
+  if(pentKill){
+    if(endBox)endBox.classList.add('end-adam-defeat');
+    document.getElementById('end-ico').textContent='◇';
+    document.getElementById('end-tit').textContent='UNWRITTEN';
+    document.getElementById('end-sub').textContent=narrow?`R${G.ei+1} · Pentarchon`:`Undone by the Pentarchon — ${killer}`;
+    document.getElementById('end-bod').innerHTML=`The deity stepped behind the interface you cannot see.<br>You fall on Round <b style="color:#b8c8ff">${G.ei+1}</b>, and the narrative omits how you died on purpose.`;
+  }else if(castKill){
     if(endBox)endBox.classList.add('end-adam-defeat');
     document.getElementById('end-ico').textContent='◈';
     document.getElementById('end-tit').textContent='UNNAMED';
