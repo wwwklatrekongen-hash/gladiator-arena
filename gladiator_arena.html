@@ -4994,7 +4994,8 @@ function applyFontFromSettings(){
 }
 function getDifficultyMods(){
   const d=(loadGameSettings().difficulty)||'normal';
-  if(d==='story'||d==='peaceful')return{enemyHp:0.88,enemyStr:0.90,goldMult:1.08};
+  if(d==='peaceful')return{enemyHp:0.88,enemyStr:0.90,goldMult:0};
+  if(d==='story')return{enemyHp:0.88,enemyStr:0.90,goldMult:1/3};
   if(d==='hard')return{enemyHp:1.12,enemyStr:1.10,goldMult:0.96};
   return{enemyHp:1,enemyStr:1,goldMult:1};
 }
@@ -5258,6 +5259,7 @@ function copyDailyShare(){
 
 function computeRoundGoldReward(e){
   if(!e)return 0;
+  if(G&&G.peacefulMode)return 0;
   const df=getDifficultyMods();
   const dmGold=(G&&G.daily&&G.dailyMod)?G.dailyMod.gold:1;
   return Math.max(0,Math.floor((e.gold||0)*df.goldMult*dmGold));
@@ -5943,8 +5945,12 @@ function act(a){
   }else if(a==='defend'){
     p.defending=true;addLog(`You brace your shield and wait.`,'pl');
   }else if(a==='taunt'){
-    const g=ri(3,10);p.gold+=g;e.enraged=true;
-    addLog(`You taunt ${e.name}! Crowd throws ${g} gold — enemy ENRAGED!`,'sp');
+    const diffNow=(loadGameSettings().difficulty)||'normal';
+    let g=ri(3,10);
+    if(G&&G.peacefulMode)g=0;
+    else if(diffNow==='story')g=Math.max(0,Math.floor(g/3));
+    p.gold+=g;e.enraged=true;
+    addLog(g>0?`You taunt ${e.name}! Crowd throws ${g} gold — enemy ENRAGED!`:(G&&G.peacefulMode?`You taunt ${e.name}! (No crowd gold in Peaceful) — enemy ENRAGED!`:`You taunt ${e.name}! Crowd throws ${g} gold — enemy ENRAGED!`),'sp');
   }else if(a==='reckless'){
     const d=Math.max(1,Math.floor(combatStr(p.str+bon,e.isBoss)*wm.reckless-e.def*.5)+ri(-1,3));
     const xd=applyOffensePassives(d,p,ptot);
