@@ -1629,6 +1629,125 @@ html.ga-reduce-motion .skin-fig{animation:none}
 .skin-show .skin-chips{margin-top:10px}
 .skin-show .skin-chip{padding:6px 12px;font-size:clamp(10px,1vw,11px)}
 
+/* ── PRIMARY MODE BUTTONS — bigger, cinematic ─────────────── */
+.mode-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:14px 0 8px}
+.mode-btn{
+  display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:5px!important;
+  padding:18px 14px 16px!important;margin:0!important;
+  font-family:'Cinzel',serif;letter-spacing:1.5px!important;line-height:1.3;
+  background:linear-gradient(170deg,#321808 0%,#1a0c04 55%,#0a0502 100%)!important;
+  border:2px solid #6a3818!important;border-radius:9px!important;
+  position:relative;overflow:hidden;min-height:104px;cursor:pointer;
+  transition:transform .18s cubic-bezier(.3,.8,.4,1),box-shadow .2s ease,border-color .2s ease,background .2s ease;
+  box-shadow:0 4px 16px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,210,160,.1),inset 0 -2px 0 rgba(0,0,0,.4);
+}
+.mode-btn::before{
+  content:'';position:absolute;top:0;left:-60%;width:55%;height:100%;
+  background:linear-gradient(105deg,transparent 35%,rgba(255,220,160,.16) 50%,transparent 65%);
+  transition:left .65s cubic-bezier(.3,.7,.4,1);pointer-events:none;
+}
+.mode-btn:hover::before{left:115%}
+.mode-btn::after{
+  content:'→';position:absolute;right:14px;top:50%;transform:translateY(-50%) translateX(8px);
+  font-size:22px;color:rgba(232,184,75,0);font-family:'Cinzel',serif;font-weight:700;
+  transition:all .25s cubic-bezier(.3,.7,.4,1);pointer-events:none;
+}
+.mode-btn:hover{
+  background:linear-gradient(170deg,#4a2210 0%,#2a1408 55%,#120804 100%)!important;
+  border-color:#a06028!important;
+  transform:translateY(-2px);
+  box-shadow:0 8px 22px rgba(0,0,0,.6),0 0 22px rgba(220,140,40,.25),inset 0 1px 0 rgba(255,220,160,.18),inset 0 -2px 0 rgba(0,0,0,.4);
+}
+.mode-btn:hover::after{transform:translateY(-50%) translateX(0);color:rgba(232,184,75,.9)}
+.mode-btn:active{transform:translateY(0) scale(.98)}
+.mode-btn .mode-ico{font-size:clamp(26px,3.2vw,34px);line-height:1;margin-bottom:4px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.7))}
+.mode-btn .mode-label{font-size:clamp(13px,1.4vw,16px);font-weight:700;letter-spacing:3px;color:#f0c878;
+  background:linear-gradient(180deg,#fff5d8,#e8b84b 60%,#a86018);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 1px 0 #2a1408) drop-shadow(0 2px 4px rgba(0,0,0,.7));
+}
+.mode-btn .mode-sub{font-size:clamp(10px,1.05vw,11.5px);color:#c0a888;letter-spacing:.4px;font-weight:400;text-transform:none;line-height:1.45;margin-top:2px;text-shadow:0 1px 2px rgba(0,0,0,.5)}
+.mode-btn.mode-daily{
+  background:linear-gradient(170deg,#1a1238 0%,#0c0a20 55%,#06060e 100%)!important;
+  border-color:#5a4ab0!important;
+}
+.mode-btn.mode-daily:hover{
+  background:linear-gradient(170deg,#2a1c5c 0%,#16104a 55%,#0c0a28 100%)!important;
+  border-color:#a080ff!important;
+  box-shadow:0 8px 22px rgba(0,0,0,.6),0 0 26px rgba(140,100,255,.3),inset 0 1px 0 rgba(220,200,255,.18),inset 0 -2px 0 rgba(0,0,0,.4);
+}
+.mode-btn.mode-daily .mode-label{
+  background:linear-gradient(180deg,#fff8d8,#ffd060 30%,#a08aff 80%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+
+/* ── COLLAPSIBLE intro sections (How to Play, Settings) ──── */
+.intro-collapse{margin:8px 0;border:1px solid #4a2c14;border-radius:8px;background:rgba(8,4,2,.6);overflow:hidden;
+  box-shadow:inset 0 1px 0 rgba(255,200,120,.05);
+  animation:introSectionIn .55s cubic-bezier(.25,.7,.4,1) both}
+.intro-collapse[data-delay="1"]{animation-delay:.55s}
+.intro-collapse[data-delay="2"]{animation-delay:.62s}
+html.ga-reduce-motion .intro-collapse{animation:none!important;opacity:1!important;transform:none!important}
+.intro-collapse > summary{
+  list-style:none;cursor:pointer;padding:11px 16px;
+  font-family:'Cinzel',serif;font-size:clamp(11px,1.15vw,12.5px);font-weight:700;color:#e8c890;
+  letter-spacing:1.8px;text-transform:uppercase;text-align:left;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  transition:background .15s ease,color .15s ease;
+  text-shadow:0 1px 2px rgba(0,0,0,.5);
+}
+.intro-collapse > summary::-webkit-details-marker{display:none}
+.intro-collapse > summary::after{
+  content:'▾';font-size:13px;color:#caa060;transition:transform .25s ease;flex:0 0 auto;
+}
+.intro-collapse[open] > summary::after{transform:rotate(180deg)}
+.intro-collapse > summary:hover{background:rgba(40,22,8,.5);color:#fff0c8}
+.intro-collapse > summary .ic-icon{font-size:14px;margin-right:4px}
+.intro-collapse > summary .ic-hint{margin-left:auto;font-weight:400;font-size:10px;color:#9a7868;letter-spacing:.5px;text-transform:none}
+.intro-collapse[open] > summary{border-bottom:1px solid #3a2412}
+.intro-collapse-body{padding:12px 14px}
+/* When using collapse for the instructions/settings, override their old wrapper styles */
+.intro-collapse .ia-grid{margin:0;border:none;background:transparent;padding:2px 0;box-shadow:none;animation:none!important}
+.intro-collapse .intro-extras{margin:0;border:none;background:transparent;padding:0;box-shadow:none;animation:none!important}
+
+/* ── CONTINUE-RUN BANNER (promoted) ──────────────────────── */
+.continue-banner{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  width:100%;margin:12px 0 0;padding:13px 16px!important;
+  font-family:'Cinzel',serif;font-size:clamp(12px,1.2vw,13.5px);font-weight:700;
+  letter-spacing:1.6px;text-transform:uppercase;
+  background:linear-gradient(170deg,#0e2818 0%,#08180e 55%,#040c08 100%)!important;
+  border:2px solid #3a8050!important;border-radius:9px!important;
+  color:#a8e8c0!important;cursor:pointer;
+  box-shadow:0 4px 14px rgba(0,0,0,.5),0 0 16px rgba(60,180,90,.18),inset 0 1px 0 rgba(180,255,200,.1);
+  transition:all .2s ease;text-shadow:0 1px 3px rgba(0,0,0,.5);
+}
+.continue-banner:hover{
+  background:linear-gradient(170deg,#143a22 0%,#0a2014 55%,#06100a 100%)!important;
+  border-color:#5aa870!important;color:#d8ffe4!important;
+  box-shadow:0 6px 18px rgba(0,0,0,.55),0 0 24px rgba(80,220,110,.32),inset 0 1px 0 rgba(180,255,200,.15);
+  transform:translateY(-1px);
+}
+.continue-banner:active{transform:translateY(0) scale(.98)}
+.continue-banner .cb-ico{font-size:18px;line-height:1}
+.continue-banner .cb-arrow{margin-left:8px;font-size:18px;color:#7adc9a;animation:cbArrowNudge 1.6s ease-in-out infinite}
+@keyframes cbArrowNudge{0%,100%{transform:translateX(0)}50%{transform:translateX(4px)}}
+html.ga-reduce-motion .continue-banner .cb-arrow{animation:none}
+
+/* Tighter spacing for the reordered intro */
+#intro-scr .sbox{padding:18px 18px 20px !important}
+#intro-scr .skin-show{margin-top:8px}
+#intro-scr #legacy-intro{margin-top:14px}
+
+/* Mobile tweaks: slightly tighter, mode buttons stay paired */
+@media (max-width:480px){
+  .mode-btn{min-height:94px;padding:14px 10px 12px!important}
+  .mode-btn .mode-label{letter-spacing:2.2px}
+  .mode-btn::after{display:none}
+  .skin-arrow{width:34px;height:54px;font-size:22px}
+  .skin-pedestal{height:170px}
+}
+
 /* Shop affordance */
 @keyframes shopAffordPulse{0%,100%{box-shadow:inset 0 0 0 1px rgba(232,184,75,.25)}50%{box-shadow:inset 0 0 0 2px rgba(232,184,75,.55),0 0 18px rgba(232,184,75,.2)}}
 html:not(.ga-reduce-motion) .si.shop-afford-pulse{animation:shopAffordPulse 1.5s ease-in-out infinite}
@@ -2153,55 +2272,101 @@ html.ga-reduce-motion .hpghost{transition:none!important}
       <div class="tp-sub">Blood · Glory · Rome</div>
       <div class="tp-flavor">Eighteen rounds. One champion. Earn gold, claim loot, and discover your power.</div>
     </div>
-    <div class="ia-grid">
-      <div class="ia-item"><b>⚔ Slash</b><br>Reliable every turn</div>
-      <div class="ia-item"><b>🗡 Thrust</b><br>63% hit — high dmg</div>
-      <div class="ia-item"><b>🛡 Defend</b><br>Block 75% next hit</div>
-      <div class="ia-item"><b>🎭 Taunt</b><br>Earn 3–10 crowd gold</div>
-      <div class="ia-item"><b>💥 Reckless</b><br>1.6× dmg · 28% recoil</div>
-      <div class="ia-item"><b>🔥 War Cry</b><br>+5 STR, 2 turns · +6% weapon dmg per stack (Resonance, max ×5 this fight)</div>
-      <div class="ia-item"><b>🏪 Shop</b><br>Upgrade between rounds · loot drops become permanent bonuses</div>
-      <div class="ia-item"><b>🍺 Draft</b><br>+20 max HP · 1 fight</div>
+
+    <!-- Skin showcase — the focal vanity area -->
+    <div class="skin-show" id="skin-show">
+      <span class="skin-show-label">Choose your gladiator</span>
+      <div class="skin-stage">
+        <button type="button" class="skin-arrow" id="skin-prev" onclick="cycleSkin(-1)" aria-label="Previous skin">‹</button>
+        <div class="skin-pedestal">
+          <div class="skin-glow" aria-hidden="true"></div>
+          <div class="skin-fig" id="skin-fig" aria-hidden="true"></div>
+        </div>
+        <button type="button" class="skin-arrow" id="skin-next" onclick="cycleSkin(1)" aria-label="Next skin">›</button>
+      </div>
+      <div class="skin-info" id="skin-info">
+        <div class="skin-name" id="skin-name">Sand Champion</div>
+        <div class="skin-desc" id="skin-desc">Pride of the legions — bronze, plume, and pride.</div>
+      </div>
+      <div class="skin-chips" id="skin-chips">
+        <button type="button" class="skin-chip" data-skin="classic" onclick="selectPlayerSkin('classic')">Sand</button>
+        <button type="button" class="skin-chip" data-skin="crimson" onclick="selectPlayerSkin('crimson')">Crimson</button>
+        <button type="button" class="skin-chip" data-skin="ebony" onclick="selectPlayerSkin('ebony')">Ebony</button>
+        <button type="button" class="skin-chip" data-skin="azure" onclick="selectPlayerSkin('azure')">Azure</button>
+      </div>
     </div>
-    <div class="intro-extras">
-      <div class="intro-row">
-        <label class="ilab">Difficulty
-          <select id="set-difficulty" title="Peaceful: tour mode (bosses fall fast, you cannot die). Story–Hard: combat tuning.">
-            <option value="peaceful">🕊️ Peaceful — tour / immortal</option>
-            <option value="story">Story — easier foes</option>
-            <option value="normal" selected>Normal</option>
-            <option value="hard">Hard</option>
-          </select>
-        </label>
-        <label class="ilab">Text size <input type="range" id="set-font" min="85" max="130" value="118" title="UI font scale (all screens)"></label>
+
+    <!-- Primary CTAs -->
+    <div class="mode-grid">
+      <button class="sbtn mode-btn" onclick="beginGame(false)">
+        <span class="mode-ico">⚔️</span>
+        <span class="mode-label">CLASSIC</span>
+        <span class="mode-sub">Random seed · replayable</span>
+      </button>
+      <button class="sbtn mode-btn mode-daily" id="daily-btn" onclick="beginDailyRun()">
+        <span class="mode-ico">☀️</span>
+        <span class="mode-label">DAILY #<span id="daily-num">1</span></span>
+        <span class="mode-sub" id="daily-sub">Same seed worldwide</span>
+      </button>
+    </div>
+
+    <!-- Promoted continue-run banner (only shown when a save exists) -->
+    <button type="button" class="continue-banner hidden" id="btn-continue-run" onclick="beginContinueRun()">
+      <span class="cb-ico">⏵</span>
+      <span class="cb-text">Continue saved run</span>
+      <span class="cb-arrow">→</span>
+    </button>
+
+    <div id="daily-status"></div>
+    <div id="daily-prize-banner"></div>
+
+    <!-- Collapsible: How to Play -->
+    <details class="intro-collapse" id="intro-howto" data-delay="1">
+      <summary>
+        <span><span class="ic-icon">📜</span> How to play</span>
+        <span class="ic-hint">moves, shop &amp; loot</span>
+      </summary>
+      <div class="intro-collapse-body">
+        <div class="ia-grid">
+          <div class="ia-item"><b>⚔ Slash</b><br>Reliable every turn</div>
+          <div class="ia-item"><b>🗡 Thrust</b><br>63% hit — high dmg</div>
+          <div class="ia-item"><b>🛡 Defend</b><br>Block 75% next hit</div>
+          <div class="ia-item"><b>🎭 Taunt</b><br>Earn 3–10 crowd gold</div>
+          <div class="ia-item"><b>💥 Reckless</b><br>1.6× dmg · 28% recoil</div>
+          <div class="ia-item"><b>🔥 War Cry</b><br>+5 STR, 2 turns · +6% weapon dmg per stack (Resonance, max ×5 this fight)</div>
+          <div class="ia-item"><b>🏪 Shop</b><br>Upgrade between rounds · loot drops become permanent bonuses</div>
+          <div class="ia-item"><b>🍺 Draft</b><br>+20 max HP · 1 fight</div>
+        </div>
       </div>
-      <div class="intro-row chkrow">
-        <label class="ilab"><input type="checkbox" id="set-motion" title="Less motion / shake"> Reduce screen FX</label>
-        <label class="ilab"><input type="checkbox" id="set-logfilter" title="Hide routine combat lines"> Combat log: highlights only</label>
-      </div>
-      <div class="skin-show" id="skin-show">
-        <span class="skin-show-label">Choose your gladiator</span>
-        <div class="skin-stage">
-          <button type="button" class="skin-arrow" id="skin-prev" onclick="cycleSkin(-1)" aria-label="Previous skin">‹</button>
-          <div class="skin-pedestal">
-            <div class="skin-glow" aria-hidden="true"></div>
-            <div class="skin-fig" id="skin-fig" aria-hidden="true"></div>
+    </details>
+
+    <!-- Collapsible: Settings -->
+    <details class="intro-collapse" id="intro-settings" data-delay="2">
+      <summary>
+        <span><span class="ic-icon">⚙</span> Settings</span>
+        <span class="ic-hint">difficulty · text · motion</span>
+      </summary>
+      <div class="intro-collapse-body">
+        <div class="intro-extras">
+          <div class="intro-row">
+            <label class="ilab">Difficulty
+              <select id="set-difficulty" title="Peaceful: tour mode (bosses fall fast, you cannot die). Story–Hard: combat tuning.">
+                <option value="peaceful">🕊️ Peaceful — tour / immortal</option>
+                <option value="story">Story — easier foes</option>
+                <option value="normal" selected>Normal</option>
+                <option value="hard">Hard</option>
+              </select>
+            </label>
+            <label class="ilab">Text size <input type="range" id="set-font" min="85" max="130" value="118" title="UI font scale (all screens)"></label>
           </div>
-          <button type="button" class="skin-arrow" id="skin-next" onclick="cycleSkin(1)" aria-label="Next skin">›</button>
-        </div>
-        <div class="skin-info" id="skin-info">
-          <div class="skin-name" id="skin-name">Sand Champion</div>
-          <div class="skin-desc" id="skin-desc">Pride of the legions — bronze, plume, and pride.</div>
-        </div>
-        <div class="skin-chips" id="skin-chips">
-          <button type="button" class="skin-chip" data-skin="classic" onclick="selectPlayerSkin('classic')">Sand</button>
-          <button type="button" class="skin-chip" data-skin="crimson" onclick="selectPlayerSkin('crimson')">Crimson</button>
-          <button type="button" class="skin-chip" data-skin="ebony" onclick="selectPlayerSkin('ebony')">Ebony</button>
-          <button type="button" class="skin-chip" data-skin="azure" onclick="selectPlayerSkin('azure')">Azure</button>
+          <div class="intro-row chkrow">
+            <label class="ilab"><input type="checkbox" id="set-motion" title="Less motion / shake"> Reduce screen FX</label>
+            <label class="ilab"><input type="checkbox" id="set-logfilter" title="Hide routine combat lines"> Combat log: highlights only</label>
+          </div>
         </div>
       </div>
-      <button type="button" class="sbtn continue-run-btn hidden" id="btn-continue-run" onclick="beginContinueRun()">Continue saved run →</button>
-    </div>
+    </details>
+
     <div class="meta-vault-wrap" id="meta-vault-wrap">
       <div class="mv-header">
         <button type="button" class="mv-toggle" id="meta-vault-toggle" aria-expanded="false" aria-controls="meta-vault-body" onclick="toggleMetaVaultPanel()">
@@ -2230,20 +2395,6 @@ html.ga-reduce-motion .hpghost{transition:none!important}
         </div>
       </div>
     </div>
-    <div class="mode-grid">
-      <button class="sbtn mode-btn" onclick="beginGame(false)">
-        <span class="mode-ico">⚔️</span>
-        <span class="mode-label">CLASSIC</span>
-        <span class="mode-sub">Random seed · replayable</span>
-      </button>
-      <button class="sbtn mode-btn mode-daily" id="daily-btn" onclick="beginDailyRun()">
-        <span class="mode-ico">☀️</span>
-        <span class="mode-label">DAILY #<span id="daily-num">1</span></span>
-        <span class="mode-sub" id="daily-sub">Same seed worldwide</span>
-      </button>
-    </div>
-    <div id="daily-status"></div>
-    <div id="daily-prize-banner"></div>
     <div id="legacy-intro"></div>
     <div class="intro-ver" id="game-ver-line"></div>
   </div>
