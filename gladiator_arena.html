@@ -1445,6 +1445,190 @@ html.ga-reduce-motion .mv-chevron{transition:none}
 .continue-run-btn{margin-top:6px!important;padding:10px 14px!important;font-size:10px!important;background:linear-gradient(180deg,#102818,#06140c)!important;border-color:#2a6040!important;color:#a8e8c0!important}
 .intro-ver{margin-top:10px;font-size:clamp(9px,1.05vw,10px);letter-spacing:1.5px;color:#9a7868;opacity:.95;line-height:1.45}
 
+/* ── INTRO SCREEN — grand title + skin showcase ─────────────── */
+/* Living backdrop behind the intro card */
+#intro-scr .sbg{
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 18%,rgba(255,180,90,.18) 0%,rgba(180,80,30,.08) 30%,transparent 65%),
+    radial-gradient(ellipse 80% 50% at 50% 88%,rgba(180,40,20,.18) 0%,transparent 60%),
+    linear-gradient(180deg,#020108 0%,#0a0410 18%,#160810 38%,#240a0a 58%,#3a1208 78%,#4a1808 92%,#3a1006 100%) !important;
+  overflow:hidden;
+}
+#intro-scr .sbg::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 22%,rgba(255,210,160,.05) 0%,transparent 55%),
+    radial-gradient(ellipse 60% 40% at 80% 28%,rgba(255,180,120,.05) 0%,transparent 55%);
+  mix-blend-mode:screen;animation:isbgPulse 7s ease-in-out infinite alternate;
+}
+@keyframes isbgPulse{from{opacity:.7}to{opacity:1}}
+/* Silhouetted colosseum arches at the bottom */
+#intro-scr .sbg::after{
+  content:'';position:absolute;left:-10%;right:-10%;bottom:0;height:36%;pointer-events:none;
+  background:
+    radial-gradient(ellipse 90px 80px at 8% 100%,#0c0608 60%,transparent 62%),
+    radial-gradient(ellipse 90px 80px at 24% 100%,#0c0608 60%,transparent 62%),
+    radial-gradient(ellipse 110px 96px at 50% 100%,#0c0608 60%,transparent 62%),
+    radial-gradient(ellipse 90px 80px at 76% 100%,#0c0608 60%,transparent 62%),
+    radial-gradient(ellipse 90px 80px at 92% 100%,#0c0608 60%,transparent 62%),
+    linear-gradient(180deg,transparent 0%,rgba(8,4,2,.7) 50%,#08040a 100%);
+}
+/* Embers floating in the intro background */
+.intro-ember{position:absolute;width:3px;height:3px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,#ffd080,#ff7020 55%,transparent 75%);
+  box-shadow:0 0 8px rgba(255,140,40,.7),0 0 14px rgba(255,80,20,.35);opacity:0;
+  animation:introEmber var(--ed,12s) linear infinite;animation-delay:var(--edl,0s);z-index:0}
+@keyframes introEmber{0%{opacity:0;transform:translate(0,0) scale(.6)}
+  10%{opacity:.85}
+  60%{opacity:.9;transform:translate(calc(var(--ex,40px)*.6),-40vh) scale(.95)}
+  100%{opacity:0;transform:translate(var(--ex,40px),-65vh) scale(.4)}}
+html.ga-reduce-motion .intro-ember{display:none}
+#intro-embers{position:fixed;left:0;right:0;bottom:0;height:100vh;pointer-events:none;z-index:1}
+
+/* Intro card — richer ornamental border */
+#intro-scr .sbox{
+  background:
+    radial-gradient(ellipse 90% 60% at 50% 0%,rgba(255,200,120,.07) 0%,transparent 55%),
+    linear-gradient(165deg,#1f1108 0%,#120804 30%,#0a0502 75%,#080302 100%) !important;
+  border:2px solid #6a4220 !important;
+  box-shadow:
+    0 0 60px rgba(0,0,0,.95),
+    0 0 80px rgba(220,120,40,.18),
+    inset 0 0 0 1px rgba(150,100,50,.22),
+    inset 0 1px 0 rgba(255,210,160,.12),
+    inset 0 -2px 0 rgba(0,0,0,.5) !important;
+  padding:18px 22px 22px !important;
+}
+#intro-scr .sbox::before{
+  content:'';position:absolute;inset:6px;border:1px solid rgba(220,160,90,.18);
+  border-radius:7px;pointer-events:none;
+}
+#intro-scr .sbox::after{
+  content:'';position:absolute;left:14px;right:14px;top:-3px;height:3px;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(255,210,140,.55),rgba(255,240,200,.7),rgba(255,210,140,.55),transparent);
+  filter:blur(.5px);
+}
+
+/* Grand title plate */
+.title-plate{position:relative;text-align:center;padding:6px 0 14px;margin-bottom:6px;
+  animation:titlePlateEnter .9s cubic-bezier(.2,.7,.3,1) both}
+@keyframes titlePlateEnter{0%{opacity:0;transform:translateY(-12px) scale(.96)}100%{opacity:1;transform:translateY(0) scale(1)}}
+.tp-spotlight{position:absolute;left:50%;top:-18px;transform:translateX(-50%);width:130%;height:160px;pointer-events:none;
+  background:radial-gradient(ellipse 50% 60% at 50% 30%,rgba(255,200,120,.22) 0%,rgba(255,140,60,.08) 35%,transparent 65%);
+  mix-blend-mode:screen;z-index:0}
+.tp-row{position:relative;display:flex;align-items:center;justify-content:center;gap:14px;z-index:1}
+.tp-sword{flex:0 0 auto;width:clamp(36px,8vw,56px);height:clamp(36px,8vw,56px);display:block;filter:drop-shadow(0 2px 4px rgba(0,0,0,.7)) drop-shadow(0 0 10px rgba(255,180,90,.35));
+  animation:tpSwordHover 3.6s ease-in-out infinite alternate}
+.tp-sword.right{transform:scaleX(-1)}
+@keyframes tpSwordHover{from{transform:translateY(0)}to{transform:translateY(-3px)}}
+.tp-sword.right{animation-name:tpSwordHoverR}
+@keyframes tpSwordHoverR{from{transform:scaleX(-1) translateY(0)}to{transform:scaleX(-1) translateY(-3px)}}
+.tp-title{
+  font-family:'Cinzel Decorative',serif;font-weight:700;
+  font-size:clamp(22px,5.6vw,38px);letter-spacing:clamp(2px,.6vw,5px);line-height:1.05;
+  background:linear-gradient(180deg,#fff5d8 0%,#f8d088 28%,#e8a648 55%,#a86018 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  text-shadow:0 0 28px rgba(255,180,80,.35),0 2px 0 rgba(40,20,8,.4);
+  filter:drop-shadow(0 1px 0 #2a1408) drop-shadow(0 3px 6px rgba(0,0,0,.7));
+  white-space:nowrap;
+}
+.tp-laurel{display:flex;justify-content:center;gap:8px;align-items:center;margin-top:6px;font-size:14px;color:#caa060;letter-spacing:.6em;opacity:.85}
+.tp-laurel::before,.tp-laurel::after{content:'';width:60px;height:1px;background:linear-gradient(90deg,transparent,rgba(220,160,80,.6),transparent)}
+.tp-sub{margin-top:8px;font-family:'Cinzel',serif;font-size:clamp(10px,1.15vw,12px);letter-spacing:clamp(2px,.5vw,4px);color:#d4b890;text-transform:uppercase;text-shadow:0 1px 3px rgba(0,0,0,.7)}
+.tp-flavor{margin-top:10px;font-size:clamp(12px,1.2vw,14px);color:#c0a890;line-height:1.55;font-style:italic;letter-spacing:.4px;
+  text-shadow:0 1px 2px rgba(0,0,0,.5);opacity:0;animation:tpFlavorIn .9s ease-out .3s forwards}
+@keyframes tpFlavorIn{to{opacity:.92}}
+
+/* Cascade entrance for child sections */
+.intro-extras,.meta-vault-wrap,.mode-grid,.ia-grid{animation:introSectionIn .55s cubic-bezier(.25,.7,.4,1) both}
+.ia-grid{animation-delay:.18s}
+.intro-extras{animation-delay:.30s}
+.meta-vault-wrap{animation-delay:.40s}
+.mode-grid{animation-delay:.50s}
+@keyframes introSectionIn{0%{opacity:0;transform:translateY(8px)}100%{opacity:1;transform:translateY(0)}}
+html.ga-reduce-motion .title-plate,
+html.ga-reduce-motion .intro-extras,
+html.ga-reduce-motion .meta-vault-wrap,
+html.ga-reduce-motion .mode-grid,
+html.ga-reduce-motion .ia-grid,
+html.ga-reduce-motion .tp-flavor,
+html.ga-reduce-motion .tp-sword{animation:none!important;opacity:1!important;transform:none!important}
+
+/* ── Skin showcase ─────────────────────────────────────── */
+.skin-show{
+  position:relative;margin:14px 0 8px;padding:14px 12px 12px;
+  border:1px solid #5a3a18;border-radius:10px;
+  background:
+    radial-gradient(ellipse 80% 55% at 50% 18%,rgba(255,180,80,.10) 0%,transparent 55%),
+    linear-gradient(165deg,rgba(20,12,6,.78),rgba(8,4,2,.66));
+  box-shadow:inset 0 1px 0 rgba(255,200,120,.07),inset 0 0 0 1px rgba(120,80,40,.18),0 6px 20px rgba(0,0,0,.45);
+  overflow:hidden;
+}
+.skin-show::before{
+  content:'';position:absolute;left:8px;right:8px;top:6px;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(232,184,75,.45),transparent);
+}
+.skin-show-label{display:block;font-size:clamp(9px,1vw,10px);letter-spacing:3px;color:#caa060;text-transform:uppercase;margin-bottom:8px;text-align:center;font-weight:700}
+.skin-stage{position:relative;display:flex;align-items:center;justify-content:center;gap:10px;min-height:170px}
+.skin-arrow{
+  flex:0 0 auto;width:38px;height:60px;border-radius:8px;border:1px solid #5a3a18;
+  background:linear-gradient(180deg,#1c1006,#0c0602);
+  color:#e8c890;font-family:'Cinzel',serif;font-size:24px;line-height:1;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:inset 0 1px 0 rgba(255,210,160,.1),0 2px 6px rgba(0,0,0,.5);
+  transition:all .15s ease;
+}
+.skin-arrow:hover{background:linear-gradient(180deg,#2a1808,#140804);border-color:#8a5820;color:#fff0c8;box-shadow:inset 0 1px 0 rgba(255,210,160,.15),0 2px 10px rgba(232,184,75,.25)}
+.skin-arrow:active{transform:translateY(1px) scale(.97)}
+.skin-pedestal{
+  position:relative;flex:1;max-width:200px;height:184px;display:flex;align-items:flex-end;justify-content:center;
+}
+.skin-pedestal::before{
+  content:'';position:absolute;left:50%;bottom:0;transform:translateX(-50%);
+  width:170px;height:28px;border-radius:50% 50% 6px 6px;
+  background:linear-gradient(180deg,#5a3a18 0%,#3a2210 60%,#1a0c06 100%);
+  border-top:1px solid #7a5028;
+  box-shadow:0 4px 10px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,210,160,.18),inset 0 -2px 4px rgba(0,0,0,.5);
+}
+.skin-pedestal::after{
+  content:'';position:absolute;left:50%;bottom:24px;transform:translateX(-50%);
+  width:148px;height:8px;border-radius:50%;
+  background:radial-gradient(ellipse 60% 100% at 50% 50%,rgba(0,0,0,.55) 0%,transparent 65%);
+  filter:blur(.5px);
+}
+.skin-glow{
+  position:absolute;left:50%;bottom:6px;transform:translateX(-50%);
+  width:160px;height:140px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(ellipse 50% 60% at 50% 50%,rgba(255,180,80,.25) 0%,rgba(255,140,60,.12) 35%,transparent 65%);
+  filter:blur(2px);animation:skinGlowPulse 3.2s ease-in-out infinite alternate;
+}
+@keyframes skinGlowPulse{from{opacity:.6;transform:translateX(-50%) scale(.98)}to{opacity:1;transform:translateX(-50%) scale(1.05)}}
+html.ga-reduce-motion .skin-glow{animation:none}
+.skin-fig{
+  position:relative;z-index:2;display:flex;align-items:flex-end;justify-content:center;
+  padding-bottom:24px;
+  animation:skinIdleBob 3s ease-in-out infinite alternate;
+  filter:drop-shadow(0 6px 12px rgba(0,0,0,.95)) drop-shadow(0 2px 4px rgba(0,0,0,.7));
+}
+.skin-fig svg{display:block;transform:scale(1.05);transform-origin:center bottom}
+@keyframes skinIdleBob{from{transform:translateY(0)}to{transform:translateY(-3px)}}
+html.ga-reduce-motion .skin-fig{animation:none}
+.skin-fig.swap-out{animation:skinSwapOut .25s ease-in forwards}
+.skin-fig.swap-in{animation:skinSwapIn .35s cubic-bezier(.2,.7,.3,1) forwards}
+@keyframes skinSwapOut{0%{opacity:1;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(0) scale(.85) rotate(-3deg)}}
+@keyframes skinSwapIn{0%{opacity:0;transform:translateY(0) scale(.85) rotate(3deg)}100%{opacity:1;transform:translateY(0) scale(1) rotate(0)}}
+
+/* Skin info caption */
+.skin-info{text-align:center;margin-top:10px;min-height:48px}
+.skin-info .skin-name{font-family:'Cinzel Decorative',serif;font-size:clamp(15px,1.6vw,18px);font-weight:700;color:#f0c878;letter-spacing:2.5px;text-shadow:0 0 14px rgba(232,184,75,.4),0 1px 3px rgba(0,0,0,.85);line-height:1.2}
+.skin-info .skin-desc{margin-top:4px;font-size:clamp(11px,1.1vw,12.5px);color:#c0a890;font-style:italic;line-height:1.5;letter-spacing:.3px}
+.skin-info.transition .skin-name,.skin-info.transition .skin-desc{animation:skinInfoFlip .35s cubic-bezier(.2,.7,.3,1)}
+@keyframes skinInfoFlip{0%{opacity:0;transform:translateY(4px)}100%{opacity:1;transform:translateY(0)}}
+
+/* Skin chip row inside the showcase */
+.skin-show .skin-chips{margin-top:10px}
+.skin-show .skin-chip{padding:6px 12px;font-size:clamp(10px,1vw,11px)}
+
 /* Shop affordance */
 @keyframes shopAffordPulse{0%,100%{box-shadow:inset 0 0 0 1px rgba(232,184,75,.25)}50%{box-shadow:inset 0 0 0 2px rgba(232,184,75,.55),0 0 18px rgba(232,184,75,.2)}}
 html:not(.ga-reduce-motion) .si.shop-afford-pulse{animation:shopAffordPulse 1.5s ease-in-out infinite}
@@ -1918,11 +2102,57 @@ html.ga-reduce-motion .hpghost{transition:none!important}
 <!-- ══ INTRO ══════════════════════════════════════════════ -->
 <div class="scr" id="intro-scr">
   <div class="sbg"></div>
+  <div id="intro-embers" aria-hidden="true">
+    <div class="intro-ember" style="left:8%;bottom:-20px;--ed:13s;--edl:0s;--ex:50px"></div>
+    <div class="intro-ember" style="left:18%;bottom:-20px;--ed:15s;--edl:-3s;--ex:-40px"></div>
+    <div class="intro-ember" style="left:32%;bottom:-20px;--ed:17s;--edl:-7s;--ex:55px"></div>
+    <div class="intro-ember" style="left:46%;bottom:-20px;--ed:14s;--edl:-2s;--ex:-45px"></div>
+    <div class="intro-ember" style="left:58%;bottom:-20px;--ed:16s;--edl:-9s;--ex:42px"></div>
+    <div class="intro-ember" style="left:72%;bottom:-20px;--ed:13.5s;--edl:-5s;--ex:-50px"></div>
+    <div class="intro-ember" style="left:86%;bottom:-20px;--ed:15.5s;--edl:-11s;--ex:38px"></div>
+    <div class="intro-ember" style="left:24%;bottom:-20px;--ed:18s;--edl:-13s;--ex:-30px;width:2px;height:2px"></div>
+    <div class="intro-ember" style="left:64%;bottom:-20px;--ed:19s;--edl:-6s;--ex:60px;width:2px;height:2px"></div>
+    <div class="intro-ember" style="left:92%;bottom:-20px;--ed:14.5s;--edl:-10s;--ex:-32px;width:2px;height:2px"></div>
+  </div>
   <div class="sbox">
-    <span class="sico">⚔️</span>
-    <div class="stit">GLADIATOR ARENA</div>
-    <div class="ssub">Eighteen rounds. One champion.</div>
-    <div class="sbod">Survive the trial.<br>Earn gold. Upgrade. Discover your power.</div>
+    <div class="title-plate">
+      <div class="tp-spotlight" aria-hidden="true"></div>
+      <div class="tp-row">
+        <svg class="tp-sword" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="tpBlade" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#fff8dc"/>
+              <stop offset="50%" stop-color="#dcc080"/>
+              <stop offset="100%" stop-color="#7a5018"/>
+            </linearGradient>
+            <linearGradient id="tpHilt" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#f8d088"/>
+              <stop offset="100%" stop-color="#7a4818"/>
+            </linearGradient>
+          </defs>
+          <!-- blade -->
+          <polygon points="48,8 56,16 22,50 14,42" fill="url(#tpBlade)" stroke="#5a3818" stroke-width="1"/>
+          <polygon points="48,8 52,12 22,42 18,38" fill="rgba(255,255,255,.35)"/>
+          <!-- guard -->
+          <rect x="10" y="40" width="22" height="5" rx="1" transform="rotate(-45 21 42.5)" fill="url(#tpHilt)" stroke="#3a1c0a" stroke-width="1"/>
+          <!-- grip -->
+          <rect x="6" y="46" width="14" height="4" rx="1" transform="rotate(-45 13 48)" fill="#2c1808" stroke="#5a3a18" stroke-width=".8"/>
+          <!-- pommel -->
+          <circle cx="9" cy="55" r="3.5" fill="url(#tpHilt)" stroke="#3a1c0a" stroke-width="1"/>
+        </svg>
+        <div class="tp-title">GLADIATOR<br>ARENA</div>
+        <svg class="tp-sword right" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <polygon points="48,8 56,16 22,50 14,42" fill="url(#tpBlade)" stroke="#5a3818" stroke-width="1"/>
+          <polygon points="48,8 52,12 22,42 18,38" fill="rgba(255,255,255,.35)"/>
+          <rect x="10" y="40" width="22" height="5" rx="1" transform="rotate(-45 21 42.5)" fill="url(#tpHilt)" stroke="#3a1c0a" stroke-width="1"/>
+          <rect x="6" y="46" width="14" height="4" rx="1" transform="rotate(-45 13 48)" fill="#2c1808" stroke="#5a3a18" stroke-width=".8"/>
+          <circle cx="9" cy="55" r="3.5" fill="url(#tpHilt)" stroke="#3a1c0a" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="tp-laurel" aria-hidden="true">✦ ✦ ✦</div>
+      <div class="tp-sub">Blood · Glory · Rome</div>
+      <div class="tp-flavor">Eighteen rounds. One champion. Earn gold, claim loot, and discover your power.</div>
+    </div>
     <div class="ia-grid">
       <div class="ia-item"><b>⚔ Slash</b><br>Reliable every turn</div>
       <div class="ia-item"><b>🗡 Thrust</b><br>63% hit — high dmg</div>
@@ -1949,9 +2179,19 @@ html.ga-reduce-motion .hpghost{transition:none!important}
         <label class="ilab"><input type="checkbox" id="set-motion" title="Less motion / shake"> Reduce screen FX</label>
         <label class="ilab"><input type="checkbox" id="set-logfilter" title="Hide routine combat lines"> Combat log: highlights only</label>
       </div>
-      <div class="skin-row-wrap" style="margin-top:8px;padding:8px 12px 10px;background:rgba(8,4,2,.45);border:1px solid #3a2010;border-radius:6px">
-        <div class="intro-row" style="justify-content:center;margin-bottom:0">
-          <span class="ilab" style="margin-right:6px">Gladiator skin</span>
+      <div class="skin-show" id="skin-show">
+        <span class="skin-show-label">Choose your gladiator</span>
+        <div class="skin-stage">
+          <button type="button" class="skin-arrow" id="skin-prev" onclick="cycleSkin(-1)" aria-label="Previous skin">‹</button>
+          <div class="skin-pedestal">
+            <div class="skin-glow" aria-hidden="true"></div>
+            <div class="skin-fig" id="skin-fig" aria-hidden="true"></div>
+          </div>
+          <button type="button" class="skin-arrow" id="skin-next" onclick="cycleSkin(1)" aria-label="Next skin">›</button>
+        </div>
+        <div class="skin-info" id="skin-info">
+          <div class="skin-name" id="skin-name">Sand Champion</div>
+          <div class="skin-desc" id="skin-desc">Pride of the legions — bronze, plume, and pride.</div>
         </div>
         <div class="skin-chips" id="skin-chips">
           <button type="button" class="skin-chip" data-skin="classic" onclick="selectPlayerSkin('classic')">Sand</button>
@@ -2301,11 +2541,67 @@ function syncSkinChipStyles(){
     b.classList.toggle('on',(b.dataset.skin||'')===id);
   });
 }
-function selectPlayerSkin(id){
+// Skin metadata — display name + flavor text for the showcase
+const SKIN_META={
+  classic:{name:'Sand Champion',desc:'Pride of the legions — bronze, plume, and Roman steel.'},
+  crimson:{name:'Crimson Praetor',desc:'Sworn to the imperial blood. Fear walks ahead of him.'},
+  ebony:{name:'Ebony Watch',desc:'Cold steel beneath the moon. Silent. Patient. Lethal.'},
+  azure:{name:'Azure Tribune',desc:'Storm-marked, sea-blooded — the gods of weather watch.'},
+};
+const SKIN_ORDER=['classic','crimson','ebony','azure'];
+
+function getCurrentSkinId(){
+  return (typeof loadGameSettings==='function'&&(loadGameSettings().skinId||''))||'classic';
+}
+
+// Render the skin showcase (figure + name + desc). dir: -1/1 for swap animation, 0/undefined for instant.
+function renderSkinShowcase(dir){
+  const fig=document.getElementById('skin-fig');
+  const name=document.getElementById('skin-name');
+  const desc=document.getElementById('skin-desc');
+  const info=document.getElementById('skin-info');
+  if(!fig||!name||!desc)return;
+  const id=getCurrentSkinId();
+  const meta=SKIN_META[id]||SKIN_META.classic;
+  const reduce=document.documentElement.classList.contains('ga-reduce-motion');
+  const apply=()=>{
+    fig.innerHTML=PLAYER_SKINS[id]||PLAYER_SKINS.classic;
+    name.textContent=meta.name;
+    desc.textContent=meta.desc;
+    if(info){info.classList.remove('transition');void info.offsetWidth;info.classList.add('transition');}
+    if(!reduce){
+      fig.classList.remove('swap-out','swap-in');
+      void fig.offsetWidth;
+      fig.classList.add('swap-in');
+      setTimeout(()=>{try{fig.classList.remove('swap-in');}catch(_){}},400);
+    }
+  };
+  if(dir&&!reduce){
+    fig.classList.remove('swap-in');
+    void fig.offsetWidth;
+    fig.classList.add('swap-out');
+    setTimeout(apply,180);
+  }else{
+    apply();
+  }
+}
+
+// Cycle to next/prev skin in SKIN_ORDER
+function cycleSkin(dir){
+  const cur=getCurrentSkinId();
+  let i=SKIN_ORDER.indexOf(cur);if(i<0)i=0;
+  const len=SKIN_ORDER.length;
+  const ni=((i+(dir|0))%len+len)%len;
+  const nid=SKIN_ORDER[ni];
+  selectPlayerSkin(nid,dir|0);
+}
+
+function selectPlayerSkin(id,dir){
   if(!PLAYER_SKINS[id])return;
   if(typeof saveGameSettings==='function')saveGameSettings({skinId:id});
   if(typeof G!=='undefined'&&G&&G.player)G.player.skinId=id;
   syncSkinChipStyles();
+  if(typeof renderSkinShowcase==='function')renderSkinShowcase(dir||0);
   const panel=document.getElementById('panel');
   if(panel&&!panel.classList.contains('hidden')&&typeof G!=='undefined'&&G&&G.player&&G.enemy){
     const ps=document.getElementById('psprite');
@@ -10545,6 +10841,7 @@ function syncIntroControlsFromStorage(){
   const lf=document.getElementById('set-logfilter');
   if(lf)lf.checked=!!s.logImportantOnly;
   if(typeof syncSkinChipStyles==='function')syncSkinChipStyles();
+  if(typeof renderSkinShowcase==='function')renderSkinShowcase();
 }
 // Tiny deferred boot so both script blocks are parsed first
 window.addEventListener('DOMContentLoaded',()=>{
