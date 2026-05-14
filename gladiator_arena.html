@@ -505,6 +505,54 @@ html.ga-reduce-motion .tg-glow{animation:none}
 .li-bar{width:100%;height:4px;background:rgba(0,0,0,.4);border-radius:2px;overflow:hidden;margin-top:4px}
 .li-fill{height:100%;background:linear-gradient(90deg,#6040a0,#9060cc);border-radius:2px;transition:width .6s}
 
+/* ── CHAMPION LEVEL SYSTEM ────────────────────────────────*/
+#level-hud{position:absolute;top:10px;right:12px;z-index:6;pointer-events:none;text-align:right}
+.lvl-row{display:inline-flex;align-items:center;gap:5px;font-size:clamp(9px,1vw,10px);font-weight:700;letter-spacing:1.2px;color:#d8b070;line-height:1.4;text-shadow:0 1px 4px rgba(0,0,0,.9);background:linear-gradient(135deg,rgba(40,22,8,.78),rgba(20,10,4,.78));padding:3px 8px;border-radius:4px;border:1px solid rgba(200,140,60,.4);box-shadow:0 1px 6px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,210,140,.18)}
+.lvl-row .lvl-ico{color:#ffd070;text-shadow:0 0 8px rgba(255,200,80,.55)}
+.lvl-row b{color:#ffe8a0}
+.lvl-row.lvl-max{color:#ffd870;border-color:rgba(255,220,120,.7);box-shadow:0 0 12px rgba(255,200,80,.35),inset 0 1px 0 rgba(255,240,180,.3)}
+.lvl-row.lvl-max b{color:#fff8d0;text-shadow:0 0 10px rgba(255,220,120,.7)}
+.lvl-xpbar{margin-top:3px;width:96px;height:4px;background:rgba(0,0,0,.55);border-radius:2px;overflow:hidden;border:1px solid rgba(120,80,30,.5);box-shadow:inset 0 1px 2px rgba(0,0,0,.6)}
+.lvl-xpfill{height:100%;background:linear-gradient(90deg,#8a5018,#e8b048,#ffd870);border-radius:2px;transition:width .5s ease-out;box-shadow:0 0 6px rgba(255,200,80,.4)}
+.lvl-xpbar.lvl-max-bar .lvl-xpfill{background:linear-gradient(90deg,#ffd870,#fff8d0,#ffd870);animation:lvlMaxShimmer 2.4s ease-in-out infinite}
+@keyframes lvlMaxShimmer{from{filter:brightness(1)}to{filter:brightness(1.35)}}
+
+/* Level info panel on intro */
+#level-intro{margin-top:14px;border-top:1px solid #3a2412;padding-top:10px;min-height:20px}
+.lvl-intro-row{font-size:clamp(10px,1.05vw,12px);color:#d8a868;letter-spacing:1.4px;line-height:1.7;text-align:center;font-family:'Cinzel',serif;font-weight:700}
+.lvl-intro-row b{color:#ffd870;text-shadow:0 0 10px rgba(255,200,80,.4)}
+.lvl-intro-row.lvl-intro-max b{color:#fff8d0;text-shadow:0 0 14px rgba(255,220,120,.7)}
+.lvl-intro-bonus{font-size:clamp(8px,.9vw,10px);color:#9a7050;letter-spacing:1px;margin-top:4px;text-align:center;line-height:1.5}
+.lvl-intro-bonus b{color:#e8b070}
+.lvl-intro-bar{width:100%;height:6px;background:rgba(0,0,0,.5);border-radius:3px;overflow:hidden;margin-top:6px;border:1px solid rgba(120,80,30,.5);box-shadow:inset 0 1px 2px rgba(0,0,0,.6)}
+.lvl-intro-fill{height:100%;background:linear-gradient(90deg,#8a5018,#e8b048,#ffd870);border-radius:3px;transition:width .6s ease-out;box-shadow:0 0 8px rgba(255,200,80,.4)}
+.lvl-intro-xp{font-size:clamp(8px,.85vw,9px);color:#806048;letter-spacing:.8px;margin-top:3px;text-align:center}
+.lvl-intro-xp b{color:#c89060}
+
+/* Level-up toast */
+#levelup-toast{position:fixed;top:22%;left:50%;transform:translateX(-50%);z-index:420;pointer-events:none;
+  background:linear-gradient(135deg,#2a1808,#1a0c04 60%,#2a1808);border:2px solid #c89048;border-radius:8px;
+  padding:14px 28px;text-align:center;min-width:260px;
+  box-shadow:0 0 38px rgba(255,200,80,.45),0 0 80px rgba(255,160,40,.18),inset 0 1px 0 rgba(255,220,140,.22)}
+#levelup-toast.show{animation:lvlupToast 4.2s ease-out forwards}
+@keyframes lvlupToast{
+  0%{opacity:0;transform:translateX(-50%) translateY(-14px) scale(.92)}
+  10%{opacity:1;transform:translateX(-50%) translateY(0) scale(1.06)}
+  20%{transform:translateX(-50%) translateY(0) scale(1)}
+  86%{opacity:1}
+  100%{opacity:0;transform:translateX(-50%) translateY(-8px) scale(1)}
+}
+.lvlup-ico{font-size:26px;display:block;margin-bottom:4px;filter:drop-shadow(0 0 12px rgba(255,200,80,.7))}
+.lvlup-title{font-family:'Cinzel Decorative',serif;font-size:14px;font-weight:700;color:#ffd870;letter-spacing:3px;text-shadow:0 0 14px rgba(255,200,80,.7)}
+.lvlup-lvl{font-family:'Cinzel',serif;font-size:11px;color:#f0c870;letter-spacing:2px;margin-top:4px}
+.lvlup-lvl b{color:#fff8d0;text-shadow:0 0 8px rgba(255,220,140,.6);font-size:16px}
+.lvlup-gains{font-size:9px;color:#c89060;letter-spacing:1.4px;margin-top:6px;text-transform:uppercase}
+.lvlup-gains b{color:#ffe8a0}
+
+/* XP gain micro-text on victory */
+.xp-gain{font-size:10px;color:#e8b070;letter-spacing:1.5px;font-weight:700;text-shadow:0 0 8px rgba(255,180,60,.4);text-align:center;margin-top:4px}
+.xp-gain b{color:#ffd870}
+
 /* ── WARLORD'S ECHO ───────────────────────────────────────*/
 #echo-ach{position:fixed;inset:0;z-index:350;display:flex;align-items:center;justify-content:center;pointer-events:none}
 #echo-bg{position:absolute;inset:0;animation:echobg 5s ease-out forwards}
@@ -1748,6 +1796,66 @@ html.ga-reduce-motion .continue-banner .cb-arrow{animation:none}
   .skin-pedestal{height:170px}
 }
 
+/* ── DAILY 'NEW' badge ─────────────────────────────────── */
+.daily-new-badge{
+  position:absolute;top:6px;right:8px;z-index:3;
+  font-family:'Cinzel',serif;font-size:9px;font-weight:700;letter-spacing:1.4px;
+  background:linear-gradient(180deg,#fff5b8,#e8a040 60%,#a85a18);
+  color:#3a1a04;text-transform:uppercase;
+  padding:3px 7px;border-radius:4px;border:1px solid #c08020;
+  box-shadow:0 0 12px rgba(255,200,80,.5),inset 0 1px 0 rgba(255,250,200,.5);
+  display:none;text-shadow:none;
+  animation:dailyNewPulse 1.4s ease-in-out infinite alternate;
+}
+.mode-daily.mode-fresh .daily-new-badge{display:block}
+@keyframes dailyNewPulse{
+  from{transform:scale(1);box-shadow:0 0 6px rgba(255,200,80,.35),inset 0 1px 0 rgba(255,250,200,.5)}
+  to{transform:scale(1.08);box-shadow:0 0 18px rgba(255,200,80,.85),0 0 28px rgba(255,160,60,.45),inset 0 1px 0 rgba(255,250,200,.5)}
+}
+html.ga-reduce-motion .daily-new-badge{animation:none}
+/* The fresh state pulses the daily button border so it draws even more attention */
+.mode-daily.mode-fresh{animation:dailyFreshGlow 2.6s ease-in-out infinite alternate}
+@keyframes dailyFreshGlow{
+  from{box-shadow:0 4px 16px rgba(0,0,0,.55),0 0 12px rgba(140,100,255,.18),inset 0 1px 0 rgba(255,210,160,.1),inset 0 -2px 0 rgba(0,0,0,.4)}
+  to{box-shadow:0 4px 16px rgba(0,0,0,.55),0 0 26px rgba(180,140,255,.4),inset 0 1px 0 rgba(255,210,160,.1),inset 0 -2px 0 rgba(0,0,0,.4)}
+}
+html.ga-reduce-motion .mode-daily.mode-fresh{animation:none}
+
+/* ── VAULT next-unlock preview ────────────────────────── */
+.mv-next-unlock{
+  display:flex;align-items:center;gap:8px;
+  padding:8px 12px;margin:0;
+  background:linear-gradient(180deg,rgba(40,28,12,.7),rgba(20,12,6,.5));
+  border-bottom:1px solid #4a3018;
+  font-family:'Cinzel',serif;font-size:clamp(10px,1.05vw,11.5px);
+  color:#d8b888;letter-spacing:.4px;line-height:1.35;
+  text-shadow:0 1px 2px rgba(0,0,0,.5);
+}
+.mv-next-unlock .mvp-label{font-size:9px;letter-spacing:1.5px;color:#a88858;text-transform:uppercase;font-weight:700;margin-right:2px}
+.mv-next-unlock .mvp-icon{font-size:14px;line-height:1;flex-shrink:0}
+.mv-next-unlock .mvp-name{font-weight:700;color:#f0c878;letter-spacing:.5px;flex-shrink:0}
+.mv-next-unlock .mvp-cost{margin-left:auto;font-size:10px;color:#a88858;flex-shrink:0;white-space:nowrap}
+.mv-next-unlock .mvp-cost.mvp-aff{color:#7ae020;font-weight:700;text-shadow:0 0 8px rgba(120,220,32,.45),0 1px 2px rgba(0,0,0,.5)}
+.mv-next-unlock.mvp-empty{justify-content:center;color:#caa060;font-style:italic}
+
+/* ── INTRO STATS FOOTER ─────────────────────────────── */
+.intro-stats{
+  margin:14px 0 4px;padding:10px 12px;
+  display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;justify-content:center;
+  font-family:'Cinzel',serif;font-size:clamp(10px,1.05vw,11.5px);
+  color:#b09078;letter-spacing:.5px;line-height:1.45;
+  border-top:1px solid #3a2412;border-bottom:1px solid #3a2412;
+  background:linear-gradient(180deg,rgba(20,12,6,.4),rgba(10,6,4,.25));
+  text-shadow:0 1px 2px rgba(0,0,0,.5);
+  animation:introSectionIn .55s cubic-bezier(.25,.7,.4,1) both;animation-delay:.65s;
+}
+html.ga-reduce-motion .intro-stats{animation:none!important;opacity:1!important;transform:none!important}
+.intro-stats .stat{display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+.intro-stats .stat b{color:#f0c878;font-weight:700}
+.intro-stats .stat .sicon{font-size:13px;line-height:1;opacity:.85}
+.intro-stats.empty{display:none}
+.intro-stats .stat.streak b{color:#ffb060}
+
 /* Shop affordance */
 @keyframes shopAffordPulse{0%,100%{box-shadow:inset 0 0 0 1px rgba(232,184,75,.25)}50%{box-shadow:inset 0 0 0 2px rgba(232,184,75,.55),0 0 18px rgba(232,184,75,.2)}}
 html:not(.ga-reduce-motion) .si.shop-afford-pulse{animation:shopAffordPulse 1.5s ease-in-out infinite}
@@ -2149,10 +2257,15 @@ html.ga-reduce-motion .hpghost{transition:none!important}
 
   <!-- Legacy persistent badge -->
   <div id="legacy-hud"></div>
+  <!-- Champion level HUD -->
+  <div id="level-hud"></div>
   <div id="daily-badge" class="hidden"></div>
 
   <!-- Milestone unlock toast -->
   <div id="milestone-toast" class="hidden"></div>
+
+  <!-- Champion level-up toast -->
+  <div id="levelup-toast" class="hidden"></div>
 
   <!-- Player -->
   <div class="fstage" id="pstage">
@@ -2304,6 +2417,7 @@ html.ga-reduce-motion .hpghost{transition:none!important}
         <span class="mode-sub">Random seed · replayable</span>
       </button>
       <button class="sbtn mode-btn mode-daily" id="daily-btn" onclick="beginDailyRun()">
+        <span class="daily-new-badge" id="daily-new-badge" aria-hidden="true">NEW</span>
         <span class="mode-ico">☀️</span>
         <span class="mode-label">DAILY #<span id="daily-num">1</span></span>
         <span class="mode-sub" id="daily-sub">Same seed worldwide</span>
@@ -2379,6 +2493,7 @@ html.ga-reduce-motion .hpghost{transition:none!important}
             <span class="mv-chevron" aria-hidden="true">▼</span>
           </span>
         </button>
+        <div class="mv-next-unlock" id="meta-vault-preview" aria-live="polite"></div>
       </div>
       <div class="mv-body hidden" id="meta-vault-body" role="region" aria-label="Arena vault shop">
         <div class="mv-collapse-bar">
@@ -2396,6 +2511,8 @@ html.ga-reduce-motion .hpghost{transition:none!important}
       </div>
     </div>
     <div id="legacy-intro"></div>
+    <div id="level-intro" aria-label="Champion level"></div>
+    <div class="intro-stats empty" id="intro-stats" aria-label="Lifetime stats"></div>
     <div class="intro-ver" id="game-ver-line"></div>
   </div>
 </div>
@@ -4686,7 +4803,7 @@ function defaultMetaVault(){
   return{
     marks:0,
     sources:{daily:0,milestone:0,echo:0,combat:0,time:0,victory:0,streak:0,claim:0,turns:0},
-    lifetime:{playMs:0,roundsWon:0,bossKills:0,fullClears:0,dailiesFinished:0,totalTurns:0,runsEnded:0},
+    lifetime:{playMs:0,roundsWon:0,bossKills:0,fullClears:0,dailiesFinished:0,totalTurns:0,runsEnded:0,bestRound:0},
     nextRun:{gold:0,str:0,def:0,agi:0,maxHp:0},
     perm:{str:0,def:0,agi:0,vit:0,eden:0},
   };
@@ -4756,6 +4873,9 @@ function metaOnRoundWin(e){
   const v=loadMetaVault();
   v.lifetime.roundsWon=(v.lifetime.roundsWon||0)+1;
   if(e.isBoss)v.lifetime.bossKills=(v.lifetime.bossKills||0)+1;
+  // Track deepest round reached (G.ei is 0-indexed; reached = ei+1)
+  const reached=((G&&G.ei|0)+1);
+  if(reached>(v.lifetime.bestRound|0))v.lifetime.bestRound=reached;
   saveMetaVault(v);
 }
 function metaOnRunEndTurns(){
@@ -5012,6 +5132,72 @@ function renderMetaVaultIntro(){
     const aff=(v.marks|0)>=it.cost?'':' disabled';
     return`<div class="mv-card"><span class="mv-ico">${it.icon}</span><div class="mv-name">${it.name}</div><div class="mv-desc">${it.desc}</div><div class="mv-cost">${it.cost} marks</div><button type="button" class="sbtn mv-buy"${aff} onclick="metaBuyItem('${it.id}')">BUY</button></div>`;
   }).join('');
+  renderVaultPreview();
+}
+
+// Find the cheapest unowned permanent ascension upgrade
+function getNextVaultUnlock(){
+  const v=loadMetaVault();
+  const pm=v.perm||{};
+  let best=null;
+  for(const def of META_PERM_SHOP){
+    const k=def.key;
+    const rk=pm[k]|0;
+    const mx=permRankMax(k);
+    if(rk>=mx)continue;
+    const cost=permUpgradeCost(k,rk);
+    if(!best||cost<best.cost)best={icon:def.icon,name:def.name,cost,rank:rk+1,max:mx};
+  }
+  return best;
+}
+
+function renderVaultPreview(){
+  const el=document.getElementById('meta-vault-preview');
+  if(!el)return;
+  const v=loadMetaVault();
+  const m=v.marks|0;
+  const next=getNextVaultUnlock();
+  if(!next){
+    el.classList.add('mvp-empty');
+    el.innerHTML='✦ All ascension paths maxed — Apotheosis active';
+    return;
+  }
+  el.classList.remove('mvp-empty');
+  const aff=m>=next.cost;
+  const costTxt=aff
+    ?`${next.cost} marks · ready`
+    :`${next.cost} marks · ${next.cost-m} more`;
+  el.innerHTML=
+    `<span class="mvp-label">Next</span>`+
+    `<span class="mvp-icon">${next.icon}</span>`+
+    `<span class="mvp-name">${next.name} <span style="opacity:.7;font-weight:400">→ Rank ${next.rank}/${next.max}</span></span>`+
+    `<span class="mvp-cost ${aff?'mvp-aff':''}">${costTxt}</span>`;
+}
+
+// Lifetime stats footer for the intro
+function renderIntroStats(){
+  const el=document.getElementById('intro-stats');
+  if(!el)return;
+  const v=loadMetaVault();
+  const lf=v.lifetime||{};
+  const best=lf.bestRound|0;
+  const clears=lf.fullClears|0;
+  const bosses=lf.bossKills|0;
+  const dailies=lf.dailiesFinished|0;
+  const streak=(typeof getCurrentStreak==='function')?(getCurrentStreak()|0):0;
+  const parts=[];
+  if(best>0)parts.push(`<span class="stat"><span class="sicon">🏆</span> Best <b>R${best}</b></span>`);
+  if(clears>0)parts.push(`<span class="stat"><span class="sicon">👑</span> <b>${clears}</b> full clear${clears===1?'':'s'}</span>`);
+  if(bosses>0)parts.push(`<span class="stat"><span class="sicon">💀</span> <b>${bosses}</b> boss${bosses===1?'':'es'} slain</span>`);
+  if(streak>0)parts.push(`<span class="stat streak"><span class="sicon">🔥</span> <b>${streak}</b>-day streak</span>`);
+  if(dailies>0)parts.push(`<span class="stat"><span class="sicon">☀</span> <b>${dailies}</b> daily</span>`);
+  if(!parts.length){
+    el.classList.add('empty');
+    el.innerHTML='';
+  }else{
+    el.classList.remove('empty');
+    el.innerHTML=parts.join('');
+  }
 }
 
 function isDailyPrizeClaimed(){
@@ -5149,6 +5335,171 @@ function claimDailyPrize(){
   updateDailyPrizeEndRow();
   if(typeof metaGrantMarks==='function')metaGrantMarks(12,'claim');
   showDailyPrizeToast(rew);
+}
+
+// ══════════════════════════════════════════════════════════
+// CHAMPION LEVEL SYSTEM — persistent XP/level across runs
+// XP earned per win scales with round and boss flag. Each
+// level grants a small permanent stat bonus. Max level: 100.
+// ══════════════════════════════════════════════════════════
+const LS_LEVEL='ga_player_level_v1';
+const LS_XP='ga_player_xp_v1';
+const LS_LIFETIME_XP='ga_player_lifetime_xp_v1';
+const MAX_PLAYER_LEVEL=100;
+
+/** XP required to advance from level L to level L+1.
+ *  Gentle quadratic curve so low levels are quick and
+ *  L100 is a serious long-term grind (~35-50 full clears). */
+function xpForLevel(L){
+  if(L>=MAX_PLAYER_LEVEL)return Infinity;
+  return Math.floor(50 + L*18 + L*L*0.5);
+}
+
+/** Cumulative XP required to reach a given level from level 1. */
+function cumulativeXpForLevel(L){
+  let t=0;
+  for(let i=1;i<L;i++)t+=xpForLevel(i);
+  return t;
+}
+
+function getPlayerLevel(){
+  try{
+    const v=parseInt(localStorage.getItem(LS_LEVEL)||'1',10);
+    if(!isFinite(v)||v<1)return 1;
+    return Math.min(MAX_PLAYER_LEVEL,v);
+  }catch(_){return 1;}
+}
+function getPlayerXP(){
+  try{
+    const v=parseInt(localStorage.getItem(LS_XP)||'0',10);
+    if(!isFinite(v)||v<0)return 0;
+    return v;
+  }catch(_){return 0;}
+}
+function getLifetimeXP(){
+  try{
+    const v=parseInt(localStorage.getItem(LS_LIFETIME_XP)||'0',10);
+    if(!isFinite(v)||v<0)return 0;
+    return v;
+  }catch(_){return 0;}
+}
+function setPlayerLevel(L){try{localStorage.setItem(LS_LEVEL,Math.max(1,Math.min(MAX_PLAYER_LEVEL,L|0)));}catch(_){}}
+function setPlayerXP(x){try{localStorage.setItem(LS_XP,Math.max(0,x|0));}catch(_){}}
+function setLifetimeXP(x){try{localStorage.setItem(LS_LIFETIME_XP,Math.max(0,x|0));}catch(_){}}
+
+/** Per-level stat bonuses. Cumulative at level L. Capped at L100. */
+function levelStatBonuses(L){
+  const lv=Math.max(0,Math.min(MAX_PLAYER_LEVEL,L|0));
+  return{
+    str:Math.floor(lv*0.35),
+    def:Math.floor(lv*0.30),
+    agi:Math.floor(lv*0.25),
+    hp:Math.floor(lv*1.5),
+    gold:lv*4,
+  };
+}
+
+/** Apply level bonuses to a freshly-created player (called from beginGame). */
+function applyPlayerLevelToPlayer(p){
+  if(!p)return null;
+  const L=getPlayerLevel();
+  if(L<=1)return{level:1,msg:null};
+  const b=levelStatBonuses(L);
+  p.str=(p.str|0)+b.str;
+  p.def=(p.def|0)+b.def;
+  p.agi=(p.agi|0)+b.agi;
+  p.maxHp=(p.maxHp|0)+b.hp;
+  p.hp=(p.hp|0)+b.hp;
+  p.gold=(p.gold|0)+b.gold;
+  const bits=[];
+  if(b.str)bits.push(`+${b.str} STR`);
+  if(b.def)bits.push(`+${b.def} DEF`);
+  if(b.agi)bits.push(`+${b.agi} AGI`);
+  if(b.hp)bits.push(`+${b.hp} HP`);
+  if(b.gold)bits.push(`+${b.gold} gold`);
+  return{level:L,msg:bits.length?`⚜ Champion Lv ${L}: ${bits.join(' · ')}`:null};
+}
+
+/** XP awarded for defeating an enemy. Scales with round, big boss bonus. */
+function computeFightXP(enemy,roundIdx){
+  const r=Math.max(0,roundIdx|0);
+  const base=30 + r*8;
+  const bossMult=(enemy&&enemy.isBoss)?3.2:1;
+  return Math.max(1,Math.floor(base*bossMult));
+}
+
+/** Award XP to the persistent champion. Handles level-ups and applies
+ *  incremental stat deltas to G.player if a run is in progress.
+ *  Returns {gained, oldLevel, newLevel, gainedLevels, atMax}. */
+function awardChampionXP(amount,opts={}){
+  amount=Math.max(0,amount|0);
+  if(amount<=0)return{gained:0,oldLevel:getPlayerLevel(),newLevel:getPlayerLevel(),gainedLevels:0,atMax:getPlayerLevel()>=MAX_PLAYER_LEVEL};
+  let level=getPlayerLevel();
+  const oldLevel=level;
+  let xp=getPlayerXP();
+  let lifetime=getLifetimeXP();
+  lifetime+=amount;
+  if(level>=MAX_PLAYER_LEVEL){
+    // Already at cap: just record lifetime XP; keep current xp at 0.
+    setLifetimeXP(lifetime);
+    setPlayerXP(0);
+    return{gained:amount,oldLevel,newLevel:level,gainedLevels:0,atMax:true};
+  }
+  xp+=amount;
+  const totals={str:0,def:0,agi:0,hp:0,gold:0};
+  while(level<MAX_PLAYER_LEVEL&&xp>=xpForLevel(level)){
+    xp-=xpForLevel(level);
+    const before=levelStatBonuses(level);
+    level++;
+    const after=levelStatBonuses(level);
+    totals.str+=after.str-before.str;
+    totals.def+=after.def-before.def;
+    totals.agi+=after.agi-before.agi;
+    totals.hp+=after.hp-before.hp;
+    totals.gold+=after.gold-before.gold;
+  }
+  if(level>=MAX_PLAYER_LEVEL)xp=0;
+  setPlayerLevel(level);
+  setPlayerXP(xp);
+  setLifetimeXP(lifetime);
+  // Apply mid-run stat deltas so the player feels the level-up immediately.
+  if(level>oldLevel&&G&&G.player){
+    const p=G.player;
+    if(totals.str)p.str=(p.str|0)+totals.str;
+    if(totals.def)p.def=(p.def|0)+totals.def;
+    if(totals.agi)p.agi=(p.agi|0)+totals.agi;
+    if(totals.hp){
+      p.maxHp=(p.maxHp|0)+totals.hp;
+      // Heal for the full HP gain — feels rewarding on level-up.
+      p.hp=Math.min(p.maxHp,(p.hp|0)+totals.hp);
+    }
+    // No mid-run gold bonus (gold reward is for start-of-run only).
+  }
+  return{gained:amount,oldLevel,newLevel:level,gainedLevels:level-oldLevel,atMax:level>=MAX_PLAYER_LEVEL,totals};
+}
+
+function showLevelUpToast(info){
+  if(!info||info.gainedLevels<=0)return;
+  const el=document.getElementById('levelup-toast');
+  if(!el)return;
+  const t=info.totals||{};
+  const bits=[];
+  if(t.str)bits.push(`+${t.str} STR`);
+  if(t.def)bits.push(`+${t.def} DEF`);
+  if(t.agi)bits.push(`+${t.agi} AGI`);
+  if(t.hp)bits.push(`+${t.hp} HP`);
+  const gains=bits.length?bits.join(' · '):'Power awakens';
+  const atMax=info.atMax;
+  const label=info.gainedLevels>1?`+${info.gainedLevels} LEVELS`:'LEVEL UP';
+  el.innerHTML=`<span class="lvlup-ico">⚜</span>
+    <div class="lvlup-title">${atMax?'MAX LEVEL':label}</div>
+    <div class="lvlup-lvl">Champion <b>Lv ${info.newLevel}</b>${atMax?' · MAXED':''}</div>
+    <div class="lvlup-gains"><b>${gains}</b></div>`;
+  el.classList.remove('hidden','show');
+  void el.offsetWidth;
+  el.classList.add('show');
+  setTimeout(()=>{try{el.classList.add('hidden');el.classList.remove('show');}catch(_){}},4200);
+  if(typeof sfxVictory==='function'){try{sfxVictory();}catch(_){}}
 }
 
 // ══════════════════════════════════════════════════════════
@@ -5659,6 +6010,15 @@ function unlockAudioFromGesture(){
   initAudio();
   resumeAudioCtx();
   setTimeout(syncAudioTapLayer,80);
+  // If the title screen is visible, kick off the intro music after a beat
+  // (resumeAudioCtx is async; give it ~120ms to actually transition to 'running')
+  setTimeout(()=>{
+    try{
+      const intro=document.getElementById('intro-scr');
+      const onIntro=intro&&!intro.classList.contains('hidden');
+      if(onIntro&&!musicOff)startIntroMusic();
+    }catch(_){}
+  },180);
 }
 
 // ══════════════════════════════════════════════════════════
@@ -5758,6 +6118,7 @@ function beginGame(isDaily,opts={}){
      runStartTurn:0,totalTurns:0,deathRound:null,wonAll:false,
      dailyMod,runStats:{dmgToEnemy:0,dmgTaken:0},_dailyModLogged:false,_dailyBonusApplied:null,_vaultBonusApplied:null};
   G._permApplyResult=applyPermanentMetaToPlayer(G.player);
+  G._levelApplyResult=applyPlayerLevelToPlayer(G.player);
   if(!_dailyMode){
     const vb=applyMetaVaultToPlayer(G.player);
     if(vb&&(vb.g||vb.s||vb.df||vb.a||vb.h))G._vaultBonusApplied=vb;
@@ -5800,6 +6161,7 @@ function updateDailyIntro(){
   }
   if(completed){
     btn.classList.add('completed');
+    btn.classList.remove('mode-fresh');
     const r = getDailyResult();
     if(r.won){
       sub.textContent = `✓ Won in ${r.totalTurns} turns`;
@@ -5808,6 +6170,8 @@ function updateDailyIntro(){
     }
   } else {
     btn.classList.remove('completed');
+    // Show "NEW" badge + glow when today's daily is available and difficulty is OK
+    btn.classList.toggle('mode-fresh',!!diffOk);
     sub.innerHTML = `Resets in <span id="daily-countdown">${formatCountdown(timeUntilNextDaily())}</span>`;
   }
   let statusHtml = '';
@@ -5816,6 +6180,7 @@ function updateDailyIntro(){
   status.innerHTML = statusHtml;
   updateDailyPrizeBanner();
   if(typeof renderMetaVaultIntro==='function')renderMetaVaultIntro();
+  if(typeof renderIntroStats==='function')renderIntroStats();
   const cr=document.getElementById('btn-continue-run');
   if(cr&&typeof peekRunSave==='function')cr.classList.toggle('hidden',!peekRunSave());
 }
@@ -5909,6 +6274,10 @@ function startFight(){
   if(G._permApplyResult&&G._permApplyResult.msg){
     addLog(G._permApplyResult.msg,'sp');
     G._permApplyResult=null;
+  }
+  if(G._levelApplyResult&&G._levelApplyResult.msg){
+    addLog(G._levelApplyResult.msg,'sp');
+    G._levelApplyResult=null;
   }
   if(G._vaultBonusApplied){
     const v=G._vaultBonusApplied;
@@ -8353,6 +8722,8 @@ function endFight(won){
   ensureInv(p);ensureLoadout(p);
   const gAdd=computeRoundGoldReward(e);
   p.gold+=gAdd;p.wins++;
+  const xpAmt=computeFightXP(e,G.ei);
+  const xpInfo=awardChampionXP(xpAmt,{source:'fight'});
   if(G.ei>=14&&unlockWarcryAscension()){
     addLog(`🔥 LEGACY AWAKENED — War Cry evolves permanently into PRIMAL HOWL!`,'sp');
     addLog(`PRIMAL HOWL: +8 STR for 3 turns, +2 Resonance, shorter cooldown.`,'sp');
@@ -8391,10 +8762,30 @@ function endFight(won){
     const d=drops[0];
     addLog(`💎 ${d.rarityLabel.toUpperCase()} LOOT — ${d.icon} ${d.name} (${lootBonusText(d)})`,'sp');
   }
+  // Champion XP gain — logged after gold/loot so it reads as the final reward
+  if(xpInfo&&xpInfo.gained>0){
+    if(xpInfo.atMax&&xpInfo.gainedLevels<=0){
+      addLog(`⚜ +${xpInfo.gained} XP earned (Champion is at MAX Lv ${MAX_PLAYER_LEVEL}).`,'sp');
+    }else{
+      addLog(`⚜ +${xpInfo.gained} XP earned.`,'sp');
+    }
+    if(xpInfo.gainedLevels>0){
+      const t=xpInfo.totals||{};
+      const bits=[];
+      if(t.str)bits.push(`+${t.str} STR`);
+      if(t.def)bits.push(`+${t.def} DEF`);
+      if(t.agi)bits.push(`+${t.agi} AGI`);
+      if(t.hp)bits.push(`+${t.hp} HP`);
+      const gainTxt=bits.length?` (${bits.join(' · ')})`:'';
+      addLog(`⚜ LEVEL UP! Champion is now Lv ${xpInfo.newLevel}${xpInfo.atMax?' · MAX':''}${gainTxt}.`,'bsp');
+    }
+    renderLevelHUD();
+  }
   sfxVictory();
   if(typeof metaOnRoundWin==='function')metaOnRoundWin(e);
   G.busy=true;render();
   document.getElementById('esprite').classList.add('dead');
+  if(xpInfo&&xpInfo.gainedLevels>0)showLevelUpToast(xpInfo);
   setTimeout(()=>{
     G.busy=false;
     if(G.ei>=ENEMIES.length-1){showVictory();}else{showShop();}
@@ -9421,11 +9812,20 @@ function showVictory(){
     document.getElementById('end-bod').innerHTML=`You faced gladiators. You faced gods.<br>You faced the void. You faced yourself.<br><b style="color:#e8b84b">Nothing remains. You are everything.</b>`;
   }
   const rs=G.runStats||{};
+  const champL=getPlayerLevel();
+  const champXP=getPlayerXP();
+  const champAtMax=champL>=MAX_PLAYER_LEVEL;
+  const champNeed=champAtMax?0:xpForLevel(champL);
+  const champPct=champAtMax?100:Math.max(0,Math.min(100,(champXP/champNeed)*100));
+  const champProgress=champAtMax
+    ?`<div class="xp-gain">⚜ Champion <b>Lv ${champL}</b> · MAX</div>`
+    :`<div class="xp-gain">⚜ Champion <b>Lv ${champL}</b> · ${champXP.toLocaleString()} / ${champNeed.toLocaleString()} XP (${Math.floor(champPct)}%)</div>`;
   document.getElementById('end-stats').innerHTML=`
     <div class="sst">HP: <b>${p.hp}/${p.maxHp}</b></div><div class="sst">STR: <b>${p.str}</b></div>
     <div class="sst">AGI: <b>${p.agi}</b></div><div class="sst">DEF: <b>${p.def}</b></div>
     <div class="sst">Wins: <b>${p.wins}</b></div><div class="sst">Gold: <b>${p.gold}</b></div>
-    <div class="sst">Dmg dealt: <b>${rs.dmgToEnemy||0}</b></div><div class="sst">Dmg taken: <b>${rs.dmgTaken||0}</b></div>`;
+    <div class="sst">Dmg dealt: <b>${rs.dmgToEnemy||0}</b></div><div class="sst">Dmg taken: <b>${rs.dmgTaken||0}</b></div>
+    ${champProgress}`;
   if(typeof metaOnFullClear==='function')metaOnFullClear();
   if(G.daily)recordDailyResult(true);
 }
@@ -9476,10 +9876,19 @@ function showDefeat(){
     document.getElementById('end-bod').innerHTML=`The arena claims another soul.<br>You fell on Round <b style="color:#e8b84b">${G.ei+1}</b>.`;
   }
   const rs=G.runStats||{};
+  const champL=getPlayerLevel();
+  const champXP=getPlayerXP();
+  const champAtMax=champL>=MAX_PLAYER_LEVEL;
+  const champNeed=champAtMax?0:xpForLevel(champL);
+  const champPct=champAtMax?100:Math.max(0,Math.min(100,(champXP/champNeed)*100));
+  const champProgress=champAtMax
+    ?`<div class="xp-gain">⚜ Champion <b>Lv ${champL}</b> · MAX</div>`
+    :`<div class="xp-gain">⚜ Champion <b>Lv ${champL}</b> · ${champXP.toLocaleString()} / ${champNeed.toLocaleString()} XP (${Math.floor(champPct)}%)</div>`;
   document.getElementById('end-stats').innerHTML=`
     <div class="sst">STR: <b>${p.str}</b></div><div class="sst">DEF: <b>${p.def}</b></div>
     <div class="sst">AGI: <b>${p.agi}</b></div><div class="sst">Wins: <b>${p.wins}</b></div>
-    <div class="sst">Dmg dealt: <b>${rs.dmgToEnemy||0}</b></div><div class="sst">Dmg taken: <b>${rs.dmgTaken||0}</b></div>`;
+    <div class="sst">Dmg dealt: <b>${rs.dmgToEnemy||0}</b></div><div class="sst">Dmg taken: <b>${rs.dmgTaken||0}</b></div>
+    ${champProgress}`;
   if(typeof metaOnRunDefeatBonus==='function')metaOnRunDefeatBonus();
   if(G.daily)recordDailyResult(false);
 }
@@ -9517,6 +9926,7 @@ function restartGame(){
   document.getElementById('panel').classList.add('hidden');
   document.getElementById('daily-share').classList.add('hidden');
   renderLegacyIntro();
+  renderLevelIntro();
   updateDailyIntro();
   if(typeof renderMetaVaultIntro==='function')renderMetaVaultIntro();
   const cr=document.getElementById('btn-continue-run');
@@ -9668,6 +10078,46 @@ function renderLegacyHUD(){
     lines.push(`<div class="lhud-row lhud-echo">⚡ ECHO <b>+${pct}% ATK</b></div>`);
   }
   el.innerHTML=lines.join('');
+  renderLevelHUD();
+}
+
+function renderLevelHUD(){
+  const el=document.getElementById('level-hud');
+  if(!el)return;
+  const L=getPlayerLevel();
+  const xp=getPlayerXP();
+  const atMax=L>=MAX_PLAYER_LEVEL;
+  const need=atMax?0:xpForLevel(L);
+  const pct=atMax?100:Math.max(0,Math.min(100,(xp/need)*100));
+  el.innerHTML=`<div class="lvl-row${atMax?' lvl-max':''}"><span class="lvl-ico">⚜</span>LV <b>${L}</b>${atMax?' · MAX':''}</div>
+    <div class="lvl-xpbar${atMax?' lvl-max-bar':''}"><div class="lvl-xpfill" style="width:${pct}%"></div></div>`;
+}
+
+function renderLevelIntro(){
+  const el=document.getElementById('level-intro');
+  if(!el)return;
+  const L=getPlayerLevel();
+  const xp=getPlayerXP();
+  const lifetime=getLifetimeXP();
+  const atMax=L>=MAX_PLAYER_LEVEL;
+  const need=atMax?0:xpForLevel(L);
+  const pct=atMax?100:Math.max(0,Math.min(100,(xp/need)*100));
+  const b=levelStatBonuses(L);
+  const bonusBits=[];
+  if(b.str)bonusBits.push(`<b>+${b.str}</b> STR`);
+  if(b.def)bonusBits.push(`<b>+${b.def}</b> DEF`);
+  if(b.agi)bonusBits.push(`<b>+${b.agi}</b> AGI`);
+  if(b.hp)bonusBits.push(`<b>+${b.hp}</b> HP`);
+  if(b.gold)bonusBits.push(`<b>+${b.gold}</b> gold`);
+  const bonusLine=bonusBits.length?bonusBits.join(' · '):'No bonuses yet — win fights to earn XP';
+  const xpLine=atMax
+    ?`Lifetime XP earned: <b>${lifetime.toLocaleString()}</b>`
+    :`XP <b>${xp.toLocaleString()}</b> / <b>${need.toLocaleString()}</b> · Lifetime <b>${lifetime.toLocaleString()}</b>`;
+  el.innerHTML=`
+    <div class="lvl-intro-row${atMax?' lvl-intro-max':''}">⚜ Champion <b>Lv ${L}</b>${atMax?' · MAX':` / ${MAX_PLAYER_LEVEL}`}</div>
+    <div class="lvl-intro-bonus">${bonusLine}</div>
+    <div class="lvl-intro-bar"><div class="lvl-intro-fill" style="width:${pct}%"></div></div>
+    <div class="lvl-intro-xp">${xpLine}</div>`;
 }
 
 function renderLegacyIntro(){
@@ -9786,9 +10236,23 @@ function triggerGodsHand(){
     setTimeout(()=>{
       const gAdd=computeRoundGoldReward(e);
       p.gold+=gAdd;p.wins++;
+      const xpAmt=computeFightXP(e,G.ei);
+      const xpInfo=awardChampionXP(xpAmt,{source:'godshand'});
       addLog(`God's Hand fells ${e.name}! +${gAdd} gold!`,'sp');
+      if(xpInfo&&xpInfo.gained>0){
+        if(xpInfo.atMax&&xpInfo.gainedLevels<=0){
+          addLog(`⚜ +${xpInfo.gained} XP earned (Champion is at MAX Lv ${MAX_PLAYER_LEVEL}).`,'sp');
+        }else{
+          addLog(`⚜ +${xpInfo.gained} XP earned.`,'sp');
+        }
+        if(xpInfo.gainedLevels>0){
+          addLog(`⚜ LEVEL UP! Champion is now Lv ${xpInfo.newLevel}${xpInfo.atMax?' · MAX':''}.`,'bsp');
+        }
+        renderLevelHUD();
+      }
       sfxVictory();
       document.getElementById('esprite').classList.add('dead');
+      if(xpInfo&&xpInfo.gainedLevels>0)showLevelUpToast(xpInfo);
       setTimeout(()=>{G.busy=false;if(G.ei>=ENEMIES.length-1)showVictory();else showShop();},900);
     },500);
   }
@@ -10136,6 +10600,9 @@ let AC=null,mGain=null,sGain=null;
 let musicOff=false,sfxOff=false;
 let arenaMusicLoopBuf=null;
 let musicLoopSource=null,musicFilterNode=null,musicMoodTimer=null;
+// Intro / title-screen music — softer lyre + taiko
+let arenaIntroLoopBuf=null;
+let introMusicSource=null,introMusicFilter=null,introMusicGain=null;
 
 function resumeAudioCtx(){
   if(AC&&AC.state==='suspended'){
@@ -10241,12 +10708,21 @@ function toggleMusic(){
   if(b)b.style.opacity=musicOff?'0.35':'1';
   if(musicOff){
     stopMusic();
+    stopIntroMusic();
     if(mGain)mGain.gain.value=0;
   }else{
     if(!AC)initAudio();
     if(mGain)mGain.gain.value=0.34;
     resumeAudioCtx();
-    if(AC&&!musicLoopSource)startMusic();
+    // Start whichever loop matches the current screen
+    const intro=document.getElementById('intro-scr');
+    const panel=document.getElementById('panel');
+    const onIntro=intro&&!intro.classList.contains('hidden');
+    const onFight=panel&&!panel.classList.contains('hidden');
+    if(AC){
+      if(onFight&&!musicLoopSource)startMusic();
+      else if(onIntro&&!introMusicSource)startIntroMusic();
+    }
   }
 }
 
@@ -10260,6 +10736,7 @@ function toggleSFX(){
 function startMusic(){
   if(musicOff||!AC)return;
   if(musicLoopSource)return;
+  stopIntroMusic();
   stopMusic();
   buildArenaMusicLoopBuffer(AC);
   musicFilterNode=AC.createBiquadFilter();
@@ -10298,6 +10775,145 @@ function stopMusic(){
     try{musicFilterNode.disconnect();}catch(e){}
     musicFilterNode=null;
   }
+}
+
+/* ── INTRO MUSIC — soft lyre + slow taiko-style pulse ─────────
+ * Plays on the title screen. Lower-volume, more atmospheric than the
+ * fight loop. Auto-starts after the first user gesture (audio unlock)
+ * if the intro is visible, and stops when a run begins. */
+function buildArenaIntroLoopBuffer(ctx){
+  if(arenaIntroLoopBuf)return arenaIntroLoopBuf;
+  const bpm=62;
+  const bars=4;
+  const spb=60/bpm;
+  const lenSec=bars*4*spb;
+  const sr=Math.max(22050,(ctx.sampleRate|0))||44100;
+  const n=Math.floor(sr*lenSec);
+  const buf=ctx.createBuffer(2,n,sr);
+  const tn=i=>{const x=Math.sin((i+1)*12.9898)*43758.5453;return x-Math.floor(x);};
+  // Lyre arpeggio (D minor pentatonic-ish): 8th-note pattern, 32 steps over 4 bars
+  const notes=[
+    220,262,330,440,392,330,262,220,
+    220,294,349,440,392,349,294,220,
+    196,247,330,392,440,392,330,247,
+    220,262,330,392,294,330,262,196,
+  ];
+  // Drone fundamental — root D
+  const drone=73.42;
+  let lpL=0,lpR=0;
+  for(let ch=0;ch<2;ch++){
+    const d=buf.getChannelData(ch);
+    // Step state for note-onset envelopes
+    let prevStep=-1,stepStartT=0;
+    for(let i=0;i<n;i++){
+      const t=i/sr;
+      const beatf=t*bpm/60;
+      const stepIdx=Math.floor(beatf*2)%notes.length;
+      const beat=Math.floor(beatf)%(bars*4);
+      const beatFrac=beatf%1;
+      const stepFrac=(beatf*2)%1;
+      if(stepIdx!==prevStep){prevStep=stepIdx;stepStartT=t;}
+      const tInNote=t-stepStartT;
+      const f=notes[stepIdx];
+      // Plucked-string envelope: fast attack, exponential decay
+      const env=Math.exp(-tInNote*3.4)*(tInNote<0.004?tInNote*250:1);
+      let s=0;
+      // Fundamental + harmonics with a tiny detune for warmth
+      s+=0.18*Math.sin(2*Math.PI*f*t)*env;
+      s+=0.10*Math.sin(2*Math.PI*f*2.003*t)*env*0.55;
+      s+=0.05*Math.sin(2*Math.PI*f*3.0*t)*env*0.32;
+      s+=0.025*Math.sin(2*Math.PI*f*4.01*t)*env*0.22;
+      // Soft drone — root + fifth, very low volume, slow tremolo
+      const tre=0.5+0.5*Math.sin(2*Math.PI*0.18*t);
+      s+=0.045*Math.sin(2*Math.PI*drone*t)*(0.6+0.4*tre);
+      s+=0.025*Math.sin(2*Math.PI*drone*1.5*t)*(0.5+0.5*tre);
+      // Taiko-like soft drum on bar 1 beat 1 (first beat of every other bar)
+      if((beat===0||beat===8)&&beatFrac<0.18){
+        const e=Math.sin((beatFrac/0.18)*Math.PI);
+        const fk=56*Math.exp(-beatFrac*7);
+        s+=0.18*e*Math.sin(2*Math.PI*fk*t);
+      }
+      // Tiny breath / hall noise
+      const hall=(tn(i+ch*733)-0.5);
+      if(ch===0)lpL=lpL*0.998+hall*0.002; else lpR=lpR*0.998+hall*0.002;
+      s+=(ch===0?lpL:lpR)*0.10;
+      // Soft attack on every step — tiny pluck transient
+      if(stepFrac<0.006){
+        s+=0.05*(tn(i+101+ch)-0.5)*Math.exp(-stepFrac*120);
+      }
+      d[i]=s*(ch===0?0.94:1.06);
+    }
+  }
+  // Normalize
+  let peak=0.001;
+  for(let ch=0;ch<2;ch++){
+    const d=buf.getChannelData(ch);
+    for(let i=0;i<n;i++)peak=Math.max(peak,Math.abs(d[i]));
+  }
+  const sc=0.55/Math.max(peak,0.18);
+  for(let ch=0;ch<2;ch++){
+    const d=buf.getChannelData(ch);
+    for(let i=0;i<n;i++)d[i]*=sc;
+  }
+  arenaIntroLoopBuf=buf;
+  return buf;
+}
+
+function startIntroMusic(){
+  if(musicOff||!AC)return;
+  if(introMusicSource)return;
+  // If fight music is active, intro music doesn't play
+  if(musicLoopSource)return;
+  buildArenaIntroLoopBuffer(AC);
+  introMusicGain=AC.createGain();
+  introMusicGain.gain.value=0;
+  introMusicFilter=AC.createBiquadFilter();
+  introMusicFilter.type='lowpass';
+  introMusicFilter.frequency.value=2400;
+  introMusicFilter.Q.value=0.7;
+  introMusicSource=AC.createBufferSource();
+  introMusicSource.buffer=arenaIntroLoopBuf;
+  introMusicSource.loop=true;
+  introMusicSource.connect(introMusicFilter);
+  introMusicFilter.connect(introMusicGain);
+  if(mGain)introMusicGain.connect(mGain); else introMusicGain.connect(AC.destination);
+  try{introMusicSource.start(0);}catch(e){
+    try{introMusicSource.disconnect();}catch(_){}
+    introMusicSource=null;
+    return;
+  }
+  // Gentle fade-in
+  const t=AC.currentTime;
+  introMusicGain.gain.setValueAtTime(0,t);
+  introMusicGain.gain.linearRampToValueAtTime(0.7,t+1.8);
+}
+
+function stopIntroMusic(){
+  if(!introMusicSource){
+    if(introMusicFilter){try{introMusicFilter.disconnect();}catch(_){}introMusicFilter=null;}
+    if(introMusicGain){try{introMusicGain.disconnect();}catch(_){}introMusicGain=null;}
+    return;
+  }
+  const src=introMusicSource;
+  const gain=introMusicGain;
+  const filt=introMusicFilter;
+  introMusicSource=null;
+  introMusicGain=null;
+  introMusicFilter=null;
+  try{
+    if(AC&&gain){
+      const t=AC.currentTime;
+      gain.gain.cancelScheduledValues(t);
+      gain.gain.setValueAtTime(gain.gain.value,t);
+      gain.gain.linearRampToValueAtTime(0,t+0.45);
+    }
+  }catch(_){}
+  setTimeout(()=>{
+    try{src.stop();}catch(_){}
+    try{src.disconnect();}catch(_){}
+    if(filt){try{filt.disconnect();}catch(_){}}
+    if(gain){try{gain.disconnect();}catch(_){}}
+  },550);
 }
 
 // ── SOUND EFFECTS ──────────────────────────────────────────
@@ -10993,6 +11609,8 @@ function syncIntroControlsFromStorage(){
   if(lf)lf.checked=!!s.logImportantOnly;
   if(typeof syncSkinChipStyles==='function')syncSkinChipStyles();
   if(typeof renderSkinShowcase==='function')renderSkinShowcase();
+  if(typeof renderIntroStats==='function')renderIntroStats();
+  if(typeof renderVaultPreview==='function')renderVaultPreview();
 }
 // Tiny deferred boot so both script blocks are parsed first
 window.addEventListener('DOMContentLoaded',()=>{
@@ -11005,6 +11623,20 @@ window.addEventListener('DOMContentLoaded',()=>{
   if(tap&&!tap.dataset.gaBound){
     tap.dataset.gaBound='1';
     tap.addEventListener('click',()=>unlockAudioFromGesture(),{passive:true});
+  }
+  // First-gesture audio unlock on the title screen — needed because
+  // browser autoplay policy requires a user interaction to resume AudioContext.
+  // Bind once to pointerdown on the intro; intro music will fade in after.
+  const intro=document.getElementById('intro-scr');
+  if(intro&&!intro.dataset.gaAudioBound){
+    intro.dataset.gaAudioBound='1';
+    const onFirstGesture=()=>{
+      try{unlockAudioFromGesture();}catch(_){}
+      intro.removeEventListener('pointerdown',onFirstGesture,true);
+      intro.removeEventListener('keydown',onFirstGesture,true);
+    };
+    intro.addEventListener('pointerdown',onFirstGesture,{capture:true,passive:true});
+    intro.addEventListener('keydown',onFirstGesture,{capture:true,passive:true});
   }
   syncAudioTapLayer();
   setInterval(syncAudioTapLayer,900);
@@ -11040,6 +11672,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   });
   renderLegacyHUD();
   renderLegacyIntro();
+  renderLevelIntro();
   updateDailyIntro();
   if(typeof renderMetaVaultIntro==='function')renderMetaVaultIntro();
   // Live countdown tick
